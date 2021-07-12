@@ -10,7 +10,6 @@
 "{{{ Plugins			*plugins*
 call plug#begin('~/.vim/plugged')
 
-Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 
