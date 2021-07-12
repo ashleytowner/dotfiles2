@@ -98,6 +98,7 @@ function weather() {
 alias vim="nvim"
 alias vimm="nvim -M"
 alias ovim="/usr/bin/vim"
+alias vims="nvim -S $XDG_DATA_HOME/nvim/sessions/\$(ls $XDG_DATA_HOME/nvim/sessions | fzf)"
 alias src="source ~/.zshrc"
 alias reload="exec zsh -l"
 alias run="scripts"
