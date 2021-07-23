@@ -18,9 +18,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
  
 " File Management
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Syntax & Completion
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -152,7 +153,9 @@ autocmd FileType sql setlocal commentstring=--\ %s
 
 "{{{ Key Remaps			*keymap*
 
-nmap <silent> <C-p> :Files<CR>
+nnoremap <C-p> <cmd>Telescope find_files find_command=rg,--hidden,--files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
