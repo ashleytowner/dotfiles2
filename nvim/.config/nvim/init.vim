@@ -23,6 +23,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 
 " Syntax & Completion
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -45,6 +46,8 @@ Plug 'eslint/eslint'
 " Theming
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'haishanh/night-owl.vim'
+Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'marko-cerovac/material.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 
@@ -54,7 +57,7 @@ call plug#end()
 
 " lightline
 let g:lightline = {
-    \   'colorscheme': 'nightowl',
+    \   'colorscheme': 'material',
     \   'active': {
     \     'left': [
     \               [ 'mode', 'paste' ],
@@ -79,6 +82,18 @@ let g:fzf_layout = { 'down': '40%' }
 " Code Formatting
 let g:yats_host_keyword = 1
 
+" TreeSitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true
+  }
+}
+EOF
+
+" material theme
+let g:material_style = 'deep ocean'
 
 " CoC
 let g:coc_global_extensions = [
@@ -107,7 +122,7 @@ let g:coc_global_extensions = [
 
 "{{{ Settings			*vim_settings*
 
-colorscheme night-owl
+colorscheme material
 set cindent
 set cursorline 
 set expandtab 
