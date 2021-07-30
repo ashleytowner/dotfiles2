@@ -98,8 +98,6 @@ let g:material_style = 'deep ocean'
 
 " CoC
 let g:coc_global_extensions = [
-  \ 'coc-angular',
-  \ 'coc-clangd',
   \ 'coc-css',
   \ 'coc-eslint', 
   \ 'coc-html',
