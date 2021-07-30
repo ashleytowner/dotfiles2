@@ -151,7 +151,7 @@ autocmd FileType sql setlocal commentstring=--\ %s
 
 "{{{ Key Remaps			*keymap*
 
-nnoremap <C-p> <cmd>Telescope find_files find_command=rg,--hidden,--files<cr>
+nnoremap <C-p> <cmd>Telescope find_files find_command=fdfind<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nmap <silent> gd <Plug>(coc-definition)
