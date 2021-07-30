@@ -11,6 +11,11 @@
     "graphql"
   ],
   "languageserver": {
+    "graphql": {
+      "command": "grapql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["typescript", "javascript", "graphql"]
+    },
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "cc", "c++", "objc", "objcpp"],
