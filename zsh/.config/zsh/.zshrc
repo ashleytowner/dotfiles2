@@ -61,6 +61,7 @@ case $(uname -s) in
 'MacOS')
   bindkey '\e[A' history-beginning-search-backward
   bindkey '\e[B' history-beginning-search-forward
+  alias fdfind=fd
 ;;
 'Linux')
   bindkey "^[OA" history-beginning-search-backward
@@ -75,18 +76,18 @@ function dev-tmux() {
   tmux new-session -s $1 \; rename-window 'server' \; new-window \; rename-window 'editor' \; new-window \; rename-window 'tunnel' \; attach
 }
 
-alias findfunction=$(which fd > /dev/null && echo "fd" || which fdfind > /dev/null && echo "fdfind")
+# alias findfunction=$(which fd > /dev/null && echo "fd" || which fdfind > /dev/null && echo "fdfind")
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  findfunction --hidden --follow --exclude ".git" . "$1"
+  fdfind --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  findfunction --type d --hidden --follow --exclude ".git" . "$1"
+  fdfind --type d --hidden --follow --exclude ".git" . "$1"
 }
 #}}}
 
