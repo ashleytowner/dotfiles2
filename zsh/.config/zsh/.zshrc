@@ -23,7 +23,7 @@ export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
 export TIMERC=$XDG_CONFIG_HOME/timewarrior/timerc
 export FZF_DEFAULT_COMMAND='fd -H --type f'
 export EMPTY_COMMAND='' # If an empty command is entered, this command will be run instead
-export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools
+export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin
 export EDITOR="nvim"
 export TASKDDATA=/Users/jarod/.local/share/taskd
 #}}}

@@ -10,6 +10,7 @@
 "{{{ Plugins			*plugins*
 call plug#begin('~/.vim/plugged')
 
+" Motions & Objects
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 
@@ -25,8 +26,9 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " Syntax & Completion
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'elzr/vim-json'
+" Plug 'elzr/vim-json'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'othree/html5.vim'
@@ -51,8 +53,11 @@ Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'marko-cerovac/material.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
+Plug 'Iron-E/nvim-highlite'
 
 call plug#end()
+
+
 
 "{{{ Plugin Configuration			*plugin_config*
 
@@ -142,29 +147,26 @@ filetype on
 filetype plugin on
 syntax enable
 
-"{{{ Filetype Settings			*filetype_settings*
-"
-" sql
-autocmd FileType sql setlocal commentstring=--\ %s
-
-"}}}
-
 "{{{ Key Remaps			*keymap*
 
-nnoremap <C-p> <cmd>Telescope find_files find_command=fdfind<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>act :CocAction<CR>
+nmap <silent> gbn :bnext<CR>
+nmap <silent> gbp :bprev<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gbn :bnext<CR>
-nmap <silent> gbp :bprev<CR>
-nmap <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>act :CocAction<CR>
+nnoremap <C-p> <cmd>Telescope find_files find_command=fdfind<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+nnoremap J mzJ`z
+nnoremap N Nzz
+nnoremap Y y$
+nnoremap n nzz
+vnoremap <silent> J :m '>+1<CR>gv=gv
+vnoremap <silent> K :m '<-2<CR>gv=gv
 
 "}}}
 "}}}

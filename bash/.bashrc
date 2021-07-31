@@ -65,3 +65,4 @@ alias opgi="op get item"
 
 # |external|
 
+. "$HOME/.cargo/env"
