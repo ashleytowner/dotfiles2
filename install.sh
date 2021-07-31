@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+# Install homebrew
 if [ $(uname -s) = 'MacOS' ]; then
   which brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -16,13 +17,4 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Stow everything that needs stowing
-stow bash
-stow ctags
-stow fzf
-stow git
-stow kitty
-stow nvim
-stow taskwarrior
-stow tmux
-stow zsh
-
+stow *_s
