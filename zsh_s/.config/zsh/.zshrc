@@ -58,6 +58,8 @@ PROMPT_POSITION='bottom' # This is managed by the pin prompt plugin
 
 # Make up & down keys search based on what's already entered
 case $(uname -s) in
+'Darwin')
+;&
 'MacOS')
   bindkey '\e[A' history-beginning-search-backward
   bindkey '\e[B' history-beginning-search-forward
