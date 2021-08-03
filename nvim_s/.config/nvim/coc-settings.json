@@ -12,7 +12,7 @@
   ],
   "languageserver": {
     "graphql": {
-      "command": "grapql-lsp",
+      "command": "graphql-lsp",
       "args": ["server", "-m", "stream"],
       "filetypes": ["typescript", "javascript", "graphql"]
     },
