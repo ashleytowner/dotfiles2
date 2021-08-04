@@ -163,7 +163,7 @@ keymap('n', '<leader>gco', '<cmd>Telescope git_branches<cr>', { noremap = true }
 keymap('n', '<leader>ls', '<cmd>Telescope buffers<cr>', { noremap = true })
 keymap('n', '<leader>rn', '<Plug>(coc-rename)', { noremap = true })
 keymap('n', 'J', 'mzJ`z', { noremap = true })
-keymap('n', 'K', '<cmd>call <SID>show_documentation()<cr>', { silent = true, noremap = true })
+keymap('n', 'K', '<cmd>call ShowDocumentation()<cr>', { silent = true, noremap = true })
 keymap('n', 'N', 'Nzz', { noremap = true })
 keymap('n', 'Y', 'y$', { noremap = true })
 keymap('n', 'gbn', ':bnext<CR>', { silent = true, noremap = true })
@@ -178,35 +178,45 @@ keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true });
 
 -- }}}
 -- }}}
-EOF
 
+-- {{{ Functions			*functions*
 
-"{{{ Functions			*functions*
-
-function! s:show_documentation()
+vim.api.nvim_exec([[
+function! ShowDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
 endfunction
+]], false)
 
+vim.api.nvim_exec([[
 function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
   let modified = &modified ? ' +' : ''
   return filename . modified
 endfunction
+]], false)
 
-"}}}
 
-"{{{ External Files			*external*
+-- }}}
+
+-- {{{ External Files			*external*
+
+vim.api.nvim_exec([[
 let $LOCALFILE=expand("~/.config/local_override/nvim/init.vim")
 if filereadable($LOCALFILE)
     source $LOCALFILE
 endif
+]], false)
 
+vim.api.nvim_exec([[
 let $REPOCONFIG=expand('./.vim/init.vim')
 if filereadable($REPOCONFIG)
   source $REPOCONFIG
 endif
-"}}}
+]], false)
+
+-- }}}
+EOF
