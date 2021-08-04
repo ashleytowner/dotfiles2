@@ -82,9 +82,6 @@ let g:lightline = {
     \ }
 
 
-" FZF
-let g:fzf_layout = { 'down': '40%' }
-
 " Code Formatting
 let g:yats_host_keyword = 1
 
