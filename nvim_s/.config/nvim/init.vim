@@ -58,131 +58,128 @@ Plug 'Iron-E/nvim-highlite'
 call plug#end()
 
 
+lua << EOF
+-- {{{ Plugin Configuration			*plugin_config*
 
-"{{{ Plugin Configuration			*plugin_config*
+-- Lightline Configuration
 
-" lightline
-let g:lightline = {
-    \   'colorscheme': 'material',
-    \   'active': {
-    \     'left': [
-    \               [ 'mode', 'paste' ],
-    \               [ 'gitbranch', 'readonly', 'filename' ]
-    \             ],
-    \     'right': [
-    \               [ 'percent' ],
-    \               [ 'lineinfo' ],
-    \               [ 'fileencoding', 'filetype' ]
-    \              ]
-    \   },
-    \   'component_function': {
-    \     'gitbranch': 'FugitiveHead',
-    \     'filename': 'LightlineFilename'
-    \   },
-    \ }
+vim.g.lightline = {
+  colorscheme = 'material',
+  active = {
+    left = {
+      { 'mode', 'paste' },
+      { 'gitbranch', 'readonly', 'filename' }
+    },
+    right = {
+      { 'percent' },
+      { 'lineinfo' },
+      { 'fineencoding', 'filetype' }
+    },
+  },
+  component_function = {
+    gitbranch = 'FugitiveHead',
+    filename = 'LightlineFilename'
+  }
+}
 
+-- Treesitter Configuration
 
-" Code Formatting
-let g:yats_host_keyword = 1
-
-" TreeSitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+require('nvim-treesitter.configs').setup {
+    ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
         enable = true
     },
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
+            init_selection = 'gnn',
+            node_incremental = 'grn',
+            scope_incremental = 'grc',
+            node_decremental = 'grm',
         }
     }
 }
+
+local parser_config = require ('nvim-treesitter.parsers').get_parser_configs()
+parser_config.typescript.used_by = 'javascript.jsx'
+
+-- CoC Extensions
+
+vim.g.coc_global_extensions={
+  'coc-css',
+  'coc-eslint',
+  'coc-html',
+  'coc-json',
+  'coc-phpls',
+  'coc-prettier',
+  'coc-python',
+  'coc-snippets',
+  'coc-sql',
+  'coc-stylelintplus',
+  'coc-tag',
+  'coc-tsserver',
+  'coc-vetur'
+}
+
+-- Material theme
+
+vim.g.material_style = 'deep ocean'
+
+-- }}}
+-- }}}
+
+-- {{{ Settings			*vim_settings*
+
+vim.bo.expandtab = true
+vim.o.cindent = true
+vim.o.foldlevel = 99
+vim.o.hidden = true
+vim.o.hlsearch = false
+vim.o.listchars = 'tab: |,nbsp:_'
+vim.o.number = true
+vim.o.pyxversion = 3
+vim.o.relativenumber =  true
+vim.o.shiftwidth = 2
+vim.o.smarttab = true
+vim.o.tabstop = 2
+vim.o.termguicolors = true
+vim.o.updatetime = 300
+vim.wo.cursorline = true
+vim.wo.list = true
+
+vim.cmd('colorscheme material')
+vim.cmd('filetype on')
+vim.cmd('filetype plugin on')
+vim.cmd('syntax enable')
+
+-- {{{ Key Remaps			*keymap*
+
+local keymap = vim.api.nvim_set_keymap
+keymap('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true })
+keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden<cr>', { noremap = true })
+keymap('n', '<leader>act', ':CocAction<CR>', { silent = true, noremap=true })
+keymap('n', '<leader>err', ':CocDiagnostics<cr>', { noremap = true })
+keymap('n', '<leader>gco', '<cmd>Telescope git_branches<cr>', { noremap = true })
+keymap('n', '<leader>ls', '<cmd>Telescope buffers<cr>', { noremap = true })
+keymap('n', '<leader>rn', '<Plug>(coc-rename)', { noremap = true })
+keymap('n', 'J', 'mzJ`z', { noremap = true })
+keymap('n', 'K', '<cmd>call <SID>show_documentation()<cr>', { silent = true, noremap = true })
+keymap('n', 'N', 'Nzz', { noremap = true })
+keymap('n', 'Y', 'y$', { noremap = true })
+keymap('n', 'gbn', ':bnext<CR>', { silent = true, noremap = true })
+keymap('n', 'gbp', ':bprev<CR>', { silent = true, noremap = true })
+keymap('n', 'gd', '<Plug>(coc-definition)', { silent = true, noremap = true })
+keymap('n', 'gi', '<Plug>(coc-implementation)', { silent = true, noremap = true })
+keymap('n', 'gr', '<Plug>(coc-references)', { silent = true, noremap = true })
+keymap('n', 'gy', '<Plug>(coc-type-definition)', { silent = true, noremap = true })
+keymap('n', 'n', 'nzz', { noremap = true })
+keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
+keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true });
+
+-- }}}
+-- }}}
 EOF
 
-" table.insert(parser_config.typescript.used_by, "javascript.jsx")
-lua <<EOF
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.typescript.used_by = "javascript.jsx"
-EOF
-
-" material theme
-let g:material_style = 'deep ocean'
-
-" CoC
-let g:coc_global_extensions = [
-  \ 'coc-css',
-  \ 'coc-eslint', 
-  \ 'coc-html',
-  \ 'coc-json', 
-  \ 'coc-phpls',
-  \ 'coc-prettier',
-  \ 'coc-python',
-  \ 'coc-snippets',
-  \ 'coc-sql',
-  \ 'coc-stylelintplus',
-  \ 'coc-tag',
-  \ 'coc-tsserver',
-  \ 'coc-vetur'
-  \ ]
-
-" fugitive
-" set diffopt+=vertical "make diffs vertical
-
-"}}}
-"}}}
-
-"{{{ Settings			*vim_settings*
-
-colorscheme material
-set cindent
-set cursorline 
-set expandtab 
-set hidden 
-set list
-set listchars=tab:▸\ ,nbsp:_ 
-set nohlsearch
-set number 
-set pyxversion=3
-set relativenumber 
-set shiftwidth=2
-set smarttab
-set tabstop=2
-set termguicolors
-set updatetime=300
-set foldlevel=99
-filetype on
-filetype plugin on
-syntax enable
-
-"{{{ Key Remaps			*keymap*
-
-nmap <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>act :CocAction<CR>
-nmap <silent> gbn :bnext<CR>
-nmap <silent> gbp :bprev<CR>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy <Plug>(coc-type-definition)
-nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files({ find_command={ 'fd','--hidden' } })<cr>
-nnoremap <leader>ls <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <C-f> <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>gco <cmd>lua require('telescope.builtin').git_branches()<cr>
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap J mzJ`z
-nnoremap N Nzz
-nnoremap Y y$
-nnoremap n nzz
-vnoremap <silent> J :m '>+1<CR>gv=gv
-vnoremap <silent> K :m '<-2<CR>gv=gv
-
-"}}}
-"}}}
 
 "{{{ Functions			*functions*
 
