@@ -172,9 +172,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
-nnoremap <C-p> <cmd>Telescope find_files find_command=fdfind<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files({ find_command={ 'fd','--hidden' } })<cr>
+nnoremap <leader>ls <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <C-f> <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>gco <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap J mzJ`z
 nnoremap N Nzz
