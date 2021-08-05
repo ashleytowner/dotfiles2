@@ -59,6 +59,13 @@ call plug#end()
 
 
 lua << EOF
+
+-- Get current operating system
+
+vim.api.nvim_exec([[
+let g:uname = system("uname")
+]], false)
+
 -- {{{ Plugin Configuration			*plugin_config*
 
 -- Lightline Configuration
@@ -154,9 +161,14 @@ vim.cmd('syntax enable')
 
 -- {{{ Key Remaps			*keymap*
 
+
 local keymap = vim.api.nvim_set_keymap
 keymap('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true })
-keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden<cr>', { noremap = true })
+if (vim.g.uname == "Linux\n") then
+    keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden<cr>', { noremap = true })
+else
+    keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden<cr>', { noremap = true })
+end
 keymap('n', '<leader>act', ':CocAction<CR>', { silent = true, noremap=true })
 keymap('n', '<leader>err', ':CocDiagnostics<cr>', { noremap = true })
 keymap('n', '<leader>gco', '<cmd>Telescope git_branches<cr>', { noremap = true })
