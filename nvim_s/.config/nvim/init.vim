@@ -71,40 +71,40 @@ let g:uname = system("uname")
 -- Lightline Configuration
 
 vim.g.lightline = {
-  colorscheme = 'material',
-  active = {
-    left = {
-      { 'mode', 'paste' },
-      { 'gitbranch', 'readonly', 'filename' }
-    },
-    right = {
-      { 'percent' },
-      { 'lineinfo' },
-      { 'fineencoding', 'filetype' }
-    },
-  },
-  component_function = {
-    gitbranch = 'FugitiveHead',
-    filename = 'LightlineFilename'
-  }
+	colorscheme = 'material',
+	active = {
+		left = {
+			{ 'mode', 'paste' },
+			{ 'gitbranch', 'readonly', 'filename' }
+		},
+		right = {
+			{ 'percent' },
+			{ 'lineinfo' },
+			{ 'fineencoding', 'filetype' }
+		},
+	},
+	component_function = {
+		gitbranch = 'FugitiveHead',
+		filename = 'LightlineFilename'
+	}
 }
 
 -- Treesitter Configuration
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    highlight = {
-        enable = true
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = 'gnn',
-            node_incremental = 'grn',
-            scope_incremental = 'grc',
-            node_decremental = 'grm',
-        }
-    }
+		ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+		highlight = {
+				enable = true
+		},
+		incremental_selection = {
+				enable = true,
+				keymaps = {
+						init_selection = 'gnn',
+						node_incremental = 'grn',
+						scope_incremental = 'grc',
+						node_decremental = 'grm',
+				}
+		}
 }
 
 local parser_config = require ('nvim-treesitter.parsers').get_parser_configs()
@@ -113,19 +113,19 @@ parser_config.typescript.used_by = 'javascript.jsx'
 -- CoC Extensions
 
 vim.g.coc_global_extensions={
-  'coc-css',
-  'coc-eslint',
-  'coc-html',
-  'coc-json',
-  'coc-phpls',
-  'coc-prettier',
-  'coc-python',
-  'coc-snippets',
-  'coc-sql',
-  'coc-stylelintplus',
-  'coc-tag',
-  'coc-tsserver',
-  'coc-vetur'
+	'coc-css',
+	'coc-eslint',
+	'coc-html',
+	'coc-json',
+	'coc-phpls',
+	'coc-prettier',
+	'coc-python',
+	'coc-snippets',
+	'coc-sql',
+	'coc-stylelintplus',
+	'coc-tag',
+	'coc-tsserver',
+	'coc-vetur'
 }
 
 -- Material theme
@@ -142,17 +142,19 @@ vim.o.cindent = true
 vim.o.foldlevel = 99
 vim.o.hidden = true
 vim.o.hlsearch = false
-vim.o.listchars = 'tab: |,nbsp:_'
+vim.o.listchars = 'tab:› ,trail:×,lead:·'
 vim.o.number = true
 vim.o.pyxversion = 3
 vim.o.relativenumber =  true
 vim.o.shiftwidth = 2
 vim.o.smarttab = true
-vim.o.tabstop = 2
+vim.o.tabstop = 3
 vim.o.termguicolors = true
 vim.o.updatetime = 300
 vim.wo.cursorline = true
+vim.wo.colorcolumn = '80'
 vim.wo.list = true
+vim.wo.wrap = false
 
 vim.cmd('colorscheme material')
 vim.cmd('filetype on')
@@ -165,9 +167,9 @@ vim.cmd('syntax enable')
 local keymap = vim.api.nvim_set_keymap
 keymap('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true })
 if (vim.g.uname == "Linux\n") then
-    keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden<cr>', { noremap = true })
+		keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden<cr>', { noremap = true })
 else
-    keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden<cr>', { noremap = true })
+		keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden<cr>', { noremap = true })
 end
 keymap('n', '<leader>act', ':CocAction<CR>', { silent = true, noremap=true })
 keymap('n', '<leader>err', ':CocDiagnostics<cr>', { noremap = true })
@@ -180,11 +182,11 @@ keymap('n', 'N', 'Nzz', { noremap = true })
 keymap('n', 'Y', 'y$', { noremap = true })
 keymap('n', 'gbn', ':bnext<CR>', { silent = true, noremap = true })
 keymap('n', 'gbp', ':bprev<CR>', { silent = true, noremap = true })
-keymap('n', 'gd', '<Plug>(coc-definition)', { silent = true, noremap = true })
-keymap('n', 'gi', '<Plug>(coc-implementation)', { silent = true, noremap = true })
-keymap('n', 'gr', '<Plug>(coc-references)', { silent = true, noremap = true })
-keymap('n', 'gy', '<Plug>(coc-type-definition)', { silent = true, noremap = true })
+keymap('n', 'gd', '<cmd>call CocActionAsync(\'jumpDefinition\')<cr>', { silent = false, noremap = true })
+keymap('n', 'gi', '<cmd>call CocActionAsync(\'jumpImplementation\')<cr>', { silent = true, noremap = true }) keymap('n', 'gr', '<cmd>call CocActionAsync(\'jumpReferences\')<cr>', { silent = true, noremap = true })
+keymap('n', 'gy', '<cmd>call CocActionAsync(\'jumpTypeDefinition\')<cr>', { silent = true, noremap = true })
 keymap('n', 'n', 'nzz', { noremap = true })
+keymap('n', '<leader>merge', '<cmd>Gvdiffsplit!<cr>', { noremap=true })
 keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
 keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true });
 
@@ -195,19 +197,19 @@ keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true });
 
 vim.api.nvim_exec([[
 function! ShowDocumentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
 endfunction
 ]], false)
 
 vim.api.nvim_exec([[
 function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  return filename . modified
+	let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+	let modified = &modified ? ' +' : ''
+	return filename . modified
 endfunction
 ]], false)
 
@@ -219,14 +221,14 @@ endfunction
 vim.api.nvim_exec([[
 let $LOCALFILE=expand("~/.config/local_override/nvim/init.vim")
 if filereadable($LOCALFILE)
-    source $LOCALFILE
+		source $LOCALFILE
 endif
 ]], false)
 
 vim.api.nvim_exec([[
 let $REPOCONFIG=expand('./.vim/init.vim')
 if filereadable($REPOCONFIG)
-  source $REPOCONFIG
+	source $REPOCONFIG
 endif
 ]], false)
 
