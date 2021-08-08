@@ -11,7 +11,8 @@ vim.g.coc_global_extensions={
 	'coc-stylelintplus',
 	'coc-tag',
 	'coc-tsserver',
-	'coc-vetur'
+	'coc-vetur',
+	'coc-clangd'
 }
 
 vim.api.nvim_exec([[

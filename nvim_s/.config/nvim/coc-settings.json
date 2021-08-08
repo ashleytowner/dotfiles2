@@ -15,18 +15,12 @@
       "command": "graphql-lsp",
       "args": ["server", "-m", "stream"],
       "filetypes": ["typescript", "javascript", "graphql"]
-    },
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "cc", "c++", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        }
-      }
     }
   },
   "stylelintplus.autoFixOnSave": true,
-  "stylelintplus.autoFixOnFormat": true
+  "stylelintplus.autoFixOnFormat": true,
+  "diagnostic.errorSign": "●",
+  "diagnostic.warningSign": "●",
+  "diagnostic.infoSign": "●",
+  "diagnostic.hintSign": "●"
 }
