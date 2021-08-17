@@ -6,6 +6,7 @@
 	fco = "!f() { if [ $1 ]; then git checkout $(git branch | sed 's/*/ /g' | fzf -1 --query $1); else git checkout $(git branch | sed 's/*/ /g' | fzf); fi }; f"
 	cb = "!f() { git clean-branches; }; f"
 	b = "branch"
+	c = "commit"
 	s = "stash"
 	p = "!f() { git push -u origin $(git rev-parse --abbrev-ref HEAD) $@; }; f"
 	aa = "add --all"
