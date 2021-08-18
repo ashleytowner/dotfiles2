@@ -28,8 +28,10 @@ keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true })
 keymap('', '<leader>y', '"+y', { noremap=true })
 keymap('', '<leader>p', '"+p', { noremap=true })
 
+-- test / there / fam
+
 -- Custom text objects
-keymap('x', 'a/', ':lua highlightRange(getTextObjectRange("/"), true)<cr>', { noremap = true, silent = true })
+keymap('x', 'a/', ':lua SelectTextObject("/", "/", true)<cr>', { noremap = true, silent = true })
 keymap('o', 'a/', '<cmd>norm va/<cr>', { noremap = true })
-keymap('x', 'i/', ':lua highlightRange(getTextObjectRange("/"), false)<cr>', { noremap = true, silent = true })
+keymap('x', 'i/', ':lua SelectTextObject("/", "/", false)<cr>', { noremap = true, silent = true })
 keymap('o', 'i/', '<cmd>norm vi/<cr>', { noremap = true })
