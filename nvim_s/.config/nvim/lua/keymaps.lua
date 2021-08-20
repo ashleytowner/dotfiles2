@@ -19,7 +19,7 @@ keymap('n', 'Y', 'y$', { noremap = true })
 keymap('n', 'gbn', ':bnext<CR>', { silent = true, noremap = true })
 keymap('n', 'gbp', ':bprev<CR>', { silent = true, noremap = true })
 keymap('n', 'gd', '<cmd>call CocActionAsync(\'jumpDefinition\')<cr>', { silent = false, noremap = true })
-keymap('n', 'gi', '<cmd>call CocActionAsync(\'jumpImplementation\')<cr>', { silent = true, noremap = true }) keymap('n', 'gr', '<cmd>call CocActionAsync(\'jumpReferences\')<cr>', { silent = true, noremap = true })
+-- keymap('n', 'gi', '<cmd>call CocActionAsync(\'jumpImplementation\')<cr>', { silent = true, noremap = true }) keymap('n', 'gr', '<cmd>call CocActionAsync(\'jumpReferences\')<cr>', { silent = true, noremap = true })
 keymap('n', 'gy', '<cmd>call CocActionAsync(\'jumpTypeDefinition\')<cr>', { silent = true, noremap = true })
 keymap('n', 'n', 'nzz', { noremap = true })
 keymap('n', '<leader>merge', '<cmd>Gvdiffsplit!<cr>', { noremap=true })
@@ -27,6 +27,7 @@ keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
 keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true })
 keymap('', '<leader>y', '"+y', { noremap=true })
 keymap('', '<leader>p', '"+p', { noremap=true })
+keymap('n', '<leader><leader>', '<cmd>call ToggleNerdTree()<cr>', {})
 
 -- test / there / fam
 
