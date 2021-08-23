@@ -10,10 +10,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
  
 " File Management
-Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'preservim/nerdtree'
 
 " Syntax & Completion
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -53,6 +53,19 @@ call plug#end()
 
 
 " }}}
+
+function! ToggleNerdTree()
+    if g:NERDTree.IsOpen()
+        NERDTreeToggle
+    else
+        if @% == ""
+            NERDTreeToggle
+        else
+            NERDTreeFind
+            norm zz
+        endif
+    endif
+endfunction
 
 " {{{ Lua Imports
 lua << EOF
