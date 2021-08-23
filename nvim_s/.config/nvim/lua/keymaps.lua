@@ -20,6 +20,7 @@ keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
 keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true })
 keymap('', '<leader>y', '"+y', { noremap=true })
 keymap('', '<leader>p', '"+p', { noremap=true })
+keymap('n', '<leader><leader>', '<cmd>call ToggleNerdTree()<cr>', {})
 
 keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { noremap = true, silent = true})
 keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true})
