@@ -19,8 +19,11 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'elzr/vim-json'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
@@ -48,6 +51,7 @@ Plug 'Iron-E/nvim-highlite'
 
 call plug#end()
 
+
 " }}}
 
 " {{{ Lua Imports
@@ -58,6 +62,7 @@ require('settings')
 require('keymaps')
 require('functions')
 require('plugins')
+require('lsp')
 
 EOF
 " }}}
