@@ -49,6 +49,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'Iron-E/nvim-highlite'
 
+Plug 'mattn/emmet-vim'
+Plug 'justinmk/vim-sneak'
+
 call plug#end()
 
 if exists('+termguicolors')
@@ -56,6 +59,8 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+
+autocmd BufWritePre * lua vim.lsp.buf.formatting()
 
 " }}}
 
