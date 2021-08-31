@@ -61,7 +61,6 @@ lspconfig.tsserver.setup(util.spread(configuration) {
       client.config.flags.allow_incremental_sync = true
     end
     client.resolved_capabilities.document_formatting = false
-    print(vim.inspect(client.resolved_capabilities))
     setKeybinds()
   end
 })
