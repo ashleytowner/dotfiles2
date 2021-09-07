@@ -11,3 +11,7 @@ vim.g.NERDTreeQuitOnOpen = 1
 vim.g.NERDTreeMinimalUI = 1
 vim.g.NERDTreeDirArrowCollapsible = '-'
 vim.g.NERDTreeDirArrowExpandable = '+'
+
+if vim.g.started_by_firenvim then
+    vim.go.laststatus = 0
+end

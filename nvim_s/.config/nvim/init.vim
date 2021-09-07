@@ -1,6 +1,8 @@
 "{{{ Plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 " Motions & Objects
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
