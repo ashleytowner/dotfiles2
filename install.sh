@@ -8,6 +8,7 @@ fi
 # Install packages
 which brew > /dev/null && brew bundle
 which apt > /dev/null && xargs sudo apt install <Aptfile
+which npm > /dev/null && xargs npm i -g <Npmfile
 
 # Install submodules
 git submodule update --init
