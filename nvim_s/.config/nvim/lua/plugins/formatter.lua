@@ -27,7 +27,7 @@ local formatterConfig = {
         ['javascript.jsx'] = {
             prettier
         },
-        ['typescript.jsx'] = {
+        ['typescript.tsx'] = {
             prettier
         }
     }
