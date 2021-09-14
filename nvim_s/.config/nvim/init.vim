@@ -57,6 +57,8 @@ Plug 'marko-cerovac/material.nvim'
 Plug 'morhetz/gruvbox'
 
 
+Plug 'dbeniamine/cheat.sh-vim'
+
 call plug#end()
 
 if exists('+termguicolors')
@@ -69,6 +71,10 @@ augroup FormatAutoGroup
     autocmd!
     autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
     autocmd BufWritePost * silent FormatWrite
+augroup END
+
+augroup ErrorOnHoverAutoGroup
+    autocmd!
 augroup END
 
 " }}}
