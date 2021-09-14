@@ -21,6 +21,9 @@ local formatterConfig = {
         javascriptreact = {
             prettier
         },
+        html = {
+            prettier
+        },
         ['javascript.jsx'] = {
             prettier
         },
