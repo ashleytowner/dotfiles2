@@ -1,34 +1,45 @@
-local function prettier()
+local function prettierd()
     return {
         exe = "prettierd",
-        args = {vim.api.nvim_buf_get_name(0)},
+        args = {string.format("\"%s\"", vim.api.nvim_buf_get_name(0))},
         stdin = true
     }
+end
+
+local function prettier()
+  return {
+    exe = "prettier",
+    args = {string.format("\"%s\"", vim.api.nvim_buf_get_name(0))},
+    stdin = true
+  }
 end
 
 local formatterConfig = {
     logging = true,
     filetype = {
         typescriptreact = {
-            prettier
+            prettierd
         },
         typescript = {
-            prettier
+            prettierd
         },
         javascript = {
-            prettier
+            prettierd
         },
         javascriptreact = {
-            prettier
+            prettierd
         },
         html = {
-            prettier
+            prettierd
         },
         ['javascript.jsx'] = {
-            prettier
+            prettierd
         },
         ['typescript.tsx'] = {
-            prettier
+            prettierd
+        },
+        markdown = {
+          prettier
         }
     }
 }
