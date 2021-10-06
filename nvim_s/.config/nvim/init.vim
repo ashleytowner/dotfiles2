@@ -69,7 +69,7 @@ endif
 
 augroup FormatAutoGroup
     autocmd!
-    autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
+    " autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
     autocmd BufWritePost * silent FormatWrite
 augroup END
 
