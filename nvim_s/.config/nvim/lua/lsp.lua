@@ -4,6 +4,10 @@ local util = require('util')
 -- luasnip setup
 local luasnip = require 'luasnip'
 
+--{{{ Configuration
+
+--{{{ Capabilities
+
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
@@ -21,6 +25,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   },
 }
+
+--}}}
+
+-- {{{ Keybinds
 
 local function setKeybinds()
   vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { noremap = true, silent = true})
@@ -43,11 +51,16 @@ local function setKeybinds()
   vim.api.nvim_set_keymap('v', '=', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', { noremap = true, silent = true})
   vim.api.nvim_set_keymap('n', '==', 'V:<C-u>lua vim.lsp.buf.range_formatting()<CR>', { noremap = true, silent = true})
 end
+--}}}
 
 local configuration = {
     capabilities = capabilities,
     on_attach = setKeybinds
 }
+
+--}}}
+
+--{{{ Configure Language Servers
 
 local servers = { 'pyright', 'clangd' }
 
@@ -55,8 +68,10 @@ for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(configuration)
 end
 
+--{{{ tsserver
+
 lspconfig.tsserver.setup(util.spread(configuration) {
-	on_attach = function(client)
+    on_attach = function(client)
     if client.config.flags then
       client.config.flags.allow_incremental_sync = true
     end
@@ -64,6 +79,10 @@ lspconfig.tsserver.setup(util.spread(configuration) {
     setKeybinds()
   end
 })
+
+--}}}
+
+--{{{ efm
 
 local eslint = {
   lintCommand = "eslint -f unix --stdin --stdin-filename ${INPUT}",
@@ -121,6 +140,11 @@ lspconfig.efm.setup {
   },
 }
 
+--}}}
+
+-- }}}
+
+--{{{ Completion
 local cmp = require 'cmp'
 cmp.setup {
   snippet = {
@@ -164,6 +188,9 @@ cmp.setup {
   },
 }
 
+--}}}
+
+--{{{ Diagnostics
 vim.fn.sign_define("LspDiagnosticsSignError",
     {text = "●", texthl = "LspDiagnosticsSignError"})
 vim.fn.sign_define("LspDiagnosticsSignWarning",
@@ -173,3 +200,6 @@ vim.fn.sign_define("LspDiagnosticsSignInformation",
 vim.fn.sign_define("LspDiagnosticsSignHint",
     {text = "●", texthl = "LspDiagnosticsSignHint"})
 
+--}}}
+
+-- vim: set foldmethod=marker foldlevel=0 :
