@@ -67,6 +67,11 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+augroup ConsistentSessions
+    autocmd!
+    autocmd VimLeavePre * mks! $XDG_DATA_HOME/nvim/sessions/Last.vim
+augroup END
+
 augroup FormatAutoGroup
     autocmd!
     " autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
