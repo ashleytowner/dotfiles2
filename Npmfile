@@ -5,3 +5,4 @@ eslint_d
 prettier
 typescript
 typescript-language-server
+stylelint-lsp
