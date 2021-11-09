@@ -7,3 +7,4 @@ typescript
 typescript-language-server
 stylelint-lsp
 bash-language-server
+vim-language-server
