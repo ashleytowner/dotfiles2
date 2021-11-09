@@ -62,7 +62,7 @@ local configuration = {
 
 --{{{ Configure Language Servers
 
-local servers = { 'pyright', 'clangd', 'stylelint_lsp' }
+local servers = { 'pyright', 'clangd', 'stylelint_lsp', 'bashls' }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(configuration)

@@ -6,3 +6,4 @@ prettier
 typescript
 typescript-language-server
 stylelint-lsp
+bash-language-server
