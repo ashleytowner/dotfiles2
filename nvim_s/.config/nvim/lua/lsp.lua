@@ -133,14 +133,14 @@ lspconfig.efm.setup {
   end,
   settings = {
     languages = {
-      javascript = {eslint, prettier},
-      javascriptreact = {eslint, prettier},
-      ["javascript.jsx"] = {eslint, prettier},
-      typescript = {eslint, prettier},
-      ["typescript.tsx"] = {eslint, prettier},
-      typescriptreact = {eslint, prettier},
-	  json = {prettier}
-	  -- html = {prettier}
+      javascript = {prettier, eslint},
+      javascriptreact = {prettier, eslint},
+      ["javascript.jsx"] ={prettier, eslint},
+      typescript ={prettier, eslint},
+      ["typescript.tsx"] ={prettier, eslint},
+      typescriptreact ={prettier, eslint},
+      json = {prettier},
+      html = {prettier}
     }
   },
   filetypes = {
@@ -150,7 +150,7 @@ lspconfig.efm.setup {
     "typescript",
     "typescript.tsx",
     "typescriptreact",
-	"json"
+    "json"
   },
 }
 

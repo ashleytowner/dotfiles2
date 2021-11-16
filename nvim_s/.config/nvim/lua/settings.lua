@@ -17,7 +17,7 @@ vim.wo.colorcolumn = '80'
 vim.wo.list = true
 vim.wo.wrap = false
 
-vim.cmd('colorscheme material')
+vim.cmd('colorscheme nightfly')
 vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
 vim.cmd('syntax enable')

@@ -39,6 +39,7 @@ Plug 'haishanh/night-owl.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'marko-cerovac/material.nvim'
 Plug 'morhetz/gruvbox'
+Plug 'bluz71/vim-nightfly-guicolors'
 
 
 Plug 'dbeniamine/cheat.sh-vim'
@@ -54,6 +55,11 @@ endif
 augroup ConsistentSessions
     autocmd!
     autocmd VimLeavePre * mks! $XDG_DATA_HOME/nvim/sessions/Last.vim
+augroup END
+
+augroup FormatOnSave
+	autocmd!
+	autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 augroup END
 
 " }}}
