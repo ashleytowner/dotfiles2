@@ -18,34 +18,18 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'preservim/nerdtree'
 
-" Syntax & Completion
-Plug 'clones/vim-zsh'
-Plug 'HerringtonDarkholme/yats.vim'
+" LSP & Completion
+Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'ianks/vim-tsx'
-Plug 'jparise/vim-graphql'
-Plug 'kmyk/brainfuck-highlight.vim'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'kmyk/brainfuck-highlight.vim'
 Plug 'mattn/emmet-vim'
-Plug 'mxw/vim-jsx'
-Plug 'neovim/nvim-lspconfig'
+
+" Syntax
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'othree/html5.vim'
-Plug 'othree/yajs.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'stanangeloff/php.vim'
-Plug 'vim-scripts/SQLUtilities'
-
-" Linting
-Plug 'eslint/eslint'
-Plug 'stylelint/stylelint'
-
-" Formatting
-Plug 'mhartington/formatter.nvim'
 
 " Theming
 Plug 'Iron-E/nvim-highlite'
@@ -70,16 +54,6 @@ endif
 augroup ConsistentSessions
     autocmd!
     autocmd VimLeavePre * mks! $XDG_DATA_HOME/nvim/sessions/Last.vim
-augroup END
-
-augroup FormatAutoGroup
-    autocmd!
-    " autocmd BufWritePre * silent lua vim.lsp.buf.formatting()
-    autocmd BufWritePost * silent FormatWrite
-augroup END
-
-augroup ErrorOnHoverAutoGroup
-    autocmd!
 augroup END
 
 " }}}

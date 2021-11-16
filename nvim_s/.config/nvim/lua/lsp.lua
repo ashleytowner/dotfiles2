@@ -65,7 +65,9 @@ local configuration = {
 local servers = { 'pyright', 'clangd', 'stylelint_lsp', 'bashls', 'vimls' }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(configuration)
+  lspconfig[lsp].setup(util.spread(configuration) {
+    filetypes = { "css", "less", "scss", "sugarss", "vue", "wxss" }
+  })
 end
 
 --{{{ tsserver
@@ -109,10 +111,19 @@ local function eslint_config_exists()
   return false
 end
 
+local prettier = {
+  formatCommand = 'prettierd "${INPUT}"',
+  formatStdin = true,
+  env = {
+    string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json')),
+  },
+}
+
 lspconfig.efm.setup {
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
     client.resolved_capabilities.goto_definition = false
+    vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true})
   end,
   root_dir = function()
     if not eslint_config_exists() then
@@ -122,12 +133,14 @@ lspconfig.efm.setup {
   end,
   settings = {
     languages = {
-      javascript = {eslint},
-      javascriptreact = {eslint},
-      ["javascript.jsx"] = {eslint},
-      typescript = {eslint},
-      ["typescript.tsx"] = {eslint},
-      typescriptreact = {eslint}
+      javascript = {eslint, prettier},
+      javascriptreact = {eslint, prettier},
+      ["javascript.jsx"] = {eslint, prettier},
+      typescript = {eslint, prettier},
+      ["typescript.tsx"] = {eslint, prettier},
+      typescriptreact = {eslint, prettier},
+	  json = {prettier}
+	  -- html = {prettier}
     }
   },
   filetypes = {
@@ -136,7 +149,8 @@ lspconfig.efm.setup {
     "javascript.jsx",
     "typescript",
     "typescript.tsx",
-    "typescriptreact"
+    "typescriptreact",
+	"json"
   },
 }
 
@@ -153,34 +167,15 @@ cmp.setup {
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.prev_item(),
-    ['<C-n>'] = cmp.mapping.next_item(),
-    ['<C-d>'] = cmp.mapping.scroll(-4),
-    ['<C-f>'] = cmp.mapping.scroll(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-      elseif luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-      else
-        fallback()
-      end
-    end),
-    ['<S-Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
-      elseif luasnip.jumpable(-1) then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
-      else
-        fallback()
-      end
-    end),
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = {
     { name = 'nvim_lsp' },
