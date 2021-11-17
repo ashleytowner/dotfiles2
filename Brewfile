@@ -189,6 +189,8 @@ brew "yarn"
 brew "youtube-dl"
 # UNIX shell (command interpreter)
 brew "zsh"
+# File Manager
+brew "ranger"
 # Everything you need to get started with Heroku
 brew "heroku/brew/heroku"
 # A fancy terminal browser for the Gemini protocol.

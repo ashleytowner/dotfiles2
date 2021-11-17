@@ -26,6 +26,7 @@ export EMPTY_COMMAND='' # If an empty command is entered, this command will be r
 export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin:~/go/bin
 export EDITOR="nvim"
 export TASKDDATA=/Users/jarod/.local/share/taskd
+export RANGER_LOAD_DEFAULT_RC=false
 #}}}
 
 #{{{ *modules*
