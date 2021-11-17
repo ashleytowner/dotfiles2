@@ -38,6 +38,7 @@ zmodload zsh/computil
 
 #{{{ *options*
 autoload -Uz compinit && compinit
+autoload -U colors && colors
 setopt autocd
 setopt AUTO_PUSHD
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}'
