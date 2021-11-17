@@ -1,8 +1,5 @@
-[submodule "nvim/vim-plug"]
-	path = nvim/vim-plug
-	url = https://github.com/junegunn/vim-plug
 [submodule "zsh_s/.config/zsh/autoload/zsh-syntax-highlighting"]
-	path = zsh/autoload/zsh-syntax-highlighting
+	path = zsh_s/.config/zsh/autoload/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule "zsh_s/.config/zsh/autoload/powerlevel10k"]
 	path = zsh_s/.config/zsh/autoload/powerlevel10k
