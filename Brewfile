@@ -5,30 +5,29 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "makeworld-the-better-one/tap"
+tap "mongodb/brew"
 # Search tool like grep, but optimized for programmers
 brew "ack"
+# Fancy terminal browser for the Gemini protocol
+brew "amfora"
 # Text processing scripting language
 brew "awk"
-# GNU database manager
-brew "gdbm"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
-# Official Amazon AWS command-line interface
-brew "awscli"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.8"
-# Microsoft Azure CLI 2.0
-brew "azure-cli"
 # Collection of portable C++ source libraries
 brew "boost"
 # Freely available high-quality data compressor
 brew "bzip2"
 # Software library to render fonts
 brew "freetype"
+# GNU database manager
+brew "gdbm"
 # GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Core application library for C
 brew "glib"
+# Tool Command Language
+brew "tcl-tk"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Next-gen compiler infrastructure
@@ -43,14 +42,22 @@ brew "cowsay"
 brew "ctags"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
-# LLVM bytecode to JavaScript compiler
-brew "emscripten"
+# General purpose Language Server
+brew "efm-langserver"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # OpenType text shaping engine
 brew "harfbuzz"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
+# Secure Reliable Transport
+brew "srt"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Banner-like program prints strings as ASCII art
@@ -59,8 +66,6 @@ brew "figlet"
 brew "findutils"
 # Fast Lexical Analyzer, generates Scanners (tokenizers)
 brew "flex"
-# Database version control to control migrations
-brew "flyway"
 # Infamous electronic fortune-cookie generator
 brew "fortune"
 # Command-line fuzzy finder written in Go
@@ -77,6 +82,8 @@ brew "gdb"
 brew "gh"
 # Glorious Glasgow Haskell Compilation System
 brew "ghc"
+# International domain name library
+brew "libidn"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
 # Distributed revision control system
@@ -95,6 +102,8 @@ brew "gradle"
 brew "jasper"
 # Image manipulation
 brew "netpbm"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.8"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Graph visualization software from AT&T and Bell Labs
@@ -105,12 +114,8 @@ brew "grep"
 brew "groonga"
 # Cross-platform program for developing Haskell projects
 brew "haskell-stack"
-# Text-based UI library
-brew "ncurses"
 # Improved top (interactive process viewer)
 brew "htop"
-# International domain name library
-brew "libidn"
 # GNU utilities for networking
 brew "inetutils"
 # Regular expressions library
@@ -119,6 +124,8 @@ brew "oniguruma"
 brew "jq"
 # Pager program similar to more
 brew "less"
+# Terminal file manager
+brew "lf"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # Library implementing a curses-based widget set for terminals
@@ -141,14 +148,18 @@ brew "neovim"
 brew "netcat"
 # RSS/Atom feed reader for text terminals
 brew "newsboat"
+# HTTP/2 C Library
+brew "nghttp2"
+# Platform built on V8 to build network applications
+brew "node"
 # Platform built on V8 to build network applications
 brew "node@12"
 # Ncurses based sudoku game
 brew "nudoku"
-# Swiss-army knife of markup format conversion
-brew "pandoc"
-# Persistent key-value database, with built-in net interface
-brew "redis", restart_service: true
+# Manage multiple Node.js versions
+brew "nvm"
+# File browser
+brew "ranger"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rolls an amount of virtual dice
@@ -164,11 +175,9 @@ brew "task"
 # Client-server synchronization for todo lists
 brew "taskd"
 # User interface to the TELNET protocol
-brew "telnet"
+brew "telnet", link: false
 # Tool to build, change, and version infrastructure
 brew "terraform"
-# Tool to build, change, and version infrastructure
-brew "terraform@0.13"
 # Code-search similar to ack
 brew "the_silver_searcher"
 # Command-line time tracking application
@@ -183,18 +192,18 @@ brew "tree"
 brew "vim"
 # Command-line client for WebSockets
 brew "websocat"
+# Internet file retriever
+brew "wget"
 # JavaScript package manager
 brew "yarn"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
 # UNIX shell (command interpreter)
 brew "zsh"
-# File Manager
-brew "ranger"
 # Everything you need to get started with Heroku
 brew "heroku/brew/heroku"
-# A fancy terminal browser for the Gemini protocol.
-brew "makeworld-the-better-one/tap/amfora"
+# High-performance, schema-free, document-oriented database
+brew "mongodb/brew/mongodb-community"
 # Android SDK component
 cask "android-platform-tools"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
