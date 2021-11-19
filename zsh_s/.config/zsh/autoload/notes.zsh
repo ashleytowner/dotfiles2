@@ -1,7 +1,20 @@
 function note() {
-  if [ $1 ]
+  viewer=""
+  file=""
+  case $1 in
+    '-v')
+        viewer="lookatme"
+        if [ ! $2 ]; then echo "Please include a file name"; return 1; fi
+        file=$2
+        ;;
+    *)
+        viewer=$EDITOR
+        file=$1
+  esac
+  echo $viewer $file
+  if [ $file ]
   then
-    notefile=$XDG_DATA_HOME/notes/$1
+    notefile=$XDG_DATA_HOME/notes/$file
     mkdir -p "${notefile%/*}" && touch "$notefile"
   else
     notefile="$XDG_DATA_HOME/notes/Note-$(date +%F).md"
@@ -9,7 +22,12 @@ function note() {
       echo "# $(date +"%a %d %b %Y")" > $notefile
     fi
   fi
-  nvim -c "norm G" $notefile "+cd ${XDG_DATA_HOME}/notes"
+  if [ "$viewer" = 'lookatme' ]
+  then
+      $viewer $notefile
+  else
+      $viewer -c "norm G" $notefile "+cd ${XDG_DATA_HOME}/notes"
+  fi
 }
 
 function notes() {
