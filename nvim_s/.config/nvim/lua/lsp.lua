@@ -62,13 +62,17 @@ local configuration = {
 
 --{{{ Configure Language Servers
 
-local servers = { 'pyright', 'clangd', 'stylelint_lsp', 'bashls', 'vimls' }
+local servers = { 'pyright', 'clangd', 'bashls', 'vimls' }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(util.spread(configuration) {
-    filetypes = { "css", "less", "scss", "sugarss", "vue", "wxss" }
-  })
+  lspconfig[lsp].setup(configuration)
 end
+
+--{{{ stylelint
+lspconfig.stylelint_lsp.setup(util.spread(configuration) {
+  filetypes = { "css", "less", "scss", "sugarss", "vue", "wxss" }
+})
+--}}}
 
 --{{{ tsserver
 
