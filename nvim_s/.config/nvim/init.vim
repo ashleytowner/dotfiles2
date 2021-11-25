@@ -74,6 +74,7 @@ command Scratch call CreateScatchBuffer()
 
 " }}}
 
+"{{{ NerdTree
 function! ToggleNerdTree()
     if g:NERDTree.IsOpen()
         NERDTreeToggle
@@ -86,9 +87,13 @@ function! ToggleNerdTree()
         endif
     endif
 endfunction
+"}}}
 
+"{{{ Statusline
 set statusline=%n%q\ %t\ %y%m%r\ \|\ %{trim(system('git\ branch\ --show-current'))}%=%<%l:%c\ %P
+"}}}
 
+"{{{ Tabline
 set tabline=%!MyTabLine()  " custom tab pages line
 function! MyTabLine()
   let tablineValue = ''
@@ -148,6 +153,7 @@ function! MyTabLine()
   let tablineValue .= '%#TabLineFill#%T'
   return tablineValue
 endfunction
+"}}}
 
 " {{{ Lua Imports
 lua << EOF
