@@ -25,6 +25,17 @@ keymap('', '<leader>p', '"+p', { noremap=true })
 keymap('', '<leader>P', '"+P', { noremap=true })
 keymap('n', '<leader><leader>', '<cmd>call ToggleNerdTree()<cr>', {})
 
+keymap('', ',w', '<Plug>CamelCaseMotion_w', { silent = true })
+keymap('', ',b', '<Plug>CamelCaseMotion_b', { silent = true })
+keymap('', ',b', '<Plug>CamelCaseMotion_b', { silent = true })
+keymap('', ',e', '<Plug>CamelCaseMotion_e', { silent = true })
+keymap('', 'g,e', '<Plug>CamelCaseMotion_ge', { silent = true })
+keymap('o', 'i,w', '<Plug>CamelCaseMotion_iw', { silent = true })
+keymap('x', 'i,w', '<Plug>CamelCaseMotion_iw', { silent = true })
+keymap('o', 'i,b', '<Plug>CamelCaseMotion_ib', { silent = true })
+keymap('x', 'i,b', '<Plug>CamelCaseMotion_ib', { silent = true })
+keymap('o', 'i,e', '<Plug>CamelCaseMotion_ie', { silent = true })
+keymap('x', 'i,e', '<Plug>CamelCaseMotion_ie', { silent = true })
 
 -- Custom text objects
 keymap('x', 'a/', ':lua SelectTextObject("/", "/", true)<cr>', { noremap = true, silent = true })

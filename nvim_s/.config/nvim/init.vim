@@ -3,12 +3,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
-Plug 'mhinz/vim-startify'
-
 " Motions & Objects
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'bkad/CamelCaseMotion'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -41,7 +40,6 @@ Plug 'haishanh/night-owl.vim'
 Plug 'marko-cerovac/material.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'bluz71/vim-nightfly-guicolors'
-
 
 Plug 'dbeniamine/cheat.sh-vim'
 
