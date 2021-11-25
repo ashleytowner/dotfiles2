@@ -3,9 +3,9 @@ require('objects')
 local keymap = vim.api.nvim_set_keymap
 keymap('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true })
 if (vim.g.uname == "Linux\n") then
-		keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden<cr>', { noremap = true })
+		keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden,--type,f<cr>', { noremap = true })
 else
-		keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden<cr>', { noremap = true })
+		keymap('n', '<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden,--type,f<cr>', { noremap = true })
 end
 keymap('n', '<leader>gco', '<cmd>Telescope git_branches<cr>', { noremap = true })
 keymap('n', '<leader>ls', '<cmd>Telescope buffers<cr>', { noremap = true })
