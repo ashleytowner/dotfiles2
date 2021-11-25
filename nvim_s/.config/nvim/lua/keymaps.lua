@@ -22,6 +22,7 @@ keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true, silent = true })
 keymap('', '<leader>y', '"+y', { noremap=true })
 keymap('', '<leader>Y', '"+y$', { noremap = true})
 keymap('', '<leader>p', '"+p', { noremap=true })
+keymap('', '<leader>P', '"+P', { noremap=true })
 keymap('n', '<leader><leader>', '<cmd>call ToggleNerdTree()<cr>', {})
 
 
