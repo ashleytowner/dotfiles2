@@ -63,6 +63,15 @@ augroup FormatOnSave
 	autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 augroup END
 
+function! CreateScatchBuffer()
+    enew
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+endfunction
+
+command Scratch call CreateScatchBuffer()
+
 " }}}
 
 function! ToggleNerdTree()
