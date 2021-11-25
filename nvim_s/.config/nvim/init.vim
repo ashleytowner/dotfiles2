@@ -88,7 +88,7 @@ endfunction
 "}}}
 
 "{{{ Statusline
-set statusline=%n%q\ %t\ %y%m%r\ \|\ %{trim(system('git\ branch\ --show-current'))}%=%<%l:%c\ %P
+set statusline=%n%q\ %t\ %y%m%r\ \|\ %{trim(system('git\ branch\ --show-current\ 2>\ /dev/null'))}%=%<%l:%c\ %P
 "}}}
 
 "{{{ Tabline
