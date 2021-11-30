@@ -6,14 +6,8 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "makeworld-the-better-one/tap"
 tap "mongodb/brew"
-# Search tool like grep, but optimized for programmers
-brew "ack"
-# Fancy terminal browser for the Gemini protocol
-brew "amfora"
 # Text processing scripting language
 brew "awk"
-# Collection of portable C++ source libraries
-brew "boost"
 # Freely available high-quality data compressor
 brew "bzip2"
 # Software library to render fonts
@@ -124,8 +118,6 @@ brew "oniguruma"
 brew "jq"
 # Pager program similar to more
 brew "less"
-# Terminal file manager
-brew "lf"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # Library implementing a curses-based widget set for terminals
@@ -208,6 +200,7 @@ brew "mongodb/brew/mongodb-community"
 cask "android-platform-tools"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+cask "font-fira-code"
 cask "font-hack-nerd-font"
 # HTTP and GraphQL Client
 cask "insomnia"
@@ -218,7 +211,7 @@ cask "keycastr"
 cask "kitty"
 mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
-mas "CleanMyMac X", id: 1339170533
+mas "CleanMyMac-MAS", id: 1339170533
 mas "Clockify Desktop", id: 1364502317
 mas "GrandPerspective", id: 1111570163
 mas "Magnet", id: 441258766
