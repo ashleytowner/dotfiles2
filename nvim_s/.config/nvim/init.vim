@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'ObserverOfTime/coloresque.vim'
 
 " Motions & Objects
 Plug 'justinmk/vim-sneak'
@@ -162,6 +163,8 @@ function! MyTabLine()
   let tablineValue .= '%#TabLineFill#%T'
   return tablineValue
 endfunction
+
+let g:coloresque_whitelist = [ 'css', 'haml', 'html', 'htmldjango', 'javascript', 'jsx', 'less', 'php', 'postcss', 'pug', 'qml', 'sass', 'scss', 'sh', 'stylus', 'svg', 'typescript', 'vim', 'vue', 'xml', 'conf']
 "}}}
 
 " {{{ Lua Imports
