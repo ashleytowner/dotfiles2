@@ -17,5 +17,11 @@ git submodule update --init
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+# Install starship
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
 # Stow everything that needs stowing
 stow *_s
+
+# Source zshrc
+source ./zsh_s/.config/zsh/.zshrc

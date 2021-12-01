@@ -48,10 +48,6 @@ zstyle ':completion:*:*:git:*' user-commands fco:'description for foo'
 
 #{{{ *line_editor*
 
-# Enables p10k instant prompt 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 bindkey -v
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
@@ -184,5 +180,8 @@ function chpwd() {
   [ -f ./.zshrc ] && source ./.zshrc
   type onEnterDir > /dev/null && onEnterDir
 }
+
+# Set up starship Prompt
+eval "$(starship init zsh)"
 
 export FIRST_RUN=true
