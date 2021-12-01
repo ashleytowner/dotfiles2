@@ -87,8 +87,19 @@ function! ToggleNerdTree()
 endfunction
 "}}}
 
+
 "{{{ Statusline
-set statusline=%n%q\ %t\ %y%m%r\ \|\ %{trim(system('git\ branch\ --show-current\ 2>\ /dev/null'))}%=%<%l:%c\ %P
+
+" Return the git branch
+function! GitBranch()
+  let branch = trim(system('git branch --show-current 2> /dev/null'))
+  if (branch == '')
+    return ""
+  else
+    return " " . branch
+  endif
+endfunction
+set statusline=\ ﬘\ %n\ %q\ %t\ %y%-3.(%m%)%r%=%{GitBranch()}%=\ %<%-8.(%l:%c%)\ %-4.(%P%)
 "}}}
 
 "{{{ Tabline
