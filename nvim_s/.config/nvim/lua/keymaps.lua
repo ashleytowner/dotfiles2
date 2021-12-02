@@ -9,7 +9,6 @@ else
 end
 keymap('n', '<leader>gco', '<cmd>Telescope git_branches<cr>', { noremap = true })
 keymap('n', '<leader>ls', '<cmd>Telescope buffers<cr>', { noremap = true })
-keymap('n', '<leader>err', ':lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})<CR>', { noremap = true, silent = true })
 keymap('n', 'J', 'mzJ`z', { noremap = true })
 keymap('n', 'N', 'Nzz', { noremap = true })
 keymap('n', 'Y', 'y$', { noremap = true })
