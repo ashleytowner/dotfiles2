@@ -163,7 +163,10 @@ lspconfig.efm.setup {
 -- }}}
 
 --{{{ Completion
-local cmp = require 'cmp'
+local lspkind = require('lspkind')
+lspkind.init()
+
+local cmp = require('cmp')
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -183,8 +186,20 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'calc' },
   },
+  formatting = {
+    format = lspkind.cmp_format({
+      with_text = false,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        path = "[path]",
+      }
+    })
+  }
 }
 
 --}}}
