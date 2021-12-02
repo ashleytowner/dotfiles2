@@ -143,6 +143,14 @@ vim.wo.wrap = false
 vim.go.statusline = '%#Title# ﬘ %n %#StatusLine#%q %t %m%r%y%#fzf3#%{GitBranch()}%#StatusLine#%= %<%-8.(%l:%c%) %-4.(%P%)'
 vim.go.tabline='%!MyTabLine()'
 
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+  "zsh=zsh",
+  "sh=sh",
+  "bash=bash",
+  "js=javascript"
+}
+
 vim.cmd('colorscheme nightfly')
 vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
