@@ -97,10 +97,11 @@ function! GitBranch()
   if (branch == '')
     return ""
   else
-    return " " . branch
+    " return "|  " . branch
+    return "  " . branch . " "
   endif
 endfunction
-set statusline=\ ﬘\ %n\ %q\ %t\ %y%-3.(%m%)%r%=%{GitBranch()}%=\ %<%-8.(%l:%c%)\ %-4.(%P%)
+set statusline=%#Title#\ ﬘\ %n\ %#StatusLine#%q\ %t\ %m%r%y%#fzf3#%{GitBranch()}%#StatusLine#%=\ %<%-8.(%l:%c%)\ %-4.(%P%)
 "}}}
 
 "{{{ Tabline
