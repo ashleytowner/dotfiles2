@@ -48,6 +48,11 @@ zstyle ':completion:*:*:git:*' user-commands fco:'description for foo'
 
 #{{{ *line_editor*
 
+function prompt() { 
+    echo "%{$fg[blue]%}%~ %{$fg[magenta]%}$(git branch --show-current 2> /dev/null)%{$reset_color%} \n$ "
+}
+setopt PROMPT_SUBST
+export PS1="\$(prompt)"
 bindkey -v
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
@@ -180,8 +185,5 @@ function chpwd() {
   [ -f ./.zshrc ] && source ./.zshrc
   type onEnterDir > /dev/null && onEnterDir
 }
-
-# Set up starship Prompt
-eval "$(starship init zsh)"
 
 export FIRST_RUN=true
