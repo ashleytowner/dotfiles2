@@ -58,5 +58,4 @@ require('telescope').setup{
           theme = "ivy"
       }
   }
-
 }

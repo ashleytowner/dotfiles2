@@ -73,6 +73,8 @@ endfunction
 command! Scratch call CreateScratchBuffer()
 ]])
 
+require('variables')
+
 -- {{{ Keymaps
 
 require('objects')
@@ -89,6 +91,7 @@ keymap('n', '<leader>gco', '<cmd>Telescope git_branches<cr>', { noremap = true }
 keymap('n', '<leader>ls', '<cmd>Telescope buffers<cr>', { noremap = true })
 keymap('n', 'J', 'mzJ`z', { noremap = true })
 keymap('n', 'N', 'Nzz', { noremap = true })
+keymap('n', 'Y', 'y$', { noremap = true, silent = true })
 keymap('n', '<C-PageDown>', ':bnext<CR>', { silent = true, noremap = true })
 keymap('n', '<C-PageUp>', ':bprev<CR>', { silent = true, noremap = true })
 keymap('n', 'n', 'nzz', { noremap = true })
@@ -143,6 +146,10 @@ vim.wo.wrap = false
 vim.go.statusline = '%#Title# ﬘ %n %#StatusLine#%q %t %m%r%y%#fzf3#%{GitBranch()}%#StatusLine#%= %<%-8.(%l:%c%) %-4.(%P%)'
 vim.go.tabline='%!MyTabLine()'
 
+if vim.version().minor < 6 then
+    vim.o.hidden = true
+end
+
 vim.g.markdown_fenced_languages = {
   "ts=typescript",
   "zsh=zsh",
@@ -167,6 +174,5 @@ require('lsp')
 require('plugins')
 require('tabline')
 require('util')
-require('variables')
 
 -- }}}
