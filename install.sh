@@ -2,7 +2,6 @@
 
 # Make sure we are in the correct directory
 basedir=$(dirname "$0")
-stow_dirs=(bash ctags fzf git kitty nvim ranger starship taskwarrior tmux zsh)
 
 pushd "$basedir"
 
@@ -31,12 +30,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 echo "Installing starship..."
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
-# Stow everything that needs stowing
-for d in $stow_dirs
-do
-  echo "Stowing ${d}..."
-  stow $d
-done
+source ./stow.sh
 
 # Source zshrc
 echo "Sourcing zshrc"
