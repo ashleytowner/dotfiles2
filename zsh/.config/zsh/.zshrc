@@ -48,11 +48,14 @@ zstyle ':completion:*:*:git:*' user-commands fco:'description for foo'
 
 #{{{ *line_editor*
 
-function prompt() { 
-    echo "%{$fg[blue]%}%~ %{$fg[magenta]%}$(git branch --show-current 2> /dev/null)%{$reset_color%} \n$ "
-}
-setopt PROMPT_SUBST
-export PS1="\$(prompt)"
+# function prompt() { 
+#     echo "%{$fg[blue]%}%~ %{$fg[magenta]%}$(git branch --show-current 2> /dev/null)%{$reset_color%} \n$ "
+# }
+# setopt PROMPT_SUBST
+# export PS1="\$(prompt)"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 bindkey -v
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
@@ -187,3 +190,6 @@ function chpwd() {
 }
 
 export FIRST_RUN=true
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

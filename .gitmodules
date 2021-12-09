@@ -4,3 +4,6 @@
 [submodule "zsh/.config/zsh/autoload/runnable-scripts.zsh"]
 	path = zsh/.config/zsh/autoload/runnable-scripts.zsh
 	url = https://github.com/ashleytowner/runnable-scripts.zsh
+[submodule "zsh/.config/zsh/autoload/powerlevel10k"]
+	path = zsh/.config/zsh/autoload/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
