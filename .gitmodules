@@ -7,3 +7,6 @@
 [submodule "zsh/.config/zsh/autoload/powerlevel10k"]
 	path = zsh/.config/zsh/autoload/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
+[submodule "zsh/bin/pert-calculator"]
+	path = zsh/bin/pert-calculator
+	url = https://github.com/ashleytowner/pert-calculator
