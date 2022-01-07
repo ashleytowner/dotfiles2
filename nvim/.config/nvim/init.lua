@@ -149,6 +149,8 @@ vim.wo.cursorline = true
 vim.wo.colorcolumn = '80'
 vim.wo.list = true
 vim.wo.wrap = false
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.go.statusline = '%#Title# ﬘ %n %#StatusLine#%q %t %m%r%y%#fzf3#%{GitBranch()}%#StatusLine#%= %<%-8.(%l:%c%) %-4.(%P%)'
 vim.go.tabline='%!MyTabLine()'
 
