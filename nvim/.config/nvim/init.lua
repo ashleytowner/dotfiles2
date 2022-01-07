@@ -10,6 +10,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'bkad/CamelCaseMotion'
+Plug 'phaazon/hop.nvim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -103,6 +104,11 @@ keymap('', '<leader>Y', '"+Y', { noremap = true})
 keymap('', '<leader>p', '"+p', { noremap=true })
 keymap('', '<leader>P', '"+P', { noremap=true })
 keymap('n', '<leader><leader>', '<cmd>call ToggleNerdTree()<cr>', {})
+
+
+-- Hop motions
+keymap('n', '<leader>w', '<cmd>HopWord<cr>', {})
+keymap('v', '<leader>w', '<cmd>HopWord<cr>', {})
 
 -- CamelCase motions
 keymap('', ',w', '<Plug>CamelCaseMotion_w', { silent = true })
