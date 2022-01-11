@@ -1,4 +1,5 @@
 --{{{ Plugins
+--Plug 'tpope/vim-commentary'
 vim.cmd([[
 call plug#begin('~/.vim/plugged')
 
@@ -7,8 +8,8 @@ Plug 'ObserverOfTime/coloresque.vim'
 
 " Motions & Objects
 Plug 'justinmk/vim-sneak'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'numToStr/Comment.nvim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'phaazon/hop.nvim'
 
@@ -73,6 +74,8 @@ function! CreateScatchBuffer()
 endfunction
 command! Scratch call CreateScratchBuffer()
 ]])
+
+require('Comment').setup()
 
 require('variables')
 
