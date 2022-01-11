@@ -50,6 +50,7 @@ Plug 'haishanh/night-owl.vim'
 Plug 'marko-cerovac/material.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'folke/tokyonight.nvim'
 
 Plug 'dbeniamine/cheat.sh-vim'
 
@@ -169,7 +170,8 @@ vim.g.markdown_fenced_languages = {
   "js=javascript"
 }
 
-vim.cmd('colorscheme nightfly')
+vim.g.tokyonight_style = "night"
+vim.cmd('colorscheme tokyonight')
 vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
 vim.cmd('syntax enable')
