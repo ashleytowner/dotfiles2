@@ -111,6 +111,7 @@ alias vims="nvim -S $XDG_DATA_HOME/nvim/sessions/\$(ls $XDG_DATA_HOME/nvim/sessi
 alias src="source ~/.zshrc"
 alias reload="exec zsh -l"
 alias run="scripts"
+alias lag="ag --pager 'less -R'"
 
 alias ls="ls -G"
 alias la="ls -A"
