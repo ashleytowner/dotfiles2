@@ -108,6 +108,8 @@ keymap('', '<leader>Y', '"+Y', { noremap = true})
 keymap('', '<leader>p', '"+p', { noremap=true })
 keymap('', '<leader>P', '"+P', { noremap=true })
 keymap('n', '<leader><leader>', '<cmd>call ToggleNerdTree()<cr>', {})
+keymap('n', ']q', '<cmd>cnext<cr>', {})
+keymap('n', '[q', '<cmd>cprev<cr>', {})
 
 
 -- Hop motions
