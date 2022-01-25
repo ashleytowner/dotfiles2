@@ -12,3 +12,9 @@ function! ToggleNerdTree()
     endif
 endfunction
 ]])
+
+vim.g.NERDTreeShowHidden = 1
+vim.g.NERDTreeQuitOnOpen = 1
+vim.g.NERDTreeMinimalUI = 1
+vim.g.NERDTreeDirArrowCollapsible = '-'
+vim.g.NERDTreeDirArrowExpandable = '+'
