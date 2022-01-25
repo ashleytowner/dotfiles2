@@ -139,7 +139,6 @@ keymap('o', 'i/', '<cmd>norm vi/<cr>', { noremap = true })
 
 -- {{{ Settings
 vim.bo.expandtab = true
-vim.o.cindent = true
 vim.o.foldlevel = 99
 vim.o.hlsearch = false
 vim.o.listchars = 'tab:> ,trail:·'
