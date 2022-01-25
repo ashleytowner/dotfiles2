@@ -26,11 +26,7 @@ echo "Installing vimplug..."
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-# Install starship
-echo "Installing starship..."
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-
-stow_dirs=(bash ctags fzf git kitty nvim ranger starship taskwarrior tmux zsh)
+stow_dirs=(bash ctags fzf git kitty nvim ranger taskwarrior tmux zsh)
 
 # Stow everything that needs stowing
 for d in $stow_dirs

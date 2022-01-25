@@ -9,7 +9,7 @@ pushd "$basedir"
 echo "Uninstalling vimplug..."
 rm "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim
 
-stow_dirs=(bash ctags fzf git kitty nvim ranger starship taskwarrior tmux zsh)
+stow_dirs=(bash ctags fzf git kitty nvim ranger taskwarrior tmux zsh)
 
 # Unstow everything that needs stowing
 for d in $stow_dirs

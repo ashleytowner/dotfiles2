@@ -1,7 +1,0 @@
-[git_status]
-renamed	= ">"
-deleted	= "x"
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled		= true
