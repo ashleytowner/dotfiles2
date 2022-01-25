@@ -52,8 +52,6 @@ Plug 'morhetz/gruvbox'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'folke/tokyonight.nvim'
 
-Plug 'dbeniamine/cheat.sh-vim'
-
 call plug#end()
 ]])
 -- }}}
