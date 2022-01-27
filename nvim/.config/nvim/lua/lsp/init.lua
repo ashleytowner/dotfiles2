@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local util = require('util.spread')
+local keybinds = require('lsp.keybinds')
 
 -- luasnip setup
 local luasnip = require 'luasnip'
@@ -28,34 +29,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 --}}}
 
--- {{{ Keybinds
-
-local function setKeybinds()
-  vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>.', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua diagnostics_popup()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('v', '=', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '==', 'V:<C-u>lua vim.lsp.buf.range_formatting()<CR>', { noremap = true, silent = true})
-end
---}}}
-
 local configuration = {
     capabilities = capabilities,
-    on_attach = setKeybinds
+    on_attach = keybinds.set_keybinds
 }
 
 --}}}
@@ -82,7 +58,7 @@ lspconfig.tsserver.setup(util.spread(configuration) {
       client.config.flags.allow_incremental_sync = true
     end
     client.resolved_capabilities.document_formatting = false
-    setKeybinds()
+    keybinds.set_keybinds()
   end
 })
 
