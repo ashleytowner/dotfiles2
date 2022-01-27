@@ -33,9 +33,6 @@ end
 
 -- }}}
 
-vim.g.mapleader=' '
-
-
 -- {{{ Keymaps
 
 vim.g.mapleader=' '
@@ -165,13 +162,9 @@ vim.cmd('syntax enable')
 
 -- }}}
 
--- {{{ Lua Imports
-
 require('consistent-sessions')
 require('format-on-save')
 require('local-configs')
 require('lsp')
 require('tabline')
 require('util')
-
--- }}}

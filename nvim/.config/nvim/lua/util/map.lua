@@ -1,39 +1,52 @@
-function map(binding, mapping)
-  vim.api.nvim_set_keymap('', binding, mapping, {})
+function create_keymap(mode, lhs, rhs, noremap, silent)
+    local options = {}
+    if noremap then
+        options.noremap = true
+    end
+
+    if silent then
+        options.silent = true
+    end
+
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-function noremap(binding, mapping)
-  vim.api.nvim_set_keymap('', binding, mapping, { noremap = true });
+function map(binding, mapping, silent)
+  create_keymap('', binding, mapping, false, silent)
 end
 
-function nmap(binding, mapping)
-  vim.api.nvim_set_keymap('n', binding, mapping, {})
+function noremap(binding, mapping, silent)
+  create_keymap('', binding, mapping, true, silent)
 end
 
-function nnoremap(binding, mapping)
-  vim.api.nvim_set_keymap('n', binding, mapping, { noremap = true });
+function nmap(binding, mapping, silent)
+  create_keymap('n', binding, mapping, false, silent)
 end
 
-function vmap(binding, mapping)
-  vim.api.nvim_set_keymap('v', binding, mapping, {})
+function nnoremap(binding, mapping, silent)
+  create_keymap('n', binding, mapping, true, silent)
 end
 
-function vnoremap(binding, mapping)
-  vim.api.nvim_set_keymap('v', binding, mapping, { noremap = true });
+function vmap(binding, mapping, silent)
+  create_keymap('v', binding, mapping, false, silent)
 end
 
-function omap(binding, mapping)
-  vim.api.nvim_set_keymap('o', binding, mapping, {})
+function vnoremap(binding, mapping, silent)
+  create_keymap('v', binding, mapping, true, silent);
 end
 
-function onoremap(binding, mapping)
-  vim.api.nvim_set_keymap('o', binding, mapping, { noremap = true });
+function omap(binding, mapping, silent)
+  create_keymap('o', binding, mapping, false, silent)
 end
 
-function xmap(binding, mapping)
-  vim.api.nvim_set_keymap('x', binding, mapping, {})
+function onoremap(binding, mapping, silent)
+  create_keymap('o', binding, mapping, true, silent);
 end
 
-function xnoremap(binding, mapping)
-  vim.api.nvim_set_keymap('x', binding, mapping, { noremap = true });
+function xmap(binding, mapping, silent)
+  create_keymap('x', binding, mapping, false, silent)
+end
+
+function xnoremap(binding, mapping, silent)
+  create_keymap('x', binding, mapping, true, silent);
 end
