@@ -1,9 +1,4 @@
 require('plugins')
-require('keybinds')
-
--- {{{ Utils
-
-require('util.objects')
 
 vim.cmd([[
 if exists('+termguicolors')
@@ -24,14 +19,8 @@ command! Scratch call CreateScratchBuffer()
 ]])
 
 vim.api.nvim_exec([[
-let g:uname = system("uname")
+  let g:uname = system("uname")
 ]], false)
-
-if vim.g.started_by_firenvim then
-    vim.go.laststatus = 0
-end
-
--- }}}
 
 -- {{{ Settings
 vim.o.expandtab = true
@@ -67,32 +56,7 @@ vim.g.markdown_fenced_languages = {
   "js=javascript"
 }
 
-vim.g.coloresque_whitelist = { 
-  'css',
-  'haml',
-  'html',
-  'htmldjango',
-  'javascript',
-  'lua',
-  'jsx',
-  'less', 
-  'php',
-  'postcss',
-  'pug',
-  'qml',
-  'sass',
-  'scss',
-  'sh',
-  'stylus',
-  'svg',
-  'typescript',
-  'vim',
-  'vue',
-  'xml',
-  'conf'
-}
 
-vim.g.tokyonight_style = "night"
 vim.cmd('colorscheme tokyonight')
 
 vim.cmd('filetype on')
@@ -103,6 +67,7 @@ vim.cmd('syntax enable')
 
 require('consistent-sessions')
 require('format-on-save')
+require('keymaps')
 require('local-configs')
 require('lsp')
 require('tabline')
