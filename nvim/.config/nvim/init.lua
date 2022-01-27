@@ -65,10 +65,10 @@ vim.cmd('syntax enable')
 
 -- }}}
 
-require('consistent-sessions')
-require('format-on-save')
+require('consistentSessions')
+require('formatOnSave')
 require('keymaps')
-require('local-configs')
+require('setupLocalConfigs')
 require('lsp')
 require('tabline')
 require('util')

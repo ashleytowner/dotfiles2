@@ -49,11 +49,6 @@ if [ ! $SKIP_REMOTE ]; then
     # Install submodules
     git submodule update --init
   fi
-
-  # Install packer (vim plugin manager)
-  echo "Installing packer..."
-  git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-   "${XDG_DATA_HOME:-HOME/.local/share}"/nvim/site/pack/packer/start/packer.nvim
 fi
 
 stow_dirs=(bash ctags fzf git kitty nvim ranger taskwarrior tmux zsh)
