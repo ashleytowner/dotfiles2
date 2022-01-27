@@ -51,7 +51,7 @@ if [ ! $SKIP_REMOTE ]; then
   fi
 fi
 
-stow_dirs=(bash ctags fzf git kitty nvim ranger taskwarrior tmux zsh)
+stow_dirs=("${(@f)$(cat .stowable)}")
 
 # Stow everything that needs stowing
 for d in $stow_dirs
