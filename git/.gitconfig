@@ -17,6 +17,7 @@
 	logg = "log --oneline --graph"
 	amend = "commit --amend --no-edit"
 	show-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; f"
+	merge-conflicts = "!f() { grep -Hn \"^=======$\" $(git diff --name-status --diff-filter=U | cut -f2) ; }; f"
 [credential]
 	helper = store
 [include]
