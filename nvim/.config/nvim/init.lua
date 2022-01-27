@@ -76,15 +76,11 @@ vmap('<leader>w', '<cmd>HopWord<cr>')
 -- CamelCase motions
 map(',w', '<Plug>CamelCaseMotion_w')
 map(',b', '<Plug>CamelCaseMotion_b')
-map(',b', '<Plug>CamelCaseMotion_b')
 map(',e', '<Plug>CamelCaseMotion_e')
 map('g,e', '<Plug>CamelCaseMotion_ge')
-map('i,w', '<Plug>CamelCaseMotion_iw')
-map('i,w', '<Plug>CamelCaseMotion_iw')
-map('i,b', '<Plug>CamelCaseMotion_ib')
-map('i,b', '<Plug>CamelCaseMotion_ib')
-map('i,e', '<Plug>CamelCaseMotion_ie')
-map('i,e', '<Plug>CamelCaseMotion_ie')
+xmap('i,w', '<Plug>CamelCaseMotion_iw')
+xmap('i,b', '<Plug>CamelCaseMotion_ib')
+xmap('i,e', '<Plug>CamelCaseMotion_ie')
 
 -- Custom text objects
 xnoremap('a/', ':lua SelectTextObject("/", "/", true)<cr>')
