@@ -159,7 +159,7 @@ onoremap('i/', '<cmd>norm vi/<cr>')
 -- }}}
 
 -- {{{ Settings
-vim.bo.expandtab = true
+vim.o.expandtab = true
 vim.o.foldlevel = 99
 vim.o.hlsearch = false
 vim.o.listchars = 'tab:> ,trail:·'
