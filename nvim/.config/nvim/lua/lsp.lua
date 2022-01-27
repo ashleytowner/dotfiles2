@@ -43,7 +43,7 @@ local function setKeybinds()
   vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true})
   vim.api.nvim_set_keymap('n', '<leader>.', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true})
   vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true})
-  vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { noremap = true, silent = true})
+  vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua diagnostics_popup()<CR>', { noremap = true, silent = true})
   vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true, silent = true})
   vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true, silent = true})
   vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', { noremap = true, silent = true})
@@ -91,10 +91,14 @@ lspconfig.tsserver.setup(util.spread(configuration) {
 --{{{ efm
 
 local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m"},
+  lintFormats = {
+    "%f(%l,%c): %tarning %m",
+    "%f(%l,%c): %trror %m"
+  },
   lintIgnoreExitCode = true,
+  lintSource = "eslint",
   formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
   formatStdin = true
 }
@@ -118,6 +122,7 @@ end
 local prettier = {
   formatCommand = 'prettierd "${INPUT}"',
   formatStdin = true,
+  lintSource = "prettier",
   env = {
     string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json')),
   },
@@ -205,6 +210,12 @@ cmp.setup {
 --}}}
 
 --{{{ Diagnostics
+
+function diagnostics_popup()
+    local formatFunction = function(d) return '['..d.source..'] ' end
+    vim.diagnostic.open_float(nil, { prefix = formatFunction })
+end
+
 vim.fn.sign_define("DiagnosticSignError",
     {text = "", texthl = "DiagnosticSignError"})
 vim.fn.sign_define("DiagnosticSignWarn",
