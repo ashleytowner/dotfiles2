@@ -44,10 +44,6 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.go.statusline = '%#Title# ﬘ %n %#StatusLine#%q %t %m%r%y%#fzf3#%{GitBranch()}%#StatusLine#%= %<%-8.(%l:%c%) %-4.(%P%)'
 vim.go.tabline='%!MyTabLine()'
 
-if vim.version().minor < 6 then
-    vim.o.hidden = true
-end
-
 vim.g.markdown_fenced_languages = {
   "ts=typescript",
   "zsh=zsh",

@@ -2,6 +2,8 @@ require('bootstrapPacker')
 require('packer').startup(function(use)
 
     use 'wbthomason/packer.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-lua/popup.nvim'
 
     use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
     use 'ObserverOfTime/coloresque.vim'
@@ -18,29 +20,27 @@ require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
 
     -- File Management
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-lua/popup.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'preservim/nerdtree'
 
     -- LSP & Completion
+    use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-calc', requires = 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/cmp-path', requires = 'hrsh7th/nvim-cmp' }
+    use { 'hrsh7th/nvim-cmp', requires = 'neovim/nvim-lspconfig' }
     use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-calc'
 
     use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
+    use { 'saadparwaiz1/cmp_luasnip', requires = { 'hrsh7th/nvim-cmp', 'L3MON4D3/LuaSnip' } }
     use 'kmyk/brainfuck-highlight.vim'
     use 'mattn/emmet-vim'
     use 'onsails/lspkind-nvim'
 
     -- Syntax
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'nvim-treesitter/playground'
+    use { 'nvim-treesitter/playground', requires = 'nvim-treesitter/nvim-treesitter' }
 
     -- Theming
     use 'Iron-E/nvim-highlite'
