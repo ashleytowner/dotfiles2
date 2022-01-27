@@ -1,3 +1,5 @@
+require('util.map')
+
 vim.cmd([[
 function! ToggleNerdTree()
     if g:NERDTree.IsOpen()
@@ -18,3 +20,5 @@ vim.g.NERDTreeQuitOnOpen = 1
 vim.g.NERDTreeMinimalUI = 1
 vim.g.NERDTreeDirArrowCollapsible = '-'
 vim.g.NERDTreeDirArrowExpandable = '+'
+
+nmap('<leader><leader>', '<cmd>call ToggleNerdTree()<cr>')

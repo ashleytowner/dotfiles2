@@ -59,3 +59,13 @@ require('telescope').setup{
       }
   }
 }
+
+-- Telescope
+nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')
+if (vim.g.uname == "Linux\n") then
+		nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden,--type,f<cr>')
+else
+		nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden,--type,f<cr>')
+end
+nnoremap('<leader>gco', '<cmd>Telescope git_branches<cr>')
+nnoremap('<leader>ls', '<cmd>Telescope buffers<cr>')

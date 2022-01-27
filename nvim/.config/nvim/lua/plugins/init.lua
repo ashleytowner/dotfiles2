@@ -5,7 +5,7 @@ require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'nvim-lua/popup.nvim'
 
-    use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
+    use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
     use 'ObserverOfTime/coloresque.vim'
 
     -- Motions & Objects
@@ -47,19 +47,18 @@ require('packer').startup(function(use)
     use { 'dracula/vim', as = 'dracula' }
     use { 'embark-theme/vim', as = 'embark' }
     use 'haishanh/night-owl.vim'
-    use 'marko-cerovac/material.nvim'
-    use 'morhetz/gruvbox'
     use 'bluz71/vim-nightfly-guicolors'
     use 'folke/tokyonight.nvim'
 
 end)
 
 require('Comment').setup()
-require('hop').setup()
-
-require('plugins.treesitter')
-require('plugins.telescope')
-require('plugins.nerdtree')
-require('plugins.firenvim')
+require('plugins.camelCaseMotions')
 require('plugins.coloresque')
-require('plugins.themes')
+require('plugins.firenvim')
+require('plugins.fugitive')
+require('plugins.hop')
+require('plugins.nerdtree')
+require('plugins.telescope')
+require('plugins.themes.tokyonight')
+require('plugins.treesitter')

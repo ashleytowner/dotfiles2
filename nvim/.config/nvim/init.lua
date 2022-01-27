@@ -1,3 +1,9 @@
+vim.g.mapleader=' '
+
+vim.api.nvim_exec([[
+  let g:uname = system("uname")
+]], false)
+
 require('plugins')
 
 vim.cmd([[
@@ -17,10 +23,6 @@ function! CreateScatchBuffer()
 endfunction
 command! Scratch call CreateScratchBuffer()
 ]])
-
-vim.api.nvim_exec([[
-  let g:uname = system("uname")
-]], false)
 
 -- {{{ Settings
 vim.o.expandtab = true

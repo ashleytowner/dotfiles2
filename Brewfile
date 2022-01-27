@@ -100,6 +100,8 @@ brew "netpbm"
 brew "python@3.8"
 # Framework for layout and rendering of i18n text
 brew "pango"
+# Library to render SVG files using Cairo
+brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # GNU grep, egrep and fgrep
@@ -126,8 +128,14 @@ brew "libstfl"
 brew "lolcat"
 # Python generator for the console
 brew "lorem"
+# Language Server for the Lua language
+brew "lua-language-server"
 # Mac App Store command-line interface
 brew "mas"
+# Platform built on V8 to build network applications
+brew "node@14"
+# MongoDB Shell to connect, configure, query, and work with your MongoDB database
+brew "mongosh"
 # Cross platform, open source .NET development framework
 brew "mono"
 # Open source relational database management system
@@ -142,6 +150,8 @@ brew "netcat"
 brew "newsboat"
 # HTTP/2 C Library
 brew "nghttp2"
+# Small build system for use with gyp or CMake
+brew "ninja"
 # Platform built on V8 to build network applications
 brew "node"
 # Platform built on V8 to build network applications
@@ -150,12 +160,16 @@ brew "node@12"
 brew "nudoku"
 # Manage multiple Node.js versions
 brew "nvm"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # File browser
 brew "ranger"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rolls an amount of virtual dice
 brew "rolldice"
+# Experimental Rust compiler front-end for IDEs
+brew "rust-analyzer"
 # Command-line interface for Spotify on a Mac
 brew "shpotify"
 # Organize software neatly under a single directory tree (e.g. /usr/local)

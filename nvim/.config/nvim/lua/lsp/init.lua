@@ -4,6 +4,10 @@ local linters = require('lsp.linters')
 local configuration = require('lsp.configuration')
 local keybinds = require('lsp.keybinds')
 
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
 -- Server Configuration
 local servers = {
   'pyright',
@@ -62,6 +66,27 @@ local servers = {
         "typescriptreact",
         "json"
       },
+    }
+  },
+  { "sumneko_lua",
+    config = {
+      settings = {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT',
+            path = runtime_path
+          },
+          diagnostics = {
+            globals = {"vim"}
+          },
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true)
+          },
+          telemetry = {
+            enable = false
+          }
+        }
+      }
     }
   }
 }
