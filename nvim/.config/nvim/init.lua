@@ -2,8 +2,8 @@ require('plugins')
 
 -- {{{ Utils
 
-require('util/objects')
-require('util/map')
+require('util.objects')
+require('util.map')
 
 vim.cmd([[
 if exists('+termguicolors')
@@ -169,7 +169,7 @@ vim.cmd('syntax enable')
 
 require('consistent-sessions')
 require('format-on-save')
-require('functions')
+require('local-configs')
 require('lsp')
 require('tabline')
 require('util')
