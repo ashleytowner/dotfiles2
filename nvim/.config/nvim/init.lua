@@ -1,65 +1,4 @@
---{{{ Plugins
---Plug 'tpope/vim-commentary'
-vim.cmd([[
-call plug#begin('~/.vim/plugged')
-
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'ObserverOfTime/coloresque.vim'
-
-" Motions & Objects
-Plug 'justinmk/vim-sneak'
-Plug 'tpope/vim-surround'
-Plug 'numToStr/Comment.nvim'
-Plug 'bkad/CamelCaseMotion'
-Plug 'phaazon/hop.nvim'
-
-" Git
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-
-" File Management
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'preservim/nerdtree'
-
-" LSP & Completion
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-calc'
-
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'kmyk/brainfuck-highlight.vim'
-Plug 'mattn/emmet-vim'
-Plug 'onsails/lspkind-nvim'
-
-" Syntax
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
-
-" Theming
-Plug 'Iron-E/nvim-highlite'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'embark-theme/vim', { 'as': 'embark' }
-Plug 'haishanh/night-owl.vim'
-Plug 'marko-cerovac/material.nvim'
-Plug 'morhetz/gruvbox'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'folke/tokyonight.nvim'
-
-call plug#end()
-]])
-
--- Plugin Setup
-require('Comment').setup()
-require('hop').setup()
-
--- }}}
+require('plugins')
 
 -- {{{ Utils
 
@@ -232,7 +171,6 @@ require('consistent-sessions')
 require('format-on-save')
 require('functions')
 require('lsp')
-require('plugins')
 require('tabline')
 require('util')
 
