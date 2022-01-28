@@ -26,6 +26,7 @@ command! Scratch call CreateScratchBuffer()
 
 -- {{{ Settings
 vim.o.expandtab = true
+vim.o.wildignore = 'node_modules/*'
 vim.o.foldlevel = 99
 vim.o.hlsearch = false
 vim.o.listchars = 'tab:> ,trail:·'
