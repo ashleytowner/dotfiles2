@@ -2,20 +2,25 @@ require('bootstrapPacker')
 require('packer').startup(function(use)
 
     use 'wbthomason/packer.nvim'
+
     use 'nvim-lua/plenary.nvim'
-    use 'nvim-lua/popup.nvim'
+    use { 'nvim-lua/popup.nvim',
+          cond = function() return not vim.g.vscode end
+        }
 
     use { 'glacambre/firenvim',
           run = function() vim.fn['firenvim#install'](0) end,
-          config = function() require('plugins.firenvim') end
+          config = function() require('plugins.firenvim') end,
+          cond = function() return vim.g.started_by_firenvim end
         }
     use { 'ObserverOfTime/coloresque.vim',
           config = function() require('plugins.coloresque') end
         }
 
     -- Motions & Objects
-    use 'justinmk/vim-sneak'
-    use 'tpope/vim-surround'
+    use { 'tpope/vim-surround',
+          config = function() require('plugins.vimSurround') end
+        }
     use { 'numToStr/Comment.nvim',
           config = function() require('Comment').setup() end
         }
@@ -23,32 +28,58 @@ require('packer').startup(function(use)
           config = function() require('plugins.camelCaseMotions') end
         }
     use { 'phaazon/hop.nvim',
-          config = function() require('plugins.hop') end
+          config = function() require('plugins.hop') end,
+          cond = function() return not vim.g.vscode end
         }
 
     -- Git
-    use 'airblade/vim-gitgutter'
+    use { 'airblade/vim-gitgutter',
+          cond = function() return not vim.g.vscode end
+        }
     use { 'tpope/vim-fugitive',
-          config = function() require('plugins.fugitive') end
+          config = function() require('plugins.fugitive') end,
+          cond = function() return not vim.g.vscode end
         }
 
     -- File Management
     use { 'nvim-telescope/telescope.nvim',
+          cond = function() return vim.g.vscode end,
           config = function() require('plugins.telescope') end
         }
     use { 'gbrlsnchs/telescope-lsp-handlers.nvim', requires = 'nvim-telescope/telescope.nvim' }
     use { 'preservim/nerdtree',
-          config = function() require('plugins.nerdtree') end
+          config = function() require('plugins.nerdtree') end,
+          cond = function() return not vim.g.vscode end
         }
 
     -- LSP & Completion
-    use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
-    use { 'hrsh7th/cmp-calc', requires = 'hrsh7th/nvim-cmp' }
-    use { 'hrsh7th/cmp-cmdline', requires = 'hrsh7th/nvim-cmp' }
-    use { 'hrsh7th/cmp-nvim-lsp', requires = 'hrsh7th/nvim-cmp' }
-    use { 'hrsh7th/cmp-path', requires = 'hrsh7th/nvim-cmp' }
-    use { 'hrsh7th/nvim-cmp', requires = 'neovim/nvim-lspconfig' }
-    use 'neovim/nvim-lspconfig'
+    use { 'hrsh7th/cmp-buffer',
+          requires = 'hrsh7th/nvim-cmp',
+          cond = function() return not vim.g.vscode end
+        }
+    use { 'hrsh7th/cmp-calc',
+          requires = 'hrsh7th/nvim-cmp',
+          cond = function() return not vim.g.vscode end
+        }
+    use { 'hrsh7th/cmp-cmdline',
+          requires = 'hrsh7th/nvim-cmp',
+          cond = function() return not vim.g.vscode end
+        }
+    use { 'hrsh7th/cmp-nvim-lsp',
+          requires = 'hrsh7th/nvim-cmp',
+          cond = function() return not vim.g.vscode end
+        }
+    use { 'hrsh7th/cmp-path',
+          requires = 'hrsh7th/nvim-cmp',
+          cond = function() return not vim.g.vscode end
+        }
+    use { 'hrsh7th/nvim-cmp',
+          requires = 'neovim/nvim-lspconfig'
+        }
+    use { 'neovim/nvim-lspconfig',
+          cond = function() return not vim.g.vscode end,
+          config = function() require('lsp.init') end
+        }
 
     use 'L3MON4D3/LuaSnip'
     use { 'saadparwaiz1/cmp_luasnip', requires = { 'hrsh7th/nvim-cmp', 'L3MON4D3/LuaSnip' } }
@@ -61,18 +92,25 @@ require('packer').startup(function(use)
           run = ':TSUpdate',
           config = function() require('plugins.treesitter') end
         }
-    use { 'nvim-treesitter/playground', requires = 'nvim-treesitter/nvim-treesitter' }
+    use { 'nvim-treesitter/playground',
+          requires = 'nvim-treesitter/nvim-treesitter'
+        }
 
     -- Theming
-    use 'Iron-E/nvim-highlite'
+    use { 'Iron-E/nvim-highlite',
+          cond = function() return not vim.g.vscode end
+        }
     use { 'dracula/vim', as = 'dracula' }
     use { 'embark-theme/vim', as = 'embark' }
-    use 'haishanh/night-owl.vim'
-    use 'bluz71/vim-nightfly-guicolors'
+    use { 'haishanh/night-owl.vim',
+          cond = function() return not vim.g.vscode end
+        }
+    use { 'bluz71/vim-nightfly-guicolors',
+          cond = function() return not vim.g.vscode end
+        }
     use { 'folke/tokyonight.nvim',
           setup = function() require('plugins.themes.tokyonight') end,
           config = function() vim.cmd('colorscheme tokyonight') end
         }
 
 end)
-

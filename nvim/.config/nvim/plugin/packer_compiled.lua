@@ -92,28 +92,48 @@ _G.packer_plugins = {
     url = "https://github.com/kmyk/brainfuck-highlight.vim"
   },
   ["cmp-buffer"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    after_files = { "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-buffer/after/plugin/cmp_buffer.lua" },
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-calc"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/cmp-calc",
+    after_files = { "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-calc/after/plugin/cmp_calc.lua" },
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-calc",
     url = "https://github.com/hrsh7th/cmp-calc"
   },
   ["cmp-cmdline"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    after_files = { "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-cmdline/after/plugin/cmp_cmdline.lua" },
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
   ["cmp-nvim-lsp"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    after_files = { "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua" },
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-path"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/cmp-path",
+    after_files = { "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
   cmp_luasnip = {
@@ -143,17 +163,20 @@ _G.packer_plugins = {
     url = "https://github.com/mattn/emmet-vim"
   },
   firenvim = {
+    cond = { "\27LJ\2\n1\0\0\1\0\3\0\0046\0\0\0009\0\1\0009\0\2\0L\0\2\0\24started_by_firenvim\6g\bvim\0" },
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.firenvim\frequire\0" },
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/firenvim",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/firenvim",
     url = "https://github.com/glacambre/firenvim"
   },
   ["hop.nvim"] = {
-    commands = { "HopWord" },
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
     config = { "\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16plugins.hop\frequire\0" },
     loaded = false,
     needs_bufread = false,
-    only_cond = false,
+    only_cond = true,
     path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/hop.nvim",
     url = "https://github.com/phaazon/hop.nvim"
   },
@@ -163,14 +186,20 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind-nvim"
   },
   nerdtree = {
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.nerdtree\frequire\0" },
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/nerdtree",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/nerdtree",
     url = "https://github.com/preservim/nerdtree"
   },
   ["night-owl.vim"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/night-owl.vim",
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/night-owl.vim",
     url = "https://github.com/haishanh/night-owl.vim"
   },
   ["nvim-cmp"] = {
@@ -179,13 +208,20 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-highlite"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/nvim-highlite",
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/nvim-highlite",
     url = "https://github.com/Iron-E/nvim-highlite"
   },
   ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    config = { "\27LJ\2\n(\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\rlsp.init\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
@@ -210,8 +246,11 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["popup.nvim"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["telescope-lsp-handlers.nvim"] = {
@@ -220,9 +259,12 @@ _G.packer_plugins = {
     url = "https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim"
   },
   ["telescope.nvim"] = {
+    cond = { "\27LJ\2\n$\0\0\1\0\3\0\0046\0\0\0009\0\1\0009\0\2\0L\0\2\0\vvscode\6g\bvim\0" },
     config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins.telescope\frequire\0" },
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    loaded = false,
+    needs_bufread = true,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
@@ -233,27 +275,32 @@ _G.packer_plugins = {
     url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-fugitive"] = {
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.fugitive\frequire\0" },
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    loaded = false,
+    needs_bufread = true,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
   },
   ["vim-nightfly-guicolors"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
+    cond = { "\27LJ\2\n(\0\0\1\0\3\0\0056\0\0\0009\0\1\0009\0\2\0\19\0\0\0L\0\2\0\vvscode\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = true,
+    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/opt/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
   },
-  ["vim-sneak"] = {
-    loaded = true,
-    path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/vim-sneak",
-    url = "https://github.com/justinmk/vim-sneak"
-  },
   ["vim-surround"] = {
+    config = { "\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24plugins.vimSurround\frequire\0" },
     loaded = true,
     path = "/home/ashley.towner/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
@@ -268,34 +315,6 @@ time([[Setup for tokyonight.nvim]], false)
 time([[packadd for tokyonight.nvim]], true)
 vim.cmd [[packadd tokyonight.nvim]]
 time([[packadd for tokyonight.nvim]], false)
--- Config for: vim-fugitive
-time([[Config for vim-fugitive]], true)
-try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.fugitive\frequire\0", "config", "vim-fugitive")
-time([[Config for vim-fugitive]], false)
--- Config for: CamelCaseMotion
-time([[Config for CamelCaseMotion]], true)
-try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.camelCaseMotions\frequire\0", "config", "CamelCaseMotion")
-time([[Config for CamelCaseMotion]], false)
--- Config for: nerdtree
-time([[Config for nerdtree]], true)
-try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.nerdtree\frequire\0", "config", "nerdtree")
-time([[Config for nerdtree]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
--- Config for: coloresque.vim
-time([[Config for coloresque.vim]], true)
-try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.coloresque\frequire\0", "config", "coloresque.vim")
-time([[Config for coloresque.vim]], false)
--- Config for: firenvim
-time([[Config for firenvim]], true)
-try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugins.firenvim\frequire\0", "config", "firenvim")
-time([[Config for firenvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugins.telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
 -- Config for: tokyonight.nvim
 time([[Config for tokyonight.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\27colorscheme tokyonight\bcmd\bvim\0", "config", "tokyonight.nvim")
@@ -304,12 +323,71 @@ time([[Config for tokyonight.nvim]], false)
 time([[Config for nvim-treesitter]], true)
 try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.treesitter\frequire\0", "config", "nvim-treesitter")
 time([[Config for nvim-treesitter]], false)
-
--- Command lazy-loads
-time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HopWord lua require("packer.load")({'hop.nvim'}, { cmd = "HopWord", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-time([[Defining lazy-load commands]], false)
-
+-- Config for: coloresque.vim
+time([[Config for coloresque.vim]], true)
+try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.coloresque\frequire\0", "config", "coloresque.vim")
+time([[Config for coloresque.vim]], false)
+-- Config for: CamelCaseMotion
+time([[Config for CamelCaseMotion]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.camelCaseMotions\frequire\0", "config", "CamelCaseMotion")
+time([[Config for CamelCaseMotion]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
+-- Config for: vim-surround
+time([[Config for vim-surround]], true)
+try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24plugins.vimSurround\frequire\0", "config", "vim-surround")
+time([[Config for vim-surround]], false)
+-- Conditional loads
+time([[Conditional loading of telescope.nvim]], true)
+  require("packer.load")({"telescope.nvim"}, {}, _G.packer_plugins)
+time([[Conditional loading of telescope.nvim]], false)
+time([[Conditional loading of vim-fugitive]], true)
+  require("packer.load")({"vim-fugitive"}, {}, _G.packer_plugins)
+time([[Conditional loading of vim-fugitive]], false)
+time([[Conditional loading of vim-gitgutter]], true)
+  require("packer.load")({"vim-gitgutter"}, {}, _G.packer_plugins)
+time([[Conditional loading of vim-gitgutter]], false)
+time([[Conditional loading of vim-nightfly-guicolors]], true)
+  require("packer.load")({"vim-nightfly-guicolors"}, {}, _G.packer_plugins)
+time([[Conditional loading of vim-nightfly-guicolors]], false)
+time([[Conditional loading of hop.nvim]], true)
+  require("packer.load")({"hop.nvim"}, {}, _G.packer_plugins)
+time([[Conditional loading of hop.nvim]], false)
+time([[Conditional loading of nerdtree]], true)
+  require("packer.load")({"nerdtree"}, {}, _G.packer_plugins)
+time([[Conditional loading of nerdtree]], false)
+time([[Conditional loading of nvim-highlite]], true)
+  require("packer.load")({"nvim-highlite"}, {}, _G.packer_plugins)
+time([[Conditional loading of nvim-highlite]], false)
+time([[Conditional loading of cmp-buffer]], true)
+  require("packer.load")({"cmp-buffer"}, {}, _G.packer_plugins)
+time([[Conditional loading of cmp-buffer]], false)
+time([[Conditional loading of cmp-cmdline]], true)
+  require("packer.load")({"cmp-cmdline"}, {}, _G.packer_plugins)
+time([[Conditional loading of cmp-cmdline]], false)
+time([[Conditional loading of popup.nvim]], true)
+  require("packer.load")({"popup.nvim"}, {}, _G.packer_plugins)
+time([[Conditional loading of popup.nvim]], false)
+time([[Conditional loading of nvim-lspconfig]], true)
+  require("packer.load")({"nvim-lspconfig"}, {}, _G.packer_plugins)
+time([[Conditional loading of nvim-lspconfig]], false)
+time([[Conditional loading of cmp-nvim-lsp]], true)
+  require("packer.load")({"cmp-nvim-lsp"}, {}, _G.packer_plugins)
+time([[Conditional loading of cmp-nvim-lsp]], false)
+time([[Conditional loading of cmp-calc]], true)
+  require("packer.load")({"cmp-calc"}, {}, _G.packer_plugins)
+time([[Conditional loading of cmp-calc]], false)
+time([[Conditional loading of night-owl.vim]], true)
+  require("packer.load")({"night-owl.vim"}, {}, _G.packer_plugins)
+time([[Conditional loading of night-owl.vim]], false)
+time([[Conditional loading of cmp-path]], true)
+  require("packer.load")({"cmp-path"}, {}, _G.packer_plugins)
+time([[Conditional loading of cmp-path]], false)
+time([[Conditional loading of firenvim]], true)
+  require("packer.load")({"firenvim"}, {}, _G.packer_plugins)
+time([[Conditional loading of firenvim]], false)
 if should_profile then save_profiles() end
 
 end)

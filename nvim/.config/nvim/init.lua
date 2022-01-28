@@ -55,8 +55,6 @@ vim.g.markdown_fenced_languages = {
   "js=javascript"
 }
 
-
-
 vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
 vim.cmd('syntax enable')
@@ -67,6 +65,5 @@ require('consistentSessions')
 require('formatOnSave')
 require('keymaps')
 require('setupLocalConfigs')
-require('lsp')
 require('tabline')
 require('util')
