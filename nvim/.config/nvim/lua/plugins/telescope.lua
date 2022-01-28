@@ -1,4 +1,5 @@
-require('telescope').setup{
+local telescope = require('telescope')
+telescope.setup{
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -44,18 +45,36 @@ require('telescope').setup{
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   },
+  extensions = {
+    'lsp_handlers'
+  },
   pickers = {
       find_files = {
-          theme = "ivy"
+          theme = "dropdown"
       },
       git_branches = {
-          theme = "ivy"
+          theme = "dropdown"
       },
       buffers = {
-          theme = "ivy"
+          theme = "dropdown"
       },
       live_grep = {
-          theme = "ivy"
+          theme = "dropdown"
+      },
+      lsp_code_actions = {
+        theme = "dropdown"
+      },
+      lsp_references = {
+        theme = "dropdown"
+      },
+      lsp_definitions = {
+        theme = "dropdown"
+      },
+      quickfix = {
+        theme = "dropdown"
+      },
+      loclist = {
+        theme = "dropdown"
       }
   }
 }

@@ -107,5 +107,12 @@ for _, lsp in ipairs(servers) do
   end
 end
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+ vim.lsp.handlers.hover, {
+   -- Use a sharp border with `FloatBorder` highlights
+   border = "single"
+ }
+)
+
 require('lsp.completion')
 require('lsp.diagnostics')

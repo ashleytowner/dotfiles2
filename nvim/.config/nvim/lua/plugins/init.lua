@@ -21,6 +21,7 @@ require('packer').startup(function(use)
 
     -- File Management
     use 'nvim-telescope/telescope.nvim'
+    use { 'gbrlsnchs/telescope-lsp-handlers.nvim', requires = 'nvim-telescope/telescope.nvim' }
     use 'preservim/nerdtree'
 
     -- LSP & Completion
