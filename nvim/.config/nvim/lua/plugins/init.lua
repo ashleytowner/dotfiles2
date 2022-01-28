@@ -5,24 +5,41 @@ require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'nvim-lua/popup.nvim'
 
-    use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end}
-    use 'ObserverOfTime/coloresque.vim'
+    use { 'glacambre/firenvim',
+          run = function() vim.fn['firenvim#install'](0) end,
+          config = function() require('plugins.firenvim') end
+        }
+    use { 'ObserverOfTime/coloresque.vim',
+          config = function() require('plugins.coloresque') end
+        }
 
     -- Motions & Objects
     use 'justinmk/vim-sneak'
     use 'tpope/vim-surround'
-    use 'numToStr/Comment.nvim'
-    use 'bkad/CamelCaseMotion'
-    use 'phaazon/hop.nvim'
+    use { 'numToStr/Comment.nvim',
+          config = function() require('Comment').setup() end
+        }
+    use { 'bkad/CamelCaseMotion',
+          config = function() require('plugins.camelCaseMotions') end
+        }
+    use { 'phaazon/hop.nvim',
+          config = function() require('plugins.hop') end
+        }
 
     -- Git
     use 'airblade/vim-gitgutter'
-    use 'tpope/vim-fugitive'
+    use { 'tpope/vim-fugitive',
+          config = function() require('plugins.fugitive') end
+        }
 
     -- File Management
-    use 'nvim-telescope/telescope.nvim'
+    use { 'nvim-telescope/telescope.nvim',
+          config = function() require('plugins.telescope') end
+        }
     use { 'gbrlsnchs/telescope-lsp-handlers.nvim', requires = 'nvim-telescope/telescope.nvim' }
-    use 'preservim/nerdtree'
+    use { 'preservim/nerdtree',
+          config = function() require('plugins.nerdtree') end
+        }
 
     -- LSP & Completion
     use { 'hrsh7th/cmp-buffer', requires = 'hrsh7th/nvim-cmp' }
@@ -40,7 +57,10 @@ require('packer').startup(function(use)
     use 'onsails/lspkind-nvim'
 
     -- Syntax
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 'nvim-treesitter/nvim-treesitter',
+          run = ':TSUpdate',
+          config = function() require('plugins.treesitter') end
+        }
     use { 'nvim-treesitter/playground', requires = 'nvim-treesitter/nvim-treesitter' }
 
     -- Theming
@@ -49,17 +69,10 @@ require('packer').startup(function(use)
     use { 'embark-theme/vim', as = 'embark' }
     use 'haishanh/night-owl.vim'
     use 'bluz71/vim-nightfly-guicolors'
-    use 'folke/tokyonight.nvim'
+    use { 'folke/tokyonight.nvim',
+          setup = function() require('plugins.themes.tokyonight') end,
+          config = function() vim.cmd('colorscheme tokyonight') end
+        }
 
 end)
 
-require('Comment').setup()
-require('plugins.camelCaseMotions')
-require('plugins.coloresque')
-require('plugins.firenvim')
-require('plugins.fugitive')
-require('plugins.hop')
-require('plugins.nerdtree')
-require('plugins.telescope')
-require('plugins.themes.tokyonight')
-require('plugins.treesitter')

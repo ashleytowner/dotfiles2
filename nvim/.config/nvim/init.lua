@@ -56,7 +56,6 @@ vim.g.markdown_fenced_languages = {
 }
 
 
-vim.cmd('colorscheme tokyonight')
 
 vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
