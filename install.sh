@@ -2,6 +2,12 @@
 
 source .confirm.sh
 
+if which git > /dev/null; then
+  if (confirm "Do you want to update this repository?"); then
+    git pull
+  fi
+fi
+
 # Make sure we are in the correct directory
 basedir=$(dirname "$0")
 
