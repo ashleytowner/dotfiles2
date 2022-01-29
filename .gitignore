@@ -10,3 +10,4 @@ home/zshrc
 .zcompdump
 .zsh_history
 .zcompcache
+nvim/.config/nvim/plugin/
