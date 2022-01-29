@@ -81,3 +81,6 @@ done
 [ -f ~/.config/zsh/.zshrc ] && echo "Sourcing zshrc" && source ~/.config/zsh/.zshrc
 
 popd
+
+echo "Installation successful"
+echo "For more information about this configuration, read the README.md file"
