@@ -1,13 +1,6 @@
 #!/bin/zsh
 
-function confirm {
-  echo "$1 [Y/n]"
-  read confirmation
-  if [[ $confirmation = 'Y' || $confirmation = 'y' ]]; then
-    return 0
-  fi
-  return 1
-}
+source .confirm.sh
 
 # Make sure we are in the correct directory
 basedir=$(dirname "$0")
