@@ -14,6 +14,14 @@ if exists('+termguicolors')
 endif
 ]])
 
+-- auto-sync when plugins file is saved
+vim.cmd([[
+augroup packer_user_config
+  autocmd!
+  autocmd BufWritePost packer.lua source <afile> | PackerSync
+augroup end
+]])
+
 vim.cmd([[
 function! CreateScatchBuffer()
     enew
