@@ -15,11 +15,6 @@ local servers = {
   'bashls',
   'vimls',
   'cssls',
-  { 'graphql',
-    config = {
-      cmd = { "graphql-lsp", "server", "-m", "stream", "-s", vim.fn.glob('**/graphql.schema.json') }
-    }
-  },
   { 'stylelint_lsp',
     config = {
       filetypes = { "css", "less", "scss", "sugarss", "vue", "wxss" }
