@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
           config = function() require('plugins.coloresque') end
         }
 
+
     -- Motions & Objects
     use { 'tpope/vim-surround',
           config = function() require('plugins.vimSurround') end
@@ -52,10 +53,13 @@ return require('packer').startup(function(use)
           config = function() require('plugins.telescope') end
         }
     use { 'gbrlsnchs/telescope-lsp-handlers.nvim', requires = 'nvim-telescope/telescope.nvim' }
-    use { 'preservim/nerdtree',
-          config = function() require('plugins.nerdtree') end,
-          cond = function() return not vim.g.vscode end
-        }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+          'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
+        config = function() require('plugins.nvimTree') end
+    }
 
     -- LSP & Completion
     use { 'hrsh7th/cmp-buffer',
