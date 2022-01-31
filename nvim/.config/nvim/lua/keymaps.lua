@@ -2,27 +2,30 @@ require('util.map')
 
 
 -- Text manipulation
-nnoremap('J', 'mzJ`z')
-nnoremap('N', 'Nzz')
-nnoremap('n', 'nzz')
-vnoremap('J', ':m \'>+1<CR>gv=gv')
-vnoremap('K', ':m \'<-2<CR>gv=gv')
+Nnoremap('J', 'mzJ`z')
+Nnoremap('N', 'Nzz')
+Nnoremap('n', 'nzz')
+Vnoremap('J', ':m \'>+1<CR>gv=gv')
+Vnoremap('K', ':m \'<-2<CR>gv=gv')
 
 -- Clipboard
-noremap('<leader>P', '"+P')
-noremap('<leader>Y', '"+Y')
-noremap('<leader>p', '"+p')
-noremap('<leader>y', '"+y')
+Noremap('<leader>P', '"+P')
+Noremap('<leader>Y', '"+Y')
+Noremap('<leader>p', '"+p')
+Noremap('<leader>y', '"+y')
 
 -- File Navigation
-nmap('[q', '<cmd>cprev<cr>')
-nmap(']q', '<cmd>cnext<cr>')
-nnoremap('<C-PageDown>', ':bnext<CR>')
-nnoremap('<C-PageUp>', ':bprev<CR>')
+Nmap('[q', '<cmd>cprev<cr>')
+Nmap(']q', '<cmd>cnext<cr>')
+Nnoremap('<C-PageDown>', ':bnext<CR>')
+Nnoremap('<C-PageUp>', ':bprev<CR>')
+Nnoremap('<Tab>', '<C-w>w')
+Nnoremap('<S-Tab>', '<C-w>W')
+Tnoremap('<C-\\>', '<C-\\><C-n><C-w>w')
 
 -- Custom text objects
-xnoremap('a/', ':lua SelectTextObject("/", "/", true)<cr>')
-onoremap('a/', '<cmd>norm va/<cr>')
-xnoremap('i/', ':lua SelectTextObject("/", "/", false)<cr>')
-onoremap('i/', '<cmd>norm vi/<cr>')
+Xnoremap('a/', ':lua SelectTextObject("/", "/", true)<cr>')
+Onoremap('a/', '<cmd>norm va/<cr>')
+Xnoremap('i/', ':lua SelectTextObject("/", "/", false)<cr>')
+Onoremap('i/', '<cmd>norm vi/<cr>')
 

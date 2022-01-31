@@ -1,1 +1,1 @@
-nnoremap('gim', '<cmd>Gvdiffsplit!<cr>')
+Nnoremap('gim', '<cmd>Gvdiffsplit!<cr>')

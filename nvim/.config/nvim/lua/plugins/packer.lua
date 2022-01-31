@@ -10,6 +10,12 @@ return require('packer').startup({
       use 'wbthomason/packer.nvim'
       use 'tweekmonster/startuptime.vim'
       use 'nvim-lua/plenary.nvim'
+      use { 'akinsho/toggleterm.nvim',
+            config = function() require('toggleterm').setup({
+              direction = 'float',
+              open_mapping = [[<C-\>]]
+            }) end
+          }
 
       use { 'nvim-lua/popup.nvim',
             cond = function() return not vim.g.vscode end

@@ -80,11 +80,11 @@ telescope.setup{
 }
 
 -- Telescope
-nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')
+Nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')
 if (vim.g.uname == "Linux\n") then
-		nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden,--type,f previewer=false<cr>')
+		Nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden,--type,f previewer=false<cr>')
 else
-		nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden,--type,f previewer=false<cr>')
+		Nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden,--type,f previewer=false<cr>')
 end
-nnoremap('<leader>gco', '<cmd>Telescope git_branches<cr>')
-nnoremap('<leader>ls', '<cmd>Telescope buffers<cr>')
+Nnoremap('<leader>gco', '<cmd>Telescope git_branches<cr>')
+Nnoremap('<leader>ls', '<cmd>Telescope buffers<cr>')

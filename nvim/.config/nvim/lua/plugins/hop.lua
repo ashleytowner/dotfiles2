@@ -2,4 +2,4 @@ require('util.map')
 
 require('hop').setup()
 
-nmap('<leader>w', '<cmd>HopWord<cr>')
+Nmap('<leader>w', '<cmd>HopWord<cr>')

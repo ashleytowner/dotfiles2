@@ -9,7 +9,7 @@ require('gitsigns').setup({
   },
 })
 
-nmap('gip', '<cmd>Gitsigns preview_hunk<CR>')
-nmap('gib', '<cmd>Gitsigns blame_line<CR>')
-nmap('[g', '<cmd>Gitsigns prev_hunk<CR>')
-nmap(']g', '<cmd>Gitsigns next_hunk<CR>')
+Nmap('gip', '<cmd>Gitsigns preview_hunk<CR>')
+Nmap('gib', '<cmd>Gitsigns blame_line<CR>')
+Nmap('[g', '<cmd>Gitsigns prev_hunk<CR>')
+Nmap(']g', '<cmd>Gitsigns next_hunk<CR>')
