@@ -39,6 +39,9 @@ return require('packer').startup({
             config = function() require('plugins.hop') end,
             cond = function() return not vim.g.vscode end
           }
+      use { 'windwp/nvim-autopairs',
+            config = function() require('plugins.autopairs') end
+          }
 
       -- Git
       use { 'airblade/vim-gitgutter',
