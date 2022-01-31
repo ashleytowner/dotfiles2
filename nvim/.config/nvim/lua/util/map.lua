@@ -55,3 +55,11 @@ end
 function xnoremap(binding, mapping, silent, buffer)
   create_keymap('x', binding, mapping, true, silent, buffer)
 end
+
+function imap(binding, mapping, silent, buffer)
+  create_keymap('i', binding, mapping, false, silent, buffer)
+end
+
+function inoremap(binding, mapping, silent, buffer)
+  create_keymap('i', binding, mapping, true, silent, buffer)
+end

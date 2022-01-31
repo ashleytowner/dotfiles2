@@ -1,1 +1,1 @@
-nnoremap('<leader>merge', '<cmd>Gvdiffsplit!<cr>')
+nnoremap('gim', '<cmd>Gvdiffsplit!<cr>')
