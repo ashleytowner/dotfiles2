@@ -1,3 +1,6 @@
 require('util.map')
-nmap('s', 'ys', true)
-nmap('ss', 'yss', true)
+nmap('SS', '<Plug>YSsurround', true)
+nmap('Ss', '<Plug>YSsurround', true)
+nmap('ss', '<Plug>Yssurround', true)
+nmap('S', '<Plug>YSurround', true)
+nmap('s', '<Plug>Ysurround', true)
