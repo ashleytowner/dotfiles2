@@ -111,13 +111,15 @@ return require('packer').startup({
       use { 'Iron-E/nvim-highlite',
             cond = function() return not vim.g.vscode end
           }
-      use { 'dracula/vim', as = 'dracula' }
       use { 'embark-theme/vim', as = 'embark' }
       use { 'haishanh/night-owl.vim',
             cond = function() return not vim.g.vscode end
           }
       use { 'bluz71/vim-nightfly-guicolors',
             cond = function() return not vim.g.vscode end
+          }
+      use { 'dracula/vim', 
+            as = 'dracula'
           }
       use { 'folke/tokyonight.nvim',
             setup = function() require('plugins.themes.tokyonight') end,

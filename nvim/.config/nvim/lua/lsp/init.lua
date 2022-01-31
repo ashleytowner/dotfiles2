@@ -95,9 +95,12 @@ local servers = {
 for _, lsp in ipairs(servers) do
   if type(lsp) == "string" then
     lspconfig[lsp].setup(configuration)
+---@diagnostic disable-next-line: undefined-field
   elseif lsp.override then
+---@diagnostic disable-next-line: undefined-field
     lspconfig[lsp[1]].setup(lsp.config)
   else
+---@diagnostic disable-next-line: undefined-field
     lspconfig[lsp[1]].setup(util.spread(configuration)(lsp.config))
   end
 end
