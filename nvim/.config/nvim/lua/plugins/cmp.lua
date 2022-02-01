@@ -1,4 +1,5 @@
 local lspkind = require('lspkind')
+local luasnip = require('luasnip')
 lspkind.init()
 
 local cmp = require('cmp')
@@ -18,12 +19,28 @@ cmp.setup {
       c = cmp.mapping.close(),
     }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
   },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'buffer' },
     { name = 'calc' },
+    { name = 'luasnip' }
   },
   formatting = {
     format = lspkind.cmp_format({
@@ -32,6 +49,8 @@ cmp.setup {
         buffer = "[buf]",
         nvim_lsp = "[LSP]",
         path = "[path]",
+        luasnip = "[snip]",
+        calc = "[calc]"
       }
     })
   }

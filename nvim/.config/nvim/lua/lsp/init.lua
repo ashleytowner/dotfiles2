@@ -112,5 +112,4 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
  }
 )
 
-require('lsp.completion')
 require('lsp.diagnostics')

@@ -109,20 +109,22 @@ return require('packer').startup({
             cond = function() return not vim.g.vscode end
           }
 
-      use { 'hrsh7th/nvim-cmp',
-            requires = 'neovim/nvim-lspconfig'
-          }
-
       use { 'neovim/nvim-lspconfig',
             cond = function() return not vim.g.vscode end,
             config = function() require('lsp.init') end
           }
 
-      use 'L3MON4D3/LuaSnip'
-
-      use { 'saadparwaiz1/cmp_luasnip',
-            requires = { 'hrsh7th/nvim-cmp', 'L3MON4D3/LuaSnip' }
+      use { 'L3MON4D3/LuaSnip',
+            requires = 'saadparwaiz1/cmp_luasnip',
+            config = function() require('luasnip.loaders.from_vscode').load() end
           }
+
+      use { 'hrsh7th/nvim-cmp',
+            requires = 'neovim/nvim-lspconfig',
+            config = function() require('plugins.cmp') end
+          }
+
+      use 'rafamadriz/friendly-snippets'
 
       use 'kmyk/brainfuck-highlight.vim'
       use 'mattn/emmet-vim'
