@@ -10,6 +10,9 @@ return require('packer').startup({
       use 'wbthomason/packer.nvim'
       use 'tweekmonster/startuptime.vim'
       use 'nvim-lua/plenary.nvim'
+      use { 'danymat/neogen',
+            config = function() require('neogen').setup({ enable = true }) end
+          }
       use { 'akinsho/toggleterm.nvim',
             config = function() require('toggleterm').setup({
               direction = 'float',
