@@ -9,6 +9,7 @@ vim.g.nvim_tree_show_icons = {
 }
 
 require('nvim-tree').setup({
-  open_on_setup = true
+  open_on_setup = false,
+  auto_close = true
 })
 Nmap('<leader><leader>', '<cmd>NvimTreeFindFileToggle<cr>', true)
