@@ -19,8 +19,8 @@ Nmap('[q', '<cmd>cprev<cr>')
 Nmap(']q', '<cmd>cnext<cr>')
 Nnoremap('<C-PageDown>', ':bnext<CR>')
 Nnoremap('<C-PageUp>', ':bprev<CR>')
-Nnoremap('<Tab>', '<C-w>w')
-Nnoremap('<S-Tab>', '<C-w>W')
+Nnoremap('gw', '<C-w>w')
+Nnoremap('gW', '<C-w>W')
 Tnoremap('<C-\\>', '<C-\\><C-n><C-w>w')
 
 -- Custom text objects
