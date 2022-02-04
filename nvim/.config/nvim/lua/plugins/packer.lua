@@ -10,7 +10,9 @@ return require('packer').startup({
       use 'wbthomason/packer.nvim'
       use 'tweekmonster/startuptime.vim'
       use 'nvim-lua/plenary.nvim'
-      use 'mhinz/vim-startify'
+      use { 'mhinz/vim-startify',
+            config = function() require('plugins.startify') end
+          }
       use { 'danymat/neogen',
             config = function() require('neogen').setup({ enable = true }) end
           }

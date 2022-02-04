@@ -14,14 +14,6 @@ if exists('+termguicolors')
 endif
 ]])
 
-vim.cmd([[
-  autocmd VimEnter * if !argc() && !len(getqflist())
-                      \ | execute 'Startify' 
-                      \ | execute 'NvimTreeOpen' 
-                      \ | execute 'wincmd w'
-                      \ | endif
-]])
-
 -- auto-sync when plugins file is saved
 vim.cmd([[
 augroup packer_user_config
