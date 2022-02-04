@@ -21,6 +21,9 @@ vim.cmd([[
                       \ | execute 'wincmd w'
                       \ | endif
 ]])
+vim.cmd([[
+  autocmd User StartifyBufferOpened NvimTreeClose
+]])
 
 -- auto-sync when plugins file is saved
 vim.cmd([[
