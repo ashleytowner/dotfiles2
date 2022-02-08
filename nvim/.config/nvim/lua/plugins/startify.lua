@@ -9,3 +9,19 @@ vim.cmd([[
 vim.cmd([[
   autocmd User StartifyBufferOpened NvimTreeClose
 ]])
+
+vim.g.startify_lists = {
+  {
+    type = 'dir',
+    header = { '  MRU in Directory' }
+  },
+  {
+    type = 'sessions',
+    header = { '  Sessions' }
+  },
+  {
+    type = 'files',
+    header = { '  Most recently used' }
+  }
+
+}
