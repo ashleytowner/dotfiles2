@@ -13,9 +13,6 @@ return require('packer').startup({
       use { 'mhinz/vim-startify',
             config = function() require('plugins.startify') end
           }
-      use { 'danymat/neogen',
-            config = function() require('neogen').setup({ enable = true }) end
-          }
       use { 'akinsho/toggleterm.nvim',
             config = function() require('toggleterm').setup({
               direction = 'float',
@@ -130,7 +127,7 @@ return require('packer').startup({
             config = function() require('plugins.cmp') end
           }
 
-      use 'rafamadriz/friendly-snippets'
+      -- use 'rafamadriz/friendly-snippets'
 
       use 'kmyk/brainfuck-highlight.vim'
       use 'mattn/emmet-vim'

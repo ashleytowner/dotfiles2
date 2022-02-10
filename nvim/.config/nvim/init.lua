@@ -42,6 +42,7 @@ vim.o.number = true
 vim.o.pyxversion = 3
 vim.o.relativenumber =  true
 vim.o.shiftwidth = 2
+vim.o.smartindent = true
 vim.o.smarttab = true
 vim.o.tabstop = 3
 vim.o.termguicolors = true
