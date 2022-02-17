@@ -132,13 +132,18 @@ alias vsplit="vsplit_tab"
 alias opg="op get"
 alias opgi="op get item"
 
-# Set copy command based on what's installed
-which pbcopy > /dev/null && alias yank="pbcopy"
-which xclip > /dev/null && alias yank="xclip -i -sel clip"
+# Set a yank & put command
+if which xclip > /dev/null
+then
+    alias yank="xclip -i -sel clip"
+    alias put="xclip -o -sel clip"
+fi
 
-# Set paste command based on what's installed
-which pbpaste > /dev/null && alias put="pbpaste"
-which xclip > /dev/null && alias put="xclip -o -sel clip"
+if which pbcopy > /dev/null && which pbpaste > /dev/null
+then
+    alias yank="pbcopy"
+    alias put="pbpaste"
+fi
 
 alias -s txt=vim
 alias -s yaml=vim
