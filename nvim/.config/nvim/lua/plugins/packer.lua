@@ -87,30 +87,17 @@ return require('packer').startup({
 
       -- LSP & Completion
 
-      use { 'hrsh7th/cmp-buffer',
-            requires = 'hrsh7th/nvim-cmp',
-            cond = function() return not vim.g.vscode end
-          }
+      use 'hrsh7th/cmp-buffer'
 
-      use { 'hrsh7th/cmp-calc',
-            requires = 'hrsh7th/nvim-cmp',
-            cond = function() return not vim.g.vscode end
-          }
+      use 'hrsh7th/cmp-calc'
 
-      use { 'hrsh7th/cmp-cmdline',
-            requires = 'hrsh7th/nvim-cmp',
-            cond = function() return not vim.g.vscode end
-          }
+      use 'hrsh7th/cmp-cmdline'
 
-      use { 'hrsh7th/cmp-nvim-lsp',
-            requires = 'hrsh7th/nvim-cmp',
-            cond = function() return not vim.g.vscode end
-          }
+      use 'hrsh7th/cmp-nvim-lsp'
 
-      use { 'hrsh7th/cmp-path',
-            requires = 'hrsh7th/nvim-cmp',
-            cond = function() return not vim.g.vscode end
-          }
+      use 'hrsh7th/cmp-path'
+
+      use 'saadparwaiz1/cmp_luasnip'
 
       use { 'neovim/nvim-lspconfig',
             cond = function() return not vim.g.vscode end,
@@ -118,13 +105,17 @@ return require('packer').startup({
           }
 
       use { 'L3MON4D3/LuaSnip',
-            requires = 'saadparwaiz1/cmp_luasnip',
             config = function() require('luasnip.loaders.from_vscode').load() end
           }
 
+
       use { 'hrsh7th/nvim-cmp',
-            requires = 'neovim/nvim-lspconfig',
-            config = function() require('plugins.cmp') end
+            config = function() require('plugins.cmp') end,
+            cond = function() return not vim.g.vscode end,
+            requires = {
+              'L3MON4D3/LuaSnip',
+              'rafamadriz/friendly-snippets'
+            }
           }
 
       -- use 'rafamadriz/friendly-snippets'
