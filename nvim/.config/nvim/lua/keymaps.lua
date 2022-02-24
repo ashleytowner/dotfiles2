@@ -10,7 +10,7 @@ Vnoremap('K', ':m \'<-2<CR>gv=gv')
 
 -- Clipboard
 Noremap('<leader>P', '"+P')
-Noremap('<leader>Y', '"+Y')
+Noremap('<leader>Y', '"+y$')
 Noremap('<leader>p', '"+p')
 Noremap('<leader>y', '"+y')
 
