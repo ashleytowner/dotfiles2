@@ -19,8 +19,8 @@ return require('packer').startup({
     use 'nvim-lua/plenary.nvim'
 
     use {
-        'mhinz/vim-startify',
-        config = function() require('plugins.startify') end,
+      'mhinz/vim-startify',
+      config = function() require('plugins.startify') end,
     }
 
     use {
@@ -77,17 +77,21 @@ return require('packer').startup({
       config = function() require('plugins.autopairs') end,
       after = {
         'nvim-cmp'
-      }
+      },
+      event = 'TextChanged'
     }
 
-    use 'mattn/emmet-vim'
+    use {
+      'mattn/emmet-vim',
+      event = 'BufEnter'
+    }
 
     -- Git
 
     use {
       'lewis6991/gitsigns.nvim',
       config = function() require('plugins.gitsigns') end,
-      event = 'VimEnter'
+      event = 'BufEnter'
     }
 
     use {
@@ -116,7 +120,7 @@ return require('packer').startup({
       requires = {
         'kyazdani42/nvim-web-devicons', -- optional, for file icon
       },
-      config = function() require('plugins.nvimTree') end
+      config = function() require('plugins.nvimTree') end,
     }
 
     -- LSP & Completion
@@ -136,7 +140,8 @@ return require('packer').startup({
     use {
       'neovim/nvim-lspconfig',
       cond = function() return not vim.g.vscode end,
-      config = function() require('lsp.init') end
+      config = function() require('lsp.init') end,
+      event = 'VimEnter'
     }
 
     use {
@@ -183,31 +188,39 @@ return require('packer').startup({
     use {
       'ObserverOfTime/coloresque.vim',
       config = function() require('plugins.coloresque') end,
-      event = 'VimEnter'
+      event = 'BufEnter'
     }
 
     -- Theming
 
     use {
       'Iron-E/nvim-highlite',
-      cond = function() return not vim.g.vscode end
+      cond = function() return not vim.g.vscode end,
+      event = 'VimEnter'
     }
 
-    use { 'embark-theme/vim', as = 'embark' }
+    use {
+      'embark-theme/vim',
+      as = 'embark',
+      disabled = true
+    }
 
     use {
       'haishanh/night-owl.vim',
       cond = function() return not vim.g.vscode end,
+      disabled = true
     }
 
     use {
       'bluz71/vim-nightfly-guicolors',
-      cond = function() return not vim.g.vscode end
+      cond = function() return not vim.g.vscode end,
+      disabled = true
     }
 
     use {
       'dracula/vim',
-      as = 'dracula'
+      as = 'dracula',
+      disabled = true
     }
 
     use {

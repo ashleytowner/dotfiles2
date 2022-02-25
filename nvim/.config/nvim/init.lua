@@ -22,16 +22,6 @@ augroup packer_user_config
 augroup end
 ]])
 
-vim.cmd([[
-function! CreateScatchBuffer()
-    enew
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal noswapfile
-endfunction
-command! Scratch call CreateScratchBuffer()
-]])
-
 -- {{{ Settings
 vim.o.expandtab = true
 vim.o.wildignore = 'node_modules/*'
