@@ -8,16 +8,23 @@ return require('packer').startup({
   function(use)
 
       use 'wbthomason/packer.nvim'
-      use 'tweekmonster/startuptime.vim'
+
+      use { 'tweekmonster/startuptime.vim',
+        cmd = 'StartupTime'
+      }
+
       use 'nvim-lua/plenary.nvim'
+
       use { 'mhinz/vim-startify',
-            config = function() require('plugins.startify') end
+            config = function() require('plugins.startify') end,
           }
+
       use { 'akinsho/toggleterm.nvim',
             config = function() require('toggleterm').setup({
               direction = 'float',
               open_mapping = [[<C-\>]]
-            }) end
+            }) end,
+            event = 'VimEnter'
           }
 
       use { 'nvim-lua/popup.nvim',
@@ -31,49 +38,60 @@ return require('packer').startup({
           }
 
       use { 'ObserverOfTime/coloresque.vim',
-            config = function() require('plugins.coloresque') end
+            config = function() require('plugins.coloresque') end,
+            event = 'VimEnter'
           }
 
       -- Motions & Objects
 
       use { 'tpope/vim-surround',
-            config = function() require('plugins.vimSurround') end
+            config = function() require('plugins.vimSurround') end,
+            event = 'VimEnter'
           }
 
       use { 'numToStr/Comment.nvim',
-            config = function() require('Comment').setup() end
+            config = function() require('Comment').setup() end,
+            event = 'VimEnter'
           }
 
       use { 'bkad/CamelCaseMotion',
-            config = function() require('plugins.camelCaseMotions') end
+            config = function() require('plugins.camelCaseMotions') end,
+            event = 'VimEnter'
           }
 
       use { 'phaazon/hop.nvim',
             config = function() require('plugins.hop') end,
-            cond = function() return not vim.g.vscode end
+            cond = function() return not vim.g.vscode end,
+            event = 'VimEnter'
           }
 
       use { 'windwp/nvim-autopairs',
-            config = function() require('plugins.autopairs') end
+            config = function() require('plugins.autopairs') end,
+            after = {
+              'nvim-cmp'
+            }
           }
 
       -- Git
 
       use { 'lewis6991/gitsigns.nvim',
-            config = function() require('plugins.gitsigns') end
+            config = function() require('plugins.gitsigns') end,
+            event = 'VimEnter'
           }
 
       use { 'tpope/vim-fugitive',
             config = function() require('plugins.fugitive') end,
-            cond = function() return not vim.g.vscode end
+            cond = function() return not vim.g.vscode end,
+            cmd = 'Git'
           }
 
       -- File Management
 
       use { 'nvim-telescope/telescope.nvim',
-            cond = function() return vim.g.vscode end,
-            config = function() require('plugins.telescope') end
-          }
+        cond = function() return vim.g.vscode end,
+        config = function() require('plugins.telescope') end,
+        event = 'VimEnter'
+      }
 
       use { 'gbrlsnchs/telescope-lsp-handlers.nvim', requires = 'nvim-telescope/telescope.nvim' }
 
@@ -115,6 +133,14 @@ return require('packer').startup({
             requires = {
               'L3MON4D3/LuaSnip',
               'rafamadriz/friendly-snippets'
+            },
+            after = {
+              'cmp-buffer',
+              'cmp-calc',
+              'cmp-cmdline',
+              'cmp-nvim-lsp',
+              'cmp-path',
+              'cmp_luasnip'
             }
           }
 
@@ -144,7 +170,7 @@ return require('packer').startup({
       use { 'embark-theme/vim', as = 'embark' }
 
       use { 'haishanh/night-owl.vim',
-            cond = function() return not vim.g.vscode end
+            cond = function() return not vim.g.vscode end,
           }
 
       use { 'bluz71/vim-nightfly-guicolors',
