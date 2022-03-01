@@ -4,7 +4,9 @@ vim.api.nvim_exec([[
   let g:uname = system("uname")
 ]], false)
 
+require('util')
 require('plugins')
+require('statusline')
 
 vim.cmd([[
 if exists('+termguicolors')
@@ -44,8 +46,7 @@ vim.wo.wrap = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.wo.signcolumn='auto:2'
-require('statusline')
-vim.go.statusline = '%#StatusLineNC# ﬘ %n %#StatusLine#%q %{GetFileIcon()} %t %m%r%y%{GitBranch()}%= %<%-6.(%l:%c%) %-4.(%P%)'
+vim.go.statusline = '%!v:lua.StatusLine()'
 vim.go.tabline='%!MyTabLine()'
 
 vim.g.markdown_fenced_languages = {
@@ -67,4 +68,3 @@ require('formatOnSave')
 require('keymaps')
 require('setupLocalConfigs')
 require('tabline')
-require('util')
