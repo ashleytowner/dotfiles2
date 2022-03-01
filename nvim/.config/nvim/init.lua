@@ -43,7 +43,9 @@ vim.wo.list = true
 vim.wo.wrap = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.go.statusline = '%#Title# ﬘ %n %#StatusLine#%q %t %m%r%y%#fzf3#%{GitBranch()}%#StatusLine#%= %<%-8.(%l:%c%) %-4.(%P%)'
+vim.wo.signcolumn='auto:2'
+require('statusline')
+vim.go.statusline = '%#StatusLineNC# ﬘ %n %#StatusLine#%q %{GetFileIcon()} %t %m%r%y%{GitBranch()}%= %<%-6.(%l:%c%) %-4.(%P%)'
 vim.go.tabline='%!MyTabLine()'
 
 vim.g.markdown_fenced_languages = {
