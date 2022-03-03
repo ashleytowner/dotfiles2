@@ -1,5 +1,5 @@
 local lspconfig = require('lspconfig')
-local util = require('util.spread')
+local util = require('util')
 local linters = require('lsp.linters')
 local configuration = require('lsp.configuration')
 local keybinds = require('lsp.keybinds')

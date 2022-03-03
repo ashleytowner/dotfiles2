@@ -1,6 +1,9 @@
 vim.cmd([[
 function! MyTabLine()
   let tablineValue = ''
+  let util = v:lua.require('util')
+  " Create the selected highlight
+  call util.create_highlight_group('User4', util.get_color('TabLineSel', 'bg'), util.get_color('TabLineFill', 'bg'))
   " loop through each tab page
   for tab in range(tabpagenr('$'))
     let tabHl = '%#TabLine#'
@@ -22,7 +25,7 @@ function! MyTabLine()
       let buffertype = getbufvar(b, "&buftype")
       let bufferlisted = getbufvar(b, "&buflisted")
 
-      let icon = v:lua.require('util').get_file_icon(buffername, fnamemodify(buffername, ':e')).icon
+      let icon = util.get_file_icon(buffername, fnamemodify(buffername, ':e')).icon
 
       if !bufferlisted
         continue
