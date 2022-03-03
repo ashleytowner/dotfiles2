@@ -103,7 +103,7 @@ return require('packer').startup({
       'nvim-telescope/telescope.nvim',
       cond = function() return vim.g.vscode end,
       config = function() require('plugins.telescope') end,
-      cmd = 'Telescope',
+      event = 'VimEnter',
       requires = {
         'gbrlsnchs/telescope-lsp-handlers.nvim',
         'nvim-lua/plenary.nvim'
