@@ -229,6 +229,11 @@ return require('packer').startup({
       config = function() vim.cmd('colorscheme tokyonight') end
     }
 
+    use {
+      'shaunsingh/moonlight.nvim',
+      disabled = true
+    }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if Packer_bootstrap then

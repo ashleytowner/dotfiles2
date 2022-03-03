@@ -44,7 +44,7 @@ function StatusLine()
   local buftype = vim.api.nvim_buf_get_option(bufnum, 'buftype')
 
   if buftype == 'nofile' then
-    return ' %t%=%(%P%) '
+    return ' %t%=%(%P%)'
   end
 
   return buffer_label() .. buffer_icon() .. ' %t %m%r' .. git_branch() .. '%= %<%-6.(%l:%c%) %-4.(%P%)'
