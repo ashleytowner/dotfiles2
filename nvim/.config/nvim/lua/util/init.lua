@@ -29,10 +29,18 @@ function M.ternary(condition, aval, bval)
   end
 end
 
-function M.get_file_icon(filename, extension)
-  local icon = require('nvim-web-devicons')
+function M.get_file_icon(filename)
+  local extension = vim.fn.fnamemodify(filename, ':e')
+  local icon, color = require('nvim-web-devicons')
     .get_icon_color(filename, extension, { default = true })
-  return icon
+  return {
+    icon = icon,
+    color = color
+  }
+end
+
+function M.create_highlight_group(group, fg, bg)
+  vim.cmd('hi ' .. group .. ' guifg=' .. fg .. ' guibg=' .. bg)
 end
 
 return M

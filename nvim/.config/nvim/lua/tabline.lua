@@ -3,10 +3,12 @@ function! MyTabLine()
   let tablineValue = ''
   " loop through each tab page
   for tab in range(tabpagenr('$'))
+    let tabHl = '%#TabLine#'
     if tab + 1 == tabpagenr()
-      let tablineValue .= '%#TabLineSelFill#▎'
+      let tabHl = '%#TabLineFill#'
+      let tablineValue .= '%#User4#▎' . tabHl
     else
-      let tablineValue .= '%#TabLine#▎'
+      let tablineValue .= tabHl . '▎'
     endif
     " set the tab page number (for mouse clicks)
     let tablineValue .= '%' . (tab + 1) . 'T '
@@ -20,6 +22,8 @@ function! MyTabLine()
       let buffertype = getbufvar(b, "&buftype")
       let bufferlisted = getbufvar(b, "&buflisted")
 
+      let icon = v:lua.require('util').get_file_icon(buffername, fnamemodify(buffername, ':e')).icon
+
       if !bufferlisted
         continue
       endif
@@ -32,10 +36,6 @@ function! MyTabLine()
           endif
       endif
 
-      let icon = ''
-      if strlen(buffername) > 0
-        let icon = v:lua.require('util').get_file_icon(buffername, fnamemodify(buffername, ':e'))
-      endif
       if getbufvar(b, "&modifiable") || buffertype == 'terminal'
         let tabname .= icon . ' ' . fnamemodify(buffername, ':t') . ', '
       endif

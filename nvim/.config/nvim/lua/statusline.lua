@@ -4,40 +4,30 @@ local function is_window_focused()
   return vim.g.statusline_winid == vim.fn.win_getid(vim.fn.winnr())
 end
 
-local function create_highlight_group(group, fg, bg)
-  vim.cmd('hi ' .. group .. ' guifg=' .. fg .. ' guibg=' .. bg)
-end
-
-
 local function buffer_icon()
   local buffernum = vim.fn.winbufnr(vim.g.statusline_winid)
-  local icon, fg = require('nvim-web-devicons')
-    .get_icon_color(
-      vim.fn.expand('#'.. buffernum .. ':t'),
-      vim.fn.expand('#' .. buffernum .. ':e'),
-      { default = false }
-    )
+  local iconData = u.get_file_icon(vim.fn.expand('#' .. buffernum .. ':t'))
 
-  if not icon then
+  if not iconData.icon then
     return ''
   end
 
   local bg = u.get_color('StatusLine', 'bg')
-  create_highlight_group('User1', fg, bg)
-  return u.ternary(is_window_focused(), '%#User1#', '%*') .. icon .. '%*'
+  u.create_highlight_group('User1', iconData.color, bg)
+  return u.ternary(is_window_focused(), '%#User1#', '%*') .. iconData.icon .. '%*'
 end
 
 local function buffer_label()
   local fg = u.get_color('Constant', 'fg')
   local bg = u.get_color('StatusLine', 'bg')
-  create_highlight_group('User2', fg, bg)
+  u.create_highlight_group('User2', fg, bg)
   return u.ternary(is_window_focused(), '%#User2#', '%*') .. ' ﬘%* %n %q '
 end
 
 local function git_branch()
   local fg = u.get_color('Label', 'fg')
   local bg = u.get_color('StatusLine', 'bg')
-  create_highlight_group('User3', fg, bg)
+  u.create_highlight_group('User3', fg, bg)
   local branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
   local commit = u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
   if (branch == '' and commit == '') then
