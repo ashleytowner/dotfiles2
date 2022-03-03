@@ -16,8 +16,6 @@ return require('packer').startup({
       cmd = 'StartupTime'
     }
 
-    use 'nvim-lua/plenary.nvim'
-
     use {
       'mhinz/vim-startify',
       config = function() require('plugins.startify') end,
@@ -30,11 +28,6 @@ return require('packer').startup({
           open_mapping = [[<C-\>]]
         }) end,
         event = 'VimEnter'
-    }
-
-    use {
-        'nvim-lua/popup.nvim',
-        cond = function() return not vim.g.vscode end
     }
 
     use {
@@ -91,7 +84,10 @@ return require('packer').startup({
     use {
       'lewis6991/gitsigns.nvim',
       config = function() require('plugins.gitsigns') end,
-      event = 'BufEnter'
+      event = 'BufEnter',
+      requires = {
+        'nvim-lua/plenary.nvim'
+      }
     }
 
     use {
@@ -107,12 +103,11 @@ return require('packer').startup({
       'nvim-telescope/telescope.nvim',
       cond = function() return vim.g.vscode end,
       config = function() require('plugins.telescope') end,
-      event = 'VimEnter'
-    }
-
-    use {
-      'gbrlsnchs/telescope-lsp-handlers.nvim',
-       requires = 'nvim-telescope/telescope.nvim'
+      cmd = 'Telescope',
+      requires = {
+        'gbrlsnchs/telescope-lsp-handlers.nvim',
+        'nvim-lua/plenary.nvim'
+      }
     }
 
     use {
@@ -125,18 +120,6 @@ return require('packer').startup({
 
     -- LSP & Completion
 
-    use 'hrsh7th/cmp-buffer'
-
-    use 'hrsh7th/cmp-calc'
-
-    use 'hrsh7th/cmp-cmdline'
-
-    use 'hrsh7th/cmp-nvim-lsp'
-
-    use 'hrsh7th/cmp-path'
-
-    use 'saadparwaiz1/cmp_luasnip'
-
     use {
       'neovim/nvim-lspconfig',
       cond = function() return not vim.g.vscode end,
@@ -145,19 +128,22 @@ return require('packer').startup({
     }
 
     use {
-      'L3MON4D3/LuaSnip',
-      config = function() require('luasnip.loaders.from_vscode').load() end
-    }
-
-    use 'onsails/lspkind-nvim'
-
-    use {
       'hrsh7th/nvim-cmp',
       config = function() require('plugins.cmp') end,
       cond = function() return not vim.g.vscode end,
       requires = {
-        'L3MON4D3/LuaSnip',
-        'rafamadriz/friendly-snippets'
+        {
+          'L3MON4D3/LuaSnip',
+          config = function() require('luasnip.loaders.from_vscode').load() end
+        },
+        'rafamadriz/friendly-snippets',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-calc',
+        'hrsh7th/cmp-cmdline',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-path',
+        'saadparwaiz1/cmp_luasnip',
+        'onsails/lspkind-nvim'
       },
       after = {
         'cmp-buffer',
