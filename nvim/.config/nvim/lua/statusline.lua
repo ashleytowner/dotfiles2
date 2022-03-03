@@ -47,5 +47,5 @@ function StatusLine()
     return ' %t%=%(%P%)'
   end
 
-  return buffer_label() .. buffer_icon() .. ' %t %m%r' .. git_branch() .. '%= %<%-6.(%l:%c%) %-4.(%P%)'
+  return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r' .. git_branch() .. '%= %<%-6.(%l:%c%) %-4.(%P%)'
 end
