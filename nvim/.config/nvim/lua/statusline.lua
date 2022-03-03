@@ -15,8 +15,12 @@ local function buffer_icon()
     .get_icon_color(
       vim.fn.expand('#'.. buffernum .. ':t'),
       vim.fn.expand('#' .. buffernum .. ':e'),
-      { default = true }
+      { default = false }
     )
+
+  if not icon then
+    return ''
+  end
 
   local bg = u.get_color('StatusLine', 'bg')
   create_highlight_group('User1', fg, bg)
@@ -35,13 +39,23 @@ local function git_branch()
   local bg = u.get_color('StatusLine', 'bg')
   create_highlight_group('User3', fg, bg)
   local branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
-  if (branch == '') then
+  local commit = u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
+  if (branch == '' and commit == '') then
     return ''
-  else
+  elseif (branch ~= '') then
     return u.ternary(is_window_focused(), '%#User3#', '%*') .. ' %* ' .. branch .. ' '
+  else
+    return u.ternary(is_window_focused(), '%#User3#', '%*') .. ' ﰖ%* ' .. commit .. ' '
   end
 end
 
 function StatusLine()
+  local bufnum = vim.fn.winbufnr(vim.g.statusline_winid);
+  local buftype = vim.api.nvim_buf_get_option(bufnum, 'buftype')
+
+  if buftype == 'nofile' then
+    return ' %t%=%(%P%) '
+  end
+
   return buffer_label() .. buffer_icon() .. ' %t %m%r' .. git_branch() .. '%= %<%-6.(%l:%c%) %-4.(%P%)'
 end

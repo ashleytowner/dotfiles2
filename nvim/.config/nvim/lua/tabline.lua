@@ -18,15 +18,20 @@ function! MyTabLine()
     for b in buflist
       let buffername = bufname(b)
       let buffertype = getbufvar(b, "&buftype")
+      let bufferlisted = getbufvar(b, "&buflisted")
+
+      if !bufferlisted
+        continue
+      endif
+
       if buffername == ''
           if buffertype ==? 'nofile'
               let buffername = '[Scratch]'
-          elseif buffertype ==? 'prompt'
-              let buffername = ''
           else
               let buffername = '[No Name]'
           endif
       endif
+
       let icon = ''
       if strlen(buffername) > 0
         let icon = v:lua.require('util').get_file_icon(buffername, fnamemodify(buffername, ':e'))

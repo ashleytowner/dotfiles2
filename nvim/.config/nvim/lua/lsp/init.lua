@@ -14,8 +14,8 @@ local servers = {
   'clangd',
   'bashls',
   'vimls',
+  'html',
   'cssls',
-  'tailwindcss',
   { 'stylelint_lsp',
     config = {
       filetypes = { "css", "less", "scss", "sugarss", "vue", "wxss" }
