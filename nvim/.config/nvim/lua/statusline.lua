@@ -24,19 +24,58 @@ local function buffer_label()
   return u.ternary(is_window_focused(), '%#User2#', '%*') .. ' ﬘%* %n %q '
 end
 
+local function git_status()
+  local cmd_output = u.system('git status -sb 2> /dev/null')
+
+  local ahead = string.match(cmd_output, 'ahead (%d+)')
+  local behind = string.match(cmd_output, 'behind (%d+)')
+
+  local git_status = ''
+
+  if behind ~= nil then
+    git_status = git_status .. ' ⇣' .. behind
+  end
+
+  if ahead ~= nil then
+    git_status = git_status .. ' ⇡' .. ahead
+  end
+
+  local unstaged = 0
+  for _ in string.gmatch(cmd_output, '\n M ') do
+    unstaged = unstaged + 1
+  end
+
+  local untracked = 0
+  for _ in string.gmatch(cmd_output, '\n?? ') do
+    untracked = untracked + 1
+  end
+
+  if unstaged then
+    git_status = git_status .. ' !' .. unstaged
+  end
+
+  if untracked then
+    git_status = git_status .. ' ?' .. untracked
+  end
+
+  return u.trim(git_status)
+end
+
 local function git_branch()
   local fg = u.get_color('Label', 'fg')
   local bg = u.get_color('StatusLine', 'bg')
   u.create_highlight_group('User3', fg, bg)
+
   local branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
   local commit = u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
   if (branch == '' and commit == '') then
     return ''
-  elseif (branch ~= '') then
-    return u.ternary(is_window_focused(), '%#User3#', '%*') .. ' %* ' .. branch .. ' '
-  else
-    return u.ternary(is_window_focused(), '%#User3#', '%*') .. ' ﰖ%* ' .. commit .. ' '
   end
+  return u.ternary(branch ~= '', '', 'ﰖ') .. '%* ' .. branch
+end
+
+local function git_info()
+  return ' ' .. u.ternary(is_window_focused(), '%#User3#', '%*') .. git_branch() .. ' ' .. git_status()
 end
 
 function StatusLine()
@@ -47,5 +86,5 @@ function StatusLine()
     return ' %t%=%(%P%)'
   end
 
-  return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r' .. git_branch() .. '%= %<%-6.(%l:%c%) %-4.(%P%)'
+  return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r' .. git_info() .. '%= %<%-6.(%l:%c%) %-4.(%P%)'
 end

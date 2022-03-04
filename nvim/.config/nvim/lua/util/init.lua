@@ -21,6 +21,14 @@ function M.trim(s)
    return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
+function M.get_table_len(tbl)
+  local count = 0
+  for _ in pairs(tbl) do
+    count = count + 1
+  end
+  return count
+end
+
 function M.system(cmd)
   local handle = io.popen(cmd)
   local result = handle:read('*a')
