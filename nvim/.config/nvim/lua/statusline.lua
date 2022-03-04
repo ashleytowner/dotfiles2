@@ -75,7 +75,7 @@ local function git_branch()
 end
 
 local function git_info()
-  return ' ' .. u.ternary(is_window_focused(), '%#User3#', '%*') .. git_branch() .. ' ' .. git_status()
+  return ' ' .. u.ternary(is_window_focused(), '%#User3#', '%*') .. git_branch()
 end
 
 local function buffer_info()
