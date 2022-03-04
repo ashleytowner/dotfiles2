@@ -98,6 +98,14 @@ return require('packer').startup({
     }
 
     -- File Management
+    use {
+      'folke/todo-comments.nvim',
+      event = 'BufEnter',
+      cond = function() return not vim.g.vscode end,
+      config = function() require('todo-comments').setup({
+        signs = false
+      }) end
+    }
 
     use {
       'nvim-telescope/telescope.nvim',
