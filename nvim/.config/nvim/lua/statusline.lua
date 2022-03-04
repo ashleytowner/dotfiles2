@@ -78,6 +78,14 @@ local function git_info()
   return ' ' .. u.ternary(is_window_focused(), '%#User3#', '%*') .. git_branch() .. ' ' .. git_status()
 end
 
+local function buffer_info()
+  return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r'
+end
+
+local function position_info()
+  return '%= %<%-6.(%l:%c%) %-4.(%P%)'
+end
+
 function StatusLine()
   local bufnum = vim.fn.winbufnr(vim.g.statusline_winid);
   local buftype = vim.api.nvim_buf_get_option(bufnum, 'buftype')
@@ -86,5 +94,5 @@ function StatusLine()
     return ' %t%=%(%P%)'
   end
 
-  return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r' .. git_info() .. '%= %<%-6.(%l:%c%) %-4.(%P%)'
+  return buffer_info() .. git_info() .. position_info()
 end
