@@ -4,6 +4,10 @@ local function is_window_focused()
   return vim.g.statusline_winid == vim.fn.win_getid(vim.fn.winnr())
 end
 
+local function color_when_focused(color)
+  return is_window_focused() and '%#' .. color .. '#' or '%*'
+end
+
 local function buffer_icon()
   local buffernum = vim.fn.winbufnr(vim.g.statusline_winid)
   local iconData = u.get_file_icon(vim.fn.expand('#' .. buffernum .. ':t'))
@@ -14,51 +18,62 @@ local function buffer_icon()
 
   local bg = u.get_color('StatusLine', 'bg')
   u.create_highlight_group('User1', iconData.color, bg)
-  return u.ternary(is_window_focused(), '%#User1#', '%*') .. iconData.icon .. '%*'
+  return color_when_focused('User1') .. iconData.icon .. '%*'
 end
 
 local function buffer_label()
   local fg = u.get_color('Constant', 'fg')
   local bg = u.get_color('StatusLine', 'bg')
   u.create_highlight_group('User2', fg, bg)
-  return u.ternary(is_window_focused(), '%#User2#', '%*') .. ' ﬘%* %n %q '
+  return color_when_focused('User2') .. ' ﬘%* %n %q '
 end
 
+-- Automatically regenerate git status on certain events
+vim.cmd([[
+augroup GitStatus
+  autocmd!
+  autocmd BufEnter,FocusGained,BufWritePost *
+    \ let g:git_status = system('git status -sb 2> /dev/null')
+    \ | let g:git_stashes = trim(system('git stash list 2> /dev/null | wc -l'))
+augroup end
+]])
+
 local function git_status()
-  local cmd_output = u.system('git status -sb 2> /dev/null')
+  local cmd_output = vim.g.git_status
 
-  local ahead = string.match(cmd_output, 'ahead (%d+)')
-  local behind = string.match(cmd_output, 'behind (%d+)')
-
-  local git_status = ''
-
-  if behind ~= nil then
-    git_status = git_status .. ' ⇣' .. behind
+  if cmd_output == '' then
+    return ''
   end
 
-  if ahead ~= nil then
-    git_status = git_status .. ' ⇡' .. ahead
+  local ahead = string.match(cmd_output, 'ahead (%d+)')
+
+  local behind = string.match(cmd_output, 'behind (%d+)')
+
+  local staged = 0
+  for _ in string.gmatch(cmd_output, '\nM.') do
+    staged = staged + 1
   end
 
   local unstaged = 0
-  for _ in string.gmatch(cmd_output, '\n M ') do
+  for _ in string.gmatch(cmd_output, '\n.M') do
     unstaged = unstaged + 1
   end
 
   local untracked = 0
-  for _ in string.gmatch(cmd_output, '\n?? ') do
+  for _ in string.gmatch(cmd_output, '\n??') do
     untracked = untracked + 1
   end
 
-  if unstaged then
-    git_status = git_status .. ' !' .. unstaged
-  end
+  local gs_behind = behind ~= nil and ' ' .. color_when_focused('User3') .. '⇣%*' .. behind or ''
+  local gs_ahead = ahead ~= nil and ' ' .. color_when_focused('User3') .. '⇡%*' .. ahead or ''
+  local gs_unstaged = unstaged ~= 0 and ' ' .. color_when_focused('User3') .. '!%*' .. unstaged or ''
+  local gs_untracked = untracked ~= 0 and ' ' .. color_when_focused('User3') .. '?%*' .. untracked or ''
+  local gs_staged = staged ~= 0 and ' ' .. color_when_focused('User3') .. '+%*' .. staged or ''
+  local gs_stashes = vim.g.git_stashes ~= '0' and ' ' .. color_when_focused('User3') .. '*%*' .. vim.g.git_stashes or ''
 
-  if untracked then
-    git_status = git_status .. ' ?' .. untracked
-  end
+  local gs = gs_behind .. gs_ahead .. gs_staged .. gs_unstaged .. gs_untracked .. gs_stashes
 
-  return u.trim(git_status)
+  return u.trim(gs)
 end
 
 local function git_branch()
@@ -75,7 +90,7 @@ local function git_branch()
 end
 
 local function git_info()
-  return ' ' .. u.ternary(is_window_focused(), '%#User3#', '%*') .. git_branch()
+  return ' ' .. color_when_focused('User3') .. git_branch() .. ' ' .. git_status()
 end
 
 local function buffer_info()
