@@ -18,10 +18,5 @@ vim.g.startify_lists = {
   {
     type = 'sessions',
     header = { '  Sessions' }
-  },
-  {
-    type = 'files',
-    header = { '  Most recently used' }
   }
-
 }
