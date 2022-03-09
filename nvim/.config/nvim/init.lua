@@ -3,6 +3,7 @@ vim.g.mapleader=' '
 Util = require('util')
 require('plugins')
 require('statusline')
+require('tabline')
 
 vim.g.uname = Util.system('uname')
 
@@ -57,4 +58,3 @@ require('consistentSessions')
 require('formatOnSave')
 require('keymaps')
 require('setupLocalConfigs')
-require('tabline')

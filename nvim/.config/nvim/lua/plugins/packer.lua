@@ -91,14 +91,6 @@ return require('packer').startup({
 
     -- File Management
     use {
-      'folke/todo-comments.nvim',
-      cond = function() return not vim.g.vscode end,
-      config = function() require('todo-comments').setup({
-        signs = false
-      }) end
-    }
-
-    use {
       'nvim-telescope/telescope.nvim',
       cond = function() return vim.g.vscode end,
       config = function() require('plugins.telescope') end,
@@ -128,28 +120,44 @@ return require('packer').startup({
       'hrsh7th/nvim-cmp',
       config = function() require('plugins.cmp') end,
       cond = function() return not vim.g.vscode end,
+      event = 'InsertEnter',
       requires = {
         {
           'L3MON4D3/LuaSnip',
           config = function() require('luasnip.loaders.from_vscode').load() end,
           event = 'CursorMovedI'
         },
-        'rafamadriz/friendly-snippets',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-calc',
-        'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-path',
-        'saadparwaiz1/cmp_luasnip',
-        'onsails/lspkind-nvim'
-      },
-      after = {
-        'cmp-buffer',
-        'cmp-calc',
-        'cmp-cmdline',
-        'cmp-nvim-lsp',
-        'cmp-path',
-        'cmp_luasnip'
+        {
+          'rafamadriz/friendly-snippets',
+          after = 'nvim-cmp'
+        },
+        {
+          'hrsh7th/cmp-buffer',
+          after = 'nvim-cmp'
+        },
+        {
+          'hrsh7th/cmp-calc',
+          after = 'nvim-cmp'
+        },
+        {
+          'hrsh7th/cmp-cmdline',
+          after = 'nvim-cmp'
+        },
+        {
+          'hrsh7th/cmp-nvim-lsp',
+          after = 'nvim-cmp'
+        },
+        {
+          'hrsh7th/cmp-path',
+          after = 'nvim-cmp'
+        },
+        {
+          'saadparwaiz1/cmp_luasnip',
+          after = 'nvim-cmp'
+        },
+        {
+          'onsails/lspkind-nvim'
+        }
       }
     }
 
