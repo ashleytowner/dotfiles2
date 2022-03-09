@@ -177,6 +177,10 @@ return require('packer').startup({
 
     use 'kmyk/brainfuck-highlight.vim'
 
+    use {
+      'lilydjwg/colorizer'
+    }
+
     -- Theming
 
     use {
