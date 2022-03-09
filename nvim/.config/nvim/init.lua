@@ -1,20 +1,10 @@
 vim.g.mapleader=' '
 
-vim.api.nvim_exec([[
-  let g:uname = system("uname")
-]], false)
-
-require('util')
+Util = require('util')
 require('plugins')
 require('statusline')
 
-vim.cmd([[
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-]])
+vim.g.uname = Util.system('uname')
 
 -- auto-sync when plugins file is saved
 vim.cmd([[
