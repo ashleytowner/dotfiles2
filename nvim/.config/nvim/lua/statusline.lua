@@ -41,6 +41,10 @@ augroup end
 local function git_status()
   local cmd_output = vim.g.git_status
 
+  if not cmd_output then
+    return ''
+  end
+
   if cmd_output == '' then
     return ''
   end

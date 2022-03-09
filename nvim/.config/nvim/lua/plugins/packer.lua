@@ -18,7 +18,7 @@ return require('packer').startup({
 
     use {
       'mhinz/vim-startify',
-      config = function() require('plugins.startify') end,
+      config = function() require('plugins.startify') end
     }
 
     use {
@@ -26,8 +26,7 @@ return require('packer').startup({
         config = function() require('toggleterm').setup({
           direction = 'float',
           open_mapping = [[<C-\>]]
-        }) end,
-        event = 'VimEnter'
+        }) end
     }
 
     use {
@@ -42,27 +41,23 @@ return require('packer').startup({
 
     use {
       'tpope/vim-surround',
-      config = function() require('plugins.vimSurround') end,
-      event = 'VimEnter'
+      config = function() require('plugins.vimSurround') end
     }
 
     use {
       'numToStr/Comment.nvim',
-      config = function() require('Comment').setup() end,
-      event = 'VimEnter'
+      config = function() require('Comment').setup() end
     }
 
     use {
       'bkad/CamelCaseMotion',
-      config = function() require('plugins.camelCaseMotions') end,
-      event = 'VimEnter'
+      config = function() require('plugins.camelCaseMotions') end
     }
 
     use {
       'phaazon/hop.nvim',
       config = function() require('plugins.hop') end,
-      cond = function() return not vim.g.vscode end,
-      event = 'VimEnter'
+      cond = function() return not vim.g.vscode end
     }
 
     use {
@@ -70,13 +65,11 @@ return require('packer').startup({
       config = function() require('plugins.autopairs') end,
       after = {
         'nvim-cmp'
-      },
-      event = 'TextChanged'
+      }
     }
 
     use {
-      'mattn/emmet-vim',
-      event = 'BufEnter'
+      'mattn/emmet-vim'
     }
 
     -- Git
@@ -84,7 +77,6 @@ return require('packer').startup({
     use {
       'lewis6991/gitsigns.nvim',
       config = function() require('plugins.gitsigns') end,
-      event = 'BufEnter',
       requires = {
         'nvim-lua/plenary.nvim'
       }
@@ -100,7 +92,6 @@ return require('packer').startup({
     -- File Management
     use {
       'folke/todo-comments.nvim',
-      event = 'BufEnter',
       cond = function() return not vim.g.vscode end,
       config = function() require('todo-comments').setup({
         signs = false
@@ -111,7 +102,6 @@ return require('packer').startup({
       'nvim-telescope/telescope.nvim',
       cond = function() return vim.g.vscode end,
       config = function() require('plugins.telescope') end,
-      event = 'VimEnter',
       requires = {
         'gbrlsnchs/telescope-lsp-handlers.nvim',
         'nvim-lua/plenary.nvim'
@@ -131,8 +121,7 @@ return require('packer').startup({
     use {
       'neovim/nvim-lspconfig',
       cond = function() return not vim.g.vscode end,
-      config = function() require('lsp.init') end,
-      event = 'VimEnter'
+      config = function() require('lsp.init') end
     }
 
     use {
@@ -142,7 +131,8 @@ return require('packer').startup({
       requires = {
         {
           'L3MON4D3/LuaSnip',
-          config = function() require('luasnip.loaders.from_vscode').load() end
+          config = function() require('luasnip.loaders.from_vscode').load() end,
+          event = 'CursorMovedI'
         },
         'rafamadriz/friendly-snippets',
         'hrsh7th/cmp-buffer',
@@ -179,19 +169,7 @@ return require('packer').startup({
 
     use 'kmyk/brainfuck-highlight.vim'
 
-    use {
-      'ObserverOfTime/coloresque.vim',
-      config = function() require('plugins.coloresque') end,
-      event = 'BufEnter'
-    }
-
     -- Theming
-
-    use {
-      'Iron-E/nvim-highlite',
-      cond = function() return not vim.g.vscode end,
-      event = 'VimEnter'
-    }
 
     use {
       'embark-theme/vim',
@@ -235,6 +213,10 @@ return require('packer').startup({
     end
   end,
   config = {
-    compile_on_sync = true
+    compile_on_sync = true,
+    profile = {
+      enable = false,
+      threshold = 0
+    }
   }
 })
