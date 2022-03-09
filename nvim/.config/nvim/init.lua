@@ -45,7 +45,7 @@ vim.wo.list = true
 vim.wo.wrap = false
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.wo.signcolumn='auto:2'
+vim.wo.signcolumn='auto:9'
 vim.go.statusline = '%!v:lua.StatusLine()'
 vim.go.tabline='%!MyTabLine()'
 
