@@ -123,11 +123,6 @@ return require('packer').startup({
       event = 'InsertEnter',
       requires = {
         {
-          'L3MON4D3/LuaSnip',
-          config = function() require('luasnip.loaders.from_vscode').load() end,
-          event = 'CursorMovedI'
-        },
-        {
           'rafamadriz/friendly-snippets',
           after = 'nvim-cmp'
         },
@@ -149,10 +144,6 @@ return require('packer').startup({
         },
         {
           'hrsh7th/cmp-path',
-          after = 'nvim-cmp'
-        },
-        {
-          'saadparwaiz1/cmp_luasnip',
           after = 'nvim-cmp'
         },
         {
