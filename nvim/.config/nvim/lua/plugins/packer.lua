@@ -150,6 +150,14 @@ return require('packer').startup({
       event = 'InsertEnter',
       requires = {
         {
+          'hrsh7th/cmp-vsnip',
+          after = 'nvim-cmp'
+        },
+        {
+          'hrsh7th/vim-vsnip',
+          after = 'nvim-cmp'
+        },
+        {
           'rafamadriz/friendly-snippets',
           after = 'nvim-cmp',
           commit = 'ad07b2844021b20797adda5b483265802559a693'
