@@ -134,7 +134,7 @@ return require('packer').startup({
       commit = '08c57660a7761a507a3ae2f4a7c71fe30a412537'
     }
 
-    -- LSP & Completion
+    -- LSP, Completion & Formatting
 
     use {
       'neovim/nvim-lspconfig',
@@ -193,6 +193,12 @@ return require('packer').startup({
         }
       },
       commit = '1001683bee3a52a7b7e07ba9d391472961739c7b'
+    }
+
+    use {
+      'mhartington/formatter.nvim',
+      config = function() require('plugins.formatter') end,
+      commit = '0bae60417f36831544bd004d42afc82b9b46d8ed'
     }
 
 

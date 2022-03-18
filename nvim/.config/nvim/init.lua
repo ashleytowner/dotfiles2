@@ -20,7 +20,7 @@ vim.o.expandtab = true
 vim.o.wildignore = 'node_modules/*'
 vim.o.foldlevel = 99
 vim.o.hlsearch = false
-vim.o.listchars = 'tab: ,trail:·'
+vim.o.listchars = 'tab: ,trail:·,nbsp:░'
 vim.o.number = true
 vim.o.pyxversion = 3
 vim.o.relativenumber =  true
@@ -55,6 +55,5 @@ vim.cmd('syntax enable')
 -- }}}
 
 require('consistentSessions')
-require('formatOnSave')
 require('keymaps')
 require('setupLocalConfigs')
