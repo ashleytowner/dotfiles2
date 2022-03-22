@@ -21,7 +21,9 @@ Nnoremap('<C-PageDown>', ':bnext<CR>')
 Nnoremap('<C-PageUp>', ':bprev<CR>')
 Nnoremap('gw', '<C-w>w')
 Nnoremap('gW', '<C-w>W')
+
 Tnoremap('<C-\\>', '<C-\\><C-n><C-w>w')
+Tnoremap('<C-n>', '<C-\\><C-n>')
 
 -- Custom text objects
 Xnoremap('a/', ':lua SelectTextObject("/", "/", true)<cr>')
