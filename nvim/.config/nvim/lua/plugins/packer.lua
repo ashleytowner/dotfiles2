@@ -49,7 +49,11 @@ return require('packer').startup({
     use {
       'tpope/vim-surround',
       config = function() require('plugins.vimSurround') end,
-      commit = 'baf89ad26488f6a7665d51b986f5c7ad2d22b30b'
+      commit = 'baf89ad26488f6a7665d51b986f5c7ad2d22b30b',
+      requires = {
+        'tpope/vim-repeat',
+        commit = '24afe922e6a05891756ecf331f39a1f6743d3d5a'
+      }
     }
 
     use {
@@ -198,7 +202,7 @@ return require('packer').startup({
     use {
       'mhartington/formatter.nvim',
       config = function() require('plugins.formatter') end,
-      commit = '0bae60417f36831544bd004d42afc82b9b46d8ed'
+      commit = 'cc42c16a793cba102ac75574ab187a77995ba06b'
     }
 
 
