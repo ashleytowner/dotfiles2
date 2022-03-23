@@ -123,7 +123,7 @@ return require('packer').startup({
           commit = '14dfb4071022b22e08384ee125a5607464b6d397'
         }
       },
-      commit = '1daf0917cf859c3c089c62e960b128fe3382fc6d'
+      commit = '1a72a92b641e1dab42036c07e2571b43c55bfaa1'
     }
 
     use {
