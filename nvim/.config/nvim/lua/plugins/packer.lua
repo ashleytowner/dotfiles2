@@ -28,7 +28,8 @@ return require('packer').startup({
     use {
       'mhinz/vim-startify',
       config = function() require('plugins.startify') end,
-      commit = '81e36c352a8deea54df5ec1e2f4348685569bed2'
+      commit = '81e36c352a8deea54df5ec1e2f4348685569bed2',
+      disable = true
     }
 
     use {
