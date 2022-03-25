@@ -32,6 +32,8 @@ end
 GetGitStatus = require('plenary.async').void(function()
   vim.g.git_status = u.system('git status -sb 2> /dev/null')
   vim.g.git_stashes = u.trim(u.system('git stash list 2> /dev/null | wc -l'))
+  vim.g.git_branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
+  vim.g.git_commit = u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
 end)
 
 -- Automatically regenerate git status on certain events
@@ -72,14 +74,30 @@ local function git_status()
     untracked = untracked + 1
   end
 
-  local gs_behind = behind ~= nil and ' ' .. color_when_focused('User3') .. '⇣%*' .. behind or ''
-  local gs_ahead = ahead ~= nil and ' ' .. color_when_focused('User3') .. '⇡%*' .. ahead or ''
-  local gs_unstaged = unstaged ~= 0 and ' ' .. color_when_focused('User3') .. '!%*' .. unstaged or ''
-  local gs_untracked = untracked ~= 0 and ' ' .. color_when_focused('User3') .. '?%*' .. untracked or ''
-  local gs_staged = staged ~= 0 and ' ' .. color_when_focused('User3') .. '+%*' .. staged or ''
-  local gs_stashes = vim.g.git_stashes ~= '0' and ' ' .. color_when_focused('User3') .. '*%*' .. vim.g.git_stashes or ''
+  local gs_behind = behind ~= nil and ' '
+    .. color_when_focused('User3') .. '⇣%*' .. behind or ''
 
-  local gs = gs_behind .. gs_ahead .. gs_staged .. gs_unstaged .. gs_untracked .. gs_stashes
+  local gs_ahead = ahead ~= nil and ' '
+    .. color_when_focused('User3') .. '⇡%*' .. ahead or ''
+
+  local gs_unstaged = unstaged ~= 0 and ' '
+    .. color_when_focused('User3') .. '!%*' .. unstaged or ''
+
+  local gs_untracked = untracked ~= 0 and ' '
+    .. color_when_focused('User3') .. '?%*' .. untracked or ''
+
+  local gs_staged = staged ~= 0 and ' '
+    .. color_when_focused('User3') .. '+%*' .. staged or ''
+
+  local gs_stashes = vim.g.git_stashes ~= '0' and ' '
+    .. color_when_focused('User3') .. '*%*' .. vim.g.git_stashes or ''
+
+  local gs = gs_behind
+    .. gs_ahead
+    .. gs_staged
+    .. gs_unstaged
+    .. gs_untracked
+    .. gs_stashes
 
   return u.trim(gs)
 end
@@ -89,16 +107,16 @@ local function git_branch()
   local bg = u.get_color('StatusLine', 'bg')
   u.create_highlight_group('User3', fg, bg)
 
-  local branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
-  local commit = u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
-  if (branch == '' and commit == '') then
+  if (vim.g.git_branch == '' and vim.g.git_commit == '') then
     return ''
   end
-  return u.ternary(branch ~= '', '', 'ﰖ') .. '%* ' .. branch
+  return u.ternary(vim.g.git_branch ~= '', '', 'ﰖ') .. '%* '
+    .. u.ternary(vim.g.git_branch ~= '', vim.g.git_branch, vim.g.git_commit)
 end
 
 local function git_info()
-  return ' ' .. color_when_focused('User3') .. git_branch() .. ' ' .. git_status()
+  return ' ' .. color_when_focused('User3') .. git_branch() .. ' '
+    .. git_status()
 end
 
 local function buffer_info()
