@@ -12,6 +12,11 @@ return require('packer').startup({
       commit = 'c576ab3f1488ee86d60fd340d01ade08dcabd256'
     }
 
+    use {
+      'nvim-lua/plenary.nvim',
+      commit = '14dfb4071022b22e08384ee125a5607464b6d397'
+    }
+
     -- Util
 
     use {
@@ -95,7 +100,8 @@ return require('packer').startup({
       'lewis6991/gitsigns.nvim',
       config = function() require('plugins.gitsigns') end,
       requires = {
-        'nvim-lua/plenary.nvim'
+        'nvim-lua/plenary.nvim',
+        commit = '14dfb4071022b22e08384ee125a5607464b6d397'
       },
       commit = '779f4eb59047ef7faa41e71d261d041edfabfb39'
     }

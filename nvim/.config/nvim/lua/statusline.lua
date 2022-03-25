@@ -28,13 +28,17 @@ local function buffer_label()
   return color_when_focused('User2') .. ' ﬘%* %n %q '
 end
 
+-- Asynchronously set git status variables
+GetGitStatus = require('plenary.async').void(function()
+  vim.g.git_status = u.system('git status -sb 2> /dev/null')
+  vim.g.git_stashes = u.trim(u.system('git stash list 2> /dev/null | wc -l'))
+end)
+
 -- Automatically regenerate git status on certain events
 vim.cmd([[
 augroup GitStatus
   autocmd!
-  autocmd BufEnter,FocusGained,BufWritePost *
-    \ let g:git_status = system('git status -sb 2> /dev/null')
-    \ | let g:git_stashes = trim(system('git stash list 2> /dev/null | wc -l'))
+  autocmd BufEnter,FocusGained,BufWritePost * lua GetGitStatus()
 augroup end
 ]])
 
