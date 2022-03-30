@@ -61,7 +61,6 @@ function M.get_file_icon(filename)
 end
 
 function M.create_highlight_group(group, fg, bg)
-  print('fg', fg, 'bg', bg)
   if fg == nil or fg == '' or bg == nil or bg == '' then
     return
   end
