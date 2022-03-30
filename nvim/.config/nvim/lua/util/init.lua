@@ -38,7 +38,8 @@ end
 
 
 function M.get_color(group, attr)
-    return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
+  local color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
+  return color or nil
 end
 
 function M.ternary(condition, aval, bval)
@@ -60,6 +61,10 @@ function M.get_file_icon(filename)
 end
 
 function M.create_highlight_group(group, fg, bg)
+  print('fg', fg, 'bg', bg)
+  if fg == nil or fg == '' or bg == nil or bg == '' then
+    return
+  end
   vim.cmd('hi ' .. group .. ' guifg=' .. fg .. ' guibg=' .. bg)
 end
 
