@@ -94,7 +94,6 @@ function GetObjectRange(line, position, around, startToken, endToken)
     local onStartToken = IsOnToken(startTokenList, position)
     local onEndToken = IsOnToken(endTokenList, position)
 
-    print(onStartToken, onEndToken)
     if onStartToken then
         if startToken == endToken then
             rangeStart = FindPrevToken(startTokenList, position)
