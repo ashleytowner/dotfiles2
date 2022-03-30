@@ -63,14 +63,23 @@ local function git_status()
   for _ in string.gmatch(cmd_output, '\nM.') do
     staged = staged + 1
   end
+  for _ in string.gmatch(cmd_output, '\nA.') do
+    staged = staged + 1
+  end
+  for _ in string.gmatch(cmd_output, '\nD.') do
+    staged = staged + 1
+  end
 
   local unstaged = 0
   for _ in string.gmatch(cmd_output, '\n.M') do
     unstaged = unstaged + 1
   end
+  for _ in string.gmatch(cmd_output, '\n.D') do
+    unstaged = unstaged + 1
+  end
 
   local untracked = 0
-  for _ in string.gmatch(cmd_output, '\n??') do
+  for _ in string.gmatch(cmd_output, '\n%?%?') do
     untracked = untracked + 1
   end
 
@@ -94,10 +103,10 @@ local function git_status()
 
   local gs = gs_behind
     .. gs_ahead
+    .. gs_stashes
     .. gs_staged
     .. gs_unstaged
     .. gs_untracked
-    .. gs_stashes
 
   return u.trim(gs)
 end
