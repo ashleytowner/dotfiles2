@@ -188,12 +188,23 @@ then
   clear
 fi
 
+function nvm_use() {
+  if type nvm &> /dev/null
+  then
+    if [ -f .nvmrc ]
+    then
+      nvm use
+    fi
+  fi
+}
+
 function chpwd() {
   type onLeaveDir > /dev/null && onLeaveDir
   type onLeaveDir > /dev/null && unset -f onLeaveDir
   type onEnterDir > /dev/null && unset -f onEnterDir
   [ -f ./.zshrc ] && source ./.zshrc
   type onEnterDir > /dev/null && onEnterDir
+  nvm_use
 }
 
 export FIRST_RUN=true
