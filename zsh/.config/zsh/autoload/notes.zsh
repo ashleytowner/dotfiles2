@@ -4,14 +4,13 @@ function note() {
   case $1 in
     '-v')
         viewer="lookatme"
-        if [ ! $2 ]; then echo "Please include a file name"; return 1; fi
+        # if [ ! $2 ]; then echo "Please include a file name"; return 1; fi
         file=$2
         ;;
     *)
         viewer=$EDITOR
         file=$1
   esac
-  echo $viewer $file
   if [ $file ]
   then
     notefile=$XDG_DATA_HOME/notes/$file
