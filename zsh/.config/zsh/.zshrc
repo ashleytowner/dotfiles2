@@ -187,6 +187,7 @@ if [ ! $FIRST_RUN ]
 then
   clear
 fi
+export FIRST_RUN=true
 
 function nvm_use() {
   if type nvm &> /dev/null
@@ -206,8 +207,6 @@ function chpwd() {
   type onEnterDir > /dev/null && onEnterDir
   nvm_use
 }
-
-export FIRST_RUN=true
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
