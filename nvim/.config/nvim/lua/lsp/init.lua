@@ -67,6 +67,7 @@ local servers = {
         "typescriptreact",
         "json"
       },
+      single_file_support = false
     }
   },
   { "sumneko_lua",
