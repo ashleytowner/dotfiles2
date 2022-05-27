@@ -24,10 +24,3 @@ Nnoremap('gW', '<C-w>W')
 
 Tnoremap('<C-\\>', '<C-\\><C-n><C-w>w')
 Tnoremap('<C-n>', '<C-\\><C-n>')
-
--- Custom text objects
--- Xnoremap('a/', ':lua SelectTextObject("/", "/", true)<cr>')
--- Onoremap('a/', '<cmd>norm va/<cr>')
--- Xnoremap('i/', ':lua SelectTextObject("/", "/", false)<cr>')
--- Onoremap('i/', '<cmd>norm vi/<cr>')
-
