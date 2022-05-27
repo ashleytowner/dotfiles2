@@ -20,10 +20,3 @@ require('formatter').setup({
     html = prettier
   }
 })
-
--- vim.cmd([[
--- augroup FormatOnSave
---   autocmd!
---   autocmd BufWritePost * lua vim.lsp.buf.formatting_sync()
--- augroup END
--- ]])

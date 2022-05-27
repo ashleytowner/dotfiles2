@@ -29,7 +29,7 @@ local function buffer_label()
 end
 
 -- Asynchronously set git status variables
-GetGitStatus = require('plenary.async').void(function()
+local get_git_status = require('plenary.async').void(function()
   vim.g.git_status = u.system('git status -sb 2> /dev/null')
   vim.g.git_stashes = u.trim(u.system('git stash list 2> /dev/null | wc -l'))
   vim.g.git_branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
@@ -37,12 +37,17 @@ GetGitStatus = require('plenary.async').void(function()
 end)
 
 -- Automatically regenerate git status on certain events
-vim.cmd([[
-augroup GitStatus
-  autocmd!
-  autocmd BufEnter,FocusGained,BufWritePost * lua GetGitStatus()
-augroup end
-]])
+local git_status_group = vim.api.nvim_create_augroup("GitStatus", { clear = true })
+vim.api.nvim_create_autocmd(
+  {"BufEnter", "FocusGained", "BufWritePost"},
+  {
+    group = git_status_group,
+    callback = function()
+      get_git_status()
+    end
+  }
+)
+
 
 local function git_status()
   local cmd_output = vim.g.git_status
