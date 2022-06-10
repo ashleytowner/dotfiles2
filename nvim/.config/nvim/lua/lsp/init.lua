@@ -48,12 +48,12 @@ local servers = {
       end,
       settings = {
         languages = {
-          javascript = {linters.prettier, linters.eslint},
-          javascriptreact = {linters.prettier, linters.eslint},
-          ["javascript.jsx"] ={linters.prettier, linters.eslint},
-          typescript ={linters.prettier, linters.eslint},
-          ["typescript.tsx"] ={linters.prettier, linters.eslint},
-          typescriptreact ={linters.prettier, linters.eslint},
+          javascript = {linters.eslint},
+          javascriptreact = {linters.eslint},
+          ["javascript.jsx"] ={linters.eslint},
+          typescript ={linters.eslint},
+          ["typescript.tsx"] ={linters.eslint},
+          typescriptreact ={linters.eslint},
           json = {linters.prettier},
           html = {linters.prettier}
         }

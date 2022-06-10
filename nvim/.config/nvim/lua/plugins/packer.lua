@@ -14,7 +14,7 @@ return require('packer').startup({
 
     use {
       'nvim-lua/plenary.nvim',
-      commit = '14dfb4071022b22e08384ee125a5607464b6d397'
+      commit = '9c3239bc5f99b85be1123107f7290d16a68f8e64'
     }
 
     -- Util
@@ -101,7 +101,7 @@ return require('packer').startup({
       config = function() require('plugins.gitsigns') end,
       requires = {
         'nvim-lua/plenary.nvim',
-        commit = '14dfb4071022b22e08384ee125a5607464b6d397'
+        commit = '9c3239bc5f99b85be1123107f7290d16a68f8e64'
       },
       commit = '779f4eb59047ef7faa41e71d261d041edfabfb39'
     }
@@ -126,10 +126,10 @@ return require('packer').startup({
         },
         {
           'nvim-lua/plenary.nvim',
-          commit = '14dfb4071022b22e08384ee125a5607464b6d397'
+          commit = '9c3239bc5f99b85be1123107f7290d16a68f8e64'
         }
       },
-      commit = '1a72a92b641e1dab42036c07e2571b43c55bfaa1'
+      commit = 'e6b69b1488c598ff7b461c4d9cecad57ef708f9b'
     }
 
     use {
@@ -150,7 +150,7 @@ return require('packer').startup({
       'neovim/nvim-lspconfig',
       cond = function() return not vim.g.vscode end,
       config = function() require('lsp.init') end,
-      commit = '858fc0ec1ffa02fc03f0c62d646e8054007c49ad'
+      commit = '4eac16e87f24ad26738e632446e29766e87141ae'
     }
 
     use {
@@ -218,7 +218,7 @@ return require('packer').startup({
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       config = function() require('plugins.treesitter') end,
-      commit = '3aac7f9db9ee1973152426c097216e0071dd2293'
+      commit = 'a3cef7881ca8e2b8843a4500df44f94311bcc3df'
     }
 
     use {
