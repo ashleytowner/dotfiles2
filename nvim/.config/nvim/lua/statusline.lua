@@ -130,7 +130,7 @@ end
 
 local function git_info()
   return ' ' .. color_when_focused('User3') .. git_branch() .. ' '
-    .. git_status()
+    .. git_status() .. '%*'
 end
 
 local function buffer_info()
