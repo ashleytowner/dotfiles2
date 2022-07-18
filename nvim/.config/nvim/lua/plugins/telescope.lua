@@ -45,7 +45,10 @@ telescope.setup{
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   },
   extensions = {
-    'lsp_handlers'
+    'lsp_handlers',
+    ['ui-select'] = {
+      require('telescope.themes').get_cursor()
+    }
   },
   pickers = {
       find_files = {
@@ -77,6 +80,8 @@ telescope.setup{
       }
   }
 }
+
+telescope.load_extension('ui-select');
 
 -- Telescope
 Nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')

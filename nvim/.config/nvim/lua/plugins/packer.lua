@@ -127,6 +127,10 @@ return require('packer').startup({
         {
           'nvim-lua/plenary.nvim',
           commit = '9c3239bc5f99b85be1123107f7290d16a68f8e64'
+        },
+        {
+          'nvim-telescope/telescope-ui-select.nvim',
+          commit = '62ea5e58c7bbe191297b983a9e7e89420f581369'
         }
       },
       commit = 'e6b69b1488c598ff7b461c4d9cecad57ef708f9b'
