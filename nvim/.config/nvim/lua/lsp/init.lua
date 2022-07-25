@@ -12,10 +12,19 @@ table.insert(runtime_path, "lua/?/init.lua")
 local servers = {
   'pyright',
   'clangd',
-  'bashls',
+  { 'bashls',
+    config = {
+      single_file_support = true
+    }
+  },
   'vimls',
   'html',
-  'cssls',
+  'yamlls',
+  { 'cssls',
+    config = {
+      single_file_support = true
+    }
+  },
   { 'stylelint_lsp',
     config = {
       filetypes = { "css", "less", "scss", "sugarss", "vue", "wxss" }
@@ -29,7 +38,8 @@ local servers = {
         end
         client.resolved_capabilities.document_formatting = true
         keybinds.set_keybinds()
-      end
+      end,
+      single_file_support = true
     }
   },
   { 'efm',
