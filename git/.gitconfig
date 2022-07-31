@@ -31,3 +31,5 @@
 [user]
 	email = "13824257+ashleytowner@users.noreply.github.com"
 	name = Ashley Towner
+[init]
+	defaultBranch = main
