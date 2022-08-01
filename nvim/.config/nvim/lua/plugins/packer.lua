@@ -17,6 +17,20 @@ return require('packer').startup({
       commit = '9c3239bc5f99b85be1123107f7290d16a68f8e64'
     }
 
+    use {
+      'williamboman/mason.nvim',
+      commit = 'b655a2fa2840ecc3c2ea06f618ba7673f6a1b1a3',
+      config = function() require('mason').setup() end
+    }
+
+    use {
+      'williamboman/mason-lspconfig.nvim',
+      commit = '0f9b52b8858032b283a29bee7f7a7166660db2c8',
+      config = function() require('plugins.masonlsp') end,
+      after = { 'nvim-lspconfig' },
+      require = { 'nvim-lspconfig' }
+    }
+
     -- Util
 
     use {

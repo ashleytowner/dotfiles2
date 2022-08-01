@@ -10,7 +10,21 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 -- Server Configuration
 local servers = {
-  'pyright',
+  { 'pyright',
+    config = {
+      root_dir = function(fname)
+        local root_files = {
+            'pyproject.toml',
+            'setup.py',
+            'setup.cfg',
+            'requirements.txt',
+            'Pipfile',
+            'pyrightconfig.json',
+        }
+        return lspconfig.util.root_pattern(unpack(root_files))(fname) or lspconfig.util.find_git_ancestor(fname) or lspconfig.util.path.dirname(fname)
+      end
+    }
+  },
   'clangd',
   { 'bashls',
     config = {
