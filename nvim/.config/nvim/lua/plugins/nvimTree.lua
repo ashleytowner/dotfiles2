@@ -1,15 +1,35 @@
 require('util.map')
 
-vim.g.nvim_tree_show_icons = {
-  git = 0,
-  folders = 1,
-  files = 1,
-  folder_arrows = 0
-}
-
 require('nvim-tree').setup({
   open_on_setup = false,
-  auto_close = true,
-  nvim_tree_quit_on_open = 1
+  git = {
+    ignore = false
+  },
+  diagnostics = {
+    enable = true
+  },
+  renderer = {
+    highlight_git = true,
+    icons = {
+      git_placement = "after",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = false,
+        git = true
+      },
+      glyphs = {
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        }
+      }
+    }
+  }
 })
 Nmap('<leader><leader>', '<cmd>NvimTreeFindFileToggle<cr>', true)

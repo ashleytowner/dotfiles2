@@ -46,6 +46,7 @@ telescope.setup{
   },
   extensions = {
     'lsp_handlers',
+    'refactoring',
     ['ui-select'] = {
       require('telescope.themes').get_cursor()
     }
@@ -82,6 +83,7 @@ telescope.setup{
 }
 
 telescope.load_extension('ui-select');
+telescope.load_extension('refactoring');
 
 -- Telescope
 Nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')
@@ -92,3 +94,4 @@ else
 end
 Nnoremap('<leader>gco', '<cmd>Telescope git_branches<cr>')
 Nnoremap('<leader>ls', '<cmd>Telescope buffers<cr>')
+Vnoremap('<leader>rr', '<esc><cmd>lua require(\'telescope\').extensions.refactoring.refactors()<CR>')
