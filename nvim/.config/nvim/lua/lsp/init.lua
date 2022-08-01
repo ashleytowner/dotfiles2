@@ -39,7 +39,6 @@ local servers = {
         client.resolved_capabilities.document_formatting = true
         keybinds.set_keybinds()
       end,
-      single_file_support = true
     }
   },
   { 'efm',
