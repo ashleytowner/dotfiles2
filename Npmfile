@@ -1,12 +1,3 @@
 diagnostic-languageserver
-eslint
-eslint_d
-@fsouza/prettierd
 prettier
-typescript
-typescript-language-server
-stylelint-lsp
-bash-language-server
-vim-language-server
 vscode-langservers-extracted
-yaml-language-server
