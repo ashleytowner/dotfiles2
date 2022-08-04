@@ -9,7 +9,8 @@ telescope.setup{
       '--line-number',
       '--column',
       '--smart-case',
-      '--hidden'
+      '--hidden',
+      '--no-ignore-vcs'
     },
     prompt_prefix = "> ",
     selection_caret = "> ",
@@ -45,53 +46,57 @@ telescope.setup{
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   },
   extensions = {
-    'lsp_handlers',
     'refactoring',
     ['ui-select'] = {
       require('telescope.themes').get_cursor()
     }
   },
   pickers = {
-      find_files = {
-          theme = "dropdown"
-      },
-      git_branches = {
-          theme = "dropdown"
-      },
-      buffers = {
-          theme = "dropdown"
-      },
-      live_grep = {
-          theme = "dropdown"
-      },
-      lsp_code_actions = {
-        theme = "cursor"
-      },
-      lsp_references = {
-        theme = "cursor"
-      },
-      lsp_definitions = {
-        theme = "cursor"
-      },
-      quickfix = {
-        theme = "ivy"
-      },
-      loclist = {
-        theme = "ivy"
-      }
+    find_files = {
+      theme = "dropdown",
+      no_ignore = true,
+      hidden = true,
+      type = 'f',
+      previewer = false
+    },
+    git_branches = {
+      theme = "dropdown"
+    },
+    buffers = {
+      theme = "dropdown"
+    },
+    live_grep = {
+      theme = "dropdown"
+    },
+    lsp_references = {
+      theme = "cursor"
+    },
+    lsp_definitions = {
+      theme = "cursor"
+    },
+    quickfix = {
+      theme = "ivy"
+    },
+    loclist = {
+      theme = "ivy"
+    },
+    diagnostics = {
+      theme = "ivy"
+    }
   }
 }
 
+-- Extensions
 telescope.load_extension('ui-select');
 telescope.load_extension('refactoring');
 
--- Telescope
+-- Keymaps
 Nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')
-if (vim.g.uname == "Linux\n") then
-  Nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fdfind,--hidden,--type,f previewer=false<cr>')
-else
-  Nnoremap('<C-p>', '<cmd>Telescope find_files find_command=fd,--hidden,--type,f previewer=false<cr>')
-end
+Nnoremap('<C-p>', '<cmd>Telescope find_files<cr>')
+Nnoremap('<leader>qf', '<cmd>Telescope quickfix<cr>')
 Nnoremap('<leader>gco', '<cmd>Telescope git_branches<cr>')
 Nnoremap('<leader>ls', '<cmd>Telescope buffers<cr>')
+Nnoremap('<leader>ts', '<cmd>Telescope treesitter<cr>')
+Nnoremap('<leader>d', '<cmd>Telescope diagnostics<cr>')
 Vnoremap('<leader>rr', '<esc><cmd>lua require(\'telescope\').extensions.refactoring.refactors()<CR>')
+Nnoremap('gt', '<cmd>Telescope resume<cr>')
