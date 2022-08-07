@@ -182,7 +182,9 @@ return require('packer').startup({
     }
 
     use {
-      'github/copilot.vim'
+      'github/copilot.vim',
+      commit = '6c5abda66350773ae2f8fade2e931b3beb51843f',
+      config = function() require('plugins.copilot') end
     }
 
     use {
