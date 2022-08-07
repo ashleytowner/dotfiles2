@@ -182,6 +182,10 @@ return require('packer').startup({
     }
 
     use {
+      'github/copilot.vim'
+    }
+
+    use {
       'hrsh7th/nvim-cmp',
       commit = '706371f1300e7c0acb98b346f80dad2dd9b5f679',
       config = function() require('plugins.cmp') end,
