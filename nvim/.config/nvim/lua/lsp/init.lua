@@ -61,7 +61,6 @@ local servers = {
       on_attach = function(client)
         client.resolved_capabilities.document_formatting = true
         client.resolved_capabilities.goto_definition = false
-        vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true})
       end,
       root_dir = function()
         if not linters.eslint_config_exists() then
