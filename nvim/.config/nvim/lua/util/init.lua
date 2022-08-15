@@ -1,4 +1,3 @@
-require('util.map')
 require('util.objects')
 
 local M = {}

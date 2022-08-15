@@ -1,26 +1,23 @@
-require('util.map')
-
-
 -- Text manipulation
-Nnoremap('J', 'mzJ`z')
-Nnoremap('N', 'Nzz')
-Nnoremap('n', 'nzz')
-Vnoremap('J', ':m \'>+1<CR>gv=gv')
-Vnoremap('K', ':m \'<-2<CR>gv=gv')
+vim.keymap.set('n', 'J', 'mzJ`z', { noremap = true })
+vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
+vim.keymap.set('n', 'n', 'nzz', { noremap = true })
+vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true })
+vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true })
 
 -- Clipboard
-Noremap('<leader>P', '"+P')
-Noremap('<leader>Y', '"+y$')
-Noremap('<leader>p', '"+p')
-Noremap('<leader>y', '"+y')
+vim.keymap.set('n', '<leader>P', '"+P', { noremap = true })
+vim.keymap.set('n', '<leader>Y', '"+y$', { noremap = true })
+vim.keymap.set('n', '<leader>p', '"+p', { noremap = true })
+vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
 
 -- File Navigation
-Nmap('[q', '<cmd>cprev<cr>')
-Nmap(']q', '<cmd>cnext<cr>')
-Nnoremap('<C-PageDown>', ':bnext<CR>')
-Nnoremap('<C-PageUp>', ':bprev<CR>')
-Nnoremap('gw', '<C-w>w')
-Nnoremap('gW', '<C-w>W')
+vim.keymap.set('n', '[q', '<cmd>cprev<cr>')
+vim.keymap.set('n', ']q', '<cmd>cnext<cr>')
+vim.keymap.set('n', '<C-PageDown>', ':bnext<CR>', { noremap = true })
+vim.keymap.set('n', '<C-PageUp>', ':bprev<CR>', { noremap = true })
+vim.keymap.set('n', 'gw', '<C-w>w', { noremap = true })
+vim.keymap.set('n', 'gW', '<C-w>W', { noremap = true })
 
-Tnoremap('<C-\\>', '<C-\\><C-n><C-w>w')
-Tnoremap('<C-n>', '<C-\\><C-n>')
+vim.keymap.set('t', '<C-\\>', '<C-\\><C-n><C-w>w', { noremap = true })
+vim.keymap.set('t', '<C-n>', '<C-\\><C-n>', { noremap = true })

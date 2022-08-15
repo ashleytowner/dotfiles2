@@ -1,5 +1,3 @@
-require('util.map')
-
 require('nvim-tree').setup({
   open_on_setup = false,
   git = {
@@ -32,4 +30,9 @@ require('nvim-tree').setup({
     }
   }
 })
-Nmap('<leader><leader>', '<cmd>NvimTreeFindFileToggle<cr>', true)
+vim.keymap.set(
+  'n',
+  '<leader><leader>',
+  '<cmd>NvimTreeFindFileToggle<cr>',
+  { silent = true}
+)

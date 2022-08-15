@@ -91,12 +91,52 @@ telescope.load_extension('ui-select');
 telescope.load_extension('refactoring');
 
 -- Keymaps
-Nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')
-Nnoremap('<C-p>', '<cmd>Telescope find_files<cr>')
-Nnoremap('<leader>qf', '<cmd>Telescope quickfix<cr>')
-Nnoremap('<leader>gco', '<cmd>Telescope git_branches<cr>')
-Nnoremap('<leader>ls', '<cmd>Telescope buffers<cr>')
-Nnoremap('<leader>ts', '<cmd>Telescope treesitter<cr>')
-Nnoremap('<leader>d', '<cmd>Telescope diagnostics<cr>')
-Vnoremap('<leader>rr', '<esc><cmd>lua require(\'telescope\').extensions.refactoring.refactors()<CR>')
-Nnoremap('gt', '<cmd>Telescope resume<cr>')
+vim.keymap.set('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true })
+vim.keymap.set(
+  'n',
+  '<C-p>',
+  '<cmd>Telescope find_files<cr>',
+  { noremap = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>qf',
+  '<cmd>Telescope quickfix<cr>',
+  { noremap = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>gco',
+  '<cmd>Telescope git_branches<cr>',
+  { noremap = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>ls',
+  '<cmd>Telescope buffers<cr>',
+  { noremap = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>ts',
+  '<cmd>Telescope treesitter<cr>',
+  { noremap = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>d',
+  '<cmd>Telescope diagnostics<cr>',
+  { noremap = true }
+)
+vim.keymap.set(
+  'v',
+  '<leader>rr',
+  '<esc><cmd>lua require(\'telescope\').extensions.refactoring.refactors()<CR>',
+  { noremap = true }
+)
+vim.keymap.set(
+  'n',
+  'gt',
+  '<cmd>Telescope resume<cr>',
+  { noremap = true }
+)

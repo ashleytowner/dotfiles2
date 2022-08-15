@@ -1,1 +1,1 @@
-Nnoremap('gim', '<cmd>Gvdiffsplit!<cr>')
+vim.keybind.set('n', 'gim', '<cmd>Gvdiffsplit!<cr>', { noremap = true })
