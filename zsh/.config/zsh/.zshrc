@@ -136,13 +136,21 @@ alias opgi="op get item"
 # Set a yank & put command
 if which xclip > /dev/null
 then
-    alias yank="xclip -i -sel clip"
+    function yank() {
+      input=$(cat)
+      echo ${input}
+      echo ${input} | xclip -i -selection clipboard
+    }
     alias put="xclip -o -sel clip"
 fi
 
 if which pbcopy > /dev/null && which pbpaste > /dev/null
 then
-    alias yank="pbcopy"
+    function yank() {
+      input=$(cat)
+      echo ${input}
+      echo ${input} | pbcopy
+    }
     alias put="pbpaste"
 fi
 
