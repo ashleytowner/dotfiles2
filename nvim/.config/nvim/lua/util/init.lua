@@ -30,6 +30,9 @@ end
 
 function M.system(cmd)
   local handle = io.popen(cmd)
+  if (handle == nil) then
+    return nil
+  end
   local result = handle:read('*a')
   handle:close()
   return result
