@@ -5,8 +5,6 @@ require('plugins')
 require('statusline')
 require('tabline')
 
-vim.g.uname = Util.system('uname')
-
 -- auto-sync when plugins file is saved
 local packer_user_config_group = vim.api.nvim_create_augroup("PackerUserConfig", { clear = true });
 vim.api.nvim_create_autocmd("BufWritePost", {

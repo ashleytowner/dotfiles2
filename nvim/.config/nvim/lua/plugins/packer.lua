@@ -235,12 +235,11 @@ return require('packer').startup({
       }
     }
 
-    use {
-      'mhartington/formatter.nvim',
-      commit = 'bf7c0e4cf879e6eb7ca4f00184cb4b261fade952',
-      config = function() require('plugins.formatter') end,
-    }
-
+    -- use {
+    --   'mhartington/formatter.nvim',
+    --   commit = 'bf7c0e4cf879e6eb7ca4f00184cb4b261fade952',
+    --   config = function() require('plugins.formatter') end,
+    -- }
 
     -- Syntax
 
@@ -258,11 +257,6 @@ return require('packer').startup({
     }
 
     use {
-      'kmyk/brainfuck-highlight.vim',
-      commit = '8761da13ceb23ccc2b2678b5f05aba11104fcf32'
-    }
-
-    use {
       'lilydjwg/colorizer',
       commit = '72790a003d5a706c287486a1a81e3a6b32158b54'
     }
@@ -270,22 +264,8 @@ return require('packer').startup({
     -- Theming
 
     use {
-      'embark-theme/vim',
-      commit = '1dcf15351622964ab7e35f3e780e7a1c581ebd2d',
-      as = 'embark',
-      disabled = true,
-    }
-
-    use {
       'haishanh/night-owl.vim',
       commit = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
-      cond = function() return not vim.g.vscode end,
-      disabled = true,
-    }
-
-    use {
-      'bluz71/vim-nightfly-guicolors',
-      commit = '83f27e09df7c78d8d1a00c67ff53786d66c23568',
       cond = function() return not vim.g.vscode end,
       disabled = true,
     }
@@ -304,12 +284,6 @@ return require('packer').startup({
       config = function() vim.cmd('colorscheme tokyonight') end,
     }
 
-    use {
-      'shaunsingh/moonlight.nvim',
-      commit = 'e24e4218ec680b6396532808abf57ca0ada82e66',
-      disabled = true,
-    }
-
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if Packer_bootstrap then
@@ -319,7 +293,7 @@ return require('packer').startup({
   config = {
     compile_on_sync = true,
     profile = {
-      enable = false,
+      enable = true,
       threshold = 0
     }
   }
