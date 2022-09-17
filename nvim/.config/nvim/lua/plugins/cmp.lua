@@ -1,5 +1,4 @@
 local lspkind = require('lspkind')
-local luasnip_err, _ = pcall(require, 'luasnip')
 
 lspkind.init()
 
@@ -27,17 +26,16 @@ cmp.setup {
     { name = 'vsnip' },
     { name = 'buffer' },
     { name = 'calc' },
-    (not luasnip_err and { name = 'luasnip' } or nil)
   }),
   formatting = {
     format = lspkind.cmp_format({
       with_text = false,
       menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        path = "[path]",
-        luasnip = "[snip]",
-        calc = "[calc]"
+        buffer = '[buf]',
+        nvim_lsp = '[LSP]',
+        path = '[path]',
+        calc = '[calc]',
+        vsnip = '[vsnip]'
       }
     })
   }
