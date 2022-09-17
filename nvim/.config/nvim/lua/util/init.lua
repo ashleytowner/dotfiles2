@@ -54,7 +54,14 @@ end
 
 function M.get_file_icon(filename)
   local extension = vim.fn.fnamemodify(filename, ':e')
-  local icon, color = require('nvim-web-devicons')
+  local deviconsOk, devicons = pcall(require, 'nvim-web-devicons')
+  if not deviconsOk then
+    return {
+      icon = '?',
+      color = '#FFFFFF'
+    }
+  end
+  local icon, color = devicons
     .get_icon_color(filename, extension, { default = true })
   return {
     icon = icon,
