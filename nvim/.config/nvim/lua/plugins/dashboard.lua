@@ -49,7 +49,6 @@ dashboard.custom_center = {
   },
 }
 local version = require('util').trim(require('util').system('nvim --version | grep -o "v\\d\\+\\.\\d\\+\\.\\d\\+"'))
-print(version)
 dashboard.custom_footer = {
   version
 }
