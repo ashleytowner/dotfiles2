@@ -31,5 +31,12 @@
 [user]
 	email = "13824257+ashleytowner@users.noreply.github.com"
 	name = Ashley Towner
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOpgwH5f7eAhxP7rquxFgKG8VCA4pO06Q91wICMsUrMf
 [init]
 	defaultBranch = main
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+  gpgsign = true
