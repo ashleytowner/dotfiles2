@@ -5,6 +5,14 @@ require('plugins')
 require('statusline')
 require('tabline')
 
+-- auto-sync when plugins file is saved
+local packer_user_config_group = vim.api.nvim_create_augroup("PackerUserConfig", { clear = true });
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "packer.lua",
+  group = packer_user_config_group,
+  command = "source <afile> | PackerSync"
+})
+
 -- {{{ Settings
 vim.o.expandtab = true
 vim.o.wildignore = 'node_modules/*'
