@@ -144,7 +144,6 @@ return require('packer').startup({
       'phaazon/hop.nvim',
       commit = hashes['phaazon/hop.nvim'],
       config = function() require('plugins.hop') end,
-      cond = function() return not vim.g.vscode end,
     }
 
     use {
@@ -177,7 +176,6 @@ return require('packer').startup({
       'tpope/vim-fugitive',
       commit = hashes['tpope/vim-fugitive'],
       config = function() require('plugins.fugitive') end,
-      cond = function() return not vim.g.vscode end,
       cmd = 'Git',
     }
 
@@ -185,7 +183,6 @@ return require('packer').startup({
     use {
       'nvim-telescope/telescope.nvim',
       commit = hashes['nvim-telescope/telescope.nvim'],
-      cond = function() return vim.g.vscode end,
       config = function() require('plugins.telescope') end,
       requires = {
         {
@@ -220,7 +217,6 @@ return require('packer').startup({
     use {
       'neovim/nvim-lspconfig',
       commit = hashes['neovim/nvim-lspconfig'],
-      cond = function() return not vim.g.vscode end,
       config = function() require('lsp.init') end,
     }
 
@@ -228,7 +224,6 @@ return require('packer').startup({
       'hrsh7th/nvim-cmp',
       commit = hashes['hrsh7th/nvim-cmp'],
       config = function() require('plugins.cmp') end,
-      cond = function() return not vim.g.vscode end,
       event = 'InsertEnter',
       requires = {
         {
