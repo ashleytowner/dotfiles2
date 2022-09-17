@@ -11,7 +11,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-local hashes = {
+local commits = {
       ['wbthomason/packer.nvim'] = '6afb67460283f0e990d35d229fd38fdc04063e0a',
       ['nvim-lua/plenary.nvim'] = '4b66054e75356ac0b909bbfee9c682e703f535c2',
       ['williamboman/mason.nvim'] = '134c4d9ce64286fbbdce399346800e8f93fb06cd',
@@ -59,23 +59,23 @@ return require('packer').startup({
 
     use {
       'wbthomason/packer.nvim',
-      commit = hashes['wbthomason/packer.nvim']
+      commit = commits['wbthomason/packer.nvim']
     }
 
     use {
       'nvim-lua/plenary.nvim',
-      commit = hashes['nvim-lua/plenary.nvim']
+      commit = commits['nvim-lua/plenary.nvim']
     }
 
     use {
       'williamboman/mason.nvim',
-      commit = hashes['williamboman/mason.nvim'],
+      commit = commits['williamboman/mason.nvim'],
       config = function() require('mason').setup() end
     }
 
     use {
       'williamboman/mason-lspconfig.nvim',
-      commit = hashes['williamboman/mason-lspconfig.nvim'],
+      commit = commits['williamboman/mason-lspconfig.nvim'],
       config = function() require('plugins.masonlsp') end,
       after = { 'nvim-lspconfig' },
       require = { 'nvim-lspconfig' }
@@ -83,7 +83,7 @@ return require('packer').startup({
 
     use {
       'ThePrimeagen/refactoring.nvim',
-      commit = hashes['ThePrimeagen/refactoring.nvim'],
+      commit = commits['ThePrimeagen/refactoring.nvim'],
       config = function() require('refactoring').setup({}) end,
       requires = {
           {'nvim-lua/plenary.nvim'},
@@ -95,20 +95,20 @@ return require('packer').startup({
 
     use {
       'dstein64/vim-startuptime',
-      commit = hashes['dstein64/vim-startuptime'],
+      commit = commits['dstein64/vim-startuptime'],
       cmd = 'StartupTime',
     }
 
     use {
       'mhinz/vim-startify',
-      commit = hashes['mhinz/vim-startify'],
+      commit = commits['mhinz/vim-startify'],
       config = function() require('plugins.startify') end,
       disable = true
     }
 
     use {
       'akinsho/toggleterm.nvim',
-      commit = hashes['akinsho/toggleterm.nvim'],
+      commit = commits['akinsho/toggleterm.nvim'],
       config = function() require('toggleterm').setup({
         open_mapping = [[<C-\>]]
       }) end
@@ -116,7 +116,7 @@ return require('packer').startup({
 
     use {
       'glacambre/firenvim',
-      commit = hashes['glacambre/firenvim'],
+      commit = commits['glacambre/firenvim'],
       run = function() vim.fn['firenvim#install'](0) end,
       config = function() require('plugins.firenvim') end,
       cond = function() return vim.g.started_by_firenvim end
@@ -127,35 +127,35 @@ return require('packer').startup({
 
     use {
       'tpope/vim-surround',
-      commit = hashes['tpope/vim-surround'],
+      commit = commits['tpope/vim-surround'],
       config = function() require('plugins.vimSurround') end,
       requires = {
         'tpope/vim-repeat',
-        commit = hashes['tpope/vim-repeat']
+        commit = commits['tpope/vim-repeat']
       }
     }
 
     use {
       'numToStr/Comment.nvim',
-      commit = hashes['numToStr/Comment.nvim'],
+      commit = commits['numToStr/Comment.nvim'],
       config = function() require('Comment').setup({}) end,
     }
 
     use {
       'bkad/CamelCaseMotion',
-      commit = hashes['bkad/CamelCaseMotion'],
+      commit = commits['bkad/CamelCaseMotion'],
       config = function() require('plugins.camelCaseMotions') end,
     }
 
     use {
       'phaazon/hop.nvim',
-      commit = hashes['phaazon/hop.nvim'],
+      commit = commits['phaazon/hop.nvim'],
       config = function() require('plugins.hop') end,
     }
 
     use {
       'windwp/nvim-autopairs',
-      commit = hashes['windwp/nvim-autopairs'],
+      commit = commits['windwp/nvim-autopairs'],
       config = function() require('plugins.autopairs') end,
       after = {
         'nvim-cmp'
@@ -164,24 +164,24 @@ return require('packer').startup({
 
     use {
       'mattn/emmet-vim',
-      commit = hashes['mattn/emmet-vim']
+      commit = commits['mattn/emmet-vim']
     }
 
     -- Git
 
     use {
       'lewis6991/gitsigns.nvim',
-      commit = hashes['lewis6991/gitsigns.nvim'],
+      commit = commits['lewis6991/gitsigns.nvim'],
       config = function() require('plugins.gitsigns') end,
       requires = {
         'nvim-lua/plenary.nvim',
-        commit = hashes['nvim-lua/plenary.nvim']
+        commit = commits['nvim-lua/plenary.nvim']
       },
     }
 
     use {
       'tpope/vim-fugitive',
-      commit = hashes['tpope/vim-fugitive'],
+      commit = commits['tpope/vim-fugitive'],
       config = function() require('plugins.fugitive') end,
       cmd = 'Git',
     }
@@ -189,31 +189,31 @@ return require('packer').startup({
     -- File Management
     use {
       'nvim-telescope/telescope.nvim',
-      commit = hashes['nvim-telescope/telescope.nvim'],
+      commit = commits['nvim-telescope/telescope.nvim'],
       config = function() require('plugins.telescope') end,
       requires = {
         {
           'gbrlsnchs/telescope-lsp-handlers.nvim',
-          commit = hashes['gbrlsnchs/telescope-lsp-handlers.nvim']
+          commit = commits['gbrlsnchs/telescope-lsp-handlers.nvim']
         },
         {
           'nvim-lua/plenary.nvim',
-          commit = hashes['nvim-lua/plenary.nvim']
+          commit = commits['nvim-lua/plenary.nvim']
         },
         {
           'nvim-telescope/telescope-ui-select.nvim',
-          commit = hashes['nvim-telescope/telescope-ui-select.nvim']
+          commit = commits['nvim-telescope/telescope-ui-select.nvim']
         }
       }
     }
 
     use {
       'kyazdani42/nvim-tree.lua',
-      commit = hashes['kyazdani42/nvim-tree.lua'],
+      commit = commits['kyazdani42/nvim-tree.lua'],
       requires = {
         {
           'kyazdani42/nvim-web-devicons',
-          commit = hashes['kyazdani42/nvim-web-devicons']
+          commit = commits['kyazdani42/nvim-web-devicons']
         }, -- optional, for file icon
       },
       config = function() require('plugins.nvimTree') end
@@ -223,59 +223,59 @@ return require('packer').startup({
 
     use {
       'neovim/nvim-lspconfig',
-      commit = hashes['neovim/nvim-lspconfig'],
+      commit = commits['neovim/nvim-lspconfig'],
       config = function() require('lsp.init') end,
     }
 
     use {
       'hrsh7th/nvim-cmp',
-      commit = hashes['hrsh7th/nvim-cmp'],
+      commit = commits['hrsh7th/nvim-cmp'],
       config = function() require('plugins.cmp') end,
       event = 'InsertEnter',
       requires = {
         {
           'hrsh7th/cmp-vsnip',
-          commit = hashes['hrsh7th/cmp-vsnip'],
+          commit = commits['hrsh7th/cmp-vsnip'],
           after = 'nvim-cmp'
         },
         {
           'hrsh7th/vim-vsnip',
-          commit = hashes['hrsh7th/vim-vsnip'],
+          commit = commits['hrsh7th/vim-vsnip'],
           after = 'nvim-cmp'
         },
         {
           'rafamadriz/friendly-snippets',
-          commit = hashes['rafamadriz/friendly-snippets'],
+          commit = commits['rafamadriz/friendly-snippets'],
           after = 'nvim-cmp',
         },
         {
           'hrsh7th/cmp-buffer',
-          commit = hashes['hrsh7th/cmp-buffer'],
+          commit = commits['hrsh7th/cmp-buffer'],
           after = 'nvim-cmp',
         },
         {
           'hrsh7th/cmp-calc',
-          commit = hashes['hrsh7th/cmp-calc'],
+          commit = commits['hrsh7th/cmp-calc'],
           after = 'nvim-cmp',
         },
         {
           'hrsh7th/cmp-cmdline',
-          commit = hashes['hrsh7th/cmp-cmdline'],
+          commit = commits['hrsh7th/cmp-cmdline'],
           after = 'nvim-cmp',
         },
         {
           'hrsh7th/cmp-nvim-lsp',
-          commit = hashes['hrsh7th/cmp-nvim-lsp'],
+          commit = commits['hrsh7th/cmp-nvim-lsp'],
           after = 'nvim-cmp',
         },
         {
           'hrsh7th/cmp-path',
-          commit = hashes['hrsh7th/cmp-path'],
+          commit = commits['hrsh7th/cmp-path'],
           after = 'nvim-cmp',
         },
         {
           'onsails/lspkind-nvim',
-          commit = hashes['onsails/lspkind-nvim']
+          commit = commits['onsails/lspkind-nvim']
         }
       }
     }
@@ -290,40 +290,40 @@ return require('packer').startup({
 
     use {
       'nvim-treesitter/nvim-treesitter',
-      commit = hashes['nvim-treesitter/nvim-treesitter'],
+      commit = commits['nvim-treesitter/nvim-treesitter'],
       run = ':TSUpdate',
       config = function() require('plugins.treesitter') end,
     }
 
     use {
       'nvim-treesitter/playground',
-      commit = hashes['nvim-treesitter/playground'],
+      commit = commits['nvim-treesitter/playground'],
       requires = 'nvim-treesitter/nvim-treesitter',
     }
 
     use {
       'lilydjwg/colorizer',
-      commit = hashes['lilydjwg/colorizer']
+      commit = commits['lilydjwg/colorizer']
     }
 
     -- Theming
 
     use {
       'haishanh/night-owl.vim',
-      commit = hashes['haishanh/night-owl.vim'],
+      commit = commits['haishanh/night-owl.vim'],
       config = function() require('plugins.themes.colorscheme') end
     }
 
     use {
       'dracula/vim',
-      commit = hashes['dracula/vim'],
+      commit = commits['dracula/vim'],
       as = 'dracula',
       config = function() require('plugins.themes.colorscheme') end
     }
 
     use {
       'folke/tokyonight.nvim',
-      commit = hashes['folke/tokyonight.nvim'],
+      commit = commits['folke/tokyonight.nvim'],
       config = function() require('plugins.themes.colorscheme') end
     }
 
