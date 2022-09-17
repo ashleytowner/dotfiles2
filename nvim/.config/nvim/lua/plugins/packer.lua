@@ -329,7 +329,7 @@ return require('packer').startup({
   config = {
     compile_on_sync = true,
     profile = {
-      enable = true,
+      enable = false,
       threshold = 0
     }
   }
