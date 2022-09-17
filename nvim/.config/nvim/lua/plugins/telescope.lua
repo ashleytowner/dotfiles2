@@ -140,3 +140,9 @@ vim.keymap.set(
   '<cmd>Telescope resume<cr>',
   { noremap = true }
 )
+vim.keymap.set(
+  'n',
+  '<leader>cs',
+  '<cmd>Telescope colorscheme<CR>',
+  { noremap = true}
+)
