@@ -53,7 +53,8 @@ local commits = {
   ['dracula/vim'] = 'd7723a842a6cfa2f62cf85530ab66eb418521dc2',
   ['folke/tokyonight.nvim'] = '3e79e043dfdc31b320d61432eae2eefc26478965',
   ['mfussenegger/nvim-dap'] = 'd9b315a81622457cddf6875c6ac7134baa9932ce',
-  ['mbbill/undotree'] = 'bf76bf2d1a097cda024699738286fa81fb6529ac'
+  ['mbbill/undotree'] = 'bf76bf2d1a097cda024699738286fa81fb6529ac',
+  ['L3MON4D3/LuaSnip'] = '9bb0d2b2280dccaa14d750c309e487c4e6df696b'
 }
 
 return require('packer').startup({
@@ -84,6 +85,19 @@ return require('packer').startup({
     }
 
     use {
+      'L3MON4D3/LuaSnip',
+      commit = commits['L3MON4D3/LuaSnip'],
+
+    }
+
+    use {
+      'glepnir/dashboard-nvim',
+      config = function()
+        require('plugins.dashboard')
+      end
+    }
+
+    use {
       'mfussenegger/nvim-dap',
       commit = commits['mfussenegger/nvim-dap'],
       config = function() require('plugins.dap') end
@@ -105,13 +119,6 @@ return require('packer').startup({
       'dstein64/vim-startuptime',
       commit = commits['dstein64/vim-startuptime'],
       cmd = 'StartupTime',
-    }
-
-    use {
-      'mhinz/vim-startify',
-      commit = commits['mhinz/vim-startify'],
-      config = function() require('plugins.startify') end,
-      disable = true
     }
 
     use {
