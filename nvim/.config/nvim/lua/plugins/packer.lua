@@ -250,13 +250,21 @@ return require('packer').startup({
       event = 'InsertEnter',
       requires = {
         {
-          'hrsh7th/cmp-vsnip',
-          commit = commits['hrsh7th/cmp-vsnip'],
-          after = 'nvim-cmp'
-        },
-        {
           'hrsh7th/vim-vsnip',
           commit = commits['hrsh7th/vim-vsnip'],
+          after = 'nvim-cmp',
+          config = function()
+            vim.cmd([[
+              imap <expr> <C-l> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<C-l>'
+              smap <expr> <C-l> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<C-l>'
+              imap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<C-h>'
+              smap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<C-h>'
+            ]])
+          end
+        },
+        {
+          'hrsh7th/cmp-vsnip',
+          commit = commits['hrsh7th/cmp-vsnip'],
           after = 'nvim-cmp'
         },
         {
