@@ -29,7 +29,7 @@
 [difftool "nvimdiff"]
 	cmd = "nvim -Md \"$LOCAL\" \"$REMOTE\""
 [user]
-	email = "13824257+ashleytowner@users.noreply.github.com"
+	email = "git@ashtowner.com"
 	name = Ashley Towner
 [init]
 	defaultBranch = main
