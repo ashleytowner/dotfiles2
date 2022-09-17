@@ -62,6 +62,14 @@ function M.get_file_icon(filename)
   }
 end
 
+function M.get_plugin_hash(plugin)
+  return M.system('git ls-remote https://github.com/'..plugin..'.git HEAD | awk \'{ print $1 }\'')
+end
+
+function M.yank(text)
+  vim.fn.setreg('"', text)
+end
+
 function M.create_highlight_group(group, fg, bg)
   if fg == nil or fg == '' or bg == nil or bg == '' then
     return
