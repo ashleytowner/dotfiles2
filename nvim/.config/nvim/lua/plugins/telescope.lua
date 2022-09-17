@@ -136,7 +136,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   'n',
-  'gt',
+  '<leader>tp',
   '<cmd>Telescope resume<cr>',
   { noremap = true }
 )

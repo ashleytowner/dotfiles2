@@ -1,61 +1,62 @@
-vim.cmd([[
-function! MyTabLine()
-  let tablineValue = ''
-  let util = v:lua.require('util')
-  " Create the selected highlight
-  call util.create_highlight_group('User4', util.get_color('TabLineSel', 'bg'), util.get_color('TabLineFill', 'bg'))
-  " loop through each tab page
-  for tab in range(tabpagenr('$'))
-    let tabHl = '%#TabLine#'
-    if tab + 1 == tabpagenr()
-      let tabHl = '%#TabLineFill#'
-      let tablineValue .= '%#User4#▎' . tabHl
-    else
-      let tablineValue .= tabHl . '▎'
-    endif
-    " set the tab page number (for mouse clicks)
-    let tablineValue .= '%' . (tab + 1) . 'T '
-    " get buffer names and statuses
-    let tabname = ''  " temp str for buf names
-    let isModified = 0   " &modified counter
-    let buflist = tabpagebuflist(tab + 1)
-    " loop through each buffer in a tab
-    for b in buflist
-      let buffername = bufname(b)
-      let buffertype = getbufvar(b, "&buftype")
-      let bufferlisted = getbufvar(b, "&buflisted")
+local util = require('util')
 
-      let icon = util.get_file_icon(buffername, fnamemodify(buffername, ':e')).icon
+local function getClickable(tabnr)
+  return '%'..(tabnr+1)..'T'
+end
 
-      if !bufferlisted
-        continue
-      endif
+local function getBaseHighlight(selected)
+  return selected and '%#TabLineFill#' or '%#TabLine#'
+end
 
-      if buffername == ''
-          if buffertype ==? 'nofile'
-              let buffername = '[Scratch]'
-          else
-              let buffername = '[No Name]'
-          endif
-      endif
+local function getTabStart(selected)
+  local highlight = selected and '%#User4#' or getBaseHighlight(selected)
+  return highlight .. '▎' .. (selected and getBaseHighlight(selected) or '')
+end
 
-      if getbufvar(b, "&modifiable") || buffertype == 'terminal'
-        let tabname .= icon . ' ' . fnamemodify(buffername, ':t') . ', '
-      endif
-      if getbufvar(b, "&modified")
-        let isModified += 1
-      endif
-    endfor
-    let tabname = substitute(tabname, ', $', '', '')
-    " add buffer names
-    let tablineValue .= tabname
-    if isModified > 0
-      let tablineValue .= ' [+]'
-    endif
-    " switch to no underlining and add final space
-    let tablineValue .= ' %#TabLine# '
-  endfor
-  let tablineValue .= '%#TabLineFill#%T'
-  return tablineValue
-endfunction
-]])
+local function getFormattedBufferName(bufnr, selected, short)
+  local path = vim.fn.bufname(bufnr)
+  local extension = vim.fn.fnamemodify(path, ':e')
+  local longname = vim.fn.fnamemodify(path, ':t')
+  local shortname = vim.fn.fnamemodify(path, ':t:r')
+  local displayname = (longname == '' and '[No Name]') or (short and shortname or longname)
+  local icon = util.get_file_icon(extension)
+
+  local buffertype = vim.fn.getbufvar(bufnr, '&buftype');
+  if buffertype ~= '' and buffertype ~= 'help' then
+    return ''
+  end
+
+  return (selected and '%#' .. icon.highlight .. '#' or '')
+    .. icon.icon .. ' ' .. getBaseHighlight(selected) ..
+    displayname .. ' '
+end
+
+local function getTabBuffers(tabnr, selected, short)
+  local buflist = vim.fn.tabpagebuflist(tabnr)
+  local list = ''
+  for _, bufnr in ipairs(buflist) do
+    list = list .. getFormattedBufferName(bufnr, selected, short)
+  end
+  return list
+end
+
+local function generateTabName(tabnr, selected, short)
+  return getTabStart(selected) .. getClickable(tabnr) ..
+    getTabBuffers(tabnr, selected, short)
+end
+
+function TabLine()
+  util.create_highlight_group(
+    'User4',
+    util.get_color('TabLineSel', 'bg'), util.get_color('TabLineFill', 'bg')
+  )
+  local tabCount = vim.fn.tabpagenr('$')
+  local shortnames = tabCount > 3
+  print(shortnames)
+  local tabline = ''
+  for tabnr=1,tabCount do
+    local selected = tabnr == vim.fn.tabpagenr()
+    tabline = tabline .. generateTabName(tabnr, selected, shortnames)
+  end
+  return tabline
+end

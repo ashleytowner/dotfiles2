@@ -58,14 +58,17 @@ function M.get_file_icon(filename)
   if not deviconsOk then
     return {
       icon = '?',
-      color = '#FFFFFF'
+      color = '#FFFFFF',
+      highlight = ''
     }
   end
   local icon, color = devicons
     .get_icon_color(filename, extension, { default = true })
+  local _, highlight = require('nvim-web-devicons').get_icon(filename, extension, { default = true })
   return {
     icon = icon,
-    color = color
+    color = color,
+    highlight = highlight
   }
 end
 

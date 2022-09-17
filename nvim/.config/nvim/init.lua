@@ -36,7 +36,8 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.wo.signcolumn='auto:1-9'
 vim.go.statusline = '%!v:lua.StatusLine()'
-vim.go.tabline='%!MyTabLine()'
+vim.go.tabline='%!v:lua.TabLine()'
+vim.go.showtabline = 2
 
 vim.g.markdown_fenced_languages = {
   "ts=typescript",
