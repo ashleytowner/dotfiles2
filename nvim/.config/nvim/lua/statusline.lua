@@ -29,20 +29,22 @@ local function buffer_label()
 end
 
 -- Asynchronously set git status variables
-local get_git_status = function()
-  return ''
-end
-
 local asyncOk, async = pcall(require, 'plenary.async')
 
-if asyncOk then
-  get_git_status = async.void(function()
-    vim.g.git_status = u.system('git status -sb 2> /dev/null')
-    vim.g.git_stashes = u.trim(u.system('git stash list 2> /dev/null | wc -l'))
-    vim.g.git_branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
-    vim.g.git_commit = u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
-  end)
-end
+local get_git_status = asyncOk and
+async.void(function()
+  vim.g.git_status = u.system('git status -sb 2> /dev/null')
+  vim.g.git_stashes = u.trim(u.system('git stash list 2> /dev/null | wc -l'))
+  vim.g.git_branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
+  vim.g.git_commit = u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
+end)
+or
+(function()
+  vim.g.git_status = ''
+  vim.g.git_stashes = ''
+  vim.g.git_branch = ''
+  vim.g.git_commit = ''
+end)
 
 -- Automatically regenerate git status on certain events
 local git_status_group = vim.api.nvim_create_augroup("GitStatus", { clear = true })
