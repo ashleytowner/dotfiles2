@@ -53,6 +53,7 @@ local commits = {
   ['dracula/vim'] = 'd7723a842a6cfa2f62cf85530ab66eb418521dc2',
   ['folke/tokyonight.nvim'] = '3e79e043dfdc31b320d61432eae2eefc26478965',
   ['mfussenegger/nvim-dap'] = 'd9b315a81622457cddf6875c6ac7134baa9932ce',
+  ['mbbill/undotree'] = 'bf76bf2d1a097cda024699738286fa81fb6529ac'
 }
 
 return require('packer').startup({
@@ -226,6 +227,14 @@ return require('packer').startup({
       config = function() require('plugins.nvimTree') end
     }
 
+    use {
+      'mbbill/undotree',
+      commit = commits['mbbill/undotree'],
+      config = function()
+        vim.keymap.set('n', '<leader>u', '<CMD>UndotreeToggle<CR>')
+      end
+    }
+
     -- LSP, Completion & Formatting
 
     use {
@@ -286,12 +295,6 @@ return require('packer').startup({
         }
       }
     }
-
-    -- use {
-    --   'mhartington/formatter.nvim',
-    --   commit = hashes['mhartington/formatter.nvim'],
-    --   config = function() require('plugins.formatter') end,
-    -- }
 
     -- Syntax
 

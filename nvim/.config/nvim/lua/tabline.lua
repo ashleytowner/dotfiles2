@@ -52,7 +52,6 @@ function TabLine()
   )
   local tabCount = vim.fn.tabpagenr('$')
   local shortnames = tabCount > 3
-  print(shortnames)
   local tabline = ''
   for tabnr=1,tabCount do
     local selected = tabnr == vim.fn.tabpagenr()
