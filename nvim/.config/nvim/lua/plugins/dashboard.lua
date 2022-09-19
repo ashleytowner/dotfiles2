@@ -52,3 +52,5 @@ local version = require('util').trim(require('util').system('nvim --version | gr
 dashboard.custom_footer = {
   version
 }
+dashboard.hide_tabline = false
+dashboard.hide_statusline = false

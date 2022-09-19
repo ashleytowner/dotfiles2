@@ -14,6 +14,19 @@ local function getTabStart(selected)
 end
 
 local function getFormattedBufferName(bufnr, selected, short)
+  local buffertype = vim.fn.getbufvar(bufnr, '&buftype')
+
+  local filetype = vim.fn.getbufvar(bufnr, '&ft')
+
+  if buffertype ~= '' and buffertype ~= 'help' and filetype ~= 'dashboard' then
+    return ''
+  end
+
+  if filetype == 'dashboard' then
+    return '  Dashboard'
+  end
+
+
   local path = vim.fn.bufname(bufnr)
   local extension = vim.fn.fnamemodify(path, ':e')
   local longname = vim.fn.fnamemodify(path, ':t')
@@ -21,10 +34,6 @@ local function getFormattedBufferName(bufnr, selected, short)
   local displayname = (longname == '' and '[No Name]') or (short and shortname or longname)
   local icon = util.get_file_icon(extension)
 
-  local buffertype = vim.fn.getbufvar(bufnr, '&buftype');
-  if buffertype ~= '' and buffertype ~= 'help' then
-    return ''
-  end
 
   return (selected and '%#' .. icon.highlight .. '#' or '')
     .. icon.icon .. ' ' .. getBaseHighlight(selected) ..
