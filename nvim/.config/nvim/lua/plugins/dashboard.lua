@@ -30,6 +30,12 @@ dashboard.custom_center = {
     shortcut = '<C-f>'
   },
   {
+    icon = '祥 ',
+    desc = 'Startup Time                    ',
+    action = 'StartupTime --tries 50',
+    shortcut = ':StartupTime'
+  },
+  {
     icon = '  ',
     desc = 'Change Colorscheme                ',
     action = 'Telescope colorscheme',
