@@ -13,6 +13,19 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   command = "source <afile> | PackerSync"
 })
 
+-- highlight text on yank
+local yank_highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true });
+vim.api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  group = yank_highlight_group,
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "IncSearch",
+      timeout = 100
+    })
+  end
+})
+
 -- {{{ Settings
 vim.o.expandtab = true
 vim.o.wildignore = 'node_modules/*'
