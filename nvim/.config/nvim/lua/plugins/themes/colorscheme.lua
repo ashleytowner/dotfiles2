@@ -1,7 +1,7 @@
 local set_color_by_time = false
 
 local schemes = {
-  dark = 'tokyonight-night',
+  dark = 'tokyonight-moon',
   light = 'tokyonight-day'
 }
 
