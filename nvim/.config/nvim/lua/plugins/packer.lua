@@ -54,6 +54,7 @@ local commits = {
   ['folke/tokyonight.nvim'] = 'a74cb93b1563ff1cf78a5c08b5dededa51f9372c',
   ['mfussenegger/nvim-dap'] = 'cf94cfb61da4b117153641a8a131e2f4ec8ec10b',
   ['mbbill/undotree'] = 'bf76bf2d1a097cda024699738286fa81fb6529ac',
+  ['lukas-reineke/indent-blankline.nvim'] = 'db7cbcb40cc00fc5d6074d7569fb37197705e7f6',
 }
 
 return require('packer').startup({
@@ -322,6 +323,16 @@ return require('packer').startup({
     use {
       'lilydjwg/colorizer',
       commit = commits['lilydjwg/colorizer']
+    }
+
+    use {
+      'lukas-reineke/indent-blankline.nvim',
+      commit = commits['lukas-reineke/indent-blankline.nvim'],
+      config = function()
+        require('indent_blankline').setup({
+          show_current_context = true
+        })
+      end
     }
 
     -- Theming
