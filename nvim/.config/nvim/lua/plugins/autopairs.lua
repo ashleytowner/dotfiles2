@@ -1,4 +1,6 @@
-require('nvim-autopairs').setup({})
+require('nvim-autopairs').setup({
+  disable_in_macro = true
+})
 
 -- set up auto pairs on cmp completions
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
