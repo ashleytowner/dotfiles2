@@ -26,6 +26,7 @@ local servers = {
     }
   },
   'clangd',
+  'rust_analyzer',
   { 'bashls',
     config = {
       single_file_support = true
