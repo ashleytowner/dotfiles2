@@ -207,14 +207,5 @@ function nvm_use() {
   fi
 }
 
-function chpwd() {
-  type onLeaveDir > /dev/null && onLeaveDir
-  type onLeaveDir > /dev/null && unset -f onLeaveDir
-  type onEnterDir > /dev/null && unset -f onEnterDir
-  [ -f ./.zshrc ] && source ./.zshrc
-  type onEnterDir > /dev/null && onEnterDir
-  nvm_use
-}
-
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
