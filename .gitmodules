@@ -10,3 +10,6 @@
 [submodule "zsh/bin/pert-calculator"]
 	path = zsh/bin/pert-calculator
 	url = https://github.com/ashleytowner/pert-calculator
+[submodule "tmux/.config/tmux/tpm"]
+	path = tmux/.config/tmux/tpm
+	url = https://github.com/tmux-plugins/tpm
