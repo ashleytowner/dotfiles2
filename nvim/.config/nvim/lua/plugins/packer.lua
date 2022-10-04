@@ -339,21 +339,28 @@ return require('packer').startup({
 
     use {
       'haishanh/night-owl.vim',
-      commit = commits['haishanh/night-owl.vim'],
-      config = function() require('plugins.themes.colorscheme') end
+      commit = commits['haishanh/night-owl.vim']
+    }
+
+    use {
+      'catppuccin/nvim',
+      as = 'catppuccin',
+      config = function()
+        vim.g.catppuccin_flavour = "macchiato"
+        require('catppuccin').setup()
+        vim.cmd [[colorscheme catppuccin]]
+      end
     }
 
     use {
       'dracula/vim',
       commit = commits['dracula/vim'],
       as = 'dracula',
-      config = function() require('plugins.themes.colorscheme') end
     }
 
     use {
       'folke/tokyonight.nvim',
       commit = commits['folke/tokyonight.nvim'],
-      config = function() require('plugins.themes.colorscheme') end
     }
 
     -- Automatically set up your configuration after cloning packer.nvim
