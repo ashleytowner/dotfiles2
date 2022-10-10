@@ -55,6 +55,8 @@ local commits = {
   ['mfussenegger/nvim-dap'] = 'cf94cfb61da4b117153641a8a131e2f4ec8ec10b',
   ['mbbill/undotree'] = 'bf76bf2d1a097cda024699738286fa81fb6529ac',
   ['lukas-reineke/indent-blankline.nvim'] = 'db7cbcb40cc00fc5d6074d7569fb37197705e7f6',
+  ['glepnir/dashboard-nvim'] = 'bd7163f56ac715a6d687737ea144731ac6ce8478',
+  ['catppuccin/nvim'] = '076322065c2af3571f68a1be0844ec3f4cb1445c',
 }
 
 return require('packer').startup({
@@ -86,6 +88,7 @@ return require('packer').startup({
 
     use {
       'glepnir/dashboard-nvim',
+      commit = commits['glepnir/dashboard-nvim'],
       config = function()
         require('plugins.dashboard')
       end
@@ -345,6 +348,7 @@ return require('packer').startup({
     use {
       'catppuccin/nvim',
       as = 'catppuccin',
+      commit = commits['catppuccin/nvim'],
       config = function()
         vim.g.catppuccin_flavour = "macchiato"
         require('catppuccin').setup()
@@ -372,7 +376,7 @@ return require('packer').startup({
   config = {
     compile_on_sync = true,
     profile = {
-      enable = false,
+      enable = true,
       threshold = 0
     }
   }
