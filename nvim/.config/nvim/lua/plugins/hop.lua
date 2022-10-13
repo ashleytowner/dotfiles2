@@ -3,18 +3,24 @@ require('hop').setup()
 vim.keymap.set(
   'n',
   '<leader>w',
-  '<cmd>lua require(\'hop\').hint_words({ multi_windows = true })<CR>',
+  function() require('hop').hint_words({ multi_windows = true }) end,
   { noremap = true }
 )
 vim.keymap.set(
   'n',
   '<leader>f',
-  '<cmd>lua require(\'hop\').hint_char1()<CR>',
+  function() require('hop').hint_char1() end,
   { noremap = true }
 )
 vim.keymap.set(
   'n',
   '<leader>s',
-  '<cmd>lua require(\'hop\').hint_char2()<cr>',
+  function() require('hop').hint_char2() end,
+  { noremap = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>h',
+  function() require('hop').hint_anywhere() end,
   { noremap = true }
 )
