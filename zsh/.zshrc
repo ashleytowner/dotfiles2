@@ -154,6 +154,11 @@ then
     alias put="pbpaste"
 fi
 
+if which xdg-open > /dev/null
+then
+  alias open=xdg-open
+fi
+
 alias -s txt=vim
 alias -s yaml=vim
 alias -s yml=vim
