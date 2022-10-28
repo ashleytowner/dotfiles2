@@ -51,7 +51,7 @@ local servers = {
         if client.config.flags then
           client.config.flags.allow_incremental_sync = true
         end
-        client.resolved_capabilities.document_formatting = true
+        client.server_capabilities.document_formatting = true
         keybinds.set_keybinds()
       end,
     }
@@ -60,8 +60,8 @@ local servers = {
     override = true,
     config = {
       on_attach = function(client)
-        client.resolved_capabilities.document_formatting = true
-        client.resolved_capabilities.goto_definition = false
+        client.server_capabilities.document_formatting = true
+        client.server_capabilities.goto_definition = false
       end,
       root_dir = function()
         if not linters.eslint_config_exists() then
