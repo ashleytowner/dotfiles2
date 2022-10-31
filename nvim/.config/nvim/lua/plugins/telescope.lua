@@ -146,3 +146,9 @@ vim.keymap.set(
   '<cmd>Telescope colorscheme<CR>',
   { noremap = true}
 )
+vim.keymap.set(
+  'n',
+  '<leader>fn',
+  '<cmd>Telescope lsp_definitions<CR>',
+  { noremap = true }
+)
