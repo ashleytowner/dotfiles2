@@ -350,9 +350,9 @@ return require('packer').startup({
       as = 'catppuccin',
       commit = commits['catppuccin/nvim'],
       config = function()
-        vim.g.catppuccin_flavour = "macchiato"
+        -- vim.g.catppuccin_flavour = "macchiato"
         require('catppuccin').setup()
-        vim.cmd [[colorscheme catppuccin]]
+        vim.cmd [[colorscheme catppuccin-macchiato]]
       end
     }
 
