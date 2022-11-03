@@ -62,6 +62,7 @@ local servers = {
       on_attach = function(client)
         client.server_capabilities.document_formatting = true
         client.server_capabilities.goto_definition = false
+        client.server_capabilities.hover = false
       end,
       root_dir = function()
         if not linters.eslint_config_exists() then
