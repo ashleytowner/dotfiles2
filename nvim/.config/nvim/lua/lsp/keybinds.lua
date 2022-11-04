@@ -43,7 +43,7 @@ function P.set_keybinds()
   vim.keymap.set(
     'n',
     '<leader>=',
-    '<cmd>lua vim.lsp.buf.formatting()<CR>',
+    '<cmd>lua vim.lsp.buf.format()<CR>',
     { noremap = true, silent = true, buffer = true }
   )
   vim.keymap.set(
@@ -62,12 +62,6 @@ function P.set_keybinds()
     'n',
     '<leader>rn',
     '<cmd>lua vim.lsp.buf.rename()<CR>',
-    { noremap = true, silent = true, buffer = true }
-  )
-  vim.keymap.set(
-    'n',
-    '==',
-    'V:<C-u>lua vim.lsp.buf.range_formatting()<CR>',
     { noremap = true, silent = true, buffer = true }
   )
   vim.keymap.set(
@@ -98,12 +92,6 @@ function P.set_keybinds()
     'n',
     'gr',
     '<cmd>Telescope lsp_references<CR>',
-    { noremap = true, silent = true, buffer = true }
-  )
-  vim.keymap.set(
-    'v',
-    '=',
-    '<cmd>lua vim.lsp.buf.range_formatting()<CR>',
     { noremap = true, silent = true, buffer = true }
   )
 end
