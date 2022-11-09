@@ -38,5 +38,8 @@ cmp.setup {
         vsnip = '[vsnip]'
       }
     })
+  },
+  experimental = {
+    ghost_text = false
   }
 }

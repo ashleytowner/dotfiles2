@@ -308,6 +308,11 @@ return require('packer').startup({
       }
     }
 
+    use {
+      'github/copilot.vim',
+      config = function() require('plugins.copilot') end
+    }
+
     -- Syntax
 
     use {
