@@ -121,9 +121,7 @@ return require('packer').startup({
     use {
       'akinsho/toggleterm.nvim',
       commit = commits['akinsho/toggleterm.nvim'],
-      config = function() require('toggleterm').setup({
-        open_mapping = [[<C-\>]]
-      }) end
+      config = function() require('plugins.toggleterm') end
     }
 
     use {
