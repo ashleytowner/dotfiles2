@@ -58,7 +58,6 @@ vim.api.nvim_create_autocmd(
   }
 )
 
-
 local function git_status()
   local cmd_output = vim.g.git_status
 
@@ -159,5 +158,5 @@ function StatusLine()
     return ' %t%=%(%P%)'
   end
 
-  return buffer_info() .. git_info() .. position_info()
+  return buffer_info() .. git_info() .. position_info() .. "%{get(b:,'gitsigns_status','')}"
 end
