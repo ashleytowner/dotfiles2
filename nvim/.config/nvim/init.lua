@@ -21,6 +21,7 @@ local yank_highlight_group = vim.api.nvim_create_augroup(
   "YankHighlight",
   { clear = true }
 );
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   group = yank_highlight_group,
@@ -32,7 +33,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end
 })
 
--- {{{ Settings
 vim.o.expandtab = true
 vim.o.wildignore = 'node_modules/*'
 vim.o.foldlevel = 99
@@ -69,8 +69,6 @@ vim.g.markdown_fenced_languages = {
 vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
 vim.cmd('syntax enable')
-
--- }}}
 
 require('consistentSessions')
 require('keymaps')
