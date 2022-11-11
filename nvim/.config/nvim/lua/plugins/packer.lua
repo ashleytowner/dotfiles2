@@ -18,10 +18,10 @@ local commits = {
   ['catppuccin/nvim'] = 'cd676faa020b34e6617398835b5fa3d1c2e8895c',
   ['dracula/vim'] = 'b9f4f3a169266031d3744335595eee02a6e396c6',
   ['dstein64/vim-startuptime'] = 'a1e294454128062236d758cdaefee66664051a6c',
-  ['folke/tokyonight.nvim'] = '47916dfc48cdb38908bbe43c8bc3bdcb5a662530',
+  ['folke/tokyonight.nvim'] = 'a6d34b4e6df02e5b90a787d16d6d445d39546acb',
   ['gbrlsnchs/telescope-lsp-handlers.nvim'] = 'd6d5983b0131ee2c386ca9e349f6621e12d971cb',
   ['github/copilot.vim'] = '5a411d19ce7334ab10ba12516743fc25dad363fa',
-  ['glacambre/firenvim'] = 'f6ef690924e6d7a001b3e44c2b56b7ccf9b7e6c7',
+  ['glacambre/firenvim'] = '17a189f0f1e2d4197e00cd56dbeaed8c268bac8c',
   ['glepnir/dashboard-nvim'] = '1aab263f4773106abecae06e684f762d20ef587e',
   ['haishanh/night-owl.vim'] = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
   ['hrsh7th/cmp-buffer'] = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
@@ -30,18 +30,18 @@ local commits = {
   ['hrsh7th/cmp-nvim-lsp'] = '78924d1d677b29b3d1fe429864185341724ee5a2',
   ['hrsh7th/cmp-path'] = '91ff86cd9c29299a64f968ebb45846c485725f23',
   ['hrsh7th/cmp-vsnip'] = '1ae05c6c867d9ad44bce811056e861e0d5c531cb',
-  ['hrsh7th/nvim-cmp'] = '9bb8ee6e2d6ab3c8cc53323b79f05886bc722faa',
+  ['hrsh7th/nvim-cmp'] = 'c37ea78941b93ef6b6bdd8274649ea8a0ce4f87a',
   ['hrsh7th/vim-vsnip'] = 'ceeee48145d27f0b3986ab6f75f52a2449974603',
   ['kyazdani42/nvim-tree.lua'] = '7e892767bdd9660b7880cf3627d454cfbc701e9b',
   ['kyazdani42/nvim-web-devicons'] = '520776f30a3b39ed56402bffbdae57549e778b40',
-  ['lewis6991/gitsigns.nvim'] = '9d73a30e9cc524ab3d1c7095c74de9fb87684461',
+  ['lewis6991/gitsigns.nvim'] = '9ff7dfb051e5104088ff80556203634fc8f8546d',
   ['lilydjwg/colorizer'] = '72790a003d5a706c287486a1a81e3a6b32158b54',
   ['lukas-reineke/indent-blankline.nvim'] = 'db7cbcb40cc00fc5d6074d7569fb37197705e7f6',
   ['mattn/emmet-vim'] = 'def5d57a1ae5afb1b96ebe83c4652d1c03640f4d',
   ['mbbill/undotree'] = 'bd60cb564e3c3220b35293679669bb77af5f389d',
   ['mfussenegger/nvim-dap'] = '61643680dcb771a29073cd432894e2f81a7c2ae3',
   ['mhinz/vim-startify'] = '81e36c352a8deea54df5ec1e2f4348685569bed2',
-  ['neovim/nvim-lspconfig'] = 'f40eae01b8e353e9d6e61792567c7d3b9856fd20',
+  ['neovim/nvim-lspconfig'] = 'c96ec574eacfff8ad8dd4bdb6e96a1b3dbd268fd',
   ['numToStr/Comment.nvim'] = 'ad7ffa8ed2279f1c8a90212c7d3851f9b783a3d6',
   ['nvim-lua/plenary.nvim'] = '4b7e52044bbb84242158d977a50c4cbcd85070c7',
   ['nvim-telescope/telescope-ui-select.nvim'] = '62ea5e58c7bbe191297b983a9e7e89420f581369',
@@ -56,8 +56,10 @@ local commits = {
   ['tpope/vim-surround'] = '3d188ed2113431cf8dac77be61b842acb64433d9',
   ['wbthomason/packer.nvim'] = '6afb67460283f0e990d35d229fd38fdc04063e0a',
   ['williamboman/mason-lspconfig.nvim'] = 'a910b4d50f7a32d2f9057d636418a16843094b7c',
-  ['williamboman/mason.nvim'] = '45714c54fb61a61c74724f64ca3f728c30ae01d2',
+  ['williamboman/mason.nvim'] = 'd85d71e910d1b2c539d17ae0d47dad48f8f3c8a7',
   ['windwp/nvim-autopairs'] = '6b6e35fc9aca1030a74cc022220bc22ea6c5daf4',
+  ['jose-elias-alvarez/null-ls.nvim'] = '07d4ed4c6b561914aafd787453a685598bec510f',
+  ['jayp0521/mason-null-ls.nvim'] = '2958e76f284684146ac04da9361da431afc0e7cf',
 }
 
 return require('packer').startup({
@@ -77,14 +79,6 @@ return require('packer').startup({
       'williamboman/mason.nvim',
       commit = commits['williamboman/mason.nvim'],
       config = function() require('mason').setup() end
-    }
-
-    use {
-      'williamboman/mason-lspconfig.nvim',
-      commit = commits['williamboman/mason-lspconfig.nvim'],
-      config = function() require('plugins.masonlsp') end,
-      after = { 'nvim-lspconfig' },
-      require = { 'nvim-lspconfig' }
     }
 
     use {
@@ -243,8 +237,37 @@ return require('packer').startup({
     use {
       'neovim/nvim-lspconfig',
       commit = commits['neovim/nvim-lspconfig'],
-      config = function() require('lsp.init') end,
+      config = function() require('lsp') end,
+      after = { 'mason.nvim' },
+      requires = {
+        {
+          'williamboman/mason-lspconfig.nvim',
+          commit = commits['williamboman/mason-lspconfig.nvim'],
+        }
+      }
     }
+
+    use {
+      'jose-elias-alvarez/null-ls.nvim',
+      commit = commits['jose-elias-alvarez/null-ls.nvim'],
+      config = function() require('lsp.null-ls') end,
+      after = { 'mason.nvim' },
+      requires = {
+        {
+          'jayp0521/mason-null-ls.nvim',
+          commit = commits['jayp0521/mason-null-ls.nvim']
+        }
+      }
+    }
+
+    -- use {
+    --   'williamboman/mason-lspconfig.nvim',
+    --   commit = commits['williamboman/mason-lspconfig.nvim'],
+    --   config = function() require('plugins.masonlsp') end,
+    --   after = { 'nvim-lspconfig' },
+    --   require = { 'nvim-lspconfig' }
+    -- }
+
 
     use {
       'hrsh7th/nvim-cmp',

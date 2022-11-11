@@ -1,6 +1,6 @@
 local P = {}
 
-function P.set_keybinds()
+function P.set_keymaps()
   vim.keymap.set(
     'n',
     '<C-]>',
