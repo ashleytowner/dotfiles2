@@ -260,15 +260,6 @@ return require('packer').startup({
       }
     }
 
-    -- use {
-    --   'williamboman/mason-lspconfig.nvim',
-    --   commit = commits['williamboman/mason-lspconfig.nvim'],
-    --   config = function() require('plugins.masonlsp') end,
-    --   after = { 'nvim-lspconfig' },
-    --   require = { 'nvim-lspconfig' }
-    -- }
-
-
     use {
       'hrsh7th/nvim-cmp',
       commit = commits['hrsh7th/nvim-cmp'],
