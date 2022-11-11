@@ -1,3 +1,4 @@
+-- Boostrap packer
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -78,21 +79,19 @@ return require('packer').startup({
     use {
       'williamboman/mason.nvim',
       commit = commits['williamboman/mason.nvim'],
-      config = function() require('mason').setup() end
+      config = function() require('plugins.config.mason') end,
     }
 
     use {
       'glepnir/dashboard-nvim',
       commit = commits['glepnir/dashboard-nvim'],
-      config = function()
-        require('plugins.dashboard')
-      end
+      config = function() require('plugins.config.dashboard') end,
     }
 
     use {
       'mfussenegger/nvim-dap',
       commit = commits['mfussenegger/nvim-dap'],
-      config = function() require('plugins.dap') end
+      config = function() require('plugins.config.dap') end,
     }
 
     use {
@@ -116,14 +115,14 @@ return require('packer').startup({
     use {
       'akinsho/toggleterm.nvim',
       commit = commits['akinsho/toggleterm.nvim'],
-      config = function() require('plugins.toggleterm') end
+      config = function() require('plugins.config.toggleterm') end,
     }
 
     use {
       'glacambre/firenvim',
       commit = commits['glacambre/firenvim'],
       run = function() vim.fn['firenvim#install'](0) end,
-      config = function() require('plugins.firenvim') end,
+      config = function() require('plugins.config.firenvim') end,
       cond = function() return vim.g.started_by_firenvim end
     }
 
@@ -133,7 +132,7 @@ return require('packer').startup({
     use {
       'tpope/vim-surround',
       commit = commits['tpope/vim-surround'],
-      config = function() require('plugins.vimSurround') end,
+      config = function() require('plugins.config.vimSurround') end,
       requires = {
         'tpope/vim-repeat',
         commit = commits['tpope/vim-repeat']
@@ -143,25 +142,25 @@ return require('packer').startup({
     use {
       'numToStr/Comment.nvim',
       commit = commits['numToStr/Comment.nvim'],
-      config = function() require('Comment').setup({}) end,
+      config = function() require('plugins.config.Comment') end,
     }
 
     use {
       'bkad/CamelCaseMotion',
       commit = commits['bkad/CamelCaseMotion'],
-      config = function() require('plugins.camelCaseMotions') end,
+      config = function() require('plugins.config.camelCaseMotions') end,
     }
 
     use {
       'phaazon/hop.nvim',
       commit = commits['phaazon/hop.nvim'],
-      config = function() require('plugins.hop') end,
+      config = function() require('plugins.config.hop') end,
     }
 
     use {
       'windwp/nvim-autopairs',
       commit = commits['windwp/nvim-autopairs'],
-      config = function() require('plugins.autopairs') end,
+      config = function() require('plugins.config.autopairs') end,
       after = {
         'nvim-cmp'
       }
@@ -177,7 +176,7 @@ return require('packer').startup({
     use {
       'lewis6991/gitsigns.nvim',
       commit = commits['lewis6991/gitsigns.nvim'],
-      config = function() require('plugins.gitsigns') end,
+      config = function() require('plugins.config.gitsigns') end,
       requires = {
         'nvim-lua/plenary.nvim',
         commit = commits['nvim-lua/plenary.nvim']
@@ -187,7 +186,7 @@ return require('packer').startup({
     use {
       'tpope/vim-fugitive',
       commit = commits['tpope/vim-fugitive'],
-      config = function() require('plugins.fugitive') end,
+      config = function() require('plugins.config.fugitive') end,
       cmd = 'Git',
     }
 
@@ -195,7 +194,7 @@ return require('packer').startup({
     use {
       'nvim-telescope/telescope.nvim',
       commit = commits['nvim-telescope/telescope.nvim'],
-      config = function() require('plugins.telescope') end,
+      config = function() require('plugins.config.telescope') end,
       requires = {
         {
           'gbrlsnchs/telescope-lsp-handlers.nvim',
@@ -219,17 +218,15 @@ return require('packer').startup({
         {
           'kyazdani42/nvim-web-devicons',
           commit = commits['kyazdani42/nvim-web-devicons']
-        }, -- optional, for file icon
+        },
       },
-      config = function() require('plugins.nvimTree') end
+      config = function() require('plugins.config.nvimTree') end,
     }
 
     use {
       'mbbill/undotree',
       commit = commits['mbbill/undotree'],
-      config = function()
-        vim.keymap.set('n', '<leader>u', '<CMD>UndotreeToggle<CR>')
-      end
+      config = function() require('plugins.config.undotree') end,
     }
 
     -- LSP, Completion & Formatting
@@ -263,21 +260,14 @@ return require('packer').startup({
     use {
       'hrsh7th/nvim-cmp',
       commit = commits['hrsh7th/nvim-cmp'],
-      config = function() require('plugins.cmp') end,
+      config = function() require('plugins.config.cmp') end,
       event = 'InsertEnter',
       requires = {
         {
           'hrsh7th/vim-vsnip',
           commit = commits['hrsh7th/vim-vsnip'],
           after = 'nvim-cmp',
-          config = function()
-            vim.cmd([[
-              imap <expr> <C-l> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<C-l>'
-              smap <expr> <C-l> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<C-l>'
-              imap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<C-h>'
-              smap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<C-h>'
-            ]])
-          end
+          config = function() require('plugins.config.vsnip') end,
         },
         {
           'hrsh7th/cmp-vsnip',
@@ -323,17 +313,17 @@ return require('packer').startup({
 
     use {
       'github/copilot.vim',
-      config = function() require('plugins.copilot') end,
+      config = function() require('plugins.config.copilot') end,
       commit = commits['github/copilot.vim']
     }
 
-    -- Syntax
+    -- Syntax Highlighting
 
     use {
       'nvim-treesitter/nvim-treesitter',
       commit = commits['nvim-treesitter/nvim-treesitter'],
       run = ':TSUpdate',
-      config = function() require('plugins.treesitter') end,
+      config = function() require('plugins.config.treesitter') end,
     }
 
     use {
@@ -350,11 +340,7 @@ return require('packer').startup({
     use {
       'lukas-reineke/indent-blankline.nvim',
       commit = commits['lukas-reineke/indent-blankline.nvim'],
-      config = function()
-        require('indent_blankline').setup({
-          show_current_context = true
-        })
-      end
+      config = function() require('plugins.config.indent-blankline') end,
     }
 
     -- Theming
@@ -368,22 +354,20 @@ return require('packer').startup({
       'catppuccin/nvim',
       as = 'catppuccin',
       commit = commits['catppuccin/nvim'],
-      config = function()
-        -- vim.g.catppuccin_flavour = "macchiato"
-        require('catppuccin').setup()
-        vim.cmd [[colorscheme catppuccin-macchiato]]
-      end
+      config = function() require('plugins.colorscheme') end,
     }
 
     use {
       'dracula/vim',
       commit = commits['dracula/vim'],
+      config = function() require('plugins.colorscheme') end,
       as = 'dracula',
     }
 
     use {
       'folke/tokyonight.nvim',
       commit = commits['folke/tokyonight.nvim'],
+      config = function() require('plugins.colorscheme') end,
     }
 
     -- Automatically set up your configuration after cloning packer.nvim
