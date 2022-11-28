@@ -15,7 +15,7 @@ export COWPATH=/usr/local/share/cows:$XDG_DATA_HOME/cows
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
 export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
-export FZF_DEFAULT_COMMAND='fd -H --type f'
+export FZF_DEFAULT_COMMAND='rg --ignore --hidden --files'
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools
 
 # |line-editor|
