@@ -57,7 +57,13 @@ telescope.setup{
       no_ignore = true,
       hidden = true,
       type = 'f',
-      previewer = false
+      previewer = false,
+      find_command = {
+        'rg',
+        '--ignore',
+        '--hidden',
+        '--files'
+      }
     },
     git_branches = {
       theme = "dropdown"
