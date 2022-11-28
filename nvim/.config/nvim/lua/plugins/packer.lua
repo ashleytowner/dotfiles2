@@ -314,7 +314,8 @@ return require('packer').startup({
     use {
       'github/copilot.vim',
       config = function() require('plugins.config.copilot') end,
-      commit = commits['github/copilot.vim']
+      commit = commits['github/copilot.vim'],
+      disable = true
     }
 
     -- Syntax Highlighting
