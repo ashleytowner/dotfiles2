@@ -57,6 +57,7 @@ vim.wo.signcolumn='auto:1-9'
 vim.go.statusline = '%!v:lua.StatusLine()'
 vim.go.tabline='%!v:lua.TabLine()'
 vim.go.showtabline = 2
+vim.o.shell = '/bin/zsh'
 
 vim.g.markdown_fenced_languages = {
   "ts=typescript",
