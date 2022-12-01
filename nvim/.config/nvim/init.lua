@@ -58,6 +58,7 @@ vim.go.statusline = '%!v:lua.StatusLine()'
 vim.go.tabline='%!v:lua.TabLine()'
 vim.go.showtabline = 2
 vim.o.shell = '/bin/zsh'
+vim.o.mouse = ''
 
 vim.g.markdown_fenced_languages = {
   "ts=typescript",
