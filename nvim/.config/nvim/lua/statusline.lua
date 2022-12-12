@@ -126,7 +126,7 @@ local function git_status()
 end
 
 local function git_branch()
-  local fg = u.get_color('Label', 'fg')
+  local fg = u.get_color('@keyword', 'fg')
   local bg = u.get_color('StatusLine', 'bg')
   u.create_highlight_group('User3', fg, bg)
 
@@ -138,12 +138,12 @@ local function git_branch()
 end
 
 local function git_info()
-  return ' ' .. color_when_focused('User3') .. git_branch() .. ' '
+  return " [%{get(b:,'gitsigns_status','')}] " .. color_when_focused('User3') .. git_branch() .. ' '
     .. git_status() .. '%*'
 end
 
 local function buffer_info()
-  return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r'
+  return '%*' .. buffer_label() .. buffer_icon() .. ' %t%r'
 end
 
 local function position_info()
@@ -158,5 +158,5 @@ function StatusLine()
     return ' %t%=%(%P%)'
   end
 
-  return buffer_info() .. git_info() .. position_info() .. "%{get(b:,'gitsigns_status','')}"
+  return buffer_info() .. git_info() .. position_info()
 end
