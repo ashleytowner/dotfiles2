@@ -138,12 +138,12 @@ local function git_branch()
 end
 
 local function git_info()
-  return " [%{get(b:,'gitsigns_status','')}] " .. color_when_focused('User3') .. git_branch() .. ' '
+  return color_when_focused('User3') .. git_branch() .. ' '
     .. git_status() .. '%*'
 end
 
 local function buffer_info()
-  return '%*' .. buffer_label() .. buffer_icon() .. ' %t%r'
+  return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r '
 end
 
 local function position_info()
