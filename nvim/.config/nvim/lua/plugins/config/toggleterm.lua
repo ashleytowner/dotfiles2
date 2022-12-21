@@ -1,4 +1,4 @@
 require('toggleterm').setup({
-  open_mapping = [[<C-\>]],
-  direction = 'float'
+	open_mapping = [[<C-\>]],
+	direction = 'float'
 })

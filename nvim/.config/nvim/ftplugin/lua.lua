@@ -1,1 +1,2 @@
-vim.o.tabstop=3
+vim.o.tabstop=2
+vim.o.expandtab = false

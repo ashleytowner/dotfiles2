@@ -1,15 +1,15 @@
 vim.cmd([[
 function! s:inSlash()
-  call search('/', 'bceW')
-  normal! lv
-  call search('/', 'ceW')
-  normal! h
+	call search('/', 'bceW')
+	normal! lv
+	call search('/', 'ceW')
+	normal! h
 endfunction
 
 function! s:aroundSlash()
-  call search('/', 'bceW')
-  normal! v
-  call search('/', 'eW')
+	call search('/', 'bceW')
+	normal! v
+	call search('/', 'eW')
 endfunction
 
 xnoremap <buffer> <silent> i/ :<C-u>call <SID>inSlash()<CR>
