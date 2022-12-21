@@ -341,7 +341,7 @@ return require('packer').startup({
     use {
       'lukas-reineke/indent-blankline.nvim',
       commit = commits['lukas-reineke/indent-blankline.nvim'],
-      config = function() require('plugins.config.indent-blankline') end,
+      config = function() require('plugins.config.indent-blankline') end
     }
 
     -- Theming

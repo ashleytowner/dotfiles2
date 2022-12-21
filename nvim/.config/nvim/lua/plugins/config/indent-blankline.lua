@@ -5,5 +5,9 @@ if not indentOk then
 end
 
 indent.setup({
-  show_current_context = true
+  show_current_context = true,
+  use_treesitter_scope = true,
+  use_treesitter = true,
+  show_trailing_blankline_indent = false,
+  disable_with_nolist = true
 })
