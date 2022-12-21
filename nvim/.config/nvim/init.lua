@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end
 })
 
-vim.o.expandtab = true
+vim.o.expandtab = false
 vim.o.wildignore = 'node_modules/*'
 vim.o.foldlevel = 99
 vim.o.hlsearch = false
