@@ -1,4 +1,5 @@
 local mason_null_ls = require('mason-null-ls')
+local null_ls = require('null-ls')
 
 mason_null_ls.setup({
 	automatic_setup = true,
@@ -16,3 +17,5 @@ mason_null_ls.setup_handlers({
 		require('mason-null-ls.automatic_setup')(source, methods)
 	end
 })
+
+null_ls.setup()
