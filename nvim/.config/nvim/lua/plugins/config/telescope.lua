@@ -158,3 +158,9 @@ vim.keymap.set(
 	'<cmd>Telescope lsp_definitions<CR>',
 	{ noremap = true }
 )
+vim.keymap.set(
+	'n',
+	'<leader>sym',
+	'<cmd>Telescope lsp_document_symbols<CR>',
+	{ noremap = true }
+)

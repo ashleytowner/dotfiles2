@@ -7,30 +7,30 @@ require('tabline')
 
 -- auto-sync when plugins file is saved
 local packer_user_config_group = vim.api.nvim_create_augroup(
-  "PackerUserConfig",
-  { clear = true }
+	"PackerUserConfig",
+	{ clear = true }
 );
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "packer.lua",
-  group = packer_user_config_group,
-  command = "source <afile> | PackerSync"
+	pattern = "packer.lua",
+	group = packer_user_config_group,
+	command = "source <afile> | PackerSync"
 })
 
 -- highlight text on yank
 local yank_highlight_group = vim.api.nvim_create_augroup(
-  "YankHighlight",
-  { clear = true }
+	"YankHighlight",
+	{ clear = true }
 );
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  pattern = "*",
-  group = yank_highlight_group,
-  callback = function()
-	vim.highlight.on_yank({
-		higroup = "IncSearch",
-		timeout = 100
-	})
-  end
+	pattern = "*",
+	group = yank_highlight_group,
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 100
+		})
+	end
 })
 
 vim.o.expandtab = false
@@ -61,11 +61,11 @@ vim.o.shell = '/bin/zsh'
 vim.o.mouse = ''
 
 vim.g.markdown_fenced_languages = {
-  "ts=typescript",
-  "zsh=zsh",
-  "sh=sh",
-  "bash=bash",
-  "js=javascript"
+	"ts=typescript",
+	"zsh=zsh",
+	"sh=sh",
+	"bash=bash",
+	"js=javascript"
 }
 
 vim.cmd('filetype on')
