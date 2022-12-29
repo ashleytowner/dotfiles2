@@ -25,9 +25,9 @@ cmp.setup {
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
+		{ name = 'buffer' },
 		{ name = 'path' },
 		{ name = 'vsnip' },
-		{ name = 'buffer' },
 		{ name = 'calc' },
 	}),
 	formatting = {
@@ -43,6 +43,6 @@ cmp.setup {
 		})
 	},
 	experimental = {
-		ghost_text = false
+		ghost_text = true
 	}
 }

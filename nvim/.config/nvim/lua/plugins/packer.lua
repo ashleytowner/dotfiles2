@@ -261,7 +261,6 @@ return require('packer').startup({
 			'hrsh7th/nvim-cmp',
 			commit = commits['hrsh7th/nvim-cmp'],
 			config = function() require('plugins.config.cmp') end,
-			event = 'InsertEnter',
 			requires = {
 				{
 					'hrsh7th/vim-vsnip',
