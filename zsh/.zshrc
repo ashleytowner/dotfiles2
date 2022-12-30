@@ -44,15 +44,12 @@ setopt AUTO_PUSHD
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}'
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:git:*' user-commands fco:'description for foo'
+
+tabs -2
 #}}}
 
 #{{{ *line_editor*
 
-# function prompt() { 
-#     echo "%{$fg[blue]%}%~ %{$fg[magenta]%}$(git branch --show-current 2> /dev/null)%{$reset_color%} \n$ "
-# }
-# setopt PROMPT_SUBST
-# export PS1="\$(prompt)"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -118,20 +115,14 @@ alias ls="ls -G"
 alias la="ls -A"
 alias ll="ls -Al"
 alias lll="ls -l | tail -n \$(( \$(ls -l | wc -l) - 1 )) | awk '{print \$NF}'"
+
 alias -g ...="../.."
 alias -g ....="../../.."
-
-alias sfy="spotify"
-alias next="spotify next"
-alias prev="spotify prev"
-alias pause="spotify pause"
-alias play="spotify play"
+alias -g .....="../../../.."
+alias -g ......="../../../../.."
 
 alias split="split_tab"
 alias vsplit="vsplit_tab"
-
-alias opg="op get"
-alias opgi="op get item"
 
 # Set a yank & put command
 if which xclip > /dev/null
@@ -167,11 +158,7 @@ alias -s js=node
 alias -s ts=ts-node
 alias -s py=python3
 
-alias -g L="| less"
 alias -g Cerr="2>&1 > /dev/null | yank"
-alias -g H="| head -n"
-alias -g T="| tail -n"
-alias -g F="| ag"
 alias -g Ln="| getLine"
 alias -g Last="| awk '{print \$NF}'"
 
