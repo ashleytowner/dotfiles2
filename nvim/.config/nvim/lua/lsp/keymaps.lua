@@ -27,7 +27,7 @@ function P.set_keymaps()
 	)
 	vim.keymap.set(
 		'n',
-		'gy',
+		']t',
 		'<cmd>lua vim.lsp.buf.type_definition()<CR>',
 		{ noremap = true, silent = true, buffer = true }
 	)

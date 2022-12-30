@@ -13,8 +13,8 @@ end
 local packer_bootstrap = ensure_packer()
 
 local commits = {
-	['akinsho/toggleterm.nvim'] = 'b02a1674bd0010d7982b056fd3df4f717ff8a57a',
-	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
+	['ThePrimeagen/refactoring.nvim'] = 'd4764868c942701e7f34dadf52c29fd156a0496e',
+	['akinsho/toggleterm.nvim'] = 'b02a1674bd0010d7982b056fd3df4f717ff8a57a', ['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
 	['catppuccin/nvim'] = '55f43a952856bc0029e6cef066297c6cfab3451d',
 	['dracula/vim'] = 'b7645942bf91154f76ca016b612131168522d19e',
 	['dstein64/vim-startuptime'] = 'cb4c112b9e0f224236ee4eab6bf5153406b3f88b',
@@ -34,6 +34,7 @@ local commits = {
 	['hrsh7th/vim-vsnip'] = '8dde8c0ef10bb1afdbb301e2bd7eb1c153dd558e',
 	['jayp0521/mason-null-ls.nvim'] = '0fcc40394b8d0f525a8be587268cbfac3e70a5bc',
 	['jose-elias-alvarez/null-ls.nvim'] = 'ef9010b2ac11e2068a8e1d5a4eff576289a1f9a4',
+	['kiyoon/treesitter-indent-object.nvim'] = 'a747ab019428856c3d47c39a5c203b62f0b52c4f',
 	['kyazdani42/nvim-tree.lua'] = 'e14c2895b4f36a22001f7773244041c173dcf867',
 	['kyazdani42/nvim-web-devicons'] = '05e1072f63f6c194ac6e867b567e6b437d3d4622',
 	['lewis6991/gitsigns.nvim'] = '2ab3bdf0a40bab53033048c6be75bda86316b55d',
@@ -46,14 +47,13 @@ local commits = {
 	['neovim/nvim-lspconfig'] = '5292d60976b3084a987bf5634150f6201830ac18',
 	['numToStr/Comment.nvim'] = '5f01c1a89adafc52bf34e3bf690f80d9d726715d',
 	['nvim-lua/plenary.nvim'] = '4b7e52044bbb84242158d977a50c4cbcd85070c7',
-	['nvim-telescope/telescope.nvim'] = 'e960efa60e97df58e089b00270f09d60f27202c8',
 	['nvim-telescope/telescope-ui-select.nvim'] = '62ea5e58c7bbe191297b983a9e7e89420f581369',
+	['nvim-telescope/telescope.nvim'] = 'e960efa60e97df58e089b00270f09d60f27202c8',
 	['nvim-treesitter/nvim-treesitter'] = '2d48cbc831dcfc4ccce4380467d82e908effd0ee',
 	['nvim-treesitter/playground'] = '3421bbbfec25a7c54ee041ffb9cb226b69b2b995',
 	['onsails/lspkind-nvim'] = 'c68b3a003483cf382428a43035079f78474cd11e',
 	['phaazon/hop.nvim'] = '90db1b2c61b820e230599a04fedcd2679e64bd07',
 	['rafamadriz/friendly-snippets'] = '1a6a02350568d6830bcfa167c72f9b6e75e454ae',
-	['ThePrimeagen/refactoring.nvim'] = 'd4764868c942701e7f34dadf52c29fd156a0496e',
 	['tpope/vim-fugitive'] = '5b0b138483de17a8fd8dfcec0b491782c8fbf102',
 	['tpope/vim-repeat'] = '24afe922e6a05891756ecf331f39a1f6743d3d5a',
 	['tpope/vim-surround'] = '3d188ed2113431cf8dac77be61b842acb64433d9',
@@ -325,6 +325,25 @@ return require('packer').startup({
 			run = ':TSUpdate',
 			config = function() require('plugins.config.treesitter') end,
 		}
+
+		use {
+			'kiyoon/treesitter-indent-object.nvim' ,
+			config = function()
+				-- require('treesitter_indent_object').setup()
+				-- select context-aware indent
+				vim.keymap.set({'x', 'o'}, 'ai', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_outer()<CR>')
+				-- ensure selecting entire line (or just use Vai)
+				vim.keymap.set({'x', 'o'}, 'ai', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_outer(true)<CR>')
+				-- select inner block (only if block, only else block, etc.)
+				vim.keymap.set({'x', 'o'}, 'iI', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_inner()<CR>')
+				-- select entire inner range (including if, else, etc.)
+				vim.keymap.set({'x', 'o'}, 'ii', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_inner(true)<CR>')
+			end,
+			requires = 'nvim-treesitter/nvim-treesitter',
+			after = 'indent-blankline.nvim',
+			commit = commits['kiyoon/treesitter-indent-object.nvim']
+		}
+
 
 		use {
 			'nvim-treesitter/playground',
