@@ -1,4 +1,9 @@
-local telescope = require('telescope')
+local telescopeOk, telescope = pcall(require, 'telescope')
+
+if not telescopeOk then
+	return
+end
+
 telescope.setup{
 	defaults = {
 		vimgrep_arguments = {
@@ -10,7 +15,6 @@ telescope.setup{
 			'--column',
 			'--smart-case',
 			'--hidden',
-			'--no-ignore-vcs'
 		},
 		prompt_prefix = "> ",
 		selection_caret = "> ",
@@ -97,71 +101,95 @@ telescope.setup{
 telescope.load_extension('ui-select');
 telescope.load_extension('refactoring');
 
+local builtin = require('telescope.builtin');
+
 -- Keymaps
-vim.keymap.set('n', '<C-f>', '<cmd>Telescope live_grep<cr>', { noremap = true })
 vim.keymap.set(
 	'n',
-	'<C-p>',
-	'<cmd>Telescope find_files<cr>',
+	't/',
+	builtin.live_grep,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>qf',
-	'<cmd>Telescope quickfix<cr>',
+	'<leader>tf',
+	builtin.find_files,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>gco',
-	'<cmd>Telescope git_branches<cr>',
+	'<leader>tF',
+	function() builtin.find_files({
+		find_command = {
+			'rg',
+			'--hidden',
+			'--files'
+		}
+	}) end,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>ls',
-	'<cmd>Telescope buffers<cr>',
+	'<leader>tq',
+	builtin.quickfix,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>ts',
-	'<cmd>Telescope treesitter<cr>',
+	'<leader>tg',
+	builtin.git_branches,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>d',
-	'<cmd>Telescope diagnostics<cr>',
+	'<leader>tb',
+	builtin.buffers,
 	{ noremap = true }
 )
+
+vim.keymap.set(
+	'n',
+	'<leader>te',
+	builtin.diagnostics,
+	{ noremap = true }
+)
+
 vim.keymap.set(
 	'v',
 	'<leader>rr',
-	'<esc><cmd>lua require(\'telescope\').extensions.refactoring.refactors()<CR>',
+	require('telescope').extensions.refactoring.refactors,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
 	'<leader>tp',
-	'<cmd>Telescope resume<cr>',
+	builtin.resume,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>cs',
-	'<cmd>Telescope colorscheme<CR>',
+	'<leader>tc',
+	builtin.colorscheme,
 	{ noremap = true}
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>fn',
-	'<cmd>Telescope lsp_definitions<CR>',
+	'<leader>td',
+	builtin.lsp_definitions,
 	{ noremap = true }
 )
+
 vim.keymap.set(
 	'n',
-	'<leader>sym',
-	'<cmd>Telescope lsp_document_symbols<CR>',
+	'<leader>ty',
+	builtin.lsp_document_symbols,
 	{ noremap = true }
 )

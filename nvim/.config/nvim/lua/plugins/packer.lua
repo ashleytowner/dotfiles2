@@ -38,7 +38,6 @@ local commits = {
 	['kyazdani42/nvim-tree.lua'] = 'e14c2895b4f36a22001f7773244041c173dcf867',
 	['kyazdani42/nvim-web-devicons'] = '05e1072f63f6c194ac6e867b567e6b437d3d4622',
 	['lewis6991/gitsigns.nvim'] = '2ab3bdf0a40bab53033048c6be75bda86316b55d',
-	['lilydjwg/colorizer'] = '72790a003d5a706c287486a1a81e3a6b32158b54',
 	['lukas-reineke/indent-blankline.nvim'] = 'c4c203c3e8a595bc333abaf168fcb10c13ed5fb7',
 	['mattn/emmet-vim'] = 'def5d57a1ae5afb1b96ebe83c4652d1c03640f4d',
 	['mbbill/undotree'] = '1a23ea84bd02c34f50d8e10a8b4bfc89597ffe4e',
@@ -349,11 +348,6 @@ return require('packer').startup({
 			'nvim-treesitter/playground',
 			commit = commits['nvim-treesitter/playground'],
 			requires = 'nvim-treesitter/nvim-treesitter',
-		}
-
-		use {
-			'lilydjwg/colorizer',
-			commit = commits['lilydjwg/colorizer']
 		}
 
 		use {
