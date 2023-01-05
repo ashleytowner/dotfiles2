@@ -54,15 +54,16 @@ telescope.setup{
 	pickers = {
 		find_files = {
 			theme = "dropdown",
-			no_ignore = true,
-			hidden = true,
-			type = 'f',
-			previewer = false,
+			-- no_ignore = false,
+			-- hidden = true,
+			-- type = 'f',
+			-- previewer = false,
 			find_command = {
 				'rg',
-				'--ignore',
+				'--files',
 				'--hidden',
-				'--files'
+				'--glob',
+				'!.git/'
 			}
 		},
 		git_branches = {
