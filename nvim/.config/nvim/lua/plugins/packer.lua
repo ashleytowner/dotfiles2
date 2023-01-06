@@ -13,7 +13,6 @@ end
 local packer_bootstrap = ensure_packer()
 
 local commits = {
-	['ThePrimeagen/refactoring.nvim'] = 'b253bcee0488209875fafceda0d0832a121fa3c7',
 	['akinsho/toggleterm.nvim'] = 'b02a1674bd0010d7982b056fd3df4f717ff8a57a',
 	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
 	['catppuccin/nvim'] = '3020af75aae098a77737d91ee37c7147c8450d99',
@@ -47,13 +46,14 @@ local commits = {
 	['neovim/nvim-lspconfig'] = 'e69978a39e4d3262b09ce6a316beff384f443e3b',
 	['numToStr/Comment.nvim'] = 'ab00bcf5aa979c53f2f40dc2655c03e24f4ef50f',
 	['nvim-lua/plenary.nvim'] = 'bb444796dc5746d969f0718913a31c8075741e36',
-	['nvim-telescope/telescope-ui-select.nvim'] = '62ea5e58c7bbe191297b983a9e7e89420f581369',
 	['nvim-telescope/telescope.nvim'] = 'a606bd10c79ec5989c76c49cc6f736e88b63f0da',
+	['nvim-telescope/telescope-ui-select.nvim'] = '62ea5e58c7bbe191297b983a9e7e89420f581369',
 	['nvim-treesitter/nvim-treesitter'] = '68e8181dbcf29330716d380e5669f2cd838eadb5',
 	['nvim-treesitter/playground'] = '8a887bcf66017bd775a0fb19c9d8b7a4d6759c48',
 	['onsails/lspkind-nvim'] = 'c68b3a003483cf382428a43035079f78474cd11e',
 	['phaazon/hop.nvim'] = '90db1b2c61b820e230599a04fedcd2679e64bd07',
 	['rafamadriz/friendly-snippets'] = '484fb38b8f493ceeebf4e6fc499ebe41e10aae25',
+	['ThePrimeagen/refactoring.nvim'] = 'b253bcee0488209875fafceda0d0832a121fa3c7',
 	['tpope/vim-fugitive'] = '99cdb88bc64063dc4656ae53496f06fb2a394cd4',
 	['tpope/vim-repeat'] = '24afe922e6a05891756ecf331f39a1f6743d3d5a',
 	['tpope/vim-surround'] = '3d188ed2113431cf8dac77be61b842acb64433d9',
