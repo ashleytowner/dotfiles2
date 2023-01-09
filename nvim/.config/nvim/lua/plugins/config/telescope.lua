@@ -150,13 +150,6 @@ vim.keymap.set(
 );
 
 vim.keymap.set(
-	'n',
-	'<leader>te',
-	builtin.diagnostics,
-	{ noremap = true }
-);
-
-vim.keymap.set(
 	'v',
 	'<leader>rr',
 	require('telescope').extensions.refactoring.refactors,
@@ -177,23 +170,3 @@ vim.keymap.set(
 	{ noremap = true }
 );
 
-vim.keymap.set(
-	'n',
-	'<C-]>',
-	builtin.lsp_definitions,
-	{ noremap = true }
-);
-
-vim.keymap.set(
-	'n',
-	']r',
-	builtin.lsp_references,
-	{ noremap = true, silent = true, buffer = true }
-);
-
-vim.keymap.set(
-	'n',
-	'<leader>ty',
-	builtin.lsp_document_symbols,
-	{ noremap = true }
-);

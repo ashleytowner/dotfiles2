@@ -20,31 +20,38 @@ require('mason-lspconfig').setup({
 })
 
 require('mason-lspconfig').setup_handlers {
-		-- The first entry (without a key) will be the default handler
-		-- and will be called for each installed server that doesn't have
-		-- a dedicated handler.
-		function (server_name)
-			require("lspconfig")[server_name].setup({
-				on_attach = function()
-					keymaps.set_keymaps()
-				end
-			})
-		end
+	-- The first entry (without a key) will be the default handler
+	-- and will be called for each installed server that doesn't have
+	-- a dedicated handler.
+	function(server_name)
+		require("lspconfig")[server_name].setup({
+			on_attach = function()
+				keymaps.set_keymaps()
+			end
+		})
+	end
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	vim.lsp.handlers.hover, {
-	 border = "single"
-	}
-)
+	border = "rounded",
+}
+);
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+	vim.lsp.handlers.signature_help, {
+	border = "rounded"
+}
+);
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
+	vim.lsp.diagnostic.on_publish_diagnostics,
+	{
 		-- Enable underline, use default values
 		underline = true,
 		-- Enable virtual text, override spacing to 4
 		virtual_text = {
-			 spacing = 1,
+			spacing = 1,
 		},
 		update_in_insert = false,
 	}

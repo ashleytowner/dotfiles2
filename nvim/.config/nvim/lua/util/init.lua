@@ -17,7 +17,7 @@ function M.spread(template)
 end
 
 function M.trim(s)
-	 return (s:gsub("^%s*(.-)%s*$", "%1"))
+	return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
 function M.get_table_len(tbl)
@@ -37,7 +37,6 @@ function M.system(cmd)
 	handle:close()
 	return result
 end
-
 
 function M.get_color(group, attr)
 	local color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
@@ -63,7 +62,7 @@ function M.get_file_icon(filename)
 		}
 	end
 	local icon, color = devicons
-		.get_icon_color(filename, extension, { default = true })
+			.get_icon_color(filename, extension, { default = true })
 	local _, highlight = require('nvim-web-devicons').get_icon(filename, extension, { default = true })
 	return {
 		icon = icon,
@@ -73,7 +72,7 @@ function M.get_file_icon(filename)
 end
 
 function M.get_plugin_hash(plugin)
-	return M.system('git ls-remote https://github.com/'..plugin..'.git HEAD | awk \'{ print $1 }\'')
+	return M.system('git ls-remote https://github.com/' .. plugin .. '.git HEAD | awk \'{ print $1 }\'')
 end
 
 function M.yank(text)
