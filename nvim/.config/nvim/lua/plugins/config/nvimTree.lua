@@ -33,9 +33,12 @@ require('nvim-tree').setup({
 		}
 	}
 })
+
 vim.keymap.set(
 	'n',
 	'<leader><leader>',
-	'<cmd>NvimTreeFindFileToggle<cr>',
-	{ silent = true}
-)
+	function()
+		require('nvim-tree').toggle(true);
+	end,
+	{ noremap = true }
+);

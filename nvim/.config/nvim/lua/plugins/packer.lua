@@ -53,6 +53,7 @@ local commits = {
 	['onsails/lspkind-nvim'] = 'c68b3a003483cf382428a43035079f78474cd11e',
 	['phaazon/hop.nvim'] = '90db1b2c61b820e230599a04fedcd2679e64bd07',
 	['rafamadriz/friendly-snippets'] = '484fb38b8f493ceeebf4e6fc499ebe41e10aae25',
+	['simrat39/symbols-outline.nvim'] = '6a3ed24c5631da7a5d418bced57c16b32af7747c',
 	['ThePrimeagen/refactoring.nvim'] = 'b253bcee0488209875fafceda0d0832a121fa3c7',
 	['tpope/vim-fugitive'] = '99cdb88bc64063dc4656ae53496f06fb2a394cd4',
 	['tpope/vim-repeat'] = '24afe922e6a05891756ecf331f39a1f6743d3d5a',
@@ -242,6 +243,12 @@ return require('packer').startup({
 					commit = commits['williamboman/mason-lspconfig.nvim'],
 				}
 			}
+		}
+
+		use {
+			'simrat39/symbols-outline.nvim',
+			commit = commits['simrat39/symbols-outline.nvim'],
+			config = function() require('plugins.config.symbols-outline') end,
 		}
 
 		use {
