@@ -24,6 +24,12 @@ export TIMERC=$XDG_CONFIG_HOME/timewarrior/timerc
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/*"'
 export EMPTY_COMMAND='' # If an empty command is entered, this command will be run instead
 export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin:~/go/bin:~/.local/bin:/usr/local/lib/ruby/gems/3.1.0/bin:~/bin
+export FZF_COMPLETION_TRIGGER='**'
+export FZF_COMPLETION_OPTS='--border --info=inline'
+export RANGER_LOAD_DEFAULT_RC=false
+export TASKDDATA=~/.local/share/taskd
+
+# Defaults
 export EDITOR="nvim"
 export TASKDDATA=~/.local/share/taskd
 export RANGER_LOAD_DEFAULT_RC=false
