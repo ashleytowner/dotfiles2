@@ -54,33 +54,6 @@ zstyle ':completion:*:*:git:*' user-commands fco:'description for foo'
 tabs -2
 #}}}
 
-#{{{ *line_editor*
-
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-bindkey -v
-bindkey -M viins '^?' backward-delete-char
-bindkey -M viins '^H' backward-delete-char
-PROMPT_EOL_MARK=''
-PROMPT_POSITION='bottom' # This is managed by the pin prompt plugin
-
-# Make up & down keys search based on what's already entered
-case $(uname -s) in
-'Darwin')
-;&
-'MacOS')
-  bindkey '\e[A' history-beginning-search-backward
-  bindkey '\e[B' history-beginning-search-forward
-  alias fdfind=fd
-;;
-'Linux')
-  bindkey "^[OA" history-beginning-search-backward
-  bindkey "^[OB" history-beginning-search-forward
-;;
-esac
-#}}}
-
 #{{{ *functions*
 
 function dev-tmux() {
@@ -187,23 +160,34 @@ fi
 [ -f $XDG_CONFIG_HOME/fzf/.fzf.zsh ] && source $XDG_CONFIG_HOME/fzf/.fzf.zsh
  # }}}
 
+#{{{ *line_editor*
 
-# If the shell is just starting up, clear to position the prompt
-if [ ! $FIRST_RUN ]
-then
-  clear
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-export FIRST_RUN=true
+bindkey -v
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+PROMPT_EOL_MARK=''
+PROMPT_POSITION='bottom' # This is managed by the pin prompt plugin
 
-function nvm_use() {
-  if type nvm &> /dev/null
-  then
-    if [ -f .nvmrc ]
-    then
-      nvm use
-    fi
-  fi
-}
+# Make up & down keys search based on what's already entered
+case $(uname -s) in
+'Darwin')
+;&
+'MacOS')
+  bindkey '\e[A' history-beginning-search-backward
+  bindkey '\e[B' history-beginning-search-forward
+  alias fdfind=fd
+;;
+'Linux')
+  bindkey "^[OA" history-beginning-search-backward
+  bindkey "^[OB" history-beginning-search-forward
+;;
+esac
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+#}}}
+
+# vim: foldmethod=marker foldlevel=0
