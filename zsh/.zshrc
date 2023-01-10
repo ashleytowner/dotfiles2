@@ -16,23 +16,17 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-# Paths
-export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin:~/go/bin:~/.local/bin:/usr/local/lib/ruby/gems/3.1.0/bin:~/bin
 export COWPATH=/usr/local/share/cows:$XDG_DATA_HOME/cows
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
 export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
 export TIMERC=$XDG_CONFIG_HOME/timewarrior/timerc
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/*"'
-export RANGER_LOAD_DEFAULT_RC=false
-export TASKDDATA=~/.local/share/taskd
-
-# Defaults
+export EMPTY_COMMAND='' # If an empty command is entered, this command will be run instead
+export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin:~/go/bin:~/.local/bin:/usr/local/lib/ruby/gems/3.1.0/bin:~/bin
 export EDITOR="nvim"
-
-# Custom
-export EMPTY_COMMAND='custom_clear'
-export EMPTY_COMMAND_DELTA=500
+export TASKDDATA=~/.local/share/taskd
+export RANGER_LOAD_DEFAULT_RC=false
 #}}}
 
 #{{{ *modules*
