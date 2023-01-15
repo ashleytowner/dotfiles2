@@ -25,9 +25,9 @@ dashboard.custom_center = {
 	},
 	{
 		icon = '  ',
-		desc = 'Live Grep                              ',
+		desc = 'Live Grep                          ',
 		action = 'Telescope live_grep',
-		shortcut = '<C-f>'
+		shortcut = '<leader>t/'
 	},
 	{
 		icon = '祥 ',
@@ -39,7 +39,7 @@ dashboard.custom_center = {
 		icon = '  ',
 		desc = 'Change Colorscheme                ',
 		action = 'Telescope colorscheme',
-		shortcut = '<leader>cs'
+		shortcut = '<leader>tc'
 	},
 	{
 		icon = '  ',
