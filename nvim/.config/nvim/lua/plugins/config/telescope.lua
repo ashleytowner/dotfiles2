@@ -170,3 +170,10 @@ vim.keymap.set(
 	{ noremap = true }
 );
 
+vim.keymap.set(
+	'n',
+	'<leader>ls',
+	builtin.buffers,
+	{ noremap = true }
+);
+
