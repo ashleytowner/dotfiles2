@@ -150,7 +150,7 @@ vim.keymap.set(
 );
 
 vim.keymap.set(
-	'v',
+	{'v', 'n'},
 	'<leader>rr',
 	require('telescope').extensions.refactoring.refactors,
 	{ noremap = true }

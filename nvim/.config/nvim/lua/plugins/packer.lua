@@ -98,7 +98,7 @@ return require('packer').startup({
 		use {
 			'ThePrimeagen/refactoring.nvim',
 			commit = commits['ThePrimeagen/refactoring.nvim'],
-			config = function() require('refactoring').setup({}) end,
+			config = function() require('plugins.config.refactoring') end,
 			requires = {
 					{'nvim-lua/plenary.nvim'},
 					{'nvim-treesitter/nvim-treesitter'}
