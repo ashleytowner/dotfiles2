@@ -12,7 +12,6 @@ require('mason-lspconfig').setup({
 		'html',
 		'sumneko_lua',
 		'pyright',
-		'stylelint_lsp',
 		'tsserver',
 		'vimls',
 		'yamlls',
