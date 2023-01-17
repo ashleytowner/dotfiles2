@@ -177,3 +177,13 @@ vim.keymap.set(
 	{ noremap = true }
 );
 
+vim.keymap.set(
+	'n',
+	'<leader>todo',
+	function()
+		builtin.live_grep({
+			default_text = '(TODO|NOTE|BUG|HACK|WARN|WARNING)(\\(\\w+\\))?:'
+		})
+	end,
+	{ noremap = true }
+)
