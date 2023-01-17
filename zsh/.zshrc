@@ -16,18 +16,20 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-export COWPATH=/usr/local/share/cows:$XDG_DATA_HOME/cows
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
 export ANDROID_SDK_ROOT=~/Library/Android/sdk
-export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
-export TIMERC=$XDG_CONFIG_HOME/timewarrior/timerc
-export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/*"'
+export COWPATH=/usr/local/share/cows:$XDG_DATA_HOME/cows
 export EMPTY_COMMAND='' # If an empty command is entered, this command will be run instead
-export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin:~/go/bin:~/.local/bin:/usr/local/lib/ruby/gems/3.1.0/bin:~/bin
-export FZF_COMPLETION_TRIGGER='**'
+
 export FZF_COMPLETION_OPTS='--border --info=inline'
+export FZF_COMPLETION_TRIGGER='**'
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/*"'
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
+export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin:~/go/bin:~/.local/bin:/usr/local/lib/ruby/gems/3.1.0/bin:~/bin
 export RANGER_LOAD_DEFAULT_RC=false
 export TASKDDATA=~/.local/share/taskd
+export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
+export TIMERC=$XDG_CONFIG_HOME/timewarrior/timerc
 
 # Defaults
 export EDITOR="nvim"
