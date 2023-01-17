@@ -62,17 +62,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end
 })
 
--- local fold_method_group = vim.api.nvim_create_augroup(
--- 	"RecalcFold",
--- 	{ clear = true }
--- );
-
--- vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
--- 	pattern = "*",
--- 	group = fold_method_group,
--- 	command = "set foldmethod=expr"
--- })
-
 vim.o.expandtab = false
 vim.o.wildignore = 'node_modules/*'
 vim.o.foldlevel = 99
