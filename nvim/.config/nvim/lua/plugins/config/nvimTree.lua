@@ -40,5 +40,5 @@ vim.keymap.set(
 	function()
 		require('nvim-tree').toggle(true);
 	end,
-	{ noremap = true }
+	{ noremap = true, desc = "open nvim tree" }
 );
