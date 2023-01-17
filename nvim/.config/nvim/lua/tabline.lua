@@ -28,11 +28,10 @@ local function getFormattedBufferName(bufnr, selected, short)
 
 
 	local path = vim.fn.bufname(bufnr)
-	local extension = vim.fn.fnamemodify(path, ':e')
 	local longname = vim.fn.fnamemodify(path, ':t')
 	local shortname = vim.fn.fnamemodify(path, ':t:r')
 	local displayname = (longname == '' and '[No Name]') or (short and shortname or longname)
-	local icon = util.get_file_icon(extension)
+	local icon = util.get_file_icon(longname)
 
 
 	return (selected and '%#' .. icon.highlight .. '#' or '')

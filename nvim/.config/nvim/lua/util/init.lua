@@ -53,6 +53,9 @@ end
 
 function M.get_file_icon(filename)
 	local extension = vim.fn.fnamemodify(filename, ':e')
+	if extension == '' then
+		extension = filename
+	end
 	local deviconsOk, devicons = pcall(require, 'nvim-web-devicons')
 	if not deviconsOk then
 		return {
