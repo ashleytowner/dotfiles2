@@ -25,7 +25,7 @@ dashboard.custom_center = {
 	},
 	{
 		icon = '  ',
-		desc = 'Live Grep                          ',
+		desc = 'Live Grep                         ',
 		action = 'Telescope live_grep',
 		shortcut = '<leader>t/'
 	},
