@@ -143,23 +143,6 @@ alias -g Last="| awk '{print \$NF}'"
 
 # }}}
 
-# {{{ *external*
-
-# Autoload directory
-for file in ~/.config/zsh/autoload/*; do
-	if [ $(echo "$file" | grep -vE ".disable$") ]; then
-		source "$file"
-	fi
-done
-
-# Source local changes to zshrc
-if [ -f $XDG_CONFIG_HOME/local_override/zsh/.zshrc ]; then
-  source $XDG_CONFIG_HOME/local_override/zsh/.zshrc
-fi
-
-[ -f $XDG_CONFIG_HOME/fzf/.fzf.zsh ] && source $XDG_CONFIG_HOME/fzf/.fzf.zsh
- # }}}
-
 #{{{ *line_editor*
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -186,8 +169,26 @@ case $(uname -s) in
 ;;
 esac
 
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 #}}}
 
-# vim: foldmethod=marker foldlevel=0
+# {{{ *external*
+
+# Autoload directory
+for file in ~/.config/zsh/autoload/*; do
+	if [ $(echo "$file" | grep -vE ".disable$") ]; then
+		source "$file"
+	fi
+done
+
+# Source local changes to zshrc
+if [ -f $XDG_CONFIG_HOME/local_override/zsh/.zshrc ]; then
+  source $XDG_CONFIG_HOME/local_override/zsh/.zshrc
+fi
+
+[ -f $XDG_CONFIG_HOME/fzf/.fzf.zsh ] && source $XDG_CONFIG_HOME/fzf/.fzf.zsh
+ # }}}
+
+# vim: foldmethod=marker foldlevel=99
