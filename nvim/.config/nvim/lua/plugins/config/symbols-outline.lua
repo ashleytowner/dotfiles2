@@ -1,4 +1,19 @@
 require('symbols-outline').setup({
+	autofold_depth = 2,
+	keymaps = {
+		close = "q",
+		goto_location = "<C-]>",
+		focus_location = "o",
+		hover_symbol = "K",
+		toggle_preview = "<C-Space>",
+		rename_symbol = "r",
+		code_actions = "a",
+		fold = "h",
+		unfold = "l",
+		fold_all = "W",
+		unfold_all = "E",
+		fold_reset = "R",
+	},
 	symbols = {
 		Array = { icon = "", hl = "@constant" },
 		Boolean = { icon = "⊨", hl = "@boolean" },
@@ -33,5 +48,5 @@ vim.keymap.set(
 	'n',
 	']]',
 	function() vim.cmd('SymbolsOutline') end,
-	{ noremap = true }
+	{ noremap = true, desc = "open symbols outline" }
 )
