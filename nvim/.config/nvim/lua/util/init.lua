@@ -5,7 +5,6 @@ local M = {}
 function M.trim(s)
 	return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
-
 function M.get_table_len(tbl)
 	local count = 0
 	for _ in pairs(tbl) do
@@ -73,6 +72,36 @@ function M.create_highlight_group(group, fg, bg)
 		return
 	end
 	vim.cmd('hi ' .. group .. ' guifg=' .. fg .. ' guibg=' .. bg)
+end
+
+function M.get_visual_selection()
+	local select_start = vim.api.nvim_buf_get_mark(0, '<');
+	local select_end = vim.api.nvim_buf_get_mark(0, '>');
+
+
+	-- Line-wise visual selection can go over the length of the last line
+	-- we are preventing that here
+	local last_line = vim.api.nvim_buf_get_lines(
+		0,
+		select_end[1] - 1,
+		select_end[1],
+		true
+	)[1];
+
+	if select_end[2] > string.len(last_line) then
+		select_end[2] = string.len(last_line);
+	end
+
+	local text = vim.api.nvim_buf_get_text(
+		0,
+		select_start[1] - 1,
+		select_start[2],
+		select_end[1] - 1,
+		select_end[2] + 1,
+		{}
+	);
+
+	return text
 end
 
 return M
