@@ -4,16 +4,10 @@ local tscpOk, tscp = pcall(require, 'telescope.builtin');
 
 function P.set_keymaps()
 	vim.keymap.set(
-		'n',
+		{ 'n', 'i' },
 		'<C-k>',
 		vim.lsp.buf.signature_help,
 		{ noremap = true, silent = true, buffer = true }
-	);
-
-	vim.keymap.set(
-		'i',
-		'<C-k>',
-		vim.lsp.buf.signature_help, { noremap = true, silent = true, buffer = true }
 	);
 
 	vim.keymap.set(
