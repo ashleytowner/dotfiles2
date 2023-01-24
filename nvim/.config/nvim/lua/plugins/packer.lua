@@ -411,6 +411,11 @@ return require('packer').startup({
 		end
 	end,
 	config = {
+		display = {
+			open_fn = function ()
+				return require('packer.util').float({ border = 'rounded' })
+			end
+		},
 		compile_on_sync = true,
 		profile = {
 			enable = true,
