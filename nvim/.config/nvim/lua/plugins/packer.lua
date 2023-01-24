@@ -39,6 +39,7 @@ local commits = {
 	['kyazdani42/nvim-web-devicons'] = '6c38926351372ea87034dec26182b62c835ff3bc',
 	['lewis6991/gitsigns.nvim'] = 'addd6e174a85fc1c4007ab0b65d77e6555b417bf',
 	['lukas-reineke/indent-blankline.nvim'] = 'c4c203c3e8a595bc333abaf168fcb10c13ed5fb7',
+	['marilari88/twoslash-queries.nvim'] = 'f2122d8fa34cf8316783d0828f6aa69f1c5ba87f',
 	['mattn/emmet-vim'] = 'def5d57a1ae5afb1b96ebe83c4652d1c03640f4d',
 	['mbbill/undotree'] = '1a23ea84bd02c34f50d8e10a8b4bfc89597ffe4e',
 	['mfussenegger/nvim-dap'] = 'c64a6627bb01eb151da96b28091797beaac09536',
@@ -322,6 +323,18 @@ return require('packer').startup({
 			config = function() require('plugins.config.copilot') end,
 			commit = commits['github/copilot.vim'],
 			disable = true
+		}
+
+		use {
+			'marilari88/twoslash-queries.nvim',
+			config = function()
+				require('twoslash-queries').setup({
+					multi_line = true,
+					is_enabled = false,
+					highlight = 'Comment'
+				})
+			end,
+			commit = commits['marilari88/twoslash-queries.nvim']
 		}
 
 		-- Syntax Highlighting
