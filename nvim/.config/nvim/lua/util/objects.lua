@@ -1,19 +1,26 @@
-vim.cmd([[
-function! s:inSlash()
-	call search('/', 'bceW')
-	normal! lv
-	call search('/', 'ceW')
-	normal! h
-endfunction
+---Create keymaps for a text object defined as anything between
+---two instances of char
+---@param char string
+local function setBetweenObject(char)
+	vim.keymap.set(
+		{ 'o', 'x' },
+		'a' .. char,
+		':<C-u>silent! normal! f'..char..'F'..char..'vf'..char..'<cr>',
+		{ silent = true, noremap = true }
+	)
 
-function! s:aroundSlash()
-	call search('/', 'bceW')
-	normal! v
-	call search('/', 'eW')
-endfunction
+	vim.keymap.set(
+		{ 'o', 'x' },
+		'i' .. char,
+		':<C-u>silent! normal! f'..char..'F'..char..'lvt'..char..'<cr>',
+		{ silent = true, noremap = true }
+	)
+end
 
-xnoremap <buffer> <silent> i/ :<C-u>call <SID>inSlash()<CR>
-onoremap <buffer> <silent> i/ :<C-u>call <SID>inSlash()<CR>
-xnoremap <buffer> <silent> a/ :<C-u>call <SID>aroundSlash()<CR>
-onoremap <buffer> <silent> a/ :<C-u>call <SID>aroundSlash()<CR>
-]])
+setBetweenObject('*')
+setBetweenObject('/')
+setBetweenObject('.')
+setBetweenObject('_')
+setBetweenObject('|')
+setBetweenObject('$')
+setBetweenObject('#')
