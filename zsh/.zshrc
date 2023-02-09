@@ -32,7 +32,7 @@ export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
 export TIMERC=$XDG_CONFIG_HOME/timewarrior/timerc
 
 # Defaults
-export EDITOR="nvim"
+export EDITOR="$(which nvim)"
 export TASKDDATA=~/.local/share/taskd
 export RANGER_LOAD_DEFAULT_RC=false
 #}}}
