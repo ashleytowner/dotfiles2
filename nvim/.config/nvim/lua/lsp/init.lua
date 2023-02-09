@@ -38,29 +38,9 @@ masonLsp.setup_handlers {
 	end,
 	['tsserver'] = function(server_name)
 		lspConfig[server_name].setup({
-			on_attach = function(client, bufnr)
+			on_attach = function() -- (client, bufnr)
+				-- Example custom config
 				keymaps.set_keymaps()
-
-				local twoslashQueriesOk, twoslashQueries = pcall(require, 'twoslash-queries');
-				if not twoslashQueriesOk then
-					return;
-				end
-				twoslashQueries.attach(client, bufnr);
-				twoslashQueries.enable();
-
-				vim.keymap.set(
-					'n',
-					'<leader>?',
-					'<cmd>InspectTwoslashQueries<cr>',
-					{ noremap = true, buffer = true }
-				);
-
-				vim.keymap.set(
-					'n',
-					'<leader><bs>?',
-					'<cmd>RemoveTwoslashQueries<cr>',
-					{ noremap = true, buffer = true }
-				);
 			end
 		})
 	end
