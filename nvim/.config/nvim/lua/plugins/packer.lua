@@ -29,6 +29,7 @@ local commits = {
 	['github/copilot.vim'] = 'c7d166ebda265370f38cec374e33f02eeec2f857',
 	['glacambre/firenvim'] = '35b34ba566d9d9f6761cde3574f668d505c5137f',
 	['glepnir/dashboard-nvim'] = '97aaa208917f814f2e5799d5894ff791b4ab5059',
+	['gpanders/editorconfig.nvim'] = '5b9e303e1d6f7abfe616ce4cc8d3fffc554790bf',
 	['haishanh/night-owl.vim'] = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
 	['hrsh7th/cmp-buffer'] = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
 	['hrsh7th/cmp-calc'] = '50792f34a628ea6eb31d2c90e8df174671e4e7a0',
@@ -109,6 +110,13 @@ return require('packer').startup({
 					{'nvim-lua/plenary.nvim'},
 					{'nvim-treesitter/nvim-treesitter'}
 			}
+		}
+
+		-- TODO: Remove this once nvim 0.9 comes out, as it's supported by
+		-- default
+		use {
+			'gpanders/editorconfig.nvim',
+			commit = commits['gpanders/editorconfig.nvim']
 		}
 
 		-- Util
