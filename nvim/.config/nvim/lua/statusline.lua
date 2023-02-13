@@ -31,8 +31,14 @@ end
 -- Asynchronously set git status variables
 local asyncOk, async = pcall(require, 'plenary.async')
 
+vim.g.git_status = ''
+vim.g.git_stashes = ''
+vim.g.git_branch = ''
+vim.g.git_commit = ''
+
 local get_git_status = asyncOk and
 async.void(function()
+	async.util.sleep(10)
 	vim.g.git_status = u.system('git status -sb 2> /dev/null')
 	vim.g.git_stashes = u.trim(u.system('git stash list 2> /dev/null | wc -l'))
 	vim.g.git_branch = u.trim(u.system('git branch --show-current 2> /dev/null'))
@@ -49,7 +55,7 @@ end)
 -- Automatically regenerate git status on certain events
 local git_status_group = vim.api.nvim_create_augroup("GitStatus", { clear = true })
 vim.api.nvim_create_autocmd(
-	{"BufEnter", "FocusGained", "BufWritePost"},
+	{"BufEnter", "FocusGained", "BufWritePost", "CmdlineLeave"},
 	{
 		group = git_status_group,
 		callback = function()
