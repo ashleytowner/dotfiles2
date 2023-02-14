@@ -38,9 +38,13 @@ masonLsp.setup_handlers {
 	end,
 	['tsserver'] = function(server_name)
 		lspConfig[server_name].setup({
-			on_attach = function() -- (client, bufnr)
+			on_attach = function(client, bufnr)
 				-- Example custom config
 				keymaps.set_keymaps()
+				local tsqOk, tsq = pcall(require, 'twoslash-queries')
+				if tsqOk then
+					tsq.attach(client, bufnr)
+				end
 			end
 		})
 	end
