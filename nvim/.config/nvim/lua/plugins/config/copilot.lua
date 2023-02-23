@@ -26,4 +26,3 @@ vim.keymap.set(
 		desc = "Copilot dummy map"
 	}
 )
-

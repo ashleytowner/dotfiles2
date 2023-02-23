@@ -70,6 +70,7 @@ local commits = {
 	['williamboman/mason-lspconfig.nvim'] = '53f3a8bdcb77d4a95b082fd57e12173f353c6c3e',
 	['williamboman/mason.nvim'] = '4952a48722b3fa01e03c67ab939d5b7d3037309e',
 	['windwp/nvim-autopairs'] = '0e065d423f9cf649e1d92443c939a4b5073b6768',
+	['codota/tabnine-nvim'] = '559be04cc827d3522e6f1e211b6e30428a4c3d2c',
 }
 
 return require('packer').startup({
@@ -259,6 +260,24 @@ return require('packer').startup({
 				}
 			}
 		}
+
+		use {
+			'codota/tabnine-nvim',
+			commit = commits['codota/tabnine-nvim'],
+			run = './dl_binaries.sh',
+			config = function()
+				require('tabnine').setup({
+					disable_auto_comment = true,
+					accept_keymap='<Tab>',
+					dismiss_keymap='<C-e>',
+					debounce_ms = 800,
+					suggestion_color = { gui = '#ff0000' },
+					exclude_filetype = {'TelescopePrompt'}
+				})
+			end,
+			disable = true
+		}
+
 
 		use {
 			'marilari88/twoslash-queries.nvim',
