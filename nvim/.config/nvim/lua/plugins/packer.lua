@@ -366,7 +366,7 @@ return require('packer').startup({
 			'github/copilot.vim',
 			config = function() require('plugins.config.copilot') end,
 			commit = commits['github/copilot.vim'],
-			disable = true
+			disable = false
 		}
 
 		-- Syntax Highlighting
