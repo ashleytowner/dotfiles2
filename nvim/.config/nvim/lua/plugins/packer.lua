@@ -180,7 +180,8 @@ return require('packer').startup({
 			config = function() require('plugins.config.autopairs') end,
 			after = {
 				'nvim-cmp'
-			}
+			},
+			disable = true
 		}
 
 		use {
