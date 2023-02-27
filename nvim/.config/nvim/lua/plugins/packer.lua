@@ -263,24 +263,6 @@ return require('packer').startup({
 		}
 
 		use {
-			'codota/tabnine-nvim',
-			commit = commits['codota/tabnine-nvim'],
-			run = './dl_binaries.sh',
-			config = function()
-				require('tabnine').setup({
-					disable_auto_comment = true,
-					accept_keymap='<Tab>',
-					dismiss_keymap='<C-e>',
-					debounce_ms = 800,
-					suggestion_color = { gui = '#ff0000' },
-					exclude_filetype = {'TelescopePrompt'}
-				})
-			end,
-			disable = true
-		}
-
-
-		use {
 			'marilari88/twoslash-queries.nvim',
 			commit = commits['marilari88/twoslash-queries.nvim'],
 			config = function ()
@@ -365,8 +347,8 @@ return require('packer').startup({
 
 		use {
 			'github/copilot.vim',
-			config = function() require('plugins.config.copilot') end,
 			commit = commits['github/copilot.vim'],
+			config = function() require('plugins.config.copilot') end,
 			disable = false
 		}
 
@@ -384,13 +366,17 @@ return require('packer').startup({
 			config = function()
 				-- require('treesitter_indent_object').setup()
 				-- select context-aware indent
-				vim.keymap.set({'x', 'o'}, 'ai', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_outer()<CR>')
+				vim.keymap.set({ 'x', 'o' }, 'ai',
+					'<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_outer()<CR>')
 				-- ensure selecting entire line (or just use Vai)
-				vim.keymap.set({'x', 'o'}, 'ai', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_outer(true)<CR>')
+				vim.keymap.set({ 'x', 'o' }, 'ai',
+					'<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_outer(true)<CR>')
 				-- select inner block (only if block, only else block, etc.)
-				vim.keymap.set({'x', 'o'}, 'iI', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_inner()<CR>')
+				vim.keymap.set({ 'x', 'o' }, 'iI',
+					'<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_inner()<CR>')
 				-- select entire inner range (including if, else, etc.)
-				vim.keymap.set({'x', 'o'}, 'ii', '<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_inner(true)<CR>')
+				vim.keymap.set({ 'x', 'o' }, 'ii',
+					'<Cmd>lua require\'treesitter_indent_object.textobj\'.select_indent_inner(true)<CR>')
 			end,
 			requires = 'nvim-treesitter/nvim-treesitter',
 			after = 'indent-blankline.nvim',
@@ -419,8 +405,8 @@ return require('packer').startup({
 
 		use {
 			'catppuccin/nvim',
-			as = 'catppuccin',
 			commit = commits['catppuccin/nvim'],
+			as = 'catppuccin',
 			config = function() require('plugins.colorscheme') end,
 		}
 
