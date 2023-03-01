@@ -102,7 +102,7 @@ local builtin = require('telescope.builtin');
 -- Keymaps
 vim.keymap.set(
 	'n',
-	't/',
+	'<C-f>',
 	builtin.live_grep,
 	{ noremap = true }
 );
