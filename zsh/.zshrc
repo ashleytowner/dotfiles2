@@ -82,10 +82,8 @@ alias py="python3"
 function weather() {
   curl v2.wttr.in/$1
 }
-alias vim="nvim"
-alias vimm="nvim -M"
-alias ovim="/usr/bin/vim"
 alias vims="nvim -S $XDG_DATA_HOME/nvim/sessions/\$(ls $XDG_DATA_HOME/nvim/sessions | fzf)"
+alias nv="nvim"
 alias src="source $ZDOTDIR.zshrc"
 alias reload="exec zsh -l"
 alias run="scripts"
