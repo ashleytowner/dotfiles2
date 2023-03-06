@@ -270,6 +270,12 @@ return require('packer').startup({
 					multi_line = true,
 					highlight = 'Type'
 				})
+				vim.keymap.set(
+					'n',
+					'<leader>?',
+					'<cmd>InspectTwoslashQueries<cr>',
+					{ noremap = true }
+				)
 			end
 		}
 
