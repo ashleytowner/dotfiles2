@@ -17,7 +17,7 @@ masonLsp.setup({
 		'clangd',
 		'cssls',
 		'html',
-		'sumneko_lua',
+		'lua_ls',
 		'pyright',
 		'tsserver',
 		'vimls',
