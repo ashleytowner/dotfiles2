@@ -34,13 +34,13 @@ require('dashboard').setup({
 				icon = '  ',
 				desc = 'Live Grep',
 				action = 'Telescope live_grep',
-				shortcut = '<leader>t/',
-				key = '<leader>t/',
+				shortcut = '<C-f>',
+				key = '<C-f>',
 				icon_hl = 'Special',
 				key_hl = 'Special'
 			},
 			{
-				icon = '祥 ',
+				icon = '  ',
 				desc = 'Startup Time',
 				action = 'StartupTime --tries 50',
 				shortcut = ':StartupTime',
