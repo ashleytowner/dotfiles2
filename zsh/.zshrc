@@ -193,4 +193,3 @@ fi
  # }}}
 
 # vim: foldmethod=marker foldlevel=99
-export GPG_TTY=$(tty)
