@@ -52,6 +52,8 @@ local commits = {
 	['mfussenegger/nvim-dap'] = '73196075627a4f079c62b0dd4aff8ce0a1b7cf57',
 	['mhinz/vim-startify'] = '81e36c352a8deea54df5ec1e2f4348685569bed2',
 	['neovim/nvim-lspconfig'] = '4bb0f1845c5cc6465aecedc773fc2d619fcd8faf',
+	['NFrid/markdown-togglecheck'] = 'c0656836e2ef0b1c2ff6d8b68d3d11ac7973282e',
+	['NFrid/treesitter-utils'] = '8505c912e29388d2ebb92cf22e91e55052a861cd',
 	['numToStr/Comment.nvim'] = '6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43',
 	['nvim-lua/plenary.nvim'] = '253d34830709d690f013daf2853a9d21ad7accab',
 	['nvim-telescope/telescope.nvim'] = 'a3f17d3baf70df58b9d3544ea30abe52a7a832c2',
@@ -273,6 +275,30 @@ return require('packer').startup({
 					'n',
 					'<leader>?',
 					'<cmd>InspectTwoslashQueries<cr>',
+					{ noremap = true }
+				)
+			end
+		}
+
+		use {
+			'NFrid/treesitter-utils',
+			commit = commits['NFrid/treesitter-utils'],
+			requires = 'nvim-treesitter/nvim-treesitter'
+		}
+
+		use {
+			'NFrid/markdown-togglecheck',
+			commit = commits['NFrid/markdown-togglecheck'],
+			requires = 'NFrid/treesitter-utils',
+			config = function()
+				require('markdown-togglecheck').setup({
+					create = true,
+					remove = false
+				})
+				vim.keymap.set(
+					'n',
+					'<leader>nn',
+					require('markdown-togglecheck').toggle,
 					{ noremap = true }
 				)
 			end
