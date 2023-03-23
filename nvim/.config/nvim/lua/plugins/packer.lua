@@ -1,6 +1,6 @@
 -- Boostrap packer
 local ensure_packer = function()
-	local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+	local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 		vim.fn.system({
 			'git',
@@ -19,6 +19,9 @@ end
 local packer_bootstrap = ensure_packer()
 
 local commits = {
+	['NFrid/markdown-togglecheck'] = 'c0656836e2ef0b1c2ff6d8b68d3d11ac7973282e',
+	['NFrid/treesitter-utils'] = '8505c912e29388d2ebb92cf22e91e55052a861cd',
+	['ThePrimeagen/refactoring.nvim'] = '57c32c6b7a211e5a3a5e4ddc4ad2033daff5cf9a',
 	['akinsho/toggleterm.nvim'] = '31d38d11390bcd35a568fcc65a79b7d6ec89de62',
 	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
 	['catppuccin/nvim'] = '90c4d1c6e1f8dd2cff9962b36a70b1e681947621',
@@ -39,6 +42,7 @@ local commits = {
 	['hrsh7th/cmp-vsnip'] = '989a8a73c44e926199bfd05fa7a516d51f2d2752',
 	['hrsh7th/nvim-cmp'] = 'feed47fd1da7a1bad2c7dca456ea19c8a5a9823a',
 	['hrsh7th/vim-vsnip'] = '8dde8c0ef10bb1afdbb301e2bd7eb1c153dd558e',
+	['jackMort/ChatGPT.nvim'] = '8797871b5d11d256834b1c474ca9016dd0137dcb',
 	['jayp0521/mason-null-ls.nvim'] = 'c35a40cbf276611c8fadbbffc4a31c20a0b05dcc',
 	['jose-elias-alvarez/null-ls.nvim'] = '787d250107b5f6a2535245c4060cc7a5b0b87884',
 	['kiyoon/treesitter-indent-object.nvim'] = '50c2301c3b3785430df77856be59dc9fec7347d8',
@@ -52,19 +56,16 @@ local commits = {
 	['mfussenegger/nvim-dap'] = '73196075627a4f079c62b0dd4aff8ce0a1b7cf57',
 	['mhinz/vim-startify'] = '81e36c352a8deea54df5ec1e2f4348685569bed2',
 	['neovim/nvim-lspconfig'] = '4bb0f1845c5cc6465aecedc773fc2d619fcd8faf',
-	['NFrid/markdown-togglecheck'] = 'c0656836e2ef0b1c2ff6d8b68d3d11ac7973282e',
-	['NFrid/treesitter-utils'] = '8505c912e29388d2ebb92cf22e91e55052a861cd',
 	['numToStr/Comment.nvim'] = '6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43',
 	['nvim-lua/plenary.nvim'] = '253d34830709d690f013daf2853a9d21ad7accab',
-	['nvim-telescope/telescope.nvim'] = 'a3f17d3baf70df58b9d3544ea30abe52a7a832c2',
 	['nvim-telescope/telescope-ui-select.nvim'] = '62ea5e58c7bbe191297b983a9e7e89420f581369',
+	['nvim-telescope/telescope.nvim'] = 'a3f17d3baf70df58b9d3544ea30abe52a7a832c2',
 	['nvim-treesitter/nvim-treesitter'] = 'fc1ca10bfbdee17e29374d0d1bac8ea030539dc3',
 	['nvim-treesitter/playground'] = '4044b53c4d4fcd7a78eae20b8627f78ce7dc6f56',
 	['onsails/lspkind-nvim'] = 'c68b3a003483cf382428a43035079f78474cd11e',
 	['phaazon/hop.nvim'] = '90db1b2c61b820e230599a04fedcd2679e64bd07',
 	['rafamadriz/friendly-snippets'] = '009887b76f15d16f69ae1341f86a7862f61cf2a1',
 	['simrat39/symbols-outline.nvim'] = '512791925d57a61c545bc303356e8a8f7869763c',
-	['ThePrimeagen/refactoring.nvim'] = '57c32c6b7a211e5a3a5e4ddc4ad2033daff5cf9a',
 	['tpope/vim-fugitive'] = '5b52a0f395065d6cb7b65a00a5e17eaf9ebd64d5',
 	['tpope/vim-repeat'] = '24afe922e6a05891756ecf331f39a1f6743d3d5a',
 	['tpope/vim-surround'] = '3d188ed2113431cf8dac77be61b842acb64433d9',
@@ -76,7 +77,6 @@ local commits = {
 
 return require('packer').startup({
 	function(use)
-
 		use {
 			'wbthomason/packer.nvim',
 			commit = commits['wbthomason/packer.nvim']
@@ -110,10 +110,106 @@ return require('packer').startup({
 			commit = commits['ThePrimeagen/refactoring.nvim'],
 			config = function() require('plugins.config.refactoring') end,
 			requires = {
-					{'nvim-lua/plenary.nvim'},
-					{'nvim-treesitter/nvim-treesitter'}
+				{ 'nvim-lua/plenary.nvim' },
+				{ 'nvim-treesitter/nvim-treesitter' }
 			}
 		}
+
+		-- AI
+		use {
+			'github/copilot.vim',
+			commit = commits['github/copilot.vim'],
+			config = function() require('plugins.config.copilot') end,
+			disable = false
+		}
+
+		use {
+			'jackMort/ChatGPT.nvim',
+			commit = commits['jackMort/ChatGPT.nvim'],
+			config = function()
+				require('chatgpt').setup({
+					welcome_message = '',
+					loading_text = "loading",
+					question_sign = "", -- you can use emoji if you want e.g. 🙂
+					answer_sign = "ﮧ", -- 🤖
+					max_line_length = 120,
+					yank_register = "+",
+					chat_layout = {
+						relative = "editor",
+						position = "50%",
+						size = {
+							height = "80%",
+							width = "80%",
+						},
+					},
+					settings_window = {
+						border = {
+							style = "rounded",
+							text = {
+								top = " Settings ",
+							},
+						},
+					},
+					chat_window = {
+						filetype = "chatgpt",
+						border = {
+							highlight = "FloatBorder",
+							style = "rounded",
+							text = {
+								top = " ChatGPT ",
+							},
+						},
+					},
+					chat_input = {
+						prompt = "  ",
+						border = {
+							highlight = "FloatBorder",
+							style = "rounded",
+							text = {
+								top_align = "center",
+								top = " Prompt ",
+							},
+						},
+					},
+					openai_params = {
+						model = "gpt-3.5-turbo",
+						frequency_penalty = 0,
+						presence_penalty = 0,
+						max_tokens = 300,
+						temperature = 0,
+						top_p = 1,
+						n = 1,
+					},
+					openai_edit_params = {
+						model = "code-davinci-edit-001",
+						temperature = 0,
+						top_p = 1,
+						n = 1,
+					},
+					keymaps = {
+						close = { "<C-c>" },
+						submit = "<Enter>",
+						yank_last = "<C-y>",
+						yank_last_code = "<C-k>",
+						scroll_up = "<C-u>",
+						scroll_down = "<C-d>",
+						toggle_settings = "<C-o>",
+						new_session = "<C-n>",
+						cycle_windows = "<Tab>",
+						-- in the Sessions pane
+						select_session = "<Space>",
+						rename_session = "r",
+						delete_session = "d",
+					},
+				})
+			end,
+			requires = {
+				'MunifTanjim/nui.nvim',
+				'nvim-lua/plenary.nvim',
+				'nvim-telescope/telescope.nvim'
+			}
+		}
+
 
 		-- TODO: Remove this once nvim 0.9 comes out, as it's supported by
 		-- default
@@ -266,7 +362,7 @@ return require('packer').startup({
 		use {
 			'marilari88/twoslash-queries.nvim',
 			commit = commits['marilari88/twoslash-queries.nvim'],
-			config = function ()
+			config = function()
 				require('twoslash-queries').setup({
 					multi_line = true,
 					highlight = 'Type'
@@ -376,13 +472,6 @@ return require('packer').startup({
 			}
 		}
 
-		use {
-			'github/copilot.vim',
-			commit = commits['github/copilot.vim'],
-			config = function() require('plugins.config.copilot') end,
-			disable = false
-		}
-
 		-- Syntax Highlighting
 
 		use {
@@ -393,7 +482,7 @@ return require('packer').startup({
 		}
 
 		use {
-			'kiyoon/treesitter-indent-object.nvim' ,
+			'kiyoon/treesitter-indent-object.nvim',
 			config = function()
 				-- require('treesitter_indent_object').setup()
 				-- select context-aware indent
@@ -462,7 +551,7 @@ return require('packer').startup({
 	end,
 	config = {
 		display = {
-			open_fn = function ()
+			open_fn = function()
 				return require('packer.util').float({ border = 'rounded' })
 			end
 		},
