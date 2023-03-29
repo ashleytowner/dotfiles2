@@ -19,19 +19,17 @@ end
 local packer_bootstrap = ensure_packer()
 
 local commits = {
-	['NFrid/markdown-togglecheck'] = 'c0656836e2ef0b1c2ff6d8b68d3d11ac7973282e',
-	['NFrid/treesitter-utils'] = '8505c912e29388d2ebb92cf22e91e55052a861cd',
 	['ThePrimeagen/refactoring.nvim'] = '57c32c6b7a211e5a3a5e4ddc4ad2033daff5cf9a',
-	['akinsho/toggleterm.nvim'] = '31d38d11390bcd35a568fcc65a79b7d6ec89de62',
+	['akinsho/toggleterm.nvim'] = 'ed6c92d6708e5208360347f2281de99602061dc8',
 	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
-	['catppuccin/nvim'] = '90c4d1c6e1f8dd2cff9962b36a70b1e681947621',
+	['catppuccin/nvim'] = 'dc216c6241fd8439fe6018cca834200aca1a04ad',
 	['dracula/vim'] = 'eb577d47b0cfc9191bf04c414b4042d5f1a980f8',
 	['dstein64/vim-startuptime'] = '6580cf539c33a212f4f5542068a3b4dd2b3ad834',
-	['folke/tokyonight.nvim'] = '3ebc29df627c5cf70eb6acb8f0843c9ea9cf6348',
+	['folke/tokyonight.nvim'] = '1b0c88094548a62641ece1e668fa9a234e1c539e',
 	['gbrlsnchs/telescope-lsp-handlers.nvim'] = 'de02085d6af1633942549a238bc7a5524fa9b201',
 	['github/copilot.vim'] = '9e869d29e62e36b7eb6fb238a4ca6a6237e7d78b',
-	['glacambre/firenvim'] = 'a9ac5e1e42fc62819749c9f10f3f18d924a66a35',
-	['glepnir/dashboard-nvim'] = '6e31bf683a1852399ace9914edfd3aa1be3e5e23',
+	['glacambre/firenvim'] = '12003d9727bc5074ccb405b3d80e691c72d4859b',
+	['glepnir/dashboard-nvim'] = '669536db27ea411217f633ee54b63be41ecff300',
 	['gpanders/editorconfig.nvim'] = '5b9e303e1d6f7abfe616ce4cc8d3fffc554790bf',
 	['haishanh/night-owl.vim'] = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
 	['hrsh7th/cmp-buffer'] = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
@@ -40,39 +38,39 @@ local commits = {
 	['hrsh7th/cmp-nvim-lsp'] = '0e6b2ed705ddcff9738ec4ea838141654f12eeef',
 	['hrsh7th/cmp-path'] = '91ff86cd9c29299a64f968ebb45846c485725f23',
 	['hrsh7th/cmp-vsnip'] = '989a8a73c44e926199bfd05fa7a516d51f2d2752',
-	['hrsh7th/nvim-cmp'] = 'feed47fd1da7a1bad2c7dca456ea19c8a5a9823a',
-	['hrsh7th/vim-vsnip'] = '8dde8c0ef10bb1afdbb301e2bd7eb1c153dd558e',
+	['hrsh7th/nvim-cmp'] = '777450fd0ae289463a14481673e26246b5e38bf2',
+	['hrsh7th/vim-vsnip'] = '7753ba9c10429c29d25abfd11b4c60b76718c438',
 	['jackMort/ChatGPT.nvim'] = '8797871b5d11d256834b1c474ca9016dd0137dcb',
-	['jayp0521/mason-null-ls.nvim'] = 'c35a40cbf276611c8fadbbffc4a31c20a0b05dcc',
-	['jose-elias-alvarez/null-ls.nvim'] = '787d250107b5f6a2535245c4060cc7a5b0b87884',
+	['jayp0521/mason-null-ls.nvim'] = '4070ec7c543b67df16143ee206e436d24bb9c01b',
+	['jose-elias-alvarez/null-ls.nvim'] = '0180603b6f3cee40f83c6fc226b9ac5f85e691c4',
 	['kiyoon/treesitter-indent-object.nvim'] = '50c2301c3b3785430df77856be59dc9fec7347d8',
-	['kyazdani42/nvim-tree.lua'] = 'bbb6d4891009de7dab05ad8fc2d39f272d7a751c',
-	['kyazdani42/nvim-web-devicons'] = '4af94fec29f508159ceab5413383e5dedd6c24e3',
-	['lewis6991/gitsigns.nvim'] = 'b1f9cf7c5c5639c006c937fc1819e09f358210fc',
+	['kyazdani42/nvim-tree.lua'] = '6319ad94050c4489951ad34b6535c134a3efa455',
+	['kyazdani42/nvim-web-devicons'] = '95b1e300699be8eb6b5be1758a9d4d69fe93cc7f',
+	['lewis6991/gitsigns.nvim'] = 'ca473e28382f1524aa3d2b6f04bcf54f2e6a64cb',
 	['lukas-reineke/indent-blankline.nvim'] = '018bd04d80c9a73d399c1061fa0c3b14a7614399',
 	['marilari88/twoslash-queries.nvim'] = 'f2122d8fa34cf8316783d0828f6aa69f1c5ba87f',
 	['mattn/emmet-vim'] = 'def5d57a1ae5afb1b96ebe83c4652d1c03640f4d',
 	['mbbill/undotree'] = '485f01efde4e22cb1ce547b9e8c9238f36566f21',
-	['mfussenegger/nvim-dap'] = '73196075627a4f079c62b0dd4aff8ce0a1b7cf57',
+	['mfussenegger/nvim-dap'] = '7389e85233e3483b31b6a1c4ba69cda77336b7a8',
 	['mhinz/vim-startify'] = '81e36c352a8deea54df5ec1e2f4348685569bed2',
-	['neovim/nvim-lspconfig'] = '4bb0f1845c5cc6465aecedc773fc2d619fcd8faf',
-	['numToStr/Comment.nvim'] = '6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43',
+	['neovim/nvim-lspconfig'] = 'e99d1590c7dc4c97b7dbc6a9c7e2dd830e204eea',
+	['numToStr/Comment.nvim'] = '8d3aa5c22c2d45e788c7a5fe13ad77368b783c20',
 	['nvim-lua/plenary.nvim'] = '253d34830709d690f013daf2853a9d21ad7accab',
 	['nvim-telescope/telescope-ui-select.nvim'] = '62ea5e58c7bbe191297b983a9e7e89420f581369',
-	['nvim-telescope/telescope.nvim'] = 'a3f17d3baf70df58b9d3544ea30abe52a7a832c2',
-	['nvim-treesitter/nvim-treesitter'] = 'fc1ca10bfbdee17e29374d0d1bac8ea030539dc3',
+	['nvim-telescope/telescope.nvim'] = '942fe5faef47b21241e970551eba407bc10d9547',
+	['nvim-treesitter/nvim-treesitter'] = 'e559b6fb3f1b09d96568705c668abb8c55b7e3e4',
 	['nvim-treesitter/playground'] = '4044b53c4d4fcd7a78eae20b8627f78ce7dc6f56',
 	['onsails/lspkind-nvim'] = 'c68b3a003483cf382428a43035079f78474cd11e',
 	['phaazon/hop.nvim'] = '90db1b2c61b820e230599a04fedcd2679e64bd07',
-	['rafamadriz/friendly-snippets'] = '009887b76f15d16f69ae1341f86a7862f61cf2a1',
+	['rafamadriz/friendly-snippets'] = '8d91ba2dc2421a54981115f61b914974f938fa77',
 	['simrat39/symbols-outline.nvim'] = '512791925d57a61c545bc303356e8a8f7869763c',
-	['tpope/vim-fugitive'] = '5b52a0f395065d6cb7b65a00a5e17eaf9ebd64d5',
+	['tpope/vim-fugitive'] = '9acbad1335ee6f30a8497733dcb2373c4550c8a2',
 	['tpope/vim-repeat'] = '24afe922e6a05891756ecf331f39a1f6743d3d5a',
 	['tpope/vim-surround'] = '3d188ed2113431cf8dac77be61b842acb64433d9',
 	['wbthomason/packer.nvim'] = '1d0cf98a561f7fd654c970c49f917d74fafe1530',
-	['williamboman/mason-lspconfig.nvim'] = 'a31e011135a79d63c71254c250c9158e1056a1cb',
-	['williamboman/mason.nvim'] = '50ed86031979a930237c88fa4ce6a5dce9a5797c',
-	['windwp/nvim-autopairs'] = 'e755f366721bc9e189ddecd39554559045ac0a18',
+	['williamboman/mason-lspconfig.nvim'] = 'b64fdede85fd5e0b720ce722919e0a9b95ed6547',
+	['williamboman/mason.nvim'] = '1f8e3a51d6370304ad29ca4f22fcb374018840db',
+	['windwp/nvim-autopairs'] = '0fd6519d44eac3a6736aafdb3fe9da916c3701d4',
 }
 
 return require('packer').startup({
@@ -381,24 +379,6 @@ return require('packer').startup({
 			'NFrid/treesitter-utils',
 			commit = commits['NFrid/treesitter-utils'],
 			requires = 'nvim-treesitter/nvim-treesitter'
-		}
-
-		use {
-			'NFrid/markdown-togglecheck',
-			commit = commits['NFrid/markdown-togglecheck'],
-			requires = 'NFrid/treesitter-utils',
-			config = function()
-				require('markdown-togglecheck').setup({
-					create = true,
-					remove = false
-				})
-				vim.keymap.set(
-					'n',
-					'<leader>nn',
-					require('markdown-togglecheck').toggle,
-					{ noremap = true }
-				)
-			end
 		}
 
 		use {

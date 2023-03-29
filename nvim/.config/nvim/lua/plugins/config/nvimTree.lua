@@ -21,11 +21,11 @@ require('nvim-tree').setup({
 			},
 			glyphs = {
 				git = {
-					unstaged = "✗",
-					staged = "✓",
+					unstaged = "!",
+					staged = "+",
 					unmerged = "",
 					renamed = "➜",
-					untracked = "★",
+					untracked = "?",
 					deleted = "",
 					ignored = "◌",
 				}
@@ -37,8 +37,6 @@ require('nvim-tree').setup({
 vim.keymap.set(
 	'n',
 	'<leader><leader>',
-	function()
-		require('nvim-tree').toggle(true);
-	end,
+	'<cmd>NvimTreeFindFileToggle<cr>',
 	{ noremap = true, desc = "open nvim tree" }
 );
