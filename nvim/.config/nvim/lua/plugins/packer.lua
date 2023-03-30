@@ -48,7 +48,6 @@ local commits = {
 	['kyazdani42/nvim-web-devicons'] = '95b1e300699be8eb6b5be1758a9d4d69fe93cc7f',
 	['lewis6991/gitsigns.nvim'] = 'ca473e28382f1524aa3d2b6f04bcf54f2e6a64cb',
 	['lukas-reineke/indent-blankline.nvim'] = '018bd04d80c9a73d399c1061fa0c3b14a7614399',
-	['marilari88/twoslash-queries.nvim'] = 'f2122d8fa34cf8316783d0828f6aa69f1c5ba87f',
 	['mattn/emmet-vim'] = 'def5d57a1ae5afb1b96ebe83c4652d1c03640f4d',
 	['mbbill/undotree'] = '485f01efde4e22cb1ce547b9e8c9238f36566f21',
 	['mfussenegger/nvim-dap'] = '7389e85233e3483b31b6a1c4ba69cda77336b7a8',
@@ -356,29 +355,6 @@ return require('packer').startup({
 					commit = commits['williamboman/mason-lspconfig.nvim'],
 				}
 			}
-		}
-
-		use {
-			'marilari88/twoslash-queries.nvim',
-			commit = commits['marilari88/twoslash-queries.nvim'],
-			config = function()
-				require('twoslash-queries').setup({
-					multi_line = true,
-					highlight = 'Type'
-				})
-				vim.keymap.set(
-					'n',
-					'<leader>?',
-					'<cmd>InspectTwoslashQueries<cr>',
-					{ noremap = true }
-				)
-			end
-		}
-
-		use {
-			'NFrid/treesitter-utils',
-			commit = commits['NFrid/treesitter-utils'],
-			requires = 'nvim-treesitter/nvim-treesitter'
 		}
 
 		use {
