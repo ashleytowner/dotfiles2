@@ -98,21 +98,21 @@ return require('packer').startup({
 			'williamboman/mason.nvim',
 			commit = commits['williamboman/mason.nvim'],
 			config = function() require('plugins.config.mason') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
 			'glepnir/dashboard-nvim',
 			commit = commits['glepnir/dashboard-nvim'],
 			config = function() require('plugins.config.dashboard') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
 			'mfussenegger/nvim-dap',
 			commit = commits['mfussenegger/nvim-dap'],
 			config = function() require('plugins.config.dap') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -123,7 +123,7 @@ return require('packer').startup({
 				{ 'nvim-lua/plenary.nvim' },
 				{ 'nvim-treesitter/nvim-treesitter' }
 			},
-			disable = is_vscode()
+			
 		}
 
 		-- AI
@@ -131,7 +131,7 @@ return require('packer').startup({
 			'github/copilot.vim',
 			commit = commits['github/copilot.vim'],
 			config = function() require('plugins.config.copilot') end,
-			disable = is_vscode()
+			
 		}
 
 		-- TODO: Remove this once nvim 0.9 comes out, as it's supported by
@@ -139,7 +139,7 @@ return require('packer').startup({
 		use {
 			'gpanders/editorconfig.nvim',
 			commit = commits['gpanders/editorconfig.nvim'],
-			disable = is_vscode()
+			
 		}
 
 		-- Util
@@ -148,14 +148,14 @@ return require('packer').startup({
 			'dstein64/vim-startuptime',
 			commit = commits['dstein64/vim-startuptime'],
 			cmd = 'StartupTime',
-			disable = is_vscode()
+			
 		}
 
 		use {
 			'akinsho/toggleterm.nvim',
 			commit = commits['akinsho/toggleterm.nvim'],
 			config = function() require('plugins.config.toggleterm') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -164,7 +164,7 @@ return require('packer').startup({
 			run = function() vim.fn['firenvim#install'](0) end,
 			config = function() require('plugins.config.firenvim') end,
 			cond = function() return vim.g.started_by_firenvim end,
-			disable = is_vscode()
+			
 		}
 
 
@@ -196,7 +196,7 @@ return require('packer').startup({
 			'phaazon/hop.nvim',
 			commit = commits['phaazon/hop.nvim'],
 			config = function() require('plugins.config.hop') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -224,7 +224,7 @@ return require('packer').startup({
 				'nvim-lua/plenary.nvim',
 				commit = commits['nvim-lua/plenary.nvim']
 			},
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -232,7 +232,7 @@ return require('packer').startup({
 			commit = commits['tpope/vim-fugitive'],
 			config = function() require('plugins.config.fugitive') end,
 			cmd = 'Git',
-			disable = is_vscode()
+			
 		}
 
 		-- File Management
@@ -254,7 +254,7 @@ return require('packer').startup({
 					commit = commits['nvim-telescope/telescope-ui-select.nvim']
 				}
 			},
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -267,14 +267,14 @@ return require('packer').startup({
 				},
 			},
 			config = function() require('plugins.config.nvimTree') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
 			'mbbill/undotree',
 			commit = commits['mbbill/undotree'],
 			config = function() require('plugins.config.undotree') end,
-			disable = is_vscode()
+			
 		}
 
 		-- LSP, Completion & Formatting
@@ -290,14 +290,14 @@ return require('packer').startup({
 					commit = commits['williamboman/mason-lspconfig.nvim'],
 				}
 			},
-			disable = is_vscode()
+			
 		}
 
 		use {
 			'simrat39/symbols-outline.nvim',
 			commit = commits['simrat39/symbols-outline.nvim'],
 			config = function() require('plugins.config.symbols-outline') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -311,7 +311,7 @@ return require('packer').startup({
 					commit = commits['jayp0521/mason-null-ls.nvim']
 				}
 			},
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -365,7 +365,6 @@ return require('packer').startup({
 					commit = commits['onsails/lspkind-nvim']
 				}
 			},
-			disable = is_vscode();
 		}
 
 		-- Syntax Highlighting
@@ -375,7 +374,7 @@ return require('packer').startup({
 			commit = commits['nvim-treesitter/nvim-treesitter'],
 			run = ':TSUpdate',
 			config = function() require('plugins.config.treesitter') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -398,7 +397,7 @@ return require('packer').startup({
 			requires = 'nvim-treesitter/nvim-treesitter',
 			after = 'indent-blankline.nvim',
 			commit = commits['kiyoon/treesitter-indent-object.nvim'],
-			disable = is_vscode()
+			
 		}
 
 
@@ -406,14 +405,14 @@ return require('packer').startup({
 			'nvim-treesitter/playground',
 			commit = commits['nvim-treesitter/playground'],
 			requires = 'nvim-treesitter/nvim-treesitter',
-			disable = is_vscode()
+			
 		}
 
 		use {
 			'lukas-reineke/indent-blankline.nvim',
 			commit = commits['lukas-reineke/indent-blankline.nvim'],
 			config = function() require('plugins.config.indent-blankline') end,
-			disable = is_vscode()
+			
 		}
 
 		-- Theming
@@ -421,7 +420,7 @@ return require('packer').startup({
 		use {
 			'haishanh/night-owl.vim',
 			commit = commits['haishanh/night-owl.vim'],
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -429,7 +428,7 @@ return require('packer').startup({
 			commit = commits['catppuccin/nvim'],
 			as = 'catppuccin',
 			config = function() require('plugins.colorscheme') end,
-			disable = is_vscode()
+			
 		}
 
 		use {
@@ -437,14 +436,14 @@ return require('packer').startup({
 			commit = commits['dracula/vim'],
 			config = function() require('plugins.colorscheme') end,
 			as = 'dracula',
-			disable = is_vscode()
+			
 		}
 
 		use {
 			'folke/tokyonight.nvim',
 			commit = commits['folke/tokyonight.nvim'],
 			config = function() require('plugins.colorscheme') end,
-			disable = is_vscode()
+			
 		}
 
 		-- Automatically set up your configuration after cloning packer.nvim
