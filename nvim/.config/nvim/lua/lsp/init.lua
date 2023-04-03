@@ -41,10 +41,10 @@ masonLsp.setup_handlers {
 			on_attach = function(client, bufnr)
 				-- Example custom config
 				keymaps.set_keymaps()
-				local tsqOk, tsq = pcall(require, 'twoslash-queries')
-				if tsqOk then
-					tsq.attach(client, bufnr)
-				end
+				-- local tsqOk, tsq = pcall(require, 'twoslash-queries')
+				-- if tsqOk then
+				-- 	tsq.attach(client, bufnr)
+				-- end
 			end
 		})
 	end
