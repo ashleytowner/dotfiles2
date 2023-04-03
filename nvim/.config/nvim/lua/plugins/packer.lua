@@ -18,17 +18,6 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-local is_vscode = function()
-	if vim.g.vscode then
-		return true
-	end
-	return false
-end
-
-local is_not_vscode = function()
-	return not is_vscode()
-end
-
 local commits = {
 	['ThePrimeagen/refactoring.nvim'] = '57c32c6b7a211e5a3a5e4ddc4ad2033daff5cf9a',
 	['akinsho/toggleterm.nvim'] = 'ed6c92d6708e5208360347f2281de99602061dc8',
@@ -98,21 +87,18 @@ return require('packer').startup({
 			'williamboman/mason.nvim',
 			commit = commits['williamboman/mason.nvim'],
 			config = function() require('plugins.config.mason') end,
-			
 		}
 
 		use {
 			'glepnir/dashboard-nvim',
 			commit = commits['glepnir/dashboard-nvim'],
 			config = function() require('plugins.config.dashboard') end,
-			
 		}
 
 		use {
 			'mfussenegger/nvim-dap',
 			commit = commits['mfussenegger/nvim-dap'],
 			config = function() require('plugins.config.dap') end,
-			
 		}
 
 		use {
@@ -123,7 +109,6 @@ return require('packer').startup({
 				{ 'nvim-lua/plenary.nvim' },
 				{ 'nvim-treesitter/nvim-treesitter' }
 			},
-			
 		}
 
 		-- AI
@@ -131,7 +116,6 @@ return require('packer').startup({
 			'github/copilot.vim',
 			commit = commits['github/copilot.vim'],
 			config = function() require('plugins.config.copilot') end,
-			
 		}
 
 		-- TODO: Remove this once nvim 0.9 comes out, as it's supported by
@@ -139,7 +123,6 @@ return require('packer').startup({
 		use {
 			'gpanders/editorconfig.nvim',
 			commit = commits['gpanders/editorconfig.nvim'],
-			
 		}
 
 		-- Util
@@ -148,14 +131,12 @@ return require('packer').startup({
 			'dstein64/vim-startuptime',
 			commit = commits['dstein64/vim-startuptime'],
 			cmd = 'StartupTime',
-			
 		}
 
 		use {
 			'akinsho/toggleterm.nvim',
 			commit = commits['akinsho/toggleterm.nvim'],
 			config = function() require('plugins.config.toggleterm') end,
-			
 		}
 
 		use {
@@ -164,7 +145,6 @@ return require('packer').startup({
 			run = function() vim.fn['firenvim#install'](0) end,
 			config = function() require('plugins.config.firenvim') end,
 			cond = function() return vim.g.started_by_firenvim end,
-			
 		}
 
 
@@ -196,7 +176,6 @@ return require('packer').startup({
 			'phaazon/hop.nvim',
 			commit = commits['phaazon/hop.nvim'],
 			config = function() require('plugins.config.hop') end,
-			
 		}
 
 		use {
@@ -224,7 +203,6 @@ return require('packer').startup({
 				'nvim-lua/plenary.nvim',
 				commit = commits['nvim-lua/plenary.nvim']
 			},
-			
 		}
 
 		use {
@@ -232,7 +210,6 @@ return require('packer').startup({
 			commit = commits['tpope/vim-fugitive'],
 			config = function() require('plugins.config.fugitive') end,
 			cmd = 'Git',
-			
 		}
 
 		-- File Management
@@ -267,14 +244,12 @@ return require('packer').startup({
 				},
 			},
 			config = function() require('plugins.config.nvimTree') end,
-			
 		}
 
 		use {
 			'mbbill/undotree',
 			commit = commits['mbbill/undotree'],
 			config = function() require('plugins.config.undotree') end,
-			
 		}
 
 		-- LSP, Completion & Formatting
@@ -290,14 +265,12 @@ return require('packer').startup({
 					commit = commits['williamboman/mason-lspconfig.nvim'],
 				}
 			},
-			
 		}
 
 		use {
 			'simrat39/symbols-outline.nvim',
 			commit = commits['simrat39/symbols-outline.nvim'],
 			config = function() require('plugins.config.symbols-outline') end,
-			
 		}
 
 		use {
@@ -311,7 +284,6 @@ return require('packer').startup({
 					commit = commits['jayp0521/mason-null-ls.nvim']
 				}
 			},
-			
 		}
 
 		use {
@@ -374,7 +346,6 @@ return require('packer').startup({
 			commit = commits['nvim-treesitter/nvim-treesitter'],
 			run = ':TSUpdate',
 			config = function() require('plugins.config.treesitter') end,
-			
 		}
 
 		use {
@@ -397,7 +368,6 @@ return require('packer').startup({
 			requires = 'nvim-treesitter/nvim-treesitter',
 			after = 'indent-blankline.nvim',
 			commit = commits['kiyoon/treesitter-indent-object.nvim'],
-			
 		}
 
 
@@ -405,14 +375,12 @@ return require('packer').startup({
 			'nvim-treesitter/playground',
 			commit = commits['nvim-treesitter/playground'],
 			requires = 'nvim-treesitter/nvim-treesitter',
-			
 		}
 
 		use {
 			'lukas-reineke/indent-blankline.nvim',
 			commit = commits['lukas-reineke/indent-blankline.nvim'],
 			config = function() require('plugins.config.indent-blankline') end,
-			
 		}
 
 		-- Theming
@@ -420,7 +388,6 @@ return require('packer').startup({
 		use {
 			'haishanh/night-owl.vim',
 			commit = commits['haishanh/night-owl.vim'],
-			
 		}
 
 		use {
@@ -428,7 +395,6 @@ return require('packer').startup({
 			commit = commits['catppuccin/nvim'],
 			as = 'catppuccin',
 			config = function() require('plugins.colorscheme') end,
-			
 		}
 
 		use {
@@ -436,14 +402,12 @@ return require('packer').startup({
 			commit = commits['dracula/vim'],
 			config = function() require('plugins.colorscheme') end,
 			as = 'dracula',
-			
 		}
 
 		use {
 			'folke/tokyonight.nvim',
 			commit = commits['folke/tokyonight.nvim'],
 			config = function() require('plugins.colorscheme') end,
-			
 		}
 
 		-- Automatically set up your configuration after cloning packer.nvim
