@@ -40,7 +40,6 @@ local commits = {
 	['hrsh7th/cmp-vsnip'] = '989a8a73c44e926199bfd05fa7a516d51f2d2752',
 	['hrsh7th/nvim-cmp'] = '777450fd0ae289463a14481673e26246b5e38bf2',
 	['hrsh7th/vim-vsnip'] = '7753ba9c10429c29d25abfd11b4c60b76718c438',
-	['jackMort/ChatGPT.nvim'] = '8797871b5d11d256834b1c474ca9016dd0137dcb',
 	['jayp0521/mason-null-ls.nvim'] = '4070ec7c543b67df16143ee206e436d24bb9c01b',
 	['jose-elias-alvarez/null-ls.nvim'] = '0180603b6f3cee40f83c6fc226b9ac5f85e691c4',
 	['kiyoon/treesitter-indent-object.nvim'] = '50c2301c3b3785430df77856be59dc9fec7347d8',
@@ -119,95 +118,6 @@ return require('packer').startup({
 			config = function() require('plugins.config.copilot') end,
 			disable = false
 		}
-
-		use {
-			'jackMort/ChatGPT.nvim',
-			-- commit = commits['jackMort/ChatGPT.nvim'],
-			-- Not pinning version for this as there's bugs and I wanna get the updates
-			config = function()
-				require('chatgpt').setup({
-					welcome_message = '',
-					loading_text = "loading",
-					question_sign = "", -- you can use emoji if you want e.g. 🙂
-					answer_sign = "ﮧ", -- 🤖
-					max_line_length = 120,
-					yank_register = "+",
-					chat_layout = {
-						relative = "editor",
-						position = "50%",
-						size = {
-							height = "80%",
-							width = "80%",
-						},
-					},
-					settings_window = {
-						border = {
-							style = "rounded",
-							text = {
-								top = " Settings ",
-							},
-						},
-					},
-					chat_window = {
-						filetype = "chatgpt",
-						border = {
-							highlight = "FloatBorder",
-							style = "rounded",
-							text = {
-								top = " ChatGPT ",
-							},
-						},
-					},
-					chat_input = {
-						prompt = "  ",
-						border = {
-							highlight = "FloatBorder",
-							style = "rounded",
-							text = {
-								top_align = "center",
-								top = " Prompt ",
-							},
-						},
-					},
-					openai_params = {
-						model = "gpt-3.5-turbo",
-						frequency_penalty = 0,
-						presence_penalty = 0,
-						max_tokens = 300,
-						temperature = 0,
-						top_p = 1,
-						n = 1,
-					},
-					openai_edit_params = {
-						model = "code-davinci-edit-001",
-						temperature = 0,
-						top_p = 1,
-						n = 1,
-					},
-					keymaps = {
-						close = { "<C-c>" },
-						submit = "<Enter>",
-						yank_last = "<C-y>",
-						yank_last_code = "<C-k>",
-						scroll_up = "<C-u>",
-						scroll_down = "<C-d>",
-						toggle_settings = "<C-o>",
-						new_session = "<C-n>",
-						cycle_windows = "<Tab>",
-						-- in the Sessions pane
-						select_session = "<Space>",
-						rename_session = "r",
-						delete_session = "d",
-					},
-				})
-			end,
-			requires = {
-				'MunifTanjim/nui.nvim',
-				'nvim-lua/plenary.nvim',
-				'nvim-telescope/telescope.nvim'
-			}
-		}
-
 
 		-- TODO: Remove this once nvim 0.9 comes out, as it's supported by
 		-- default
