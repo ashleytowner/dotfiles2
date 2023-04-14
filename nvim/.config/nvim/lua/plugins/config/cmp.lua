@@ -17,7 +17,7 @@ cmp.setup {
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		}),
-		['<CR>'] = cmp.mapping.confirm(),
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
 		['<C-g><CR>'] = cmp.mapping(function()
 			vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<CR>', true, true, false)), 'n', false)
 		end)
