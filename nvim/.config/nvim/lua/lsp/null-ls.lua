@@ -6,19 +6,18 @@ mason_null_ls.setup({
 		'stylelint',
 		'eslint_d',
 		'jq',
-	}
-})
-
-mason_null_ls.setup_handlers({
-	function(source, methods)
-		require('mason-null-ls.automatic_setup')(source, methods)
-	end,
-	['eslint_d'] = function(source, methods)
-		-- Check if an eslint config file exists before starting eslint
-		if vim.fn.glob('.eslintrc*') ~= '' then
+	},
+	handlers = {
+		function(source, methods)
+			require('mason-null-ls.automatic_setup')(source, methods)
+		end,
+		['eslint_d'] = function(source, methods)
+			-- Check if an eslint config file exists before starting eslint
+			if vim.fn.glob('.eslintrc*') ~= '' then
 				require('mason-null-ls.automatic_setup')(source, methods)
+			end
 		end
-	end
+	}
 })
 
 null_ls.setup()
