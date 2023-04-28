@@ -21,28 +21,28 @@ local commits = {
 	['ThePrimeagen/refactoring.nvim'] = 'e7c40818b2995016ede93c5620055206b1aba44f',
 	['akinsho/toggleterm.nvim'] = '1c5996ee3c30b54751093fe68d40676859e7778f',
 	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
-	['catppuccin/nvim'] = '5e31d3ce29aa17b7a047b1a0e6b9ce9d6702c511',
+	['catppuccin/nvim'] = '6eb93f7240476ac51cec909fe0016e9a269c2a92',
 	['dracula/vim'] = 'eb577d47b0cfc9191bf04c414b4042d5f1a980f8',
-	['dstein64/vim-startuptime'] = 'daacd02e773944b8de312ddac83f436fae92cbb9',
-	['folke/tokyonight.nvim'] = '1b0c88094548a62641ece1e668fa9a234e1c539e',
+	['dstein64/vim-startuptime'] = 'c13eb0cfa0e27a651c60431c49819aec80da2ad7',
+	['folke/tokyonight.nvim'] = 'ff81eac0ecf85db235dfc4c9d54f2d07d662a423',
 	['gbrlsnchs/telescope-lsp-handlers.nvim'] = 'de02085d6af1633942549a238bc7a5524fa9b201',
 	['github/copilot.vim'] = 'b6e5624351ba735e25eb8864d7d22819aad00606',
 	['glacambre/firenvim'] = 'ee4ef314bd990b2b05b7fbd95b857159e444a2fe',
-	['glepnir/dashboard-nvim'] = 'd5b0fff69546a3d4d742b47ca0452a41323f2f8f',
+	['glepnir/dashboard-nvim'] = '275e7c8579858c3ee06f32c16bdc687153ca7204',
 	['gpanders/editorconfig.nvim'] = '5b9e303e1d6f7abfe616ce4cc8d3fffc554790bf',
 	['haishanh/night-owl.vim'] = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
 	['hrsh7th/cmp-buffer'] = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
 	['hrsh7th/cmp-calc'] = '50792f34a628ea6eb31d2c90e8df174671e4e7a0',
-	['hrsh7th/cmp-cmdline'] = '8fcc934a52af96120fe26358985c10c035984b53',
+	['hrsh7th/cmp-cmdline'] = 'af88e700417c6449719fc77f6f3745f88e42d5da',
 	['hrsh7th/cmp-nvim-lsp'] = '0e6b2ed705ddcff9738ec4ea838141654f12eeef',
 	['hrsh7th/cmp-path'] = '91ff86cd9c29299a64f968ebb45846c485725f23',
 	['hrsh7th/cmp-vsnip'] = '989a8a73c44e926199bfd05fa7a516d51f2d2752',
 	['hrsh7th/nvim-cmp'] = '777450fd0ae289463a14481673e26246b5e38bf2',
 	['hrsh7th/vim-vsnip'] = '7753ba9c10429c29d25abfd11b4c60b76718c438',
-	['jayp0521/mason-null-ls.nvim'] = '04fc5094269c4354f0409d515d1d9539a0d076e3',
+	['jayp0521/mason-null-ls.nvim'] = '834bb5d6dd72db0a82d4b90a25500fdc14a3bc43',
 	['jose-elias-alvarez/null-ls.nvim'] = 'f8ffcd7cb8fb3325c711d459152ef132b5b65aed',
 	['kiyoon/treesitter-indent-object.nvim'] = '50c2301c3b3785430df77856be59dc9fec7347d8',
-	['kyazdani42/nvim-tree.lua'] = 'b601b5aa25627f68d3d73ba9269b49e4f04ce126',
+	['kyazdani42/nvim-tree.lua'] = '0db85a70248f9a90e61af5cdbafe5d9f4320f719',
 	['kyazdani42/nvim-web-devicons'] = '4ec26d67d419c12a4abaea02f1b6c57b40c08d7e',
 	['lewis6991/gitsigns.nvim'] = '372d5cb485f2062ac74abc5b33054abac21d8b58',
 	['lukas-reineke/indent-blankline.nvim'] = '018bd04d80c9a73d399c1061fa0c3b14a7614399',
@@ -50,24 +50,24 @@ local commits = {
 	['mbbill/undotree'] = '485f01efde4e22cb1ce547b9e8c9238f36566f21',
 	['mfussenegger/nvim-dap'] = 'debd7c2f80eaf20c5f5df25db8d8c1b9b18f4421',
 	['mhinz/vim-startify'] = '81e36c352a8deea54df5ec1e2f4348685569bed2',
-	['neovim/nvim-lspconfig'] = '6fe69025b8825029ea9bf291ab3b1750f9bcb39e',
+	['neovim/nvim-lspconfig'] = 'eddaef928c1e1dd79a96f5db45f2fd7f2efe7ea0',
 	['numToStr/Comment.nvim'] = 'a89339ffbee677ab0521a483b6dac7e2e67c907e',
 	['nvim-lua/plenary.nvim'] = '9ac3e9541bbabd9d73663d757e4fe48a675bb054',
 	['nvim-telescope/telescope-ui-select.nvim'] = '62ea5e58c7bbe191297b983a9e7e89420f581369',
 	['nvim-telescope/telescope.nvim'] = '6258d50b09f9ae087317e392efe7c05a7323492d',
-	['nvim-treesitter/nvim-treesitter'] = '18f9e1a47fc25272836a84aa8adb03925c73b33d',
-	['nvim-treesitter/playground'] = '934cb4c4adc2e7f4f351846a63c9532018c996ed',
+	['nvim-treesitter/nvim-treesitter'] = '831f37635df26864a397a5e35450eec97bfe60cd',
+	['nvim-treesitter/playground'] = '2b81a018a49f8e476341dfcb228b7b808baba68b',
 	['onsails/lspkind-nvim'] = 'c68b3a003483cf382428a43035079f78474cd11e',
 	['phaazon/hop.nvim'] = '90db1b2c61b820e230599a04fedcd2679e64bd07',
-	['rafamadriz/friendly-snippets'] = '8d91ba2dc2421a54981115f61b914974f938fa77',
+	['rafamadriz/friendly-snippets'] = 'b1b78a6433268fc172adb5a843e165035e83861e',
 	['simrat39/symbols-outline.nvim'] = '512791925d57a61c545bc303356e8a8f7869763c',
-	['tpope/vim-fugitive'] = 'ef99f1d90cdb33a52931aed5868785b51fb9411d',
+	['tpope/vim-fugitive'] = 'e6651a79facf5cc2b7c554fdc19eb8a9fe89602c',
 	['tpope/vim-repeat'] = '24afe922e6a05891756ecf331f39a1f6743d3d5a',
 	['tpope/vim-surround'] = '3d188ed2113431cf8dac77be61b842acb64433d9',
 	['wbthomason/packer.nvim'] = '1d0cf98a561f7fd654c970c49f917d74fafe1530',
-	['williamboman/mason-lspconfig.nvim'] = 'b81c50c4baae7d80b1723b3fa86e814d7754d15b',
-	['williamboman/mason.nvim'] = 'df4bf38688c31056d222e68aa9f26e3c51090a97',
-	['windwp/nvim-autopairs'] = '7470af886ffb3df32800e5ef9c072a6cd825770d',
+	['williamboman/mason-lspconfig.nvim'] = '7034065099c1665143091c7282b3b1b8f0b23783',
+	['williamboman/mason.nvim'] = 'b20a4bd32247411d39d8dd5c94e2e5c87d98556d',
+	['windwp/nvim-autopairs'] = '58985de5eeab159462bc262de5cc1b9c9b375595',
 }
 
 return require('packer').startup({
@@ -233,6 +233,7 @@ return require('packer').startup({
 			
 		}
 
+		-- point 1
 		use {
 			'kyazdani42/nvim-tree.lua',
 			commit = commits['kyazdani42/nvim-tree.lua'],
@@ -338,6 +339,9 @@ return require('packer').startup({
 			},
 		}
 
+		-- point 2
+
+
 		-- Syntax Highlighting
 
 		use {
@@ -381,6 +385,9 @@ return require('packer').startup({
 			commit = commits['lukas-reineke/indent-blankline.nvim'],
 			config = function() require('plugins.config.indent-blankline') end,
 		}
+
+		-- point 3 (problems here with TSUpdate and Cursor autocommands
+
 
 		-- Theming
 
