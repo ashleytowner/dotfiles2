@@ -19,6 +19,7 @@ local packer_bootstrap = ensure_packer()
 
 local commits = {
 	['ThePrimeagen/refactoring.nvim'] = 'e7c40818b2995016ede93c5620055206b1aba44f',
+	['jay-babu/mason-nvim-dap.nvim'] = '6fe5eac6db65fdbad68bf638dea0a849ccb63fd7',
 	['akinsho/toggleterm.nvim'] = '1c5996ee3c30b54751093fe68d40676859e7778f',
 	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
 	['catppuccin/nvim'] = '6eb93f7240476ac51cec909fe0016e9a269c2a92',
@@ -95,9 +96,19 @@ return require('packer').startup({
 		}
 
 		use {
+			'jay-babu/mason-nvim-dap.nvim',
+			requires = {
+				{ 'mfussenegger/nvim-dap' },
+				{ 'williamboman/mason.nvim' },
+			},
+			commit = commits['jay-babu/mason-nvim-dap.nvim'],
+			config = function() require('plugins.config.dap') end,
+		}
+
+		use {
 			'mfussenegger/nvim-dap',
 			commit = commits['mfussenegger/nvim-dap'],
-			config = function() require('plugins.config.dap') end,
+			-- config = function() require('plugins.config.dap') end,
 		}
 
 		use {

@@ -26,3 +26,7 @@ vim.keymap.set(
 		desc = "Copilot dummy map"
 	}
 )
+
+vim.g.copilot_filetypes = {
+	['dap-repl'] = false
+}

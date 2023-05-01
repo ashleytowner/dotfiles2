@@ -1,44 +1,21 @@
-local dapOk, dap = pcall(require, 'dap')
-
-local mason_path = vim.fn.stdpath('data')..'/mason/bin'
-
-if not dapOk then
-	return
-end
-
-vim.keymap.set(
-	'n',
-	'<F8>',
-	dap.continue
-);
-
-vim.keymap.set(
-	'n',
-	'<leader>b',
-	dap.toggle_breakpoint
-);
-
-dap.adapters.node2 = {
-	type = 'executable',
-	command = 'node',
-	args = { mason_path..'/node-debug2-adapter' }
-}
-
-dap.configurations.javascript = {
-	{
-		name = 'Launch',
-		type = 'node2',
-		request = 'launch',
-		program = '${file}',
-		cwd = vim.fn.getcwd(),
-		sourceMaps = true,
-		protocol = 'inspector',
-		console = 'integratedTerminal'
-	},
-	{
-		name = 'Attach to process',
-		type = 'node2',
-		request = 'attach',
-		processId = require('dap.utils').pick_process
+require('mason-nvim-dap').setup({
+	ensure_installed = { 'node2' },
+	handlers = {
+		function(config)
+			require('mason-nvim-dap').default_setup(config)
+		end
 	}
-}
+})
+
+vim.keymap.set('n', '<leader>dc', '<cmd>lua require("dap").continue()<CR>')
+vim.keymap.set('n', '<leader>dr', '<cmd>lua require("dap").repl.open()<CR>')
+vim.keymap.set('n', '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<CR>')
+vim.keymap.set('n', '<leader>dn', '<cmd>lua require("dap").step_over()<CR>')
+vim.keymap.set('n', '<leader>di', '<cmd>lua require("dap").step_into()<CR>')
+vim.keymap.set('n', '<leader>do', '<cmd>lua require("dap").step_out()<CR>')
+vim.keymap.set('n', '<leader>dstop', '<cmd>lua require("dap").stop()<CR>')
+vim.keymap.set('n', '<leader>ds', function()
+	local widgets = require('dap.ui.widgets')
+	widgets.centered_float(widgets.scopes).open()
+end)
+
