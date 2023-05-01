@@ -21,7 +21,6 @@ masonLsp.setup({
 		'pyright',
 		'tsserver',
 		'vimls',
-		'yamlls',
 	}
 })
 
