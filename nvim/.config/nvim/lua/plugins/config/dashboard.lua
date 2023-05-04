@@ -67,7 +67,7 @@ require('dashboard').setup({
 				key_hl = 'Special'
 			},
 			{
-				icon = '  ',
+				icon = '  ',
 				desc = 'Open Dotfiles',
 				action = 'e ~/dotfiles',
 				shortcut = ':e ~/dotfiles',

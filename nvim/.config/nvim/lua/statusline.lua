@@ -139,7 +139,7 @@ local function git_branch()
 	if (vim.g.git_branch == '' and vim.g.git_commit == '') then
 		return ''
 	end
-	return u.ternary(vim.g.git_branch ~= '', '', 'ﰖ') .. '%* '
+	return u.ternary(vim.g.git_branch ~= '', '', 'ﰖ') .. '%* '
 		.. u.ternary(vim.g.git_branch ~= '', vim.g.git_branch, vim.g.git_commit)
 end
 
@@ -153,7 +153,7 @@ local function buffer_info()
 end
 
 local function position_info()
-	return '%= %<%-6.(%l:%c%) %-4.(%P%)'
+	return '%= %<%-6.(%l:%c%) %-4.(%P%)'
 end
 
 function StatusLine()

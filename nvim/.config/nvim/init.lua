@@ -5,6 +5,7 @@ require('plugins')
 require('statusline')
 require('tabline')
 
+
 -- auto-sync when plugins file is saved
 local packer_user_config_group = vim.api.nvim_create_augroup(
 	"PackerUserConfig",
