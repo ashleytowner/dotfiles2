@@ -18,8 +18,8 @@ end
 local packer_bootstrap = ensure_packer()
 
 local commits = {
+	['Exafunction/codeium.vim'] = '095d9b931ca74972dbea6de3aa4a059f65e9461b',
 	['ThePrimeagen/refactoring.nvim'] = 'e7c40818b2995016ede93c5620055206b1aba44f',
-	['jay-babu/mason-nvim-dap.nvim'] = '6fe5eac6db65fdbad68bf638dea0a849ccb63fd7',
 	['akinsho/toggleterm.nvim'] = '1c5996ee3c30b54751093fe68d40676859e7778f',
 	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
 	['catppuccin/nvim'] = '6eb93f7240476ac51cec909fe0016e9a269c2a92',
@@ -40,6 +40,7 @@ local commits = {
 	['hrsh7th/cmp-vsnip'] = '989a8a73c44e926199bfd05fa7a516d51f2d2752',
 	['hrsh7th/nvim-cmp'] = '777450fd0ae289463a14481673e26246b5e38bf2',
 	['hrsh7th/vim-vsnip'] = '7753ba9c10429c29d25abfd11b4c60b76718c438',
+	['jay-babu/mason-nvim-dap.nvim'] = '6fe5eac6db65fdbad68bf638dea0a849ccb63fd7',
 	['jayp0521/mason-null-ls.nvim'] = '834bb5d6dd72db0a82d4b90a25500fdc14a3bc43',
 	['jose-elias-alvarez/null-ls.nvim'] = 'f8ffcd7cb8fb3325c711d459152ef132b5b65aed',
 	['kiyoon/treesitter-indent-object.nvim'] = '50c2301c3b3785430df77856be59dc9fec7347d8',
@@ -108,7 +109,6 @@ return require('packer').startup({
 		use {
 			'mfussenegger/nvim-dap',
 			commit = commits['mfussenegger/nvim-dap'],
-			-- config = function() require('plugins.config.dap') end,
 		}
 
 		use {
@@ -126,13 +126,14 @@ return require('packer').startup({
 			'github/copilot.vim',
 			commit = commits['github/copilot.vim'],
 			config = function() require('plugins.config.copilot') end,
+			disable = true
 		}
 
-		-- TODO: Remove this once nvim 0.9 comes out, as it's supported by
-		-- default
 		use {
-			'gpanders/editorconfig.nvim',
-			commit = commits['gpanders/editorconfig.nvim'],
+			'Exafunction/codeium.vim',
+			commit = commits['Exafunction/codeium.vim'],
+			config = function() require('plugins.config.codeium') end,
+			-- disable = true
 		}
 
 		-- Util
@@ -241,10 +242,8 @@ return require('packer').startup({
 					commit = commits['nvim-telescope/telescope-ui-select.nvim']
 				}
 			},
-			
 		}
 
-		-- point 1
 		use {
 			'kyazdani42/nvim-tree.lua',
 			commit = commits['kyazdani42/nvim-tree.lua'],
@@ -350,9 +349,6 @@ return require('packer').startup({
 			},
 		}
 
-		-- point 2
-
-
 		-- Syntax Highlighting
 
 		use {
@@ -384,7 +380,6 @@ return require('packer').startup({
 			commit = commits['kiyoon/treesitter-indent-object.nvim'],
 		}
 
-
 		use {
 			'nvim-treesitter/playground',
 			commit = commits['nvim-treesitter/playground'],
@@ -396,9 +391,6 @@ return require('packer').startup({
 			commit = commits['lukas-reineke/indent-blankline.nvim'],
 			config = function() require('plugins.config.indent-blankline') end,
 		}
-
-		-- point 3 (problems here with TSUpdate and Cursor autocommands
-
 
 		-- Theming
 

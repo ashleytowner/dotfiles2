@@ -153,7 +153,14 @@ local function buffer_info()
 end
 
 local function position_info()
-	return '%= %<%-6.(%l:%c%) %-4.(%P%)'
+	return ' %<%-6.(%l:%c%) %-4.(%P%)'
+end
+
+local function codeium_info()
+	if (vim.g.ai == 'codeium') then
+		return '{…}%3{codeium#GetStatusString()} '
+	end
+	return ''
 end
 
 function StatusLine()
@@ -164,5 +171,5 @@ function StatusLine()
 		return ' %t%=%(%P%)'
 	end
 
-	return buffer_info() .. git_info() .. position_info()
+	return buffer_info() .. git_info() .. '%=' .. codeium_info() .. position_info()
 end

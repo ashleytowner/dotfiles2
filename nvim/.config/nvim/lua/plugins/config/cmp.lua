@@ -19,7 +19,12 @@ cmp.setup {
 		}),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 		['<C-g><CR>'] = cmp.mapping(function()
-			vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<CR>', true, true, false)), 'n', false)
+			if (vim.g.ai == 'copilot') then
+				vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<CR>', true, true, false)), 'n', false)
+			end
+			if (vim.g.ai == 'codeium') then
+				vim.api.nvim_feedkeys(vim.fn['codeium#Accept'](), 'n', false)
+			end
 		end)
 	}),
 	sources = cmp.config.sources({
