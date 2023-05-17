@@ -20,6 +20,7 @@ vim.keymap.set('n', 'gw', '<C-w>w', { noremap = true })
 vim.keymap.set('n', 'gW', '<C-w>W', { noremap = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true })
+vim.keymap.set('n', '<C-6>', '<C-^>', { noremap = true })
 
 -- Terminal
 vim.keymap.set('t', '<C-\\>', '<C-\\><C-n><C-w>w', { noremap = true })
