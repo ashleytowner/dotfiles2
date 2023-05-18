@@ -70,6 +70,13 @@ function P.set_keymaps()
 
 	vim.keymap.set(
 		'n',
+		']i',
+		vim.lsp.buf.implementation,
+		{ noremap = true, silent = true, buffer = true }
+	);
+
+	vim.keymap.set(
+		'n',
 		'g=',
 		vim.lsp.buf.format,
 		{ noremap = true, silent = true, buffer = true }
