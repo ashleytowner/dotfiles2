@@ -8,6 +8,7 @@ require('nvim-tree').setup({
 	view = {
 		side = "right"
 	},
+
 	renderer = {
 		highlight_git = true,
 		icons = {

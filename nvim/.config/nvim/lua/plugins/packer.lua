@@ -347,6 +347,12 @@ return require('packer').startup({
 		}
 
 		use {
+			'rebelot/kanagawa.nvim',
+			as = 'kanagawa',
+			config = function() require('plugins.colorscheme') end
+		}
+
+		use {
 			'catppuccin/nvim',
 			commit = commits['catppuccin/nvim'],
 			as = 'catppuccin',
