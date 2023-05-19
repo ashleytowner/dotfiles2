@@ -29,7 +29,6 @@ local commits = {
 	['gbrlsnchs/telescope-lsp-handlers.nvim'] = 'de02085d6af1633942549a238bc7a5524fa9b201',
 	['github/copilot.vim'] = '1358e8e45ecedc53daf971924a0541ddf6224faf',
 	['glacambre/firenvim'] = '386239e1b1e6e3884db4da8bb7057709bec3dc51',
-	['glepnir/dashboard-nvim'] = '0af0ad181db271ef8d5a332f4cfcec9118340497',
 	['gpanders/editorconfig.nvim'] = '5b9e303e1d6f7abfe616ce4cc8d3fffc554790bf',
 	['haishanh/night-owl.vim'] = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
 	['hrsh7th/cmp-buffer'] = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
@@ -91,12 +90,6 @@ return require('packer').startup({
 		}
 
 		use {
-			'glepnir/dashboard-nvim',
-			commit = commits['glepnir/dashboard-nvim'],
-			config = function() require('plugins.config.dashboard') end,
-		}
-
-		use {
 			'jay-babu/mason-nvim-dap.nvim',
 			requires = {
 				{ 'mfussenegger/nvim-dap' },
@@ -122,41 +115,42 @@ return require('packer').startup({
 		}
 
 		-- AI
-		use {
-			'github/copilot.vim',
-			commit = commits['github/copilot.vim'],
-			config = function() require('plugins.config.copilot') end,
-			disable = true
-		}
 
-		use {
-			'Exafunction/codeium.vim',
-			commit = commits['Exafunction/codeium.vim'],
-			config = function() require('plugins.config.codeium') end,
-			-- disable = true
-		}
+		-- use {
+		-- 	'github/copilot.vim',
+		-- 	commit = commits['github/copilot.vim'],
+		-- 	config = function() require('plugins.config.copilot') end,
+		-- 	disable = true
+		-- }
+
+		-- use {
+		-- 	'Exafunction/codeium.vim',
+		-- 	commit = commits['Exafunction/codeium.vim'],
+		-- 	config = function() require('plugins.config.codeium') end,
+		-- 	-- disable = true
+		-- }
 
 		-- Util
 
-		use {
-			'dstein64/vim-startuptime',
-			commit = commits['dstein64/vim-startuptime'],
-			cmd = 'StartupTime',
-		}
+		-- use {
+		-- 	'dstein64/vim-startuptime',
+		-- 	commit = commits['dstein64/vim-startuptime'],
+		-- 	cmd = 'StartupTime',
+		-- }
 
-		use {
-			'akinsho/toggleterm.nvim',
-			commit = commits['akinsho/toggleterm.nvim'],
-			config = function() require('plugins.config.toggleterm') end,
-		}
+		-- use {
+		-- 	'akinsho/toggleterm.nvim',
+		-- 	commit = commits['akinsho/toggleterm.nvim'],
+		-- 	config = function() require('plugins.config.toggleterm') end,
+		-- }
 
-		use {
-			'glacambre/firenvim',
-			commit = commits['glacambre/firenvim'],
-			run = function() vim.fn['firenvim#install'](0) end,
-			config = function() require('plugins.config.firenvim') end,
-			cond = function() return vim.g.started_by_firenvim end,
-		}
+		-- use {
+		-- 	'glacambre/firenvim',
+		-- 	commit = commits['glacambre/firenvim'],
+		-- 	run = function() vim.fn['firenvim#install'](0) end,
+		-- 	config = function() require('plugins.config.firenvim') end,
+		-- 	cond = function() return vim.g.started_by_firenvim end,
+		-- }
 
 
 		-- Motions & Objects
@@ -224,6 +218,7 @@ return require('packer').startup({
 		}
 
 		-- File Management
+
 		use {
 			'nvim-telescope/telescope.nvim',
 			commit = commits['nvim-telescope/telescope.nvim'],
@@ -264,90 +259,90 @@ return require('packer').startup({
 
 		-- LSP, Completion & Formatting
 
-		use {
-			'neovim/nvim-lspconfig',
-			commit = commits['neovim/nvim-lspconfig'],
-			config = function() require('lsp') end,
-			after = { 'mason.nvim' },
-			requires = {
-				{
-					'williamboman/mason-lspconfig.nvim',
-					commit = commits['williamboman/mason-lspconfig.nvim'],
-				}
-			},
-		}
+		-- use {
+		-- 	'neovim/nvim-lspconfig',
+		-- 	commit = commits['neovim/nvim-lspconfig'],
+		-- 	config = function() require('lsp') end,
+		-- 	after = { 'mason.nvim' },
+		-- 	requires = {
+		-- 		{
+		-- 			'williamboman/mason-lspconfig.nvim',
+		-- 			commit = commits['williamboman/mason-lspconfig.nvim'],
+		-- 		}
+		-- 	},
+		-- }
 
-		use {
-			'simrat39/symbols-outline.nvim',
-			commit = commits['simrat39/symbols-outline.nvim'],
-			config = function() require('plugins.config.symbols-outline') end,
-		}
+		-- use {
+		-- 	'simrat39/symbols-outline.nvim',
+		-- 	commit = commits['simrat39/symbols-outline.nvim'],
+		-- 	config = function() require('plugins.config.symbols-outline') end,
+		-- }
 
-		use {
-			'jose-elias-alvarez/null-ls.nvim',
-			commit = commits['jose-elias-alvarez/null-ls.nvim'],
-			config = function() require('lsp.null-ls') end,
-			after = { 'mason.nvim' },
-			requires = {
-				{
-					'jayp0521/mason-null-ls.nvim',
-					commit = commits['jayp0521/mason-null-ls.nvim']
-				}
-			},
-		}
+		-- use {
+		-- 	'jose-elias-alvarez/null-ls.nvim',
+		-- 	commit = commits['jose-elias-alvarez/null-ls.nvim'],
+		-- 	config = function() require('lsp.null-ls') end,
+		-- 	after = { 'mason.nvim' },
+		-- 	requires = {
+		-- 		{
+		-- 			'jayp0521/mason-null-ls.nvim',
+		-- 			commit = commits['jayp0521/mason-null-ls.nvim']
+		-- 		}
+		-- 	},
+		-- }
 
-		use {
-			'hrsh7th/nvim-cmp',
-			commit = commits['hrsh7th/nvim-cmp'],
-			config = function() require('plugins.config.cmp') end,
-			requires = {
-				{
-					'hrsh7th/vim-vsnip',
-					commit = commits['hrsh7th/vim-vsnip'],
-					after = 'nvim-cmp',
-					config = function() require('plugins.config.vsnip') end,
-				},
-				{
-					'hrsh7th/cmp-vsnip',
-					commit = commits['hrsh7th/cmp-vsnip'],
-					after = 'nvim-cmp'
-				},
-				{
-					'rafamadriz/friendly-snippets',
-					commit = commits['rafamadriz/friendly-snippets'],
-					after = 'nvim-cmp',
-				},
-				{
-					'hrsh7th/cmp-buffer',
-					commit = commits['hrsh7th/cmp-buffer'],
-					after = 'nvim-cmp',
-				},
-				{
-					'hrsh7th/cmp-calc',
-					commit = commits['hrsh7th/cmp-calc'],
-					after = 'nvim-cmp',
-				},
-				{
-					'hrsh7th/cmp-cmdline',
-					commit = commits['hrsh7th/cmp-cmdline'],
-					after = 'nvim-cmp',
-				},
-				{
-					'hrsh7th/cmp-nvim-lsp',
-					commit = commits['hrsh7th/cmp-nvim-lsp'],
-					after = 'nvim-cmp',
-				},
-				{
-					'hrsh7th/cmp-path',
-					commit = commits['hrsh7th/cmp-path'],
-					after = 'nvim-cmp',
-				},
-				{
-					'onsails/lspkind-nvim',
-					commit = commits['onsails/lspkind-nvim']
-				}
-			},
-		}
+		-- use {
+		-- 	'hrsh7th/nvim-cmp',
+		-- 	commit = commits['hrsh7th/nvim-cmp'],
+		-- 	config = function() require('plugins.config.cmp') end,
+		-- 	requires = {
+		-- 		{
+		-- 			'hrsh7th/vim-vsnip',
+		-- 			commit = commits['hrsh7th/vim-vsnip'],
+		-- 			after = 'nvim-cmp',
+		-- 			config = function() require('plugins.config.vsnip') end,
+		-- 		},
+		-- 		{
+		-- 			'hrsh7th/cmp-vsnip',
+		-- 			commit = commits['hrsh7th/cmp-vsnip'],
+		-- 			after = 'nvim-cmp'
+		-- 		},
+		-- 		{
+		-- 			'rafamadriz/friendly-snippets',
+		-- 			commit = commits['rafamadriz/friendly-snippets'],
+		-- 			after = 'nvim-cmp',
+		-- 		},
+		-- 		{
+		-- 			'hrsh7th/cmp-buffer',
+		-- 			commit = commits['hrsh7th/cmp-buffer'],
+		-- 			after = 'nvim-cmp',
+		-- 		},
+		-- 		{
+		-- 			'hrsh7th/cmp-calc',
+		-- 			commit = commits['hrsh7th/cmp-calc'],
+		-- 			after = 'nvim-cmp',
+		-- 		},
+		-- 		{
+		-- 			'hrsh7th/cmp-cmdline',
+		-- 			commit = commits['hrsh7th/cmp-cmdline'],
+		-- 			after = 'nvim-cmp',
+		-- 		},
+		-- 		{
+		-- 			'hrsh7th/cmp-nvim-lsp',
+		-- 			commit = commits['hrsh7th/cmp-nvim-lsp'],
+		-- 			after = 'nvim-cmp',
+		-- 		},
+		-- 		{
+		-- 			'hrsh7th/cmp-path',
+		-- 			commit = commits['hrsh7th/cmp-path'],
+		-- 			after = 'nvim-cmp',
+		-- 		},
+		-- 		{
+		-- 			'onsails/lspkind-nvim',
+		-- 			commit = commits['onsails/lspkind-nvim']
+		-- 		}
+		-- 	},
+		-- }
 
 		-- Syntax Highlighting
 
