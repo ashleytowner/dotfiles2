@@ -17,15 +17,15 @@ local function buffer_icon()
 	end
 
 	local bg = u.get_color('StatusLine', 'bg')
-	u.create_highlight_group('User1', iconData.color, bg)
-	return color_when_focused('User1') .. iconData.icon .. '%*'
+	u.create_highlight_group('FTStatusLine', iconData.color, bg)
+	return color_when_focused('FTStatusLine') .. iconData.icon .. '%*'
 end
 
 local function buffer_label()
 	local fg = u.get_color('Constant', 'fg')
 	local bg = u.get_color('StatusLine', 'bg')
-	u.create_highlight_group('User2', fg, bg)
-	return color_when_focused('User2') .. ' ﬘%* %n %q '
+	u.create_highlight_group('BufferIconStatusLine', fg, bg)
+	return color_when_focused('BufferIconStatusLine') .. ' ﬘%* %n %q '
 end
 
 -- Asynchronously set git status variables
@@ -104,22 +104,22 @@ local function git_status()
 	end
 
 	local gs_behind = behind ~= nil and ' '
-		.. color_when_focused('User3') .. '⇣%*' .. behind or ''
+		.. color_when_focused('GitSignsStatusLine') .. '⇣%*' .. behind or ''
 
 	local gs_ahead = ahead ~= nil and ' '
-		.. color_when_focused('User3') .. '⇡%*' .. ahead or ''
+		.. color_when_focused('GitSignsStatusLine') .. '⇡%*' .. ahead or ''
 
 	local gs_unstaged = unstaged ~= 0 and ' '
-		.. color_when_focused('User3') .. '!%*' .. unstaged or ''
+		.. color_when_focused('GitSignsStatusLine') .. '!%*' .. unstaged or ''
 
 	local gs_untracked = untracked ~= 0 and ' '
-		.. color_when_focused('User3') .. '?%*' .. untracked or ''
+		.. color_when_focused('GitSignsStatusLine') .. '?%*' .. untracked or ''
 
 	local gs_staged = staged ~= 0 and ' '
-		.. color_when_focused('User3') .. '+%*' .. staged or ''
+		.. color_when_focused('GitSignsStatusLine') .. '+%*' .. staged or ''
 
 	local gs_stashes = vim.g.git_stashes ~= '0' and ' '
-		.. color_when_focused('User3') .. '*%*' .. vim.g.git_stashes or ''
+		.. color_when_focused('GitSignsStatusLine') .. '*%*' .. vim.g.git_stashes or ''
 
 	local gs = gs_behind
 		.. gs_ahead
@@ -134,7 +134,7 @@ end
 local function git_branch()
 	local fg = u.get_color('@keyword', 'fg')
 	local bg = u.get_color('StatusLine', 'bg')
-	u.create_highlight_group('User3', fg, bg)
+	u.create_highlight_group('GitSignsStatusLine', fg, bg)
 
 	if (vim.g.git_branch == '' and vim.g.git_commit == '') then
 		return ''
@@ -144,7 +144,7 @@ local function git_branch()
 end
 
 local function git_info()
-	return color_when_focused('User3') .. git_branch() .. ' '
+	return color_when_focused('GitSignsStatusLine') .. git_branch() .. ' '
 		.. git_status() .. '%*'
 end
 
@@ -153,12 +153,14 @@ local function buffer_info()
 end
 
 local function position_info()
-	return ' %<%-6.(%l:%c%) %-4.(%P%)'
+	return color_when_focused('BufferIconStatusLine') .. ' %*%<%-6.(%l:%c%) %-4.(%P%)'
 end
 
 local function codeium_info()
+	local bg = u.get_color('StatusLine', 'bg')
+	u.create_highlight_group('CodeiumLogoStatusLine', '#09b6a2', bg)
 	if (vim.g.ai == 'codeium') then
-		return '{…}%3{codeium#GetStatusString()} '
+		return color_when_focused('CodeiumLogoStatusLine') .. '{…}%*%3{codeium#GetStatusString()} '
 	end
 	return ''
 end
