@@ -28,7 +28,6 @@ local commits = {
 	['folke/tokyonight.nvim'] = 'df13e3268a44f142999fa166572fe95a650a0b37',
 	['gbrlsnchs/telescope-lsp-handlers.nvim'] = 'de02085d6af1633942549a238bc7a5524fa9b201',
 	['github/copilot.vim'] = '1358e8e45ecedc53daf971924a0541ddf6224faf',
-	['gpanders/editorconfig.nvim'] = '5b9e303e1d6f7abfe616ce4cc8d3fffc554790bf',
 	['haishanh/night-owl.vim'] = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
 	['hrsh7th/cmp-buffer'] = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
 	['hrsh7th/cmp-calc'] = '50792f34a628ea6eb31d2c90e8df174671e4e7a0',
