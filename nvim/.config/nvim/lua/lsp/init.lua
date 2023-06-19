@@ -37,13 +37,9 @@ masonLsp.setup_handlers {
 	end,
 	['tsserver'] = function(server_name)
 		lspConfig[server_name].setup({
-			on_attach = function(client, bufnr)
-				-- Example custom config
+			on_attach = function(client)
+				client.server_capabilities.documentFormattingProvider = false
 				keymaps.set_keymaps()
-				-- local tsqOk, tsq = pcall(require, 'twoslash-queries')
-				-- if tsqOk then
-				-- 	tsq.attach(client, bufnr)
-				-- end
 			end
 		})
 	end
@@ -51,14 +47,14 @@ masonLsp.setup_handlers {
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	vim.lsp.handlers.hover, {
-	border = "rounded",
-}
+		border = "rounded",
+	}
 );
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 	vim.lsp.handlers.signature_help, {
-	border = "rounded"
-}
+		border = "rounded"
+	}
 );
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
