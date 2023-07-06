@@ -7,21 +7,28 @@ require('mason-nvim-dap').setup({
 	}
 })
 
-vim.keymap.set('n', '<leader>dap', function()
-	local dap = require('dap')
-	local widgets = require('dap.ui.widgets')
-	widgets.sidebar(widgets.scopes).open()
-	dap.continue()
+vim.keymap.set('n', 'gdc', function()
+	require('dap').continue()
 end)
-vim.keymap.set('n', '<leader>dc', '<cmd>lua require("dap").continue()<CR>')
-vim.keymap.set('n', '<leader>dr', '<cmd>lua require("dap").repl.open()<CR>')
-vim.keymap.set('n', '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<CR>')
-vim.keymap.set('n', '<leader>dn', '<cmd>lua require("dap").step_over()<CR>')
-vim.keymap.set('n', '<leader>di', '<cmd>lua require("dap").step_into()<CR>')
-vim.keymap.set('n', '<leader>do', '<cmd>lua require("dap").step_out()<CR>')
-vim.keymap.set('n', '<leader>dstop', '<cmd>lua require("dap").close()<CR>')
-vim.keymap.set('n', '<leader>ds', function()
+
+-- navigation
+vim.keymap.set('n', 'gdb', function() require("dap").toggle_breakpoint() end)
+vim.keymap.set('n', 'gdn', function() require("dap").step_over() end)
+vim.keymap.set('n', 'gd]', function() require("dap").step_into() end)
+vim.keymap.set('n', 'gd[', function() require("dap").step_out() end)
+vim.keymap.set('n', 'gdq', function()
+	require('dap').close()
+end)
+
+-- widgets & repl
+vim.keymap.set('n', 'gdt', function() require("dap").repl.open() end)
+
+vim.keymap.set('n', 'gds', function()
 	local widgets = require('dap.ui.widgets')
 	widgets.sidebar(widgets.scopes).open()
 end)
 
+vim.keymap.set({'n', 'v'}, 'gdK', function()
+	local widgets = require('dap.ui.widgets')
+	widgets.hover(widgets.expression).open()
+end)
