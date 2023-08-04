@@ -28,4 +28,3 @@ vim.keymap.set(
 	'<CMD>call codeium#Clear()<CR>',
 	{ noremap = true }
 )
-

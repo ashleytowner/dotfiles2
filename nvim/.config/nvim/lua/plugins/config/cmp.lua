@@ -3,7 +3,7 @@ local lspkind = require('lspkind')
 lspkind.init()
 
 local cmp = require('cmp')
-cmp.setup {
+cmp.setup({
 	snippet = {
 		expand = function(args)
 			vim.fn['vsnip#anonymous'](args.body)
@@ -19,13 +19,24 @@ cmp.setup {
 		}),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 		['<C-g><CR>'] = cmp.mapping(function()
-			if (vim.g.ai == 'copilot') then
-				vim.api.nvim_feedkeys(vim.fn['copilot#Accept'](vim.api.nvim_replace_termcodes('<CR>', true, true, false)), 'n', false)
+			if vim.g.ai == 'copilot' then
+				vim.api.nvim_feedkeys(
+					vim.fn['copilot#Accept'](
+						vim.api.nvim_replace_termcodes(
+							'<CR>',
+							true,
+							true,
+							false
+						)
+					),
+					'n',
+					false
+				)
 			end
-			if (vim.g.ai == 'codeium') then
+			if vim.g.ai == 'codeium' then
 				vim.api.nvim_feedkeys(vim.fn['codeium#Accept'](), 'n', false)
 			end
-		end)
+		end),
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
@@ -42,11 +53,11 @@ cmp.setup {
 				nvim_lsp = '[LSP]',
 				path = '[path]',
 				calc = '[calc]',
-				vsnip = '[vsnip]'
-			}
-		})
+				vsnip = '[vsnip]',
+			},
+		}),
 	},
 	experimental = {
-		ghost_text = false
-	}
-}
+		ghost_text = false,
+	},
+})

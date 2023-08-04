@@ -13,10 +13,10 @@ vim.cmd([[
 vim.g.startify_lists = {
 	{
 		type = 'dir',
-		header = { '  MRU in Directory' }
+		header = { '  MRU in Directory' },
 	},
 	{
 		type = 'sessions',
-		header = { '  Sessions' }
-	}
+		header = { '  Sessions' },
+	},
 }
