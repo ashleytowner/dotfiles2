@@ -1,7 +1,7 @@
-local masonOk, mason = pcall(require, 'mason');
+local masonOk, mason = pcall(require, 'mason')
 
 if not masonOk then
-	print('Mason couldn\'t be loaded!')
+	print("Mason couldn't be loaded!")
 	return
 end
 

@@ -1,5 +1,6 @@
 local ensure_packer = function()
-	local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+	local install_path = vim.fn.stdpath('data')
+		.. '/site/pack/packer/start/packer.nvim'
 	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 		vim.fn.system({
 			'git',
@@ -7,7 +8,7 @@ local ensure_packer = function()
 			'--depth',
 			'1',
 			'https://github.com/wbthomason/packer.nvim',
-			install_path
+			install_path,
 		})
 		vim.cmd('packadd packer.nvim')
 		return true
@@ -64,228 +65,284 @@ local commits = {
 	['williamboman/mason-lspconfig.nvim'] = 'd381fcb78d7a562c3244e1c8f76406954649db36',
 	['williamboman/mason.nvim'] = 'f7f81ab41b153e2902ebded401a8a0a6abe28607',
 	['windwp/nvim-autopairs'] = 'e8f7dd7a72de3e7b6626c050a802000e69d53ff0',
+	['mfussenegger/nvim-lint'] = '4744fc04c3a869c9eaa137fec13d992aea7da7ee',
+	['mhartington/formatter.nvim'] = '9bf2e7e294b00bac87c6123c889828ee08dc9b46',
 }
 
 return require('packer').startup({
 	function(use)
-		use {
+		use({
 			'wbthomason/packer.nvim',
-			commit = commits['wbthomason/packer.nvim']
-		}
+			commit = commits['wbthomason/packer.nvim'],
+		})
 
-		use {
+		use({
 			'nvim-lua/plenary.nvim',
-			commit = commits['nvim-lua/plenary.nvim']
-		}
+			commit = commits['nvim-lua/plenary.nvim'],
+		})
 
-		use {
+		use({
 			'williamboman/mason.nvim',
 			commit = commits['williamboman/mason.nvim'],
-			config = function() require('plugins.config.mason') end,
-		}
+			config = function()
+				require('plugins.config.mason')
+			end,
+		})
 
-		use {
+		use({
 			'jay-babu/mason-nvim-dap.nvim',
 			requires = {
 				{ 'mfussenegger/nvim-dap' },
 				{ 'williamboman/mason.nvim' },
 			},
 			commit = commits['jay-babu/mason-nvim-dap.nvim'],
-			config = function() require('plugins.config.dap') end,
-		}
+			config = function()
+				require('plugins.config.dap')
+			end,
+		})
 
-		use {
+		use({
 			'mfussenegger/nvim-dap',
 			commit = commits['mfussenegger/nvim-dap'],
-		}
+		})
 
-		use {
+		use({
 			'ThePrimeagen/refactoring.nvim',
 			commit = commits['ThePrimeagen/refactoring.nvim'],
-			config = function() require('plugins.config.refactoring') end,
+			config = function()
+				require('plugins.config.refactoring')
+			end,
 			requires = {
 				{ 'nvim-lua/plenary.nvim' },
-				{ 'nvim-treesitter/nvim-treesitter' }
+				{ 'nvim-treesitter/nvim-treesitter' },
 			},
-		}
+		})
 
 		-- AI
 
-		use {
+		use({
 			'github/copilot.vim',
 			commit = commits['github/copilot.vim'],
-			config = function() require('plugins.config.copilot') end,
-			disable = true
-		}
+			config = function()
+				require('plugins.config.copilot')
+			end,
+			disable = true,
+		})
 
-		use {
+		use({
 			'Exafunction/codeium.vim',
 			commit = commits['Exafunction/codeium.vim'],
-			config = function() require('plugins.config.codeium') end,
+			config = function()
+				require('plugins.config.codeium')
+			end,
 			-- disable = true
-		}
+		})
 
 		-- Util
 
-		use {
+		use({
 			'dstein64/vim-startuptime',
 			commit = commits['dstein64/vim-startuptime'],
 			cmd = 'StartupTime',
-		}
+		})
 
-		use {
+		use({
 			'akinsho/toggleterm.nvim',
 			commit = commits['akinsho/toggleterm.nvim'],
-			config = function() require('plugins.config.toggleterm') end,
-		}
+			config = function()
+				require('plugins.config.toggleterm')
+			end,
+		})
 
 		-- Motions & Objects
 
-		use {
+		use({
 			'tpope/vim-surround',
 			commit = commits['tpope/vim-surround'],
-			config = function() require('plugins.config.vimSurround') end,
+			config = function()
+				require('plugins.config.vimSurround')
+			end,
 			requires = {
 				'tpope/vim-repeat',
-				commit = commits['tpope/vim-repeat']
-			}
-		}
+				commit = commits['tpope/vim-repeat'],
+			},
+		})
 
-		use {
+		use({
 			'numToStr/Comment.nvim',
 			commit = commits['numToStr/Comment.nvim'],
-			config = function() require('plugins.config.Comment') end,
-		}
+			config = function()
+				require('plugins.config.Comment')
+			end,
+		})
 
-		use {
+		use({
 			'bkad/CamelCaseMotion',
 			commit = commits['bkad/CamelCaseMotion'],
-			config = function() require('plugins.config.camelCaseMotions') end,
-		}
+			config = function()
+				require('plugins.config.camelCaseMotions')
+			end,
+		})
 
-		use {
+		use({
 			'phaazon/hop.nvim',
 			commit = commits['phaazon/hop.nvim'],
-			config = function() require('plugins.config.hop') end,
-		}
+			config = function()
+				require('plugins.config.hop')
+			end,
+		})
 
-		use {
+		use({
 			'windwp/nvim-autopairs',
 			commit = commits['windwp/nvim-autopairs'],
-			config = function() require('plugins.config.autopairs') end,
+			config = function()
+				require('plugins.config.autopairs')
+			end,
 			after = {
-				'nvim-cmp'
+				'nvim-cmp',
 			},
-			disable = true
-		}
+			disable = true,
+		})
 
-		use {
+		use({
 			'mattn/emmet-vim',
-			commit = commits['mattn/emmet-vim']
-		}
+			commit = commits['mattn/emmet-vim'],
+		})
 
 		-- Git
 
-		use {
+		use({
 			'lewis6991/gitsigns.nvim',
 			commit = commits['lewis6991/gitsigns.nvim'],
-			config = function() require('plugins.config.gitsigns') end,
+			config = function()
+				require('plugins.config.gitsigns')
+			end,
 			requires = {
 				'nvim-lua/plenary.nvim',
-				commit = commits['nvim-lua/plenary.nvim']
+				commit = commits['nvim-lua/plenary.nvim'],
 			},
-		}
+		})
 
-		use {
+		use({
 			'tpope/vim-fugitive',
 			commit = commits['tpope/vim-fugitive'],
-			config = function() require('plugins.config.fugitive') end,
+			config = function()
+				require('plugins.config.fugitive')
+			end,
 			cmd = 'Git',
-		}
+		})
 
 		-- File Management
 
-		use {
+		use({
 			'nvim-telescope/telescope.nvim',
 			commit = commits['nvim-telescope/telescope.nvim'],
-			config = function() require('plugins.config.telescope') end,
+			config = function()
+				require('plugins.config.telescope')
+			end,
 			requires = {
 				{
 					'gbrlsnchs/telescope-lsp-handlers.nvim',
-					commit = commits['gbrlsnchs/telescope-lsp-handlers.nvim']
+					commit = commits['gbrlsnchs/telescope-lsp-handlers.nvim'],
 				},
 				{
 					'nvim-lua/plenary.nvim',
-					commit = commits['nvim-lua/plenary.nvim']
+					commit = commits['nvim-lua/plenary.nvim'],
 				},
 				{
 					'nvim-telescope/telescope-ui-select.nvim',
-					commit = commits['nvim-telescope/telescope-ui-select.nvim']
-				}
+					commit = commits['nvim-telescope/telescope-ui-select.nvim'],
+				},
 			},
-		}
+		})
 
-		use {
+		use({
 			'kyazdani42/nvim-tree.lua',
 			commit = commits['kyazdani42/nvim-tree.lua'],
 			requires = {
 				{
 					'kyazdani42/nvim-web-devicons',
-					commit = commits['kyazdani42/nvim-web-devicons']
+					commit = commits['kyazdani42/nvim-web-devicons'],
 				},
 			},
-			config = function() require('plugins.config.nvimTree') end,
-		}
+			config = function()
+				require('plugins.config.nvimTree')
+			end,
+		})
 
-		use {
+		use({
 			'mbbill/undotree',
 			commit = commits['mbbill/undotree'],
-			config = function() require('plugins.config.undotree') end,
-		}
+			config = function()
+				require('plugins.config.undotree')
+			end,
+		})
 
 		-- LSP, Completion & Formatting
 
-		use {
+		use({
 			'neovim/nvim-lspconfig',
 			commit = commits['neovim/nvim-lspconfig'],
-			config = function() require('lsp') end,
+			config = function()
+				require('lsp')
+			end,
 			after = { 'mason.nvim' },
 			requires = {
 				{
 					'williamboman/mason-lspconfig.nvim',
 					commit = commits['williamboman/mason-lspconfig.nvim'],
-				}
+				},
 			},
-		}
+		})
 
-		use {
-			'jose-elias-alvarez/null-ls.nvim',
-			commit = commits['jose-elias-alvarez/null-ls.nvim'],
-			config = function() require('lsp.null-ls') end,
-			after = { 'mason.nvim' },
-			requires = {
-				{
-					'jayp0521/mason-null-ls.nvim',
-					commit = commits['jayp0521/mason-null-ls.nvim']
-				}
-			},
-		}
+		use({
+			'mfussenegger/nvim-lint',
+			commit = commits['mfussenegger/nvim-lint'],
+			config = function()
+				require('plugins.config.lint')
+			end,
+		})
 
-		use {
+		use({
+			'mhartington/formatter.nvim',
+			commit = commits['mhartington/formatter.nvim'],
+			config = function()
+				require('plugins.config.formatter')
+			end,
+		})
+
+		-- use {
+		-- 	'jose-elias-alvarez/null-ls.nvim',
+		-- 	commit = commits['jose-elias-alvarez/null-ls.nvim'],
+		-- 	config = function() require('lsp.null-ls') end,
+		-- 	after = { 'mason.nvim' },
+		-- 	requires = {
+		-- 		{
+		-- 			'jayp0521/mason-null-ls.nvim',
+		-- 			commit = commits['jayp0521/mason-null-ls.nvim']
+		-- 		}
+		-- 	},
+		-- }
+
+		use({
 			'hrsh7th/nvim-cmp',
 			commit = commits['hrsh7th/nvim-cmp'],
-			config = function() require('plugins.config.cmp') end,
+			config = function()
+				require('plugins.config.cmp')
+			end,
 			requires = {
 				{
 					'hrsh7th/vim-vsnip',
 					commit = commits['hrsh7th/vim-vsnip'],
 					after = 'nvim-cmp',
-					config = function() require('plugins.config.vsnip') end,
+					config = function()
+						require('plugins.config.vsnip')
+					end,
 				},
 				{
 					'hrsh7th/cmp-vsnip',
 					commit = commits['hrsh7th/cmp-vsnip'],
-					after = 'nvim-cmp'
+					after = 'nvim-cmp',
 				},
 				{
 					'rafamadriz/friendly-snippets',
@@ -319,58 +376,68 @@ return require('packer').startup({
 				},
 				{
 					'onsails/lspkind-nvim',
-					commit = commits['onsails/lspkind-nvim']
-				}
+					commit = commits['onsails/lspkind-nvim'],
+				},
 			},
-		}
+		})
 
 		-- Syntax Highlighting
 
-		use {
+		use({
 			'nvim-treesitter/nvim-treesitter',
 			commit = commits['nvim-treesitter/nvim-treesitter'],
 			run = ':TSUpdate',
-			config = function() require('plugins.config.treesitter') end,
-		}
+			config = function()
+				require('plugins.config.treesitter')
+			end,
+		})
 
-		use {
+		use({
 			'nvim-treesitter/playground',
 			commit = commits['nvim-treesitter/playground'],
 			requires = 'nvim-treesitter/nvim-treesitter',
-		}
+		})
 
 		-- Theming
 
-		use {
+		use({
 			'haishanh/night-owl.vim',
 			commit = commits['haishanh/night-owl.vim'],
-		}
+		})
 
-		use {
+		use({
 			'rebelot/kanagawa.nvim',
 			as = 'kanagawa',
-			config = function() require('plugins.colorscheme') end
-		}
+			config = function()
+				require('plugins.colorscheme')
+			end,
+		})
 
-		use {
+		use({
 			'catppuccin/nvim',
 			commit = commits['catppuccin/nvim'],
 			as = 'catppuccin',
-			config = function() require('plugins.colorscheme') end,
-		}
+			config = function()
+				require('plugins.colorscheme')
+			end,
+		})
 
-		use {
+		use({
 			'dracula/vim',
 			commit = commits['dracula/vim'],
-			config = function() require('plugins.colorscheme') end,
+			config = function()
+				require('plugins.colorscheme')
+			end,
 			as = 'dracula',
-		}
+		})
 
-		use {
+		use({
 			'folke/tokyonight.nvim',
 			commit = commits['folke/tokyonight.nvim'],
-			config = function() require('plugins.colorscheme') end,
-		}
+			config = function()
+				require('plugins.colorscheme')
+			end,
+		})
 
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins
@@ -382,12 +449,12 @@ return require('packer').startup({
 		display = {
 			open_fn = function()
 				return require('packer.util').float({ border = 'rounded' })
-			end
+			end,
 		},
 		compile_on_sync = true,
 		profile = {
 			enable = true,
-			threshold = 0
-		}
-	}
+			threshold = 0,
+		},
+	},
 })

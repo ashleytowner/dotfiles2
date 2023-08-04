@@ -1,22 +1,28 @@
-local prettier = {
-	function()
-		return {
-			exe = "prettierd",
-			args = {vim.api.nvim_buf_get_name(0)},
-			stdin = true
-		}
-	end
-}
-
 require('formatter').setup({
 	logging = false,
 	filetype = {
-		javascript = prettier,
-		javascriptreact = prettier,
-		['javascript.jsx'] = prettier,
-		typescript = prettier,
-		typescriptreact = prettier,
-		['typescript.tsx'] = prettier,
-		html = prettier
-	}
+		javascript = require('formatter.filetypes.javascript').prettierd,
+		javascriptreact = require('formatter.filetypes.javascriptreact').prettierd,
+		typescript = require('formatter.filetypes.typescript').prettierd,
+		typescriptreact = require('formatter.filetypes.typescriptreact').prettierd,
+		html = require('formatter.filetypes.html').prettierd,
+		json = require('formatter.filetypes.json').jq,
+		lua = require('formatter.filetypes.lua').stylua,
+		css = require('formatter.filetypes.css').prettierd,
+		scss = require('formatter.filetypes.css').prettierd,
+	},
 })
+
+vim.keymap.set(
+	'n',
+	'g=',
+	'<CMD>Format<CR>',
+	{ noremap = true, silent = true }
+)
+
+vim.keymap.set(
+	{ 'v' },
+	'=',
+	"<CMD>'<,'>Format<CR>",
+	{ noremap = true, silent = true }
+)

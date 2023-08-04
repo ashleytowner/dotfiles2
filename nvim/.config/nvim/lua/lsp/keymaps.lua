@@ -77,20 +77,6 @@ function P.set_keymaps()
 
 	vim.keymap.set(
 		'n',
-		'g=',
-		vim.lsp.buf.format,
-		{ noremap = true, silent = true, buffer = true }
-	);
-
-	vim.keymap.set(
-		{ 'v' },
-		'=',
-		vim.lsp.buf.format,
-		{ noremap = true, silent = true, buffer = true }
-	);
-
-	vim.keymap.set(
-		'n',
 		'==',
 		function()
 			local line = vim.fn.getcurpos()[2];
