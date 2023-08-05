@@ -1,42 +1,42 @@
 require('nvim-tree').setup({
 	git = {
-		ignore = false
+		ignore = false,
 	},
 	diagnostics = {
-		enable = true
+		enable = true,
 	},
 	view = {
-		side = "right"
+		side = 'right',
 	},
 
 	renderer = {
 		highlight_git = true,
 		icons = {
-			git_placement = "after",
+			git_placement = 'after',
 			show = {
 				file = true,
 				folder = true,
 				folder_arrow = false,
-				git = true
+				git = true,
 			},
 			glyphs = {
 				git = {
-					unstaged = "!",
-					staged = "+",
-					unmerged = "",
-					renamed = "➜",
-					untracked = "?",
-					deleted = "",
-					ignored = "◌",
-				}
-			}
-		}
-	}
+					unstaged = '!',
+					staged = '+',
+					unmerged = '',
+					renamed = '➜',
+					untracked = '?',
+					deleted = '',
+					ignored = '◌',
+				},
+			},
+		},
+	},
 })
 
 vim.keymap.set(
 	'n',
 	'<leader><leader>',
 	'<cmd>NvimTreeFindFileToggle<cr>',
-	{ noremap = true, desc = "open nvim tree" }
-);
+	{ noremap = true, desc = 'open nvim tree' }
+)

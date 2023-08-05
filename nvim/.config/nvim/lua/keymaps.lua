@@ -2,8 +2,8 @@
 vim.keymap.set('n', 'J', 'mzJ`z', { noremap = true })
 vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
 vim.keymap.set('n', 'n', 'nzz', { noremap = true })
-vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true })
-vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true })
 
 -- Clipboard
 vim.keymap.set('', '<leader>P', '"+P', { noremap = true })

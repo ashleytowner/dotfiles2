@@ -20,5 +20,5 @@ vim.g.coloresque_whitelist = {
 	'vim',
 	'vue',
 	'xml',
-	'conf'
+	'conf',
 }
