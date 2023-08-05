@@ -39,8 +39,6 @@ local commits = {
 	['hrsh7th/nvim-cmp'] = 'fa492591fecdc41798cd5d3d1713232a5088fba0',
 	['hrsh7th/vim-vsnip'] = '7753ba9c10429c29d25abfd11b4c60b76718c438',
 	['jay-babu/mason-nvim-dap.nvim'] = 'e4d56b400e9757b1dc77d620fd3069396e92d5fc',
-	['jayp0521/mason-null-ls.nvim'] = '73c68abdf65279e41526eb152876511a8ae84ea2',
-	['jose-elias-alvarez/null-ls.nvim'] = 'bbaf5a96913aa92281f154b08732be2f57021c45',
 	['kyazdani42/nvim-tree.lua'] = 'c3c6544ee00333b0f1d6a13735d0dd302dba4f70',
 	['kyazdani42/nvim-web-devicons'] = '14b3a5ba63b82b60cde98d0a40319d80f25e8301',
 	['lewis6991/gitsigns.nvim'] = '256569c2fe697a3003dbd49ff474e5935af9066c',
@@ -310,19 +308,6 @@ return require('packer').startup({
 				require('plugins.config.formatter')
 			end,
 		})
-
-		-- use {
-		-- 	'jose-elias-alvarez/null-ls.nvim',
-		-- 	commit = commits['jose-elias-alvarez/null-ls.nvim'],
-		-- 	config = function() require('lsp.null-ls') end,
-		-- 	after = { 'mason.nvim' },
-		-- 	requires = {
-		-- 		{
-		-- 			'jayp0521/mason-null-ls.nvim',
-		-- 			commit = commits['jayp0521/mason-null-ls.nvim']
-		-- 		}
-		-- 	},
-		-- }
 
 		use({
 			'hrsh7th/nvim-cmp',
