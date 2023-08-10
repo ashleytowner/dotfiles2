@@ -19,7 +19,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 local commits = {
-	['Exafunction/codeium.vim'] = '99714b06b85e79d9247066f7612e9cc55458bcf1',
+	['Exafunction/codeium.vim'] = '3387991fc87288ed4281ff665645c11de5833cf5',
 	['ThePrimeagen/refactoring.nvim'] = '08bcc40638cd4debd5184f934971858e1c5acff4',
 	['akinsho/toggleterm.nvim'] = 'cf146a267a6a7db62b1e2aff40414b20081048a1',
 	['bkad/CamelCaseMotion'] = 'de439d7c06cffd0839a29045a103fe4b44b15cdc',
