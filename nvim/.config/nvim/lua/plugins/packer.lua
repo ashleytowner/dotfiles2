@@ -28,7 +28,6 @@ local commits = {
 	['dstein64/vim-startuptime'] = '454b3de856b7bd298700de33d79774ca9b9e3875',
 	['folke/tokyonight.nvim'] = '18259404c962736c70c0f670b71c976c4a5ac2bb',
 	['gbrlsnchs/telescope-lsp-handlers.nvim'] = 'de02085d6af1633942549a238bc7a5524fa9b201',
-	['github/copilot.vim'] = '1358e8e45ecedc53daf971924a0541ddf6224faf',
 	['haishanh/night-owl.vim'] = '783a41a27f7fe55ed91d1ec0f0351d06ae17fbc7',
 	['hrsh7th/cmp-buffer'] = '3022dbc9166796b644a841a02de8dd1cc1d311fa',
 	['hrsh7th/cmp-calc'] = '50792f34a628ea6eb31d2c90e8df174671e4e7a0',
@@ -119,21 +118,11 @@ return require('packer').startup({
 		-- AI
 
 		use({
-			'github/copilot.vim',
-			commit = commits['github/copilot.vim'],
-			config = function()
-				require('plugins.config.copilot')
-			end,
-			disable = true,
-		})
-
-		use({
 			'Exafunction/codeium.vim',
 			commit = commits['Exafunction/codeium.vim'],
 			config = function()
 				require('plugins.config.codeium')
-			end,
-			-- disable = true
+			end
 		})
 
 		-- Util
