@@ -1,4 +1,4 @@
-require('formatter').setup({
+local config = {
 	logging = false,
 	filetype = {
 		javascript = require('formatter.filetypes.javascript').prettierd,
@@ -10,13 +10,31 @@ require('formatter').setup({
 		lua = require('formatter.filetypes.lua').stylua,
 		css = require('formatter.filetypes.css').prettierd,
 		scss = require('formatter.filetypes.css').prettierd,
+		python = require('formatter.filetypes.python').black,
 	},
-})
+}
+
+require('formatter').setup(config)
+
+local function has_formatter()
+	local ft = vim.bo.filetype
+	for k, _ in pairs(config.filetype) do
+		if ft == k then
+			return true
+		end
+	end
+end
 
 vim.keymap.set(
 	'n',
 	'g=',
-	'<CMD>Format<CR>',
+	function()
+		if (has_formatter()) then
+			vim.cmd([[<CMD>Format<CR>]])
+		else
+			vim.lsp.buf.format()
+		end
+	end,
 	{ noremap = true, silent = true }
 )
 
