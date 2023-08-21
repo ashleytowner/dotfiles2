@@ -25,22 +25,10 @@ local function has_formatter()
 	end
 end
 
-vim.keymap.set(
-	'n',
-	'g=',
-	function()
-		if (has_formatter()) then
-			vim.cmd([[<CMD>Format<CR>]])
-		else
-			vim.lsp.buf.format()
-		end
-	end,
-	{ noremap = true, silent = true }
-)
-
-vim.keymap.set(
-	{ 'v' },
-	'=',
-	"<CMD>'<,'>Format<CR>",
-	{ noremap = true, silent = true }
-)
+vim.keymap.set('n', 'g=', function()
+	if has_formatter() then
+		vim.cmd('Format')
+	else
+		vim.lsp.buf.format()
+	end
+end, { noremap = true, silent = true })
