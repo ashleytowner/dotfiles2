@@ -121,6 +121,7 @@ local plugins = {
 
 	{
 		'akinsho/toggleterm.nvim',
+		enabled = false,
 		commit = commits['akinsho/toggleterm.nvim'],
 		config = function()
 			require('plugins.config.toggleterm')

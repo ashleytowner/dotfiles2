@@ -25,3 +25,22 @@ vim.keymap.set('n', '<C-6>', '<C-^>', { noremap = true })
 -- Terminal
 vim.keymap.set('t', '<C-\\>', '<C-\\><C-n><C-w>w', { noremap = true })
 vim.keymap.set('t', '<C-n>', '<C-\\><C-n>', { noremap = true })
+
+vim.keymap.set('n', '<leader>/', function ()
+	local bufs = require('util').get_buffers()
+	local terminal_buffer = -1;
+
+	for _, buf in ipairs(bufs) do
+		if vim.api.nvim_buf_get_option(buf.number, 'buftype') == 'terminal' then
+			terminal_buffer = buf.number
+			break
+		end
+	end
+
+	if terminal_buffer == -1 then
+		vim.cmd('sbuffer +term')
+	else
+		vim.cmd('sbuffer ' .. terminal_buffer)
+	end
+
+end, { noremap = true })

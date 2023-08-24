@@ -104,4 +104,22 @@ function M.get_visual_selection()
 	return text
 end
 
+function M.get_buffers()
+	local buffers = {
+	}
+
+	for buffer = 1, vim.fn.bufnr('$') do
+		local is_listed = vim.fn.buflisted(buffer)
+		if (is_listed == 1) then
+			local bufname = vim.fn.bufname(buffer)
+			table.insert(buffers, {
+				number = buffer,
+				name = bufname
+			})
+		end
+	end
+
+	return buffers
+end
+
 return M

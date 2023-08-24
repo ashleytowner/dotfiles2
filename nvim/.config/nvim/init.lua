@@ -47,6 +47,8 @@ vim.go.tabline = '%!v:lua.TabLine()'
 vim.go.showtabline = 2
 vim.o.shell = '/bin/zsh'
 vim.o.mouse = ''
+vim.go.splitbelow = true
+vim.go.splitright = true
 
 vim.g.markdown_fenced_languages = {
 	'ts=typescript',
