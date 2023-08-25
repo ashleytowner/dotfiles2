@@ -1,7 +1,7 @@
 local util = require('util')
 
 local function getClickable(tabnr)
-	return '%' .. (tabnr + 1) .. 'T'
+	return '%' .. (tabnr) .. 'T'
 end
 
 local function getBaseHighlight(selected)
@@ -22,6 +22,7 @@ local function getFormattedBufferName(bufnr, selected, short)
 		buffertype ~= ''
 		and buffertype ~= 'help'
 		and filetype ~= 'dashboard'
+		and buffertype ~= 'terminal'
 	then
 		return ''
 	end
@@ -37,7 +38,7 @@ local function getFormattedBufferName(bufnr, selected, short)
 		or (short and shortname or longname)
 	local icon = util.get_file_icon(longname)
 
-	return (selected and '%#' .. icon.highlight .. '#' or '')
+	return ((selected and bufnr == vim.fn.bufnr()) and '%#' .. icon.highlight .. '#' or '')
 		.. icon.icon
 		.. ' '
 		.. getBaseHighlight(selected)
