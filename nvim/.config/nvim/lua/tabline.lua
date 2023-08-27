@@ -1,9 +1,5 @@
 local util = require('util')
 
-local function getClickable(tabnr)
-	return '%' .. (tabnr) .. 'T'
-end
-
 local function getBaseHighlight(selected)
 	return selected and '%#TabLineFill#' or '%#TabLine#'
 end
@@ -55,10 +51,10 @@ local function getTabBuffers(tabnr, selected, short)
 	return list
 end
 
-local function generateTabName(tabnr, selected, short)
-	return getTabStart(selected)
-		.. getClickable(tabnr)
-		.. getTabBuffers(tabnr, selected, short)
+local function generateTabName(tabnr, selected, short, show_close)
+	return '%' .. tabnr .. 'T' .. getTabStart(selected)
+		.. getTabBuffers(tabnr, selected, short) .. '%T'
+		.. (show_close and ('%' .. tabnr .. 'X󱎘 %X') or '')
 end
 
 function TabLine()
@@ -70,9 +66,10 @@ function TabLine()
 	local tabCount = vim.fn.tabpagenr('$')
 	local shortnames = tabCount > 3
 	local tabline = ''
+	local show_close = tabCount > 1 and vim.o.mouse ~= ''
 	for tabnr = 1, tabCount do
 		local selected = tabnr == vim.fn.tabpagenr()
-		tabline = tabline .. generateTabName(tabnr, selected, shortnames)
+		tabline = tabline .. generateTabName(tabnr, selected, shortnames, show_close)
 	end
 	return tabline
 end
