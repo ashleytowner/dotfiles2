@@ -115,26 +115,14 @@ function P.set_keymaps()
 	vim.keymap.set(
 		'n',
 		'<C-]>',
-		function()
-			if (tscpOk) then
-				tscp.lsp_definitions();
-			else
-				vim.lsp.buf.definition();
-			end
-		end,
+		vim.lsp.buf.definition,
 		{ noremap = true, silent = true, buffer = true }
 	);
 
 	vim.keymap.set(
 		'n',
 		']r',
-		function()
-			if (tscpOk) then
-				tscp.lsp_references();
-			else
-				vim.lsp.buf.references();
-			end
-		end,
+		vim.lsp.buf.references,
 		{ noremap = true, silent = true, buffer = true }
 	);
 
