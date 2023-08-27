@@ -161,8 +161,15 @@ local function git_info()
 		.. '%*'
 end
 
+local function filetype_info()
+	local bg = u.get_color('StatusLine', 'bg');
+	local fg = u.get_color('Comment', 'fg');
+	u.create_highlight_group('FiletypeStatusLine', fg, bg);
+	return color_when_focused('FiletypeStatusLine') .. '%y%*'
+end
+
 local function buffer_info()
-	return '%*' .. buffer_label() .. buffer_icon() .. ' %t %m%r '
+	return '%*' .. buffer_label() .. buffer_icon() .. ' %t ' .. filetype_info() .. ' %m%r'
 end
 
 local function position_info()
