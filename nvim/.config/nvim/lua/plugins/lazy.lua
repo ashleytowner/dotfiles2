@@ -15,14 +15,12 @@ local plugins = {
 	{
 		'nvim-lua/plenary.nvim',
 	},
-
 	{
 		'williamboman/mason.nvim',
 		config = function()
 			require('plugins.config.mason')
 		end,
 	},
-
 	{
 		'jay-babu/mason-nvim-dap.nvim',
 		dependencies = {
@@ -33,11 +31,9 @@ local plugins = {
 			require('plugins.config.dap')
 		end,
 	},
-
 	{
 		'mfussenegger/nvim-dap',
 	},
-
 	{
 		'ThePrimeagen/refactoring.nvim',
 		config = function()
@@ -48,23 +44,18 @@ local plugins = {
 			{ 'nvim-treesitter/nvim-treesitter' },
 		},
 	},
-
 	-- AI
-
 	{
 		'Exafunction/codeium.vim',
 		config = function()
 			require('plugins.config.codeium')
 		end,
 	},
-
 	-- Util
-
 	{
 		'dstein64/vim-startuptime',
 		cmd = 'StartupTime',
 	},
-
 	{
 		'akinsho/toggleterm.nvim',
 		enabled = false,
@@ -72,9 +63,7 @@ local plugins = {
 			require('plugins.config.toggleterm')
 		end,
 	},
-
 	-- Motions & Objects
-
 	{
 		'tpope/vim-surround',
 		config = function()
@@ -84,28 +73,24 @@ local plugins = {
 			'tpope/vim-repeat',
 		},
 	},
-
 	{
 		'numToStr/Comment.nvim',
 		config = function()
 			require('plugins.config.Comment')
 		end,
 	},
-
 	{
 		'bkad/CamelCaseMotion',
 		config = function()
 			require('plugins.config.camelCaseMotions')
 		end,
 	},
-
 	{
 		'phaazon/hop.nvim',
 		config = function()
 			require('plugins.config.hop')
 		end,
 	},
-
 	{
 		'windwp/nvim-autopairs',
 		config = function()
@@ -116,13 +101,10 @@ local plugins = {
 		-- },
 		enabled = false,
 	},
-
 	{
 		'mattn/emmet-vim',
 	},
-
 	-- Git
-
 	{
 		'lewis6991/gitsigns.nvim',
 		config = function()
@@ -132,7 +114,6 @@ local plugins = {
 			'nvim-lua/plenary.nvim',
 		},
 	},
-
 	{
 		'tpope/vim-fugitive',
 		config = function()
@@ -140,9 +121,7 @@ local plugins = {
 		end,
 		cmd = 'Git',
 	},
-
 	-- File Management
-
 	{
 		'nvim-telescope/telescope.nvim',
 		config = function()
@@ -160,7 +139,6 @@ local plugins = {
 			},
 		},
 	},
-
 	{
 		'kyazdani42/nvim-tree.lua',
 		dependencies = {
@@ -172,16 +150,13 @@ local plugins = {
 			require('plugins.config.nvimTree')
 		end,
 	},
-
 	{
 		'mbbill/undotree',
 		config = function()
 			require('plugins.config.undotree')
 		end,
 	},
-
 	-- LSP, Completion & Formatting
-
 	{
 		'neovim/nvim-lspconfig',
 		config = function()
@@ -194,21 +169,18 @@ local plugins = {
 			},
 		},
 	},
-
 	{
 		'mfussenegger/nvim-lint',
 		config = function()
 			require('plugins.config.lint')
 		end,
 	},
-
 	{
 		'mhartington/formatter.nvim',
 		config = function()
 			require('plugins.config.formatter')
 		end,
 	},
-
 	{
 		'hrsh7th/nvim-cmp',
 		config = function()
@@ -248,9 +220,7 @@ local plugins = {
 			},
 		},
 	},
-
 	-- Syntax Highlighting
-
 	{
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
@@ -258,19 +228,15 @@ local plugins = {
 			require('plugins.config.treesitter')
 		end,
 	},
-
 	{
 		'nvim-treesitter/playground',
 		dependencies = 'nvim-treesitter/nvim-treesitter',
 	},
-
 	-- Theming
-
 	{
 		'haishanh/night-owl.vim',
 		enabled = false,
 	},
-
 	{
 		'rebelot/kanagawa.nvim',
 		enabled = false,
@@ -279,7 +245,6 @@ local plugins = {
 			require('plugins.colorscheme')
 		end,
 	},
-
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
@@ -287,7 +252,6 @@ local plugins = {
 			require('plugins.colorscheme')
 		end,
 	},
-
 	{
 		'dracula/vim',
 		enabled = false,
@@ -296,7 +260,6 @@ local plugins = {
 		end,
 		name = 'dracula',
 	},
-
 	{
 		'folke/tokyonight.nvim',
 		enabled = false,
