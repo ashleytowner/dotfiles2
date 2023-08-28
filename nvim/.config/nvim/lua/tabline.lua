@@ -1,15 +1,17 @@
 local util = require('util')
 
+local TabLib = {}
+
 local function getBaseHighlight(selected)
 	return selected and '%#TabLineFill#' or '%#TabLine#'
 end
 
-local function getTabStart(selected)
+function TabLib.getTabStart(selected)
 	local highlight = selected and '%#User4#' or getBaseHighlight(selected)
 	return highlight .. '▎' .. (selected and getBaseHighlight(selected) or '')
 end
 
-local function getFormattedBufferName(bufnr, selected, short)
+function TabLib.getFormattedBufferName(bufnr, selected, short)
 	local buffertype = vim.fn.getbufvar(bufnr, '&buftype')
 
 	local filetype = vim.fn.getbufvar(bufnr, '&ft')
@@ -46,13 +48,13 @@ local function getTabBuffers(tabnr, selected, short)
 	local buflist = vim.fn.tabpagebuflist(tabnr)
 	local list = ''
 	for _, bufnr in ipairs(buflist) do
-		list = list .. getFormattedBufferName(bufnr, selected, short)
+		list = list .. TabLib.getFormattedBufferName(bufnr, selected, short)
 	end
 	return list
 end
 
 local function generateTabName(tabnr, selected, short, show_close)
-	return '%' .. tabnr .. 'T' .. getTabStart(selected)
+	return '%' .. tabnr .. 'T' .. TabLib.getTabStart(selected)
 		.. getTabBuffers(tabnr, selected, short) .. '%T'
 		.. (show_close and ('%' .. tabnr .. 'X󱎘 %X') or '')
 end
@@ -73,3 +75,5 @@ function TabLine()
 	end
 	return tabline
 end
+
+return TabLib
