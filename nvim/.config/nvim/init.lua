@@ -5,6 +5,7 @@ require('plugins')
 require('statusline')
 require('tabline')
 require('bufferline')
+require('foldtext')
 
 
 -- highlight text on yank
@@ -50,6 +51,7 @@ vim.o.shell = '/bin/zsh'
 vim.o.mouse = ''
 vim.go.splitbelow = true
 vim.go.splitright = true
+vim.o.foldtext = 'v:lua.FoldText()'
 
 vim.g.markdown_fenced_languages = {
 	'ts=typescript',
