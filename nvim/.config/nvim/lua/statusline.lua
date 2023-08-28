@@ -150,7 +150,7 @@ local function git_branch()
 	end
 	return u.ternary(vim.g.git_branch ~= '', '', 'ﰖ')
 		.. '%* '
-		.. u.ternary(vim.g.git_branch ~= '', vim.g.git_branch, vim.g.git_commit)
+		.. u.ternary(vim.g.git_branch ~= '', vim.g.git_branch .. ' %#FiletypeStatusLine#[' .. vim.g.git_commit .. ']%*', vim.g.git_commit)
 end
 
 local function git_info()
