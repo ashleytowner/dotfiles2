@@ -76,10 +76,10 @@ telescope.setup({
 			theme = 'dropdown',
 		},
 		lsp_references = {
-			theme = 'cursor',
+			theme = 'dropdown',
 		},
 		lsp_definitions = {
-			theme = 'cursor',
+			theme = 'dropdown',
 		},
 		quickfix = {
 			theme = 'ivy',
