@@ -1,3 +1,4 @@
+-- setup
 require('mason-nvim-dap').setup({
 	ensure_installed = { 'node2' },
 	handlers = {
@@ -7,38 +8,55 @@ require('mason-nvim-dap').setup({
 	},
 })
 
-vim.keymap.set('n', 'gdc', function()
+require('nvim-dap-virtual-text').setup()
+require('dapui').setup()
+
+-- keymappings
+
+vim.keymap.set('n', '<F4>', function()
 	require('dap').continue()
 end)
 
--- navigation
-vim.keymap.set('n', 'gdb', function()
+vim.keymap.set('n', '<leader>b', function()
 	require('dap').toggle_breakpoint()
 end)
-vim.keymap.set('n', 'gdn', function()
-	require('dap').step_over()
-end)
-vim.keymap.set('n', 'gd]', function()
-	require('dap').step_into()
-end)
-vim.keymap.set('n', 'gd[', function()
-	require('dap').step_out()
-end)
-vim.keymap.set('n', 'gdq', function()
-	require('dap').close()
-end)
 
--- widgets & repl
-vim.keymap.set('n', 'gdt', function()
-	require('dap').repl.open()
-end)
+-- listeners
+require('dap').listeners.after.event_initialized['dapui'] = function()
+	require('dapui').open()
+end
 
-vim.keymap.set('n', 'gds', function()
-	local widgets = require('dap.ui.widgets')
-	widgets.sidebar(widgets.scopes).open()
-end)
+require('dap').listeners.before.event_terminated['dapui'] = function()
+	require('dapui').close()
+end
 
-vim.keymap.set({ 'n', 'v' }, 'gdK', function()
-	local widgets = require('dap.ui.widgets')
-	widgets.hover(widgets.expression).open()
-end)
+require('dap').listeners.before.event_exited['dapui'] = function()
+	require('dapui').close()
+end
+
+require('dap').listeners.after.event_initialized['keymaps'] = function()
+	vim.o.mouse='nv'
+	vim.keymap.set('n', '<F3>', function()
+		require('dap').step_over()
+	end)
+	vim.keymap.set('n', '<F2>', function()
+		require('dap').step_into()
+	end)
+	vim.keymap.set('n', '<F12>', function()
+		require('dap').step_out()
+	end)
+	vim.keymap.set('n', '<C-c>', function()
+		require('dap').terminate()
+	end)
+end
+
+require('dap').listeners.before.event_terminated['keymaps'] = function()
+	vim.o.mouse=''
+end
+
+require('dap').listeners.before.event_exited['keymaps'] = function()
+	vim.o.mouse=''
+end
+
+
+
