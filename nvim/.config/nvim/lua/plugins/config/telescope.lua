@@ -57,7 +57,6 @@ telescope.setup({
 	},
 	pickers = {
 		find_files = {
-			theme = 'dropdown',
 			find_command = {
 				'rg',
 				'--files',
@@ -69,18 +68,10 @@ telescope.setup({
 		git_branches = {
 			theme = 'dropdown',
 		},
-		buffers = {
-			theme = 'dropdown',
-		},
-		live_grep = {
-			theme = 'dropdown',
-		},
-		lsp_references = {
-			theme = 'dropdown',
-		},
-		lsp_definitions = {
-			theme = 'dropdown',
-		},
+		buffers = { },
+		live_grep = { },
+		lsp_references = { },
+		lsp_definitions = {},
 		quickfix = {
 			theme = 'ivy',
 		},

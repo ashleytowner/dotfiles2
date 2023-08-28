@@ -269,6 +269,9 @@ local plugins = {
 			require('plugins.colorscheme')
 		end,
 	},
+	{
+		'ray-x/aurora',
+	},
 }
 
 require('lazy').setup(plugins)

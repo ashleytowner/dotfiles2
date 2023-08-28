@@ -27,7 +27,13 @@ function P.set_keymaps()
 	vim.keymap.set(
 		'n',
 		']t',
-		vim.lsp.buf.type_definition,
+		function()
+			if (tscpOk) then
+				tscp.lsp_type_definitions()
+			else
+				vim.lsp.buf.type_definition()
+			end
+		end,
 		{ noremap = true, silent = true, buffer = true }
 	)
 
@@ -51,7 +57,7 @@ function P.set_keymaps()
 		end
 		vim.diagnostic.open_float(
 			nil,
-			{ prefix = formatFunction, border = 'rounded' }
+			{ prefix = formatFunction }
 		)
 	end, { noremap = true, silent = true, buffer = true })
 
@@ -105,7 +111,13 @@ function P.set_keymaps()
 	vim.keymap.set(
 		'n',
 		'<C-]>',
-		vim.lsp.buf.definition,
+		function()
+			if (tscpOk) then
+				tscp.lsp_definitions()
+			else
+				vim.lsp.buf.definition()
+			end
+		end,
 		{ noremap = true, silent = true, buffer = true }
 	)
 
