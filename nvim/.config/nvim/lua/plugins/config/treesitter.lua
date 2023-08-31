@@ -14,7 +14,7 @@ require('nvim-treesitter.configs').setup({
 		'json',
 		'toml',
 		'markdown',
-		'rust'
+		'rust',
 	},
 	highlight = {
 		enable = true,
@@ -32,3 +32,78 @@ require('nvim-treesitter.configs').setup({
 		enable = true,
 	},
 })
+
+local ts_utils = require('nvim-treesitter.ts_utils')
+
+local function get_node(main)
+	local node = ts_utils.get_node_at_cursor()
+
+	if node == nil then
+		error('Could not find node')
+	end
+
+	if main then
+		local start_row = node:start()
+		local parent = node:parent()
+		local root = ts_utils.get_root_for_node(node)
+
+		while
+			parent ~= nil
+			and parent:start() == start_row
+			and parent ~= root
+		do
+			node = parent
+			parent = node:parent()
+		end
+	end
+
+	return node
+end
+
+local function select_node(node)
+	if node == nil then
+		return
+	end
+	local bufnr = vim.fn.bufnr()
+	ts_utils.update_selection(bufnr, node)
+end
+
+local function is_in_table(table, value)
+	for _, v in pairs(table) do
+		if v == value then
+			return true
+		end
+	end
+	return false
+end
+
+local function get_parent_node_of_type(types)
+	local node = ts_utils.get_node_at_cursor()
+
+	if node == nil then
+		error('Node is nil')
+	end
+
+	if types == nil then
+		error('Types is nil')
+	end
+
+	local parent = node:parent()
+
+	while parent ~= nil and not is_in_table(types, node:type()) do
+		node = parent
+		parent = node:parent()
+	end
+
+	if is_in_table(types, node:type()) then
+		return node
+	end
+end
+
+vim.keymap.set({ 'o', 'x' }, 'ax', function()
+	select_node(get_parent_node_of_type({ 'function_declaration', 'block' }))
+end, { noremap = true, silent = true })
+
+vim.keymap.set({ 'o', 'x' }, 'ix', function()
+	select_node(get_node(false))
+end, { noremap = true, silent = true })

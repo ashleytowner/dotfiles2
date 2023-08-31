@@ -73,3 +73,5 @@ vim.cmd('syntax enable')
 
 require('keymaps')
 require('setupLocalConfigs')
+
+
