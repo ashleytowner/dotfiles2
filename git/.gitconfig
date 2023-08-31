@@ -35,3 +35,10 @@
 	name = Ashley Towner
 [init]
 	defaultBranch = main
+[merge]
+	tool = nvimdiff
+[mergetool]
+	keepBackup = false
+[mergetool "nvimdiff"]
+	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w'
+	trustExitCode = false
