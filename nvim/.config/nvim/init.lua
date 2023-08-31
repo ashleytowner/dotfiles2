@@ -53,6 +53,12 @@ vim.go.splitbelow = true
 vim.go.splitright = true
 vim.o.foldtext = 'v:lua.FoldText()'
 
+if (vim.wo.diff) then
+	vim.keymap.set('n', '<leader>1', ':diffget 1<CR>', { noremap = true })
+	vim.keymap.set('n', '<leader>2', ':diffget 2<CR>', { noremap = true })
+	vim.keymap.set('n', '<leader>3', ':diffget 3<CR>', { noremap = true })
+end
+
 vim.g.markdown_fenced_languages = {
 	'ts=typescript',
 	'zsh=zsh',
