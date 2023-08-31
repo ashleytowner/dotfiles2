@@ -40,5 +40,5 @@
 [mergetool]
 	keepBackup = false
 [mergetool "nvimdiff"]
-	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w'
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	trustExitCode = false

@@ -196,7 +196,7 @@ function StatusLine()
 	end
 
 	return buffer_info()
-		.. git_info()
+		.. (not vim.wo.diff and git_info() or '')
 		.. '%='
 		.. codeium_info()
 		.. position_info()
