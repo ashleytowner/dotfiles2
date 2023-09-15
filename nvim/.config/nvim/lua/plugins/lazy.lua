@@ -52,6 +52,7 @@ local plugins = {
 		config = function()
 			require('plugins.config.codeium')
 		end,
+		enabled = false
 	},
 	-- Util
 	{

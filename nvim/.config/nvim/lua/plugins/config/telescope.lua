@@ -26,6 +26,7 @@ telescope.setup({
 		layout_config = {
 			horizontal = {
 				mirror = false,
+				width = 0.9
 			},
 			vertical = {
 				mirror = false,
@@ -69,8 +70,10 @@ telescope.setup({
 			theme = 'dropdown',
 		},
 		buffers = { },
-		live_grep = { },
-		lsp_references = { },
+		live_grep = {
+		},
+		lsp_references = {
+		},
 		lsp_definitions = {},
 		quickfix = {
 			theme = 'ivy',
