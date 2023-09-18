@@ -40,7 +40,20 @@ vim.keymap.set('n', '<leader>/', function ()
 	if terminal_buffer == -1 then
 		vim.cmd('sbuffer +term')
 	else
-		vim.cmd('sbuffer ' .. terminal_buffer)
+		local wins = require('util').get_windows()
+		local closed = false
+
+		for _, win in ipairs(wins) do
+			if vim.api.nvim_win_get_buf(win) == terminal_buffer then
+				vim.api.nvim_win_close(win, true)
+				closed = true
+				break
+			end
+		end
+
+		if not closed then
+			vim.cmd('sbuffer ' .. terminal_buffer)
+		end
 	end
 
 end, { noremap = true })

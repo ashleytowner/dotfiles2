@@ -122,4 +122,14 @@ function M.get_buffers()
 	return buffers
 end
 
+function M.get_windows()
+	local windows = {}
+
+	for window = 1, vim.fn.winnr('$') do
+		table.insert(windows, vim.fn.win_getid(window))
+	end
+
+	return windows
+end
+
 return M
