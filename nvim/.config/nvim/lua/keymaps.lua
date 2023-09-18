@@ -26,7 +26,7 @@ vim.keymap.set('n', '<C-6>', '<C-^>', { noremap = true })
 vim.keymap.set('t', '<C-\\>', '<C-\\><C-n><C-w>w', { noremap = true })
 vim.keymap.set('t', '<C-n>', '<C-\\><C-n>', { noremap = true })
 
-vim.keymap.set('n', '<leader>/', function ()
+vim.keymap.set('', '<leader>/', function ()
 	local bufs = require('util').get_buffers()
 	local terminal_buffer = -1;
 
@@ -41,17 +41,17 @@ vim.keymap.set('n', '<leader>/', function ()
 		vim.cmd('sbuffer +term')
 	else
 		local wins = require('util').get_windows()
-		local closed = false
+		local was_open = false
 
 		for _, win in ipairs(wins) do
 			if vim.api.nvim_win_get_buf(win) == terminal_buffer then
 				vim.api.nvim_win_close(win, true)
-				closed = true
+				was_open = true
 				break
 			end
 		end
 
-		if not closed then
+		if not was_open then
 			vim.cmd('sbuffer ' .. terminal_buffer)
 		end
 	end
