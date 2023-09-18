@@ -21,7 +21,7 @@ export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export COWPATH=/usr/local/share/cows:$XDG_DATA_HOME/cows
 export EMPTY_COMMAND='' # If an empty command is entered, this command will be run instead
 
-export FZF_COMPLETION_OPTS="--preview 'cat {}'"
+export FZF_COMPLETION_OPTS=""
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/*"'
 export FZF_DEFAULT_DIR_COMMAND='find . -type d -not -path "*/.git/*" -not -path "*/.git"'
