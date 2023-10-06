@@ -115,7 +115,7 @@ vim.keymap.set('n', '<leader>tg', builtin.git_branches, { noremap = true })
 vim.keymap.set('n', '<leader>tb', builtin.buffers, { noremap = true })
 
 vim.keymap.set(
-	{ 'v', 'n' },
+	{ 'x', 'n' },
 	'<leader>rr',
 	require('telescope').extensions.refactoring.refactors,
 	{ noremap = true }
