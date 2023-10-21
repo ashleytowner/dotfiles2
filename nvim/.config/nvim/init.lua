@@ -74,4 +74,6 @@ vim.cmd('syntax enable')
 require('keymaps')
 require('setupLocalConfigs')
 
-
+if (vim.g.neovide) then
+	vim.o.guifont = 'JetBrains Mono:h18'
+end

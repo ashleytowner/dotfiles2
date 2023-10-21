@@ -5,8 +5,8 @@ lint.linters_by_ft = {
 	typescriptreact = { 'eslint_d' },
 	javascript = { 'eslint_d' },
 	javascriptreact = { 'eslint_d' },
-	css = { 'stylelint' },
-	scss = { 'stylelint' },
+	-- css = { 'stylelint' },
+	-- scss = { 'stylelint' },
 }
 
 local lint_group = vim.api.nvim_create_augroup('Linters', { clear = true })
