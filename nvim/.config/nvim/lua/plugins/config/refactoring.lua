@@ -1,8 +1,4 @@
-require('refactoring').setup({})
-
-vim.keymap.set('v', '<leader>rf', function()
-	require('refactoring').select_refactor()
-end, { noremap = true, silent = true, expr = true })
+require('refactoring').setup()
 
 vim.keymap.set('n', '<leader>rp', function()
 	require('refactoring').debug.printf({ below = true })

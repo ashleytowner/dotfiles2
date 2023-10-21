@@ -173,6 +173,14 @@ local plugins = {
 		},
 	},
 	{
+		'simrat39/symbols-outline.nvim',
+		config = function()
+			require('symbols-outline').setup({
+				auto_close = true
+			})
+		end
+	},
+	{
 		'mfussenegger/nvim-lint',
 		config = function()
 			require('plugins.config.lint')

@@ -173,7 +173,9 @@ local function buffer_info()
 end
 
 local function position_info()
-	return color_when_focused('BufferIconStatusLine')
+	return color_when_focused('FiletypeStatusLine')
+		.. '%30{nvim_treesitter#statusline(30)} '
+		.. color_when_focused('BufferIconStatusLine')
 		.. ' %*%<%-6.(%l:%c%) %-4.(%P%)'
 end
 
