@@ -108,20 +108,21 @@ vim.keymap.set({ 'o', 'x' }, 'ix', function()
 	select_node(get_node(false))
 end, { noremap = true, silent = true })
 
-local function check()
+local function toggle_check()
 	local list_item = get_parent_node_of_type({ 'list_item' })
 	for node in list_item:iter_children() do
-		if node:type() == 'task_list_marker_unchecked' then
-			vim.cmd('norm mz')
+		if
+			node:type() == 'task_list_marker_unchecked'
+			or node:type() == 'task_list_marker_checked'
+		then
+			local current_position = vim.api.nvim_win_get_cursor(0)
 			ts_utils.goto_node(node)
-			vim.cmd('norm lrx')
-			vim.cmd('norm `z')
-		end
-		if node:type() == 'task_list_marker_checked' then
-			vim.cmd('norm mz')
-			ts_utils.goto_node(node)
-			vim.cmd('norm lr ')
-			vim.cmd('norm `z')
+			if node:type() == 'task_list_marker_checked' then
+				vim.cmd('norm lr ')
+			else
+				vim.cmd('norm lrx')
+			end
+			vim.api.nvim_win_set_cursor(0, current_position)
 		end
 	end
 end
@@ -131,7 +132,7 @@ vim.api.nvim_create_autocmd({ 'BufRead' }, {
 	pattern = '*.md',
 	callback = function()
 		vim.keymap.set({ 'n' }, '<leader>x', function()
-			check()
+			toggle_check()
 		end, { noremap = true, buffer = true, silent = true })
 	end,
 	group = md_group,
