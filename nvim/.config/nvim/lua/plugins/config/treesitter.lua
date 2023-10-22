@@ -107,3 +107,32 @@ end, { noremap = true, silent = true })
 vim.keymap.set({ 'o', 'x' }, 'ix', function()
 	select_node(get_node(false))
 end, { noremap = true, silent = true })
+
+local function check()
+	local list_item = get_parent_node_of_type({ 'list_item' })
+	for node in list_item:iter_children() do
+		if node:type() == 'task_list_marker_unchecked' then
+			vim.cmd('norm mz')
+			ts_utils.goto_node(node)
+			vim.cmd('norm lrx')
+			vim.cmd('norm `z')
+		end
+		if node:type() == 'task_list_marker_checked' then
+			vim.cmd('norm mz')
+			ts_utils.goto_node(node)
+			vim.cmd('norm lr ')
+			vim.cmd('norm `z')
+		end
+	end
+end
+
+local md_group = vim.api.nvim_create_augroup('Markdown', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufRead' }, {
+	pattern = '*.md',
+	callback = function()
+		vim.keymap.set({ 'n' }, '<leader>x', function()
+			check()
+		end, { noremap = true, buffer = true, silent = true })
+	end,
+	group = md_group,
+})
