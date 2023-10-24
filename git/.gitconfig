@@ -16,6 +16,7 @@
 	cu = "branch --show-current"
 	logg = "log --oneline --graph"
 	amend = "commit --amend --no-edit"
+	dry-merge = "merge --no-commit --no-ff"
 	show-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; f"
 	merge-conflicts = "!f() { grep -Hn \"^=======$\" $(git diff --name-status --diff-filter=U | cut -f2) ; }; f"
 	remote-head = "!f() { git ls-remote $1 | grep HEAD | awk '{ print $1 }'; }; f"
