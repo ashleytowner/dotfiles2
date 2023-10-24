@@ -33,9 +33,11 @@ require('nvim-treesitter.configs').setup({
 	},
 })
 
+local M = {}
+
 local ts_utils = require('nvim-treesitter.ts_utils')
 
-local function get_node(main)
+function M.get_node(main)
 	local node = ts_utils.get_node_at_cursor()
 
 	if node == nil then
@@ -60,7 +62,7 @@ local function get_node(main)
 	return node
 end
 
-local function select_node(node)
+function M.select_node(node)
 	if node == nil then
 		return
 	end
@@ -77,7 +79,7 @@ local function is_in_table(table, value)
 	return false
 end
 
-local function get_parent_node_of_type(types)
+function M.get_parent_node_of_type(types)
 	local node = ts_utils.get_node_at_cursor()
 
 	if node == nil then
@@ -101,39 +103,11 @@ local function get_parent_node_of_type(types)
 end
 
 vim.keymap.set({ 'o', 'x' }, 'ax', function()
-	select_node(get_parent_node_of_type({ 'function_declaration', 'block' }))
+	M.select_node(M.get_parent_node_of_type({ 'function_declaration', 'block' }))
 end, { noremap = true, silent = true })
 
 vim.keymap.set({ 'o', 'x' }, 'ix', function()
-	select_node(get_node(false))
+	M.select_node(M.get_node(false))
 end, { noremap = true, silent = true })
 
-local function toggle_check()
-	local list_item = get_parent_node_of_type({ 'list_item' })
-	for node in list_item:iter_children() do
-		if
-			node:type() == 'task_list_marker_unchecked'
-			or node:type() == 'task_list_marker_checked'
-		then
-			local current_position = vim.api.nvim_win_get_cursor(0)
-			ts_utils.goto_node(node)
-			if node:type() == 'task_list_marker_checked' then
-				vim.cmd('norm lr ')
-			else
-				vim.cmd('norm lrx')
-			end
-			vim.api.nvim_win_set_cursor(0, current_position)
-		end
-	end
-end
-
-local md_group = vim.api.nvim_create_augroup('Markdown', { clear = true })
-vim.api.nvim_create_autocmd({ 'BufRead' }, {
-	pattern = '*.md',
-	callback = function()
-		vim.keymap.set({ 'n' }, '<leader>x', function()
-			toggle_check()
-		end, { noremap = true, buffer = true, silent = true })
-	end,
-	group = md_group,
-})
+return M
