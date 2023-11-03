@@ -34,7 +34,7 @@ local function add_header(level)
 	local current_position = vim.api.nvim_win_get_cursor(0)
 	print(vim.inspect(current_position))
 	local hashes = ''
-	for i = level, 1, -1 do
+	for _ = level, 1, -1 do
 		hashes = hashes .. '#'
 	end
 	vim.cmd('norm I' .. hashes .. ' ')
