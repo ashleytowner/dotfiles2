@@ -80,7 +80,6 @@ _fzf_compgen_dir() {
 #}}}
 
 #{{{ *aliases* 
-alias py="python3"
 function weather() {
   curl v2.wttr.in/$1
 }

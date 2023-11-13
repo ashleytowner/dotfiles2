@@ -59,39 +59,61 @@ local function get_header()
 	return header
 end
 
-vim.keymap.set(
-	{ 'o', 'x' },
-	'ah',
-	function()
-		local header = get_header()
-		if header == nil then
-			return
+local function get_list_marker()
+	local item = ts.get_parent_node_of_type({ 'list_item' })
+	if item == nil then
+		return nil
+	end
+	local marker = ''
+	local is_numbered = false
+	for child in item:iter_children() do
+		if child:type() == 'list_marker_dot' then
+			is_numbered = true
 		end
-		ts.select_node(header)
-	end,
-	{ noremap = true, buffer = true, silent = true }
-)
-
-vim.keymap.set(
-	{ 'o', 'x' },
-	'ih',
-	function()
-		local header = get_header()
-		if header == nil then
-			return
-		end
-		local inline
-		for child in header:iter_children() do
-			if child:type() == 'inline' then
-				inline = child
-				break
+		if string.find(child:type(), 'list_marker') then
+			marker = marker .. vim.treesitter.get_node_text(child, 0)
+			if string.find(child:type(), 'task_list_marker') then
+				marker = marker .. ' '
 			end
 		end
-		ts.select_node(inline)
-	end,
-	{ noremap = true, buffer = true, silent = true }
-)
+	end
+	return marker, is_numbered
+end
 
+vim.keymap.set({ 'n' }, '<leader>o', function()
+	local marker, is_numbered = get_list_marker()
+	if marker == nil then
+		return
+	end
+	vim.cmd('norm o' .. marker)
+	if is_numbered then
+		vim.cmd('norm 0$')
+	end
+	vim.cmd('startinsert!')
+end, { noremap = true, buffer = true, silent = true })
+
+vim.keymap.set({ 'o', 'x' }, 'ah', function()
+	local header = get_header()
+	if header == nil then
+		return
+	end
+	ts.select_node(header)
+end, { noremap = true, buffer = true, silent = true })
+
+vim.keymap.set({ 'o', 'x' }, 'ih', function()
+	local header = get_header()
+	if header == nil then
+		return
+	end
+	local inline
+	for child in header:iter_children() do
+		if child:type() == 'inline' then
+			inline = child
+			break
+		end
+	end
+	ts.select_node(inline)
+end, { noremap = true, buffer = true, silent = true })
 
 vim.keymap.set({ 'n' }, '<leader>h1', function()
 	add_header(1)
