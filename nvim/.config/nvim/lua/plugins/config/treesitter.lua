@@ -103,7 +103,9 @@ function M.get_parent_node_of_type(types)
 end
 
 vim.keymap.set({ 'o', 'x' }, 'ax', function()
-	select_node(get_parent_node_of_type({ 'function_declaration', 'block', 'list' }))
+	M.select_node(
+		M.get_parent_node_of_type({ 'function_declaration', 'block', 'list' })
+	)
 end, { noremap = true, silent = true })
 
 vim.keymap.set({ 'o', 'x' }, 'ix', function()
