@@ -29,7 +29,7 @@ local plugins = {
 			{ 'mfussenegger/nvim-dap' },
 			{ 'williamboman/mason.nvim' },
 			{ 'theHamsta/nvim-dap-virtual-text' },
-			{ 'rcarriga/nvim-dap-ui' }
+			{ 'rcarriga/nvim-dap-ui' },
 		},
 		config = function()
 			require('plugins.config.dap')
@@ -54,7 +54,7 @@ local plugins = {
 		config = function()
 			require('plugins.config.codeium')
 		end,
-		enabled = ai_enabled
+		enabled = ai_enabled,
 	},
 	-- Util
 	{
@@ -145,6 +145,24 @@ local plugins = {
 		},
 	},
 	{
+		'stevearc/oil.nvim',
+		opts = {},
+		config = function()
+			require('oil').setup({
+				default_file_explorer = true,
+				view_options = {
+					show_hidden = true
+				}
+			})
+			vim.keymap.set(
+				'n',
+				'-',
+				'<CMD>Oil<CR>',
+				{ desc = 'Open parent directory' }
+			)
+		end,
+	},
+	{
 		'kyazdani42/nvim-tree.lua',
 		dependencies = {
 			{
@@ -178,9 +196,9 @@ local plugins = {
 		'simrat39/symbols-outline.nvim',
 		config = function()
 			require('symbols-outline').setup({
-				auto_close = true
+				auto_close = true,
 			})
-		end
+		end,
 	},
 	{
 		'mfussenegger/nvim-lint',
@@ -237,10 +255,12 @@ local plugins = {
 		'habamax/vim-godot',
 		config = function()
 			require('lspconfig').gdscript.setup({
-				capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+				capabilities = require('cmp_nvim_lsp').default_capabilities(
+					vim.lsp.protocol.make_client_capabilities()
+				),
 			})
 		end,
-		ft = 'gdscript'
+		ft = 'gdscript',
 	},
 	-- Syntax Highlighting
 	{
