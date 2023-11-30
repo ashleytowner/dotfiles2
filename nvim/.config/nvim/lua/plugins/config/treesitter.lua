@@ -15,6 +15,9 @@ require('nvim-treesitter.configs').setup({
 		'toml',
 		'markdown',
 		'rust',
+		'jsdoc',
+		'comment',
+		'tsx'
 	},
 	highlight = {
 		enable = true,
