@@ -2,15 +2,23 @@ local util = require('util')
 
 local TabLib = {}
 
+---Get the base highlight for a tab
+---@param selected boolean whether the tab is selected
 local function getBaseHighlight(selected)
 	return selected and '%#TabLineFill#' or '%#TabLine#'
 end
 
+---Get the start of a tab
+---@param selected boolean whether the tab is selected
 function TabLib.getTabStart(selected)
 	local highlight = selected and '%#User4#' or getBaseHighlight(selected)
 	return highlight .. '▎' .. (selected and getBaseHighlight(selected) or '')
 end
 
+---Get the formatted name of a buffer
+---@param bufnr number
+---@param selected boolean whether the tab is selected
+---@param short boolean whether the name should be shortened
 function TabLib.getFormattedBufferName(bufnr, selected, short)
 	local buffertype = vim.fn.getbufvar(bufnr, '&buftype')
 
@@ -44,6 +52,10 @@ function TabLib.getFormattedBufferName(bufnr, selected, short)
 		.. ' '
 end
 
+---Get the list of buffers in a tab
+---@param tabnr number
+---@param selected boolean whether the tab is selected
+---@param short boolean whether the name should be shortened
 local function getTabBuffers(tabnr, selected, short)
 	local buflist = vim.fn.tabpagebuflist(tabnr)
 	local list = ''
@@ -53,12 +65,19 @@ local function getTabBuffers(tabnr, selected, short)
 	return list
 end
 
+---Generate the name of a tab
+---@param tabnr number
+---@param selected boolean whether the tab is selected
+---@param short boolean whether the name should be shortened
+---@param show_close boolean whether the close button should be shown
 local function generateTabName(tabnr, selected, short, show_close)
 	return '%' .. tabnr .. 'T' .. TabLib.getTabStart(selected)
 		.. getTabBuffers(tabnr, selected, short) .. '%T'
 		.. (show_close and ('%' .. tabnr .. 'X󱎘 %X') or '')
 end
 
+---Generate the tabline
+---@return string
 function TabLine()
 	util.create_highlight_group(
 		'User4',
