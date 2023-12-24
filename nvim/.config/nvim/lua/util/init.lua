@@ -6,7 +6,7 @@ local M = {}
 ---@param s string the string to trim
 ---@return string
 function M.trim(s)
-	return (s:gsub("^%s*(.-)%s*$", "%1"))
+	return (s:gsub('^%s*(.-)%s*$', '%1'))
 end
 
 ---Get the length of a table
@@ -25,7 +25,7 @@ end
 ---@return string|nil "the result of the command"
 function M.system(cmd)
 	local handle = io.popen(cmd)
-	if (handle == nil) then
+	if handle == nil then
 		return nil
 	end
 	local result = handle:read('*a')
@@ -68,16 +68,20 @@ function M.get_file_icon(filename)
 		return {
 			icon = '?',
 			color = '#FFFFFF',
-			highlight = ''
+			highlight = '',
 		}
 	end
-	local icon, color = devicons
-			.get_icon_color(filename, extension, { default = true })
-	local _, highlight = require('nvim-web-devicons').get_icon(filename, extension, { default = true })
+	local icon, color =
+		devicons.get_icon_color(filename, extension, { default = true })
+	local _, highlight = require('nvim-web-devicons').get_icon(
+		filename,
+		extension,
+		{ default = true }
+	)
 	return {
 		icon = icon,
 		color = color,
-		highlight = highlight
+		highlight = highlight,
 	}
 end
 
@@ -85,7 +89,11 @@ end
 ---@param plugin string the name of the repository, as in github-username/repo
 ---@return string|nil "the hash of the HEAD"
 function M.get_plugin_hash(plugin)
-	return M.system('git ls-remote https://github.com/' .. plugin .. '.git HEAD | awk \'{ print $1 }\'')
+	return M.system(
+		'git ls-remote https://github.com/'
+			.. plugin
+			.. ".git HEAD | awk '{ print $1 }'"
+	)
 end
 
 ---Yank a string to the " register
@@ -109,21 +117,16 @@ end
 ---Get the visually selected text in the current buffer
 ---@return string
 function M.get_visual_selection()
-	local select_start = vim.api.nvim_buf_get_mark(0, '<');
-	local select_end = vim.api.nvim_buf_get_mark(0, '>');
-
+	local select_start = vim.api.nvim_buf_get_mark(0, '<')
+	local select_end = vim.api.nvim_buf_get_mark(0, '>')
 
 	-- Line-wise visual selection can go over the length of the last line
 	-- we are preventing that here
-	local last_line = vim.api.nvim_buf_get_lines(
-		0,
-		select_end[1] - 1,
-		select_end[1],
-		true
-	)[1];
+	local last_line =
+		vim.api.nvim_buf_get_lines(0, select_end[1] - 1, select_end[1], true)[1]
 
 	if select_end[2] > string.len(last_line) then
-		select_end[2] = string.len(last_line);
+		select_end[2] = string.len(last_line)
 	end
 
 	local text = vim.api.nvim_buf_get_text(
@@ -133,7 +136,7 @@ function M.get_visual_selection()
 		select_end[1] - 1,
 		select_end[2] + 1,
 		{}
-	);
+	)
 
 	return text
 end
@@ -141,16 +144,15 @@ end
 ---Get a list of open buffers
 ---@return { name: string, number: number }[]
 function M.get_buffers()
-	local buffers = {
-	}
+	local buffers = {}
 
 	for buffer = 1, vim.fn.bufnr('$') do
 		local is_listed = vim.fn.buflisted(buffer)
-		if (is_listed == 1) then
+		if is_listed == 1 then
 			local bufname = vim.fn.bufname(buffer)
 			table.insert(buffers, {
 				number = buffer,
-				name = bufname
+				name = bufname,
 			})
 		end
 	end
