@@ -7,7 +7,6 @@ require('tabline')
 require('bufferline')
 require('foldtext')
 
-
 -- highlight text on yank
 local yank_highlight_group =
 	vim.api.nvim_create_augroup('YankHighlight', { clear = true })
