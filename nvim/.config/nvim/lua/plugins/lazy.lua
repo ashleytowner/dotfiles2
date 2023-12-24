@@ -334,7 +334,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 			-- fetch the hash from github
 			local hash = require('util').get_plugin_hash(plugin_name)
 			-- put the hash back into the " register
-			require('util').yank(hash)
+			require('util').yank(hash or '')
 			-- Paste the hash and prefix it with a '
 			vim.cmd("norm pI'")
 			-- Add ', to the end of the hash
