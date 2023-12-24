@@ -57,7 +57,7 @@ end
 
 ---Get the icon and color for a filetype based on the file extension
 ---@param filename string
----@return table
+---@return {icon: string, color: string, highlight: string}
 function M.get_file_icon(filename)
 	local extension = vim.fn.fnamemodify(filename, ':e')
 	if extension == '' then
