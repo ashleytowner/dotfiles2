@@ -1,5 +1,3 @@
-require('util.objects')
-
 local M = {}
 
 ---Trim a string
@@ -105,8 +103,8 @@ end
 
 ---Create a highlight group
 ---@param group string the name of the group to create
----@param fg string the foreground (text) color
----@param bg string the background color
+---@param fg string|nil the foreground (text) color
+---@param bg string|nil the background color
 function M.create_highlight_group(group, fg, bg)
 	if fg == nil or fg == '' or bg == nil or bg == '' then
 		return
@@ -170,6 +168,25 @@ function M.get_windows()
 	end
 
 	return windows
+end
+
+---Create keymaps for a text object defined as anything between
+---two instances of char
+---@param char string
+function M.create_wrapped_textobject(char)
+	vim.keymap.set(
+		{ 'o', 'x' },
+		'a' .. char,
+		':<C-u>silent! normal! f'..char..'F'..char..'vf'..char..'<cr>',
+		{ silent = true, noremap = true }
+	)
+
+	vim.keymap.set(
+		{ 'o', 'x' },
+		'i' .. char,
+		':<C-u>silent! normal! f'..char..'F'..char..'lvt'..char..'<cr>',
+		{ silent = true, noremap = true }
+	)
 end
 
 return M

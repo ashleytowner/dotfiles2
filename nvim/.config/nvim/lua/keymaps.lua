@@ -26,6 +26,13 @@ vim.keymap.set('n', '<C-6>', '<C-^>', { noremap = true })
 vim.keymap.set('t', '<C-\\>', '<C-\\><C-n><C-w>w', { noremap = true })
 vim.keymap.set('t', '<C-n>', '<C-\\><C-n>', { noremap = true })
 
+-- Diff commands
+if (vim.wo.diff) then
+	vim.keymap.set('n', '<leader>1', ':diffget 1<CR>', { noremap = true })
+	vim.keymap.set('n', '<leader>2', ':diffget 2<CR>', { noremap = true })
+	vim.keymap.set('n', '<leader>3', ':diffget 3<CR>', { noremap = true })
+end
+
 vim.keymap.set('', '<leader>/', function ()
 	local bufs = require('util').get_buffers()
 	local terminal_buffer = -1;

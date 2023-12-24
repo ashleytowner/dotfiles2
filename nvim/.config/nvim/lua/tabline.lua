@@ -81,8 +81,8 @@ end
 function TabLine()
 	util.create_highlight_group(
 		'User4',
-		util.get_color('TabLineSel', 'bg'),
-		util.get_color('TabLineFill', 'bg')
+		util.get_color('TabLineSel', 'bg') or '',
+		util.get_color('TabLineFill', 'bg') or ''
 	)
 	local tabCount = vim.fn.tabpagenr('$')
 	local shortnames = tabCount > 3

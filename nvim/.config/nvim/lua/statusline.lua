@@ -49,11 +49,11 @@ local get_git_status = asyncOk
 			async.util.sleep(10)
 			vim.g.git_status = u.system('git status -sb 2> /dev/null')
 			vim.g.git_stashes =
-				u.trim(u.system('git stash list 2> /dev/null | wc -l'))
+				u.trim(u.system('git stash list 2> /dev/null | wc -l') or '')
 			vim.g.git_branch =
-				u.trim(u.system('git branch --show-current 2> /dev/null'))
+				u.trim(u.system('git branch --show-current 2> /dev/null') or '')
 			vim.g.git_commit =
-				u.trim(u.system('git rev-parse --short HEAD 2> /dev/null'))
+				u.trim(u.system('git rev-parse --short HEAD 2> /dev/null') or '')
 		end)
 	or function()
 		vim.g.git_status = ''
