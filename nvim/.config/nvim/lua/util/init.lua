@@ -2,9 +2,16 @@ require('util.objects')
 
 local M = {}
 
+---Trim a string
+---@param s string the string to trim
+---@return string
 function M.trim(s)
 	return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
+
+---Get the length of a table
+---@param tbl table
+---@return number
 function M.get_table_len(tbl)
 	local count = 0
 	for _ in pairs(tbl) do
@@ -13,6 +20,9 @@ function M.get_table_len(tbl)
 	return count
 end
 
+---Run a system command
+---@param cmd string
+---@return string|nil "the result of the command"
 function M.system(cmd)
 	local handle = io.popen(cmd)
 	if (handle == nil) then
@@ -23,11 +33,20 @@ function M.system(cmd)
 	return result
 end
 
+---Get the color of a highlight group
+---@param group string
+---@param attr string
+---@return string|nil
 function M.get_color(group, attr)
 	local color = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
 	return color or nil
 end
 
+---Ternary operator
+---@param condition boolean
+---@param aval any
+---@param bval any
+---@return any "Either aval or bval"
 function M.ternary(condition, aval, bval)
 	if condition then
 		return aval
@@ -36,6 +55,9 @@ function M.ternary(condition, aval, bval)
 	end
 end
 
+---Get the icon and color for a filetype based on the file extension
+---@param filename string
+---@return table
 function M.get_file_icon(filename)
 	local extension = vim.fn.fnamemodify(filename, ':e')
 	if extension == '' then
@@ -59,14 +81,24 @@ function M.get_file_icon(filename)
 	}
 end
 
+---Get the hash at the HEAD of a github repository
+---@param plugin string the name of the repository, as in github-username/repo
+---@return string|nil "the hash of the HEAD"
 function M.get_plugin_hash(plugin)
 	return M.system('git ls-remote https://github.com/' .. plugin .. '.git HEAD | awk \'{ print $1 }\'')
 end
 
+---Yank a string to the " register
+---@param text string the text to yank
+---@return nil
 function M.yank(text)
 	vim.fn.setreg('"', text)
 end
 
+---Create a highlight group
+---@param group string the name of the group to create
+---@param fg string the foreground (text) color
+---@param bg string the background color
 function M.create_highlight_group(group, fg, bg)
 	if fg == nil or fg == '' or bg == nil or bg == '' then
 		return
@@ -74,6 +106,8 @@ function M.create_highlight_group(group, fg, bg)
 	vim.cmd('hi ' .. group .. ' guifg=' .. fg .. ' guibg=' .. bg)
 end
 
+---Get the visually selected text in the current buffer
+---@return string
 function M.get_visual_selection()
 	local select_start = vim.api.nvim_buf_get_mark(0, '<');
 	local select_end = vim.api.nvim_buf_get_mark(0, '>');
@@ -104,6 +138,8 @@ function M.get_visual_selection()
 	return text
 end
 
+---Get a list of open buffers
+---@return { name: string, number: number }[]
 function M.get_buffers()
 	local buffers = {
 	}
@@ -122,6 +158,8 @@ function M.get_buffers()
 	return buffers
 end
 
+---Get a list of open windows
+---@return number[]
 function M.get_windows()
 	local windows = {}
 
