@@ -42,6 +42,23 @@ masonLsp.setup_handlers {
 				keymaps.set_keymaps()
 			end
 		})
+	end,
+	['lua_ls'] = function(server_name)
+		lspConfig[server_name].setup({
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { 'vim' }
+					},
+					workspace = {
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+						}
+					}
+				}
+			}
+		})
 	end
 }
 
