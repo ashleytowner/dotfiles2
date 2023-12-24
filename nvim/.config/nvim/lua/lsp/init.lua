@@ -45,6 +45,9 @@ masonLsp.setup_handlers {
 	end,
 	['lua_ls'] = function(server_name)
 		lspConfig[server_name].setup({
+			on_attach = function()
+				keymaps.set_keymaps()
+			end,
 			settings = {
 				Lua = {
 					diagnostics = {
