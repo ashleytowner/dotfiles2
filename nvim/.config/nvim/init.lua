@@ -2,9 +2,7 @@ vim.g.mapleader = ' '
 
 Util = require('util')
 require('plugins')
-require('statusline')
-require('tabline')
-require('bufferline')
+require('lines')
 
 --- colorscheme
 require('catppuccin').setup({

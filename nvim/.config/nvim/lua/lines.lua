@@ -1,4 +1,97 @@
-local u = require('util')
+local util = require('util')
+
+---Get the base highlight for a tab
+---@param selected boolean whether the tab is selected
+local function getBaseHighlight(selected)
+	return selected and '%#TabLineFill#' or '%#TabLine#'
+end
+
+---Get the start of a tab
+---@param selected boolean whether the tab is selected
+local function getTabStart(selected)
+	local highlight = selected and '%#User4#' or getBaseHighlight(selected)
+	return highlight .. '▎' .. (selected and getBaseHighlight(selected) or '')
+end
+
+---Get the formatted name of a buffer
+---@param bufnr number
+---@param selected boolean whether the tab is selected
+---@param short boolean whether the name should be shortened
+local function getFormattedBufferName(bufnr, selected, short)
+	local buffertype = vim.fn.getbufvar(bufnr, '&buftype')
+
+	local filetype = vim.fn.getbufvar(bufnr, '&ft')
+
+	if
+		buffertype ~= ''
+		and buffertype ~= 'help'
+		and filetype ~= 'dashboard'
+		and buffertype ~= 'terminal'
+	then
+		return ''
+	end
+
+	if filetype == 'dashboard' then
+		return '  Dashboard'
+	end
+
+	local path = vim.fn.bufname(bufnr)
+	local longname = vim.fn.fnamemodify(path, ':t')
+	local shortname = vim.fn.fnamemodify(path, ':t:r')
+	local displayname = (longname == '' and '[No Name]')
+		or (short and shortname or longname)
+	local icon = util.get_file_icon(longname)
+
+	return ((selected and bufnr == vim.fn.bufnr()) and '%#' .. icon.highlight .. '#' or '')
+		.. icon.icon
+		.. ' '
+		.. getBaseHighlight(selected)
+		.. displayname
+		.. ' '
+end
+
+---Get the list of buffers in a tab
+---@param tabnr number
+---@param selected boolean whether the tab is selected
+---@param short boolean whether the name should be shortened
+local function getTabBuffers(tabnr, selected, short)
+	local buflist = vim.fn.tabpagebuflist(tabnr)
+	local list = ''
+	for _, bufnr in ipairs(buflist) do
+		list = list .. getFormattedBufferName(bufnr, selected, short)
+	end
+	return list
+end
+
+---Generate the name of a tab
+---@param tabnr number
+---@param selected boolean whether the tab is selected
+---@param short boolean whether the name should be shortened
+---@param show_close boolean whether the close button should be shown
+local function generateTabName(tabnr, selected, short, show_close)
+	return '%' .. tabnr .. 'T' .. getTabStart(selected)
+		.. getTabBuffers(tabnr, selected, short) .. '%T'
+		.. (show_close and ('%' .. tabnr .. 'X󱎘 %X') or '')
+end
+
+---Generate the tabline
+---@return string
+function TabLine()
+	util.create_highlight_group(
+		'User4',
+		util.get_color('TabLineSel', 'bg'),
+		util.get_color('TabLineFill', 'bg')
+	)
+	local tabCount = vim.fn.tabpagenr('$')
+	local shortnames = tabCount > 3
+	local tabline = ''
+	local show_close = tabCount > 1 and vim.o.mouse ~= ''
+	for tabnr = 1, tabCount do
+		local selected = tabnr == vim.fn.tabpagenr()
+		tabline = tabline .. generateTabName(tabnr, selected, shortnames, show_close)
+	end
+	return tabline
+end
 
 ---Check if the statusline's window is focused
 local function is_window_focused()
@@ -15,22 +108,22 @@ end
 ---@return string
 local function buffer_icon()
 	local buffernum = vim.fn.winbufnr(vim.g.statusline_winid)
-	local iconData = u.get_file_icon(vim.fn.expand('#' .. buffernum .. ':t'))
+	local iconData = util.get_file_icon(vim.fn.expand('#' .. buffernum .. ':t'))
 
 	if not iconData.icon then
 		return ''
 	end
 
-	local bg = u.get_color('StatusLine', 'bg')
-	u.create_highlight_group('FTStatusLine', iconData.color, bg)
+	local bg = util.get_color('StatusLine', 'bg')
+	util.create_highlight_group('FTStatusLine', iconData.color, bg)
 	return color_when_focused('FTStatusLine') .. iconData.icon .. '%*'
 end
 
 ---Get the formatted buffer name for the active buffer in the statusline's window
 local function buffer_label()
-	local fg = u.get_color('Constant', 'fg')
-	local bg = u.get_color('StatusLine', 'bg')
-	u.create_highlight_group('BufferIconStatusLine', fg, bg)
+	local fg = util.get_color('Constant', 'fg')
+	local bg = util.get_color('StatusLine', 'bg')
+	util.create_highlight_group('BufferIconStatusLine', fg, bg)
 	return color_when_focused('BufferIconStatusLine') .. ' ﬘%* %n %q '
 end
 
@@ -47,13 +140,13 @@ vim.g.git_commit = ''
 local get_git_status = asyncOk
 		and async.void(function()
 			async.util.sleep(10)
-			vim.g.git_status = u.system('git status -sb 2> /dev/null')
+			vim.g.git_status = util.system('git status -sb 2> /dev/null')
 			vim.g.git_stashes =
-				u.trim(u.system('git stash list 2> /dev/null | wc -l') or '')
+				util.trim(util.system('git stash list 2> /dev/null | wc -l') or '')
 			vim.g.git_branch =
-				u.trim(u.system('git branch --show-current 2> /dev/null') or '')
+				util.trim(util.system('git branch --show-current 2> /dev/null') or '')
 			vim.g.git_commit =
-				u.trim(u.system('git rev-parse --short HEAD 2> /dev/null') or '')
+				util.trim(util.system('git rev-parse --short HEAD 2> /dev/null') or '')
 		end)
 	or function()
 		vim.g.git_status = ''
@@ -149,22 +242,22 @@ local function git_status()
 		.. gs_unstaged
 		.. gs_untracked
 
-	return u.trim(gs)
+	return util.trim(gs)
 end
 
 ---Get the formatted git branch info for the current repo
 ---@return string
 local function git_branch()
-	local fg = u.get_color('@keyword', 'fg')
-	local bg = u.get_color('StatusLine', 'bg')
-	u.create_highlight_group('GitSignsStatusLine', fg, bg)
+	local fg = util.get_color('@keyword', 'fg')
+	local bg = util.get_color('StatusLine', 'bg')
+	util.create_highlight_group('GitSignsStatusLine', fg, bg)
 
 	if vim.g.git_branch == '' and vim.g.git_commit == '' then
 		return ''
 	end
-	return u.ternary(vim.g.git_branch ~= '', '', 'ﰖ')
+	return util.ternary(vim.g.git_branch ~= '', '', 'ﰖ')
 		.. '%* '
-		.. u.ternary(
+		.. util.ternary(
 			vim.g.git_branch ~= '',
 			vim.g.git_branch
 				.. ' %#FiletypeStatusLine#['
@@ -186,9 +279,9 @@ end
 
 ---Get the formatted file type info for the current buffer
 local function filetype_info()
-	local bg = u.get_color('StatusLine', 'bg')
-	local fg = u.get_color('Comment', 'fg')
-	u.create_highlight_group('FiletypeStatusLine', fg, bg)
+	local bg = util.get_color('StatusLine', 'bg')
+	local fg = util.get_color('Comment', 'fg')
+	util.create_highlight_group('FiletypeStatusLine', fg, bg)
 	return color_when_focused('FiletypeStatusLine') .. '%y%*'
 end
 
@@ -212,8 +305,8 @@ end
 
 ---Get the formatted codeium info
 local function codeium_info()
-	local bg = u.get_color('StatusLine', 'bg')
-	u.create_highlight_group('CodeiumLogoStatusLine', '#09b6a2', bg)
+	local bg = util.get_color('StatusLine', 'bg')
+	util.create_highlight_group('CodeiumLogoStatusLine', '#09b6a2', bg)
 	if vim.g.ai == 'codeium' then
 		return color_when_focused('CodeiumLogoStatusLine')
 			.. '{…}%*%3{codeium#GetStatusString()} '
@@ -236,3 +329,22 @@ function StatusLine()
 		.. codeium_info()
 		.. position_info()
 end
+
+---Get a tabline which shows each buffer as a different tab
+function BufferLine()
+	local buf_count = vim.fn.bufnr('$')
+	local str = ''
+	for bufnr = 1, buf_count do
+		if vim.fn.buflisted(bufnr) == 1 then
+			local is_selected = vim.fn.bufnr() == bufnr
+			str = str
+				.. getTabStart(is_selected)
+				.. bufnr
+				.. ' '
+				.. getFormattedBufferName(bufnr, is_selected, false)
+		end
+	end
+	return str
+end
+
+
