@@ -6,6 +6,28 @@ require('statusline')
 require('tabline')
 require('bufferline')
 
+--- colorscheme
+require('catppuccin').setup({
+	background = {
+		light = "latte",
+		dark = "macchiato"
+	},
+	show_end_of_buffer = true,
+	integrations = {
+		cmp = true,
+		gitsigns = true,
+		hop = true,
+		mason = true,
+		nvimtree = true,
+		telescope = {
+			enabled = true,
+			style = 'nvchad'
+		}
+	}
+})
+
+vim.cmd([[colorscheme catppuccin]])
+
 -- highlight text on yank
 local yank_highlight_group =
 	vim.api.nvim_create_augroup('YankHighlight', { clear = true })
