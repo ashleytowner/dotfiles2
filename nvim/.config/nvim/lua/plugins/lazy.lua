@@ -311,36 +311,3 @@ local plugins = {
 }
 
 require('lazy').setup(plugins)
-
--- auto-sync when plugins file is saved
-local lazy_user_config_group =
-	vim.api.nvim_create_augroup('LazyUserConfig', { clear = true })
-
--- vim.api.nvim_create_autocmd('BufWritePost', {
--- 	pattern = 'lazy.lua',
--- 	group = lazy_user_config_group,
--- 	command = 'source <afile> | PackerSync',
--- })
-
--- Keybind to update a plugin hash
-vim.api.nvim_create_autocmd('BufEnter', {
-	pattern = 'lazy.lua',
-	group = lazy_user_config_group,
-	callback = function()
-		vim.keymap.set('n', '<leader>Up', function()
-			-- Delete the current hash and yank the plugin name
-			vim.cmd("norm 0f=lD^yi'")
-			local plugin_name = vim.fn.getreg('"')
-			-- fetch the hash from github
-			local hash = require('util').get_plugin_hash(plugin_name)
-			-- put the hash back into the " register
-			require('util').yank(hash or '')
-			-- Paste the hash and prefix it with a '
-			vim.cmd("norm pI'")
-			-- Add ', to the end of the hash
-			vim.cmd("norm A',")
-			-- Join the lines and move down to the next line
-			vim.cmd('norm kJj')
-		end, { buffer = true })
-	end,
-})
