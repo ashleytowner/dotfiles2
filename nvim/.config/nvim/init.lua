@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
 
-Util = require('util')
 require('plugins')
+Util = require('util')
 require('lines')
 
 --- colorscheme
