@@ -59,4 +59,5 @@ fi
 popd
 
 echo "Installation successful"
+echo "You can install other dependencies by running ./install-dependencies.sh"
 echo "For more information about this configuration, read the README.md file"
