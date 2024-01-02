@@ -15,13 +15,13 @@ Version-controlled configuration files for my personal computers.
     - `chsh -s $(which zsh)`
     - `source ~/.zshrc`
 4. Install other dependencies
-    - nvim
-        - ripgrep
-        - fd / fd_find
-        - jq
-        - npm i neovim
-    - tmux
-    - [fzf](https://github.com/junegunn/fzf#installation) (make sure to set up keybindings)
+    - `nvim`
+        - `ripgrep`
+        - `fd` / `fd_find`
+        - `jq`
+        - `npm i neovim`
+    - `tmux`
+    - `fzf` [installation instructions](https://github.com/junegunn/fzf#installation)
 
 ## Local Overriding
 
