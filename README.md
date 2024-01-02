@@ -4,20 +4,24 @@ Version-controlled configuration files for my personal computers.
 
 ## Installation
 
-```zsh
-# Download the repo
-
-git clone https://github.com/ashleytowner/dotfiles 
-cd dotfiles
-
-# Run the install script
-chmod +x install.sh
-./install.sh
-```
-
-### fzf
-fzf's completion setup is different depending on your operating system,
-refer to [this guide](https://github.com/junegunn/fzf#installation) for setting it up
+1. Install Dependencies
+    - `git`
+    - `curl`
+    - `stow`
+    - `zsh`
+2. Run remote install script
+    - `curl https://raw.githubusercontent.com/ashleytowner/dotfiles/main/install-remote.sh | sh`
+3. Setup zsh
+    - `chsh -s $(which zsh)`
+    - `source ~/.zshrc`
+4. Install other dependencies
+    - nvim
+        - ripgrep
+        - fd / fd_find
+        - jq
+        - npm i neovim
+    - tmux
+    - [fzf](https://github.com/junegunn/fzf#installation) (make sure to set up keybindings)
 
 ## Local Overriding
 
