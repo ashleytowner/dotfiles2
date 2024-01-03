@@ -91,7 +91,7 @@ alias run="scripts"
 alias lag="ag --pager 'less -R'"
 alias vag="ag --vimgrep"
 
-alias ls="ls -G"
+alias ls="ls -G --color"
 alias la="ls -A"
 alias ll="ls -Al"
 alias lll="ls -l | tail -n \$(( \$(ls -l | wc -l) - 1 )) | awk '{print \$NF}'"
