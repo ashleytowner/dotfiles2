@@ -541,6 +541,16 @@ local plugins = {
 
 			vim.keymap.set(
 				'n',
+				'<leader>*',
+				builtin.grep_string,
+				{
+					noremap = true,
+					desc = 'Telescope grep word under cursor or selection',
+				}
+			)
+
+			vim.keymap.set(
+				'n',
 				'<C-p>',
 				builtin.find_files,
 				{ noremap = true, desc = 'Telescope find files' }
