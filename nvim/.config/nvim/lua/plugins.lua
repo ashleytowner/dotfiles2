@@ -12,166 +12,195 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+	-- Base
 	{
 		'nvim-lua/plenary.nvim',
 	},
 	{
-		'williamboman/mason.nvim',
+		'nvim-telescope/telescope.nvim',
 		config = function()
-			local masonOk, mason = pcall(require, 'mason')
+			local telescopeOk, telescope = pcall(require, 'telescope')
 
-			if not masonOk then
-				print("Mason couldn't be loaded!")
+			if not telescopeOk then
 				return
 			end
 
-			mason.setup()
-		end,
-	},
-	{
-		'jay-babu/mason-nvim-dap.nvim',
-		dependencies = {
-			{ 'mfussenegger/nvim-dap' },
-			{ 'williamboman/mason.nvim' },
-			{ 'theHamsta/nvim-dap-virtual-text' },
-			{ 'rcarriga/nvim-dap-ui' },
-		},
-		config = function()
-			-- setup
-			require('mason-nvim-dap').setup({
-				ensure_installed = { 'node2' },
-				handlers = {
-					function(config)
-						require('mason-nvim-dap').default_setup(config)
-					end,
+			telescope.setup({
+				defaults = {
+					vimgrep_arguments = {
+						'rg',
+						'--color=never',
+						'--no-heading',
+						'--with-filename',
+						'--line-number',
+						'--column',
+						'--smart-case',
+						'--hidden',
+					},
+					prompt_prefix = '> ',
+					selection_caret = '> ',
+					entry_prefix = '  ',
+					initial_mode = 'insert',
+					selection_strategy = 'reset',
+					sorting_strategy = 'descending',
+					layout_strategy = 'horizontal',
+					layout_config = {
+						horizontal = {
+							mirror = false,
+							width = 0.9,
+						},
+						vertical = {
+							mirror = false,
+						},
+					},
+					file_sorter = require('telescope.sorters').get_fuzzy_file,
+					file_ignore_patterns = {},
+					generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
+					winblend = 0,
+					border = true,
+					dynamic_preview_title = true,
+					borderchars = {
+						'─',
+						'│',
+						'─',
+						'│',
+						'╭',
+						'╮',
+						'╯',
+						'╰',
+					},
+					color_devicons = true,
+					use_less = true,
+					path_display = { 'truncate' },
+					set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+					file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+					grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+					qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+
+					-- Developer configurations: Not meant for general override
+					buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
+				},
+				extensions = {
+					['ui-select'] = {
+						require('telescope.themes').get_cursor(),
+					},
+				},
+				pickers = {
+					find_files = {
+						find_command = {
+							'rg',
+							'--files',
+							'--hidden',
+							'--glob',
+							'!.git/',
+						},
+					},
+					git_branches = {
+						theme = 'dropdown',
+					},
+					buffers = {},
+					live_grep = {},
+					lsp_references = {},
+					lsp_definitions = {},
+					quickfix = {
+						theme = 'ivy',
+					},
+					loclist = {
+						theme = 'ivy',
+					},
+					diagnostics = {
+						theme = 'ivy',
+					},
 				},
 			})
 
-			require('nvim-dap-virtual-text').setup()
-			require('dapui').setup()
+			-- Extensions
+			telescope.load_extension('ui-select')
 
-			-- keymappings
+			local builtin = require('telescope.builtin')
 
-			vim.keymap.set('n', '<F4>', function()
-				require('dap').continue()
-			end, { desc = 'Debugger: continue' })
-
-			vim.keymap.set('n', '<leader>b', function()
-				require('dap').toggle_breakpoint()
-			end, { desc = 'Debugger: toggle breakpoint' })
-
-			-- listeners
-			require('dap').listeners.after.event_initialized['dapui'] = function(
+			-- Keymaps
+			vim.keymap.set(
+				'n',
+				'<C-f>',
+				builtin.live_grep,
+				{ noremap = true, desc = 'Telescope live grep' }
 			)
-				require('dapui').open()
-			end
 
-			require('dap').listeners.before.event_terminated['dapui'] = function(
-			)
-				require('dapui').close()
-			end
-
-			require('dap').listeners.before.event_exited['dapui'] = function()
-				require('dapui').close()
-			end
-
-			require('dap').listeners.after.event_initialized['keymaps'] = function(
-			)
-				vim.o.mouse = 'nv'
-				vim.keymap.set('n', '<F3>', function()
-					require('dap').step_over()
-				end, { desc = 'Debugger: step over' })
-				vim.keymap.set('n', '<F2>', function()
-					require('dap').step_into()
-				end, { desc = 'Debugger: step into' })
-				vim.keymap.set('n', '<F12>', function()
-					require('dap').step_out()
-				end, { desc = 'Debugger: step out' })
-				vim.keymap.set('n', '<C-c>', function()
-					require('dap').terminate()
-				end, { desc = 'Debugger: terminate' })
-			end
-
-			require('dap').listeners.before.event_terminated['keymaps'] = function(
-			)
-				vim.o.mouse = ''
-			end
-
-			require('dap').listeners.before.event_exited['keymaps'] = function()
-				vim.o.mouse = ''
-			end
-		end,
-	},
-	{
-		'mfussenegger/nvim-dap',
-	},
-	{
-		'ThePrimeagen/refactoring.nvim',
-		config = function()
-			require('refactoring').setup()
-
-			vim.keymap.set('n', '<leader>rp', function()
-				require('refactoring').debug.printf({ below = true })
-			end, {
+			vim.keymap.set('n', '<leader>*', builtin.grep_string, {
 				noremap = true,
-				desc = 'Add a printf statement below current line',
+				desc = 'Telescope grep word under cursor or selection',
 			})
 
-			vim.keymap.set('n', '<leader>rP', function()
-				require('refactoring').debug.printf({ below = false })
-			end, {
-				noremap = true,
-				desc = 'Add a printf statement above current line',
-			})
+			vim.keymap.set(
+				'n',
+				'<C-p>',
+				builtin.find_files,
+				{ noremap = true, desc = 'Telescope find files' }
+			)
+
+			vim.keymap.set('n', '<C-M-p>', function()
+				builtin.find_files({
+					find_command = {
+						'rg',
+						'--hidden',
+						'--files',
+					},
+				})
+			end, { noremap = true, desc = 'Telescope find files' })
+
+			vim.keymap.set(
+				'n',
+				'<leader>tq',
+				builtin.quickfix,
+				{ noremap = true, desc = 'Telescope quickfix' }
+			)
+
+			vim.keymap.set(
+				'n',
+				'<leader>tg',
+				builtin.git_branches,
+				{ noremap = true, desc = 'Telescope git branches' }
+			)
+
+			vim.keymap.set(
+				'n',
+				'<leader>tp',
+				builtin.resume,
+				{ noremap = true, desc = 'Show previous telescope popup' }
+			)
+
+			vim.keymap.set(
+				'n',
+				'<leader>tc',
+				builtin.colorscheme,
+				{ noremap = true, desc = 'Telescope pick colorscheme' }
+			)
+
+			vim.keymap.set(
+				'n',
+				'<leader>ls',
+				builtin.buffers,
+				{ noremap = true, desc = 'Telescope buffers' }
+			)
+
+			vim.keymap.set('n', '<leader>todo', function()
+				builtin.live_grep({
+					default_text = '(TODO|NOTE|BUG|HACK|WARN|WARNING)(\\(\\w+\\))?:',
+				})
+			end, { noremap = true, desc = 'Telescope TODOs' })
 		end,
 		dependencies = {
-			{ 'nvim-lua/plenary.nvim' },
-			{ 'nvim-treesitter/nvim-treesitter' },
+			{
+				'gbrlsnchs/telescope-lsp-handlers.nvim',
+			},
+			{
+				'nvim-lua/plenary.nvim',
+			},
+			{
+				'nvim-telescope/telescope-ui-select.nvim',
+			},
 		},
-	},
-	-- AI
-	{
-		'Exafunction/codeium.vim',
-		config = function()
-			vim.g.codeium_disable_bindings = true
-			vim.g.ai = 'codeium'
-
-			vim.keymap.set(
-				'i',
-				'<C-g>n',
-				'<CMD>call codeium#CycleCompletions(1)<CR>',
-				{ noremap = true, desc = 'Cycle to next codeium completion' }
-			)
-
-			vim.keymap.set(
-				'i',
-				'<C-g>p',
-				'<CMD>call codeium#CycleCompletions(-1)<CR>',
-				{
-					noremap = true,
-					desc = 'Cycle to previous codeium completion',
-				}
-			)
-
-			vim.keymap.set(
-				'i',
-				'<C-g><CR>',
-				'<CMD>call codeium#Accept()<CR>',
-				{ noremap = true, desc = 'Accept codeium completion' }
-			)
-
-			vim.keymap.set(
-				'i',
-				'<C-g><C-e>',
-				'<CMD>call codeium#Clear()<CR>',
-				{ noremap = true, desc = 'Clear codeium completion' }
-			)
-		end,
-	},
-	-- Util
-	{
-		'dstein64/vim-startuptime',
-		cmd = 'StartupTime',
 	},
 	-- Motions & Objects
 	{
@@ -292,9 +321,6 @@ local plugins = {
 			end, { noremap = true, desc = 'Hop 2 characters' })
 		end,
 	},
-	{
-		'mattn/emmet-vim',
-	},
 	-- Git
 	{
 		'lewis6991/gitsigns.nvim',
@@ -393,207 +419,7 @@ local plugins = {
 	},
 	-- File Management
 	{
-		'nvim-telescope/telescope.nvim',
-		config = function()
-			local telescopeOk, telescope = pcall(require, 'telescope')
-
-			if not telescopeOk then
-				return
-			end
-
-			telescope.setup({
-				defaults = {
-					vimgrep_arguments = {
-						'rg',
-						'--color=never',
-						'--no-heading',
-						'--with-filename',
-						'--line-number',
-						'--column',
-						'--smart-case',
-						'--hidden',
-					},
-					prompt_prefix = '> ',
-					selection_caret = '> ',
-					entry_prefix = '  ',
-					initial_mode = 'insert',
-					selection_strategy = 'reset',
-					sorting_strategy = 'descending',
-					layout_strategy = 'horizontal',
-					layout_config = {
-						horizontal = {
-							mirror = false,
-							width = 0.9,
-						},
-						vertical = {
-							mirror = false,
-						},
-					},
-					file_sorter = require('telescope.sorters').get_fuzzy_file,
-					file_ignore_patterns = {},
-					generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
-					winblend = 0,
-					border = true,
-					dynamic_preview_title = true,
-					borderchars = {
-						'─',
-						'│',
-						'─',
-						'│',
-						'╭',
-						'╮',
-						'╯',
-						'╰',
-					},
-					color_devicons = true,
-					use_less = true,
-					path_display = { 'truncate' },
-					set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-					file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-					grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-					qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-
-					-- Developer configurations: Not meant for general override
-					buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
-				},
-				extensions = {
-					'refactoring',
-					['ui-select'] = {
-						require('telescope.themes').get_cursor(),
-					},
-				},
-				pickers = {
-					find_files = {
-						find_command = {
-							'rg',
-							'--files',
-							'--hidden',
-							'--glob',
-							'!.git/',
-						},
-					},
-					git_branches = {
-						theme = 'dropdown',
-					},
-					buffers = {},
-					live_grep = {},
-					lsp_references = {},
-					lsp_definitions = {},
-					quickfix = {
-						theme = 'ivy',
-					},
-					loclist = {
-						theme = 'ivy',
-					},
-					diagnostics = {
-						theme = 'ivy',
-					},
-				},
-			})
-
-			-- Extensions
-			telescope.load_extension('ui-select')
-			telescope.load_extension('refactoring')
-
-			local builtin = require('telescope.builtin')
-
-			-- Keymaps
-			vim.keymap.set(
-				'n',
-				'<C-f>',
-				builtin.live_grep,
-				{ noremap = true, desc = 'Telescope live grep' }
-			)
-
-			vim.keymap.set(
-				'n',
-				'<leader>*',
-				builtin.grep_string,
-				{
-					noremap = true,
-					desc = 'Telescope grep word under cursor or selection',
-				}
-			)
-
-			vim.keymap.set(
-				'n',
-				'<C-p>',
-				builtin.find_files,
-				{ noremap = true, desc = 'Telescope find files' }
-			)
-
-			vim.keymap.set('n', '<C-M-p>', function()
-				builtin.find_files({
-					find_command = {
-						'rg',
-						'--hidden',
-						'--files',
-					},
-				})
-			end, { noremap = true, desc = 'Telescope find files' })
-
-			vim.keymap.set(
-				'n',
-				'<leader>tq',
-				builtin.quickfix,
-				{ noremap = true, desc = 'Telescope quickfix' }
-			)
-
-			vim.keymap.set(
-				'n',
-				'<leader>tg',
-				builtin.git_branches,
-				{ noremap = true, desc = 'Telescope git branches' }
-			)
-
-			vim.keymap.set(
-				{ 'x', 'n' },
-				'<leader>rr',
-				require('telescope').extensions.refactoring.refactors,
-				{ noremap = true, desc = 'Telescope refactor' }
-			)
-
-			vim.keymap.set(
-				'n',
-				'<leader>tp',
-				builtin.resume,
-				{ noremap = true, desc = 'Show previous telescope popup' }
-			)
-
-			vim.keymap.set(
-				'n',
-				'<leader>tc',
-				builtin.colorscheme,
-				{ noremap = true, desc = 'Telescope pick colorscheme' }
-			)
-
-			vim.keymap.set(
-				'n',
-				'<leader>ls',
-				builtin.buffers,
-				{ noremap = true, desc = 'Telescope buffers' }
-			)
-
-			vim.keymap.set('n', '<leader>todo', function()
-				builtin.live_grep({
-					default_text = '(TODO|NOTE|BUG|HACK|WARN|WARNING)(\\(\\w+\\))?:',
-				})
-			end, { noremap = true, desc = 'Telescope TODOs' })
-		end,
-		dependencies = {
-			{
-				'gbrlsnchs/telescope-lsp-handlers.nvim',
-			},
-			{
-				'nvim-lua/plenary.nvim',
-			},
-			{
-				'nvim-telescope/telescope-ui-select.nvim',
-			},
-		},
-	},
-	{
-		'tpope/vim-vinegar'
+		'tpope/vim-vinegar',
 	},
 	{
 		'kyazdani42/nvim-web-devicons',
@@ -662,7 +488,139 @@ local plugins = {
 			)
 		end,
 	},
-	-- LSP, Completion & Formatting
+	-- AI
+	{
+		'Exafunction/codeium.vim',
+		config = function()
+			vim.g.codeium_disable_bindings = true
+			vim.g.ai = 'codeium'
+
+			vim.keymap.set(
+				'i',
+				'<C-g>n',
+				'<CMD>call codeium#CycleCompletions(1)<CR>',
+				{ noremap = true, desc = 'Cycle to next codeium completion' }
+			)
+
+			vim.keymap.set(
+				'i',
+				'<C-g>p',
+				'<CMD>call codeium#CycleCompletions(-1)<CR>',
+				{
+					noremap = true,
+					desc = 'Cycle to previous codeium completion',
+				}
+			)
+
+			vim.keymap.set(
+				'i',
+				'<C-g><CR>',
+				'<CMD>call codeium#Accept()<CR>',
+				{ noremap = true, desc = 'Accept codeium completion' }
+			)
+
+			vim.keymap.set(
+				'i',
+				'<C-g><C-e>',
+				'<CMD>call codeium#Clear()<CR>',
+				{ noremap = true, desc = 'Clear codeium completion' }
+			)
+		end,
+	},
+	-- LSP, Completion, Debugging & Formatting
+	{
+		'mattn/emmet-vim',
+	},
+	{
+		'williamboman/mason.nvim',
+		config = function()
+			local masonOk, mason = pcall(require, 'mason')
+
+			if not masonOk then
+				print("Mason couldn't be loaded!")
+				return
+			end
+
+			mason.setup()
+		end,
+	},
+	{
+		'jay-babu/mason-nvim-dap.nvim',
+		dependencies = {
+			{ 'mfussenegger/nvim-dap' },
+			{ 'williamboman/mason.nvim' },
+			{ 'theHamsta/nvim-dap-virtual-text' },
+			{ 'rcarriga/nvim-dap-ui' },
+		},
+		config = function()
+			-- setup
+			require('mason-nvim-dap').setup({
+				ensure_installed = { 'node2' },
+				handlers = {
+					function(config)
+						require('mason-nvim-dap').default_setup(config)
+					end,
+				},
+			})
+
+			require('nvim-dap-virtual-text').setup()
+			require('dapui').setup()
+
+			-- keymappings
+
+			vim.keymap.set('n', '<F4>', function()
+				require('dap').continue()
+			end, { desc = 'Debugger: continue' })
+
+			vim.keymap.set('n', '<leader>b', function()
+				require('dap').toggle_breakpoint()
+			end, { desc = 'Debugger: toggle breakpoint' })
+
+			-- listeners
+			require('dap').listeners.after.event_initialized['dapui'] = function(
+			)
+				require('dapui').open()
+			end
+
+			require('dap').listeners.before.event_terminated['dapui'] = function(
+			)
+				require('dapui').close()
+			end
+
+			require('dap').listeners.before.event_exited['dapui'] = function()
+				require('dapui').close()
+			end
+
+			require('dap').listeners.after.event_initialized['keymaps'] = function(
+			)
+				vim.o.mouse = 'nv'
+				vim.keymap.set('n', '<F3>', function()
+					require('dap').step_over()
+				end, { desc = 'Debugger: step over' })
+				vim.keymap.set('n', '<F2>', function()
+					require('dap').step_into()
+				end, { desc = 'Debugger: step into' })
+				vim.keymap.set('n', '<F12>', function()
+					require('dap').step_out()
+				end, { desc = 'Debugger: step out' })
+				vim.keymap.set('n', '<C-c>', function()
+					require('dap').terminate()
+				end, { desc = 'Debugger: terminate' })
+			end
+
+			require('dap').listeners.before.event_terminated['keymaps'] = function(
+			)
+				vim.o.mouse = ''
+			end
+
+			require('dap').listeners.before.event_exited['keymaps'] = function()
+				vim.o.mouse = ''
+			end
+		end,
+	},
+	{
+		'mfussenegger/nvim-dap',
+	},
 	{
 		'neovim/nvim-lspconfig',
 		config = function()
@@ -934,6 +892,28 @@ local plugins = {
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
+		config = function()
+			require('catppuccin').setup({
+				background = {
+					light = 'latte',
+					dark = 'macchiato',
+				},
+				show_end_of_buffer = true,
+				integrations = {
+					cmp = true,
+					gitsigns = true,
+					treesitter = true,
+					hop = true,
+					mason = true,
+					markdown = true,
+					dap = true,
+					telescope = {
+						enabled = true,
+						style = 'nvchad',
+					},
+				},
+			})
+		end,
 	},
 	{
 		'rose-pine/neovim',
@@ -944,13 +924,18 @@ local plugins = {
 				dark_variant = 'moon',
 				disable_italics = false,
 			})
-		end
+		end,
 	},
 	{
 		'folke/tokyonight.nvim',
 	},
 	{
 		'ray-x/aurora',
+	},
+	-- Util
+	{
+		'dstein64/vim-startuptime',
+		cmd = 'StartupTime',
 	},
 }
 
