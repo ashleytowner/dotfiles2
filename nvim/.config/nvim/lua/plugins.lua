@@ -647,6 +647,7 @@ local plugins = {
 	},
 	{
 		'mfussenegger/nvim-lint',
+		enabled = false,
 		config = function()
 			local lint = require('lint')
 
