@@ -626,11 +626,10 @@ local plugins = {
 		config = function()
 			require('lsp')
 		end,
-		-- after = { 'mason.nvim' },
 		dependencies = {
 			{
 				'williamboman/mason-lspconfig.nvim',
-			},
+			}
 		},
 	},
 	{
