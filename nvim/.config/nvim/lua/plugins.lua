@@ -491,6 +491,9 @@ local plugins = {
 	-- AI
 	{
 		'Exafunction/codeium.vim',
+		cond = function()
+			return os.getenv('NO_AI') ~= 'true'
+		end,
 		config = function()
 			vim.g.codeium_disable_bindings = true
 			vim.g.ai = 'codeium'
