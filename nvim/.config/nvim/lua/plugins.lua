@@ -645,34 +645,34 @@ local plugins = {
 		'folke/trouble.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
+	{ 'jay-babu/mason-null-ls.nvim' },
 	{
-		'mfussenegger/nvim-lint',
-		enabled = false,
+		'nvimtools/none-ls.nvim',
+		after = { 'mason.nvim', 'mason-null-ls' },
 		config = function()
-			local lint = require('lint')
+			local mason_null_ls = require('mason-null-ls')
+			local null_ls = require('null-ls')
 
-			lint.linters_by_ft = {
-				typescript = { 'eslint_d' },
-				typescriptreact = { 'eslint_d' },
-				javascript = { 'eslint_d' },
-				javascriptreact = { 'eslint_d' },
-				-- css = { 'stylelint' },
-				-- scss = { 'stylelint' },
-			}
-
-			local lint_group =
-				vim.api.nvim_create_augroup('Linters', { clear = true })
-
-			vim.api.nvim_create_autocmd(
-				{ 'BufEnter', 'TextChanged', 'InsertLeave' },
-				{
-					callback = function()
-						lint.try_lint()
+			mason_null_ls.setup({
+				ensure_installed = {
+					'eslint_d',
+					'jq'
+				},
+				handlers = {
+					function(source, methods)
+						require('mason-null-ls.automatic_setup')(source, methods)
 					end,
-					group = lint_group,
+					['eslint_d'] = function(source, methods)
+						-- Check if an eslint config file exists before starting eslint
+						if vim.fn.glob('.eslintrc*') ~= '' then
+							require('mason-null-ls.automatic_setup')(source, methods)
+						end
+					end
 				}
-			)
-		end,
+			})
+
+			null_ls.setup()
+		end
 	},
 	{
 		'mhartington/formatter.nvim',
