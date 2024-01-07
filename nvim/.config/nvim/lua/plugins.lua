@@ -642,6 +642,10 @@ local plugins = {
 		end,
 	},
 	{
+		'folke/trouble.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' }
+	},
+	{
 		'mfussenegger/nvim-lint',
 		config = function()
 			local lint = require('lint')
