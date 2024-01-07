@@ -643,12 +643,11 @@ local plugins = {
 	},
 	{
 		'folke/trouble.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' }
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
 	},
-	{ 'jay-babu/mason-null-ls.nvim' },
 	{
 		'nvimtools/none-ls.nvim',
-		after = { 'mason.nvim', 'mason-null-ls' },
+		dependencies = { 'mason.nvim', 'jay-babu/mason-null-ls.nvim' },
 		config = function()
 			local mason_null_ls = require('mason-null-ls')
 			local null_ls = require('null-ls')
@@ -656,23 +655,29 @@ local plugins = {
 			mason_null_ls.setup({
 				ensure_installed = {
 					'eslint_d',
-					'jq'
+					'jq',
 				},
 				handlers = {
 					function(source, methods)
-						require('mason-null-ls.automatic_setup')(source, methods)
+						require('mason-null-ls.automatic_setup')(
+							source,
+							methods
+						)
 					end,
 					['eslint_d'] = function(source, methods)
 						-- Check if an eslint config file exists before starting eslint
 						if vim.fn.glob('.eslintrc*') ~= '' then
-							require('mason-null-ls.automatic_setup')(source, methods)
+							require('mason-null-ls.automatic_setup')(
+								source,
+								methods
+							)
 						end
-					end
-				}
+					end,
+				},
 			})
 
 			null_ls.setup()
-		end
+		end,
 	},
 	{
 		'mhartington/formatter.nvim',
@@ -893,10 +898,11 @@ local plugins = {
 		'nvim-treesitter/playground',
 		dependencies = 'nvim-treesitter/nvim-treesitter',
 	},
-	-- Theming
+	-- Colours
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
+		lazy = true,
 		config = function()
 			require('catppuccin').setup({
 				background = {
@@ -923,6 +929,7 @@ local plugins = {
 	{
 		'rose-pine/neovim',
 		name = 'rose-pine',
+		lazy = true,
 		config = function()
 			require('rose-pine').setup({
 				variant = 'moon',
@@ -933,9 +940,15 @@ local plugins = {
 	},
 	{
 		'folke/tokyonight.nvim',
+		lazy = true,
 	},
 	{
 		'ray-x/aurora',
+		lazy = true,
+	},
+	{
+		'rafamadriz/neon',
+		lazy = true,
 	},
 	-- Util
 	{
