@@ -422,14 +422,14 @@ local plugins = {
 		'tpope/vim-vinegar',
 	},
 	{
-		'kyazdani42/nvim-web-devicons',
+		'nvim-tree/nvim-web-devicons',
 	},
 	{
-		'kyazdani42/nvim-tree.lua',
+		'nvim-tree/nvim-tree.lua',
 		enabled = false,
 		dependencies = {
 			{
-				'kyazdani42/nvim-web-devicons',
+				'nvim-tree/nvim-web-devicons',
 			},
 		},
 		config = function()
