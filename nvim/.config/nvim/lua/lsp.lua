@@ -170,6 +170,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
+require('neodev').setup()
 local masonLspOk, masonLsp = pcall(require, 'mason-lspconfig')
 local lspConfigOk, lspConfig = pcall(require, 'lspconfig')
 
@@ -209,26 +210,26 @@ masonLsp.setup_handlers({
 			end,
 		})
 	end,
-	['lua_ls'] = function(server_name)
-		lspConfig[server_name].setup({
-			on_attach = function()
-				set_keymaps()
-			end,
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { 'vim' },
-					},
-					workspace = {
-						library = {
-							[vim.fn.expand('$VIMRUNTIME/lua')] = true,
-							[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-						},
-					},
-				},
-			},
-		})
-	end,
+	-- ['lua_ls'] = function(server_name)
+	-- 	lspConfig[server_name].setup({
+	-- 		on_attach = function()
+	-- 			set_keymaps()
+	-- 		end,
+	-- 		settings = {
+	-- 			Lua = {
+	-- 				diagnostics = {
+	-- 					globals = { 'vim' },
+	-- 				},
+	-- 				workspace = {
+	-- 					library = {
+	-- 						[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+	-- 						[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 	})
+	-- end,
 })
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] =

@@ -631,6 +631,7 @@ local plugins = {
 		end,
 		dependencies = {
 			{
+				'folke/neodev.nvim',
 				'williamboman/mason-lspconfig.nvim',
 			}
 		},
