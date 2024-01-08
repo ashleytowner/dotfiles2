@@ -880,10 +880,6 @@ local plugins = {
 			})
 		end,
 	},
-	{
-		'nvim-treesitter/playground',
-		dependencies = 'nvim-treesitter/nvim-treesitter',
-	},
 	-- Colours
 	{
 		'catppuccin/nvim',
