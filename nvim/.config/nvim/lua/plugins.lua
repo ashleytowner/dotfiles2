@@ -12,15 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
---foo
-
---foo
---bar
-
---[[ foobar
-baz
---]]
-
 local plugins = {
 	-- Base
 	{
