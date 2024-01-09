@@ -53,7 +53,7 @@ local function set_keymaps()
 		local formatFunction = function(d)
 			return '[' .. d.source .. '] '
 		end
-		vim.diagnostic.open_float(nil, { prefix = formatFunction })
+		vim.diagnostic.open_float(nil, { prefix = formatFunction, border = 'rounded' })
 	end, {
 		noremap = true,
 		silent = true,
@@ -205,57 +205,35 @@ masonLsp.setup_handlers({
 	['tsserver'] = function(server_name)
 		lspConfig[server_name].setup({
 			on_attach = function(client)
+				-- Use linters & formatters instead
 				client.server_capabilities.documentFormattingProvider = false
 				set_keymaps()
 			end,
 		})
 	end,
-	-- ['lua_ls'] = function(server_name)
-	-- 	lspConfig[server_name].setup({
-	-- 		on_attach = function()
-	-- 			set_keymaps()
-	-- 		end,
-	-- 		settings = {
-	-- 			Lua = {
-	-- 				diagnostics = {
-	-- 					globals = { 'vim' },
-	-- 				},
-	-- 				workspace = {
-	-- 					library = {
-	-- 						[vim.fn.expand('$VIMRUNTIME/lua')] = true,
-	-- 						[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 	})
-	-- end,
 })
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] =
-	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		-- Enable underline, use default values
-		underline = true,
-		-- Enable virtual text, override spacing to 4
-		virtual_text = {
-			spacing = 1,
-		},
-		update_in_insert = false,
-	})
+vim.diagnostic.config({ float = { border = 'rounded' } })
+
+vim.lsp.handlers['textDocument/hover'] =
+	vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' });
+
+vim.lsp.handlers['textDocument/signatureHelp'] =
+	vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' });
 
 vim.fn.sign_define(
 	'DiagnosticSignError',
-	{ text = '', texthl = 'DiagnosticSignError' }
+	{ text = '!', texthl = 'DiagnosticSignError' }
 )
 vim.fn.sign_define(
 	'DiagnosticSignWarn',
-	{ text = '', texthl = 'DiagnosticSignWarn' }
+	{ text = '?', texthl = 'DiagnosticSignWarn' }
 )
 vim.fn.sign_define(
 	'DiagnosticSignInformation',
-	{ text = '', texthl = 'DiagnosticSignInformation' }
+	{ text = 'i', texthl = 'DiagnosticSignInformation' }
 )
 vim.fn.sign_define(
 	'DiagnosticSignHint',
-	{ text = '', texthl = 'DiagnosticSignHint' }
+	{ text = '~', texthl = 'DiagnosticSignHint' }
 )
