@@ -11,39 +11,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 local plugins = {
 	-- Base
 	{
 		'nvim-lua/plenary.nvim',
-	},
-	{
-		'folke/noice.nvim',
-		enabled = false,
-		config = function()
-			require('noice').setup({
-				lsp = {
-					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-					override = {
-						['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-						['vim.lsp.util.stylize_markdown'] = true,
-						['cmp.entry.get_documentation'] = true,
-					},
-				},
-				-- you can enable a preset for easier configuration
-				presets = {
-					bottom_search = true, -- use a classic bottom cmdline for search
-					command_palette = true, -- position the cmdline and popupmenu together
-					long_message_to_split = true, -- long messages will be sent to a split
-					inc_rename = false, -- enables an input dialog for inc-rename.nvim
-					lsp_doc_border = false, -- add a border to hover docs and signature help
-				},
-			})
-		end,
-		dependencies = {
-			'MunifTanjim/nui.nvim',
-			'rcarriga/nvim-notify',
-			'nvim-treesitter/nvim-treesitter/',
-		},
 	},
 	{
 		'nvim-telescope/telescope.nvim',
@@ -448,10 +420,6 @@ local plugins = {
 	},
 	-- File Management
 	{
-		'tpope/vim-vinegar',
-		enabled = false,
-	},
-	{
 		'stevearc/oil.nvim',
 		-- We lazy load oil on BufEnter so that netrw can still handle
 		-- scp://, ftp:// etc because oil handles them weirdly
@@ -472,9 +440,6 @@ local plugins = {
 		dependencies = {
 			'nvim-tree/nvim-web-devicons',
 		},
-	},
-	{
-		'nvim-tree/nvim-web-devicons',
 	},
 	{
 		'nvim-tree/nvim-tree.lua',
