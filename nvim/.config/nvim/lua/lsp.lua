@@ -53,7 +53,10 @@ local function set_keymaps()
 		local formatFunction = function(d)
 			return '[' .. d.source .. '] '
 		end
-		vim.diagnostic.open_float(nil, { prefix = formatFunction, border = 'rounded' })
+		vim.diagnostic.open_float(
+			nil,
+			{ prefix = formatFunction, border = 'rounded' }
+		)
 	end, {
 		noremap = true,
 		silent = true,
@@ -213,13 +216,24 @@ masonLsp.setup_handlers({
 	end,
 })
 
-vim.diagnostic.config({ float = { border = 'rounded' } })
+local ascii_border = {
+	{ '+', 'FloatBorder' },
+	{ '-', 'FloatBorder' },
+	{ '+', 'FloatBorder' },
+	{ '|', 'FloatBorder' },
+	{ '+', 'FloatBorder' },
+	{ '-', 'FloatBorder' },
+	{ '+', 'FloatBorder' },
+	{ '|', 'FloatBorder' },
+}
 
-vim.lsp.handlers['textDocument/hover'] =
-	vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' });
+vim.diagnostic.config({ float = { border = 'rounded' } })
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = ascii_border,
+})
 
 vim.lsp.handlers['textDocument/signatureHelp'] =
-	vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' });
+	vim.lsp.with(vim.lsp.handlers.signature_help, { border = ascii_border })
 
 vim.fn.sign_define(
 	'DiagnosticSignError',
