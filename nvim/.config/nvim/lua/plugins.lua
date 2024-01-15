@@ -11,7 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 local plugins = {
 	-- Base
 	{
@@ -827,11 +826,16 @@ local plugins = {
 					ghost_text = false,
 				},
 			})
+			cmp.setup.cmdline({ '/', '?' }, {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = 'buffer' },
+				},
+			})
 		end,
 		dependencies = {
 			{
 				'hrsh7th/vim-vsnip',
-				-- after = 'nvim-cmp',
 				config = function()
 					vim.cmd([[
 						imap <expr> <C-l> vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<C-l>'
