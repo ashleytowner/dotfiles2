@@ -429,9 +429,10 @@ local plugins = {
 	-- File Management
 	{
 		'stevearc/oil.nvim',
-		-- We lazy load oil on BufEnter so that netrw can still handle
-		-- scp://, ftp:// etc because oil handles them weirdly
-		event = 'BufEnter',
+		-- We lazy load oil on the - keybind & Oil command so that netrw can still 
+		-- handle scp://, ftp:// etc because oil handles them weirdly
+		keys = '-',
+		cmd = 'Oil',
 		config = function()
 			require('oil').setup({
 				view_options = {
