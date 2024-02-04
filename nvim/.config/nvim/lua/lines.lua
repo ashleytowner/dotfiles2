@@ -255,7 +255,7 @@ local function git_branch()
 	if vim.g.git_branch == '' and vim.g.git_commit == '' then
 		return ''
 	end
-	return util.ternary(vim.g.git_branch ~= '', '', 'ﰖ')
+	return util.ternary(vim.g.git_branch ~= '', '', '󰜘')
 		.. '%* '
 		.. util.ternary(
 			vim.g.git_branch ~= '',
@@ -297,9 +297,7 @@ end
 
 ---Get the formatted position info in the current buffer
 local function position_info()
-	return color_when_focused('FiletypeStatusLine')
-		.. '%30{nvim_treesitter#statusline(30)} '
-		.. color_when_focused('BufferIconStatusLine')
+	return color_when_focused('BufferIconStatusLine')
 		.. ' %*%<%-6.(%l:%c%) %-4.(%P%)'
 end
 
@@ -325,6 +323,9 @@ function StatusLine()
 
 	return buffer_info()
 		.. (not vim.wo.diff and git_info() or '')
+		.. '%='
+		.. color_when_focused('FiletypeStatusLine')
+		.. '%30{nvim_treesitter#statusline()} '
 		.. '%='
 		.. codeium_info()
 		.. position_info()
