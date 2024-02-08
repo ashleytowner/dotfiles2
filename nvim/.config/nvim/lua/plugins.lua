@@ -809,6 +809,7 @@ local plugins = {
 					{ name = 'path' },
 					{ name = 'vsnip' },
 					{ name = 'calc' },
+					{ name = 'emoji' },
 				}),
 				formatting = {
 					format = lspkind.cmp_format({
@@ -868,6 +869,9 @@ local plugins = {
 			},
 			{
 				'onsails/lspkind-nvim',
+			},
+			{
+				'hrsh7th/cmp-emoji',
 			},
 		},
 	},
