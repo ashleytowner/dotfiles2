@@ -11,6 +11,7 @@
 	c = "commit"
 	s = "stash"
 	p = "!f() { git push -u origin $(git rev-parse --abbrev-ref HEAD) $@; }; f"
+	blm = "blame -w -C -C -C"
 	aa = "add --all"
 	cm = "commit -m"
 	bsc = "branch --show-current"
