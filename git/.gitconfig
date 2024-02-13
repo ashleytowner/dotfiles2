@@ -1,48 +1,47 @@
 [core]
 	editor="nvim"
-[alias]
-	clean-branches = "!f() { git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done }; f"
-	co = "checkout"
-	cob = "checkout -b"
-	gco = "!f() { git checkout $(git branch | grep $1 | head -n 1); }; f"
-	fco = "!f() { if [ $1 ]; then git checkout $(git branch | sed 's/*/ /g' | fzf -1 --query $1); else git checkout $(git branch | sed 's/*/ /g' | fzf); fi }; f"
-	cb = "!f() { git clean-branches; }; f"
-	b = "branch"
-	c = "commit"
-	s = "stash"
-	p = "!f() { git push -u origin $(git rev-parse --abbrev-ref HEAD) $@; }; f"
-	blm = "blame -w -C -C -C"
-	aa = "add --all"
-	cm = "commit -m"
-	bsc = "branch --show-current"
-	m = "!f() { git checkout $1 && git pull; git checkout @{-1} && git merge $1; }; f"
-	cu = "branch --show-current"
-	logg = "log --oneline --graph"
-	amend = "commit --amend --no-edit"
-	dry-merge = "merge --no-commit --no-ff"
-	show-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; f"
-	merge-conflicts = "!f() { grep -Hn \"^=======$\" $(git diff --name-status --diff-filter=U | cut -f2) ; }; f"
-	remote-head = "!f() { git ls-remote $1 | grep HEAD | awk '{ print $1 }'; }; f"
-	list-by-prefix = "!f() { git log --oneline --grep \"^$1\" | sed 's/[0-9abcdef]\\+\\s\\(.\\+\\)/\\1/'; }; f"
-[credential]
-	helper = store
-[include]
-	path = ~/.config/local_override/git/.gitconfig
-[difftool]
-	prompt = true
-[diff]
-	tool = nvimdiff
-[difftool "nvimdiff"]
-	cmd = "nvim -Md \"$LOCAL\" \"$REMOTE\""
 [user]
 	email = "git@ashtowner.com"
-	name = Ashley Towner
+	name = "Ashley Towner"
+	gpgsign = true
+[credential]
+	helper = "store"
+[diff]
+	tool = "nvimdiff"
+[difftool]
+	prompt = true
+[difftool.nvimdiff]
+	cmd = "nvim -Md \"$LOCAL\" \"$REMOTE\""
 [init]
-	defaultBranch = main
+	defaultBranch = "main"
 [merge]
-	tool = nvimdiff
+	tool = "nvimmerge"
 [mergetool]
 	keepBackup = false
-[mergetool "nvimdiff"]
-	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool.nvimmerge]
+	cmd = "nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'"
 	trustExitCode = false
+[branch]
+	sort = -committerdate
+[rerere]
+	enabled = true
+[alias]
+	aa = "add --all"
+	amend = "commit --amend --no-edit"
+	b = "branch"
+	blm = "blame -w -C -C -C"
+	c = "commit"
+	clean-branches = "!f() { git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done }; f"
+	cm = "commit -m"
+	co = "checkout"
+	cob = "checkout -b"
+	dry-merge = "merge --no-commit --no-ff"
+	fco = "!f() { if [ $1 ]; then git checkout $(git branch | sed 's/*/ /g' | fzf -1 --query $1); else git checkout $(git branch | sed 's/*/ /g' | fzf); fi }; f"
+	logg = "log --oneline --graph"
+	p = "!f() { git push -u origin $(git rev-parse --abbrev-ref HEAD) $@; }; f"
+	pf = "push --force-with-lease"
+	remote-head = "!f() { git ls-remote $1 | grep HEAD | awk '{ print $1 }'; }; f"
+	staash = "stash --all"
+	wd = "diff --word-diff"
+[include]
+	path = "~/.config/local_override/git/.gitconfig"
