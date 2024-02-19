@@ -153,6 +153,7 @@ local plugins = {
 						'rg',
 						'--hidden',
 						'--files',
+						'--no-ignore-vcs'
 					},
 				})
 			end, { noremap = true, desc = 'Telescope find files' })
