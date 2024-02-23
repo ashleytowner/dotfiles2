@@ -255,7 +255,7 @@ local plugins = {
 				print('Comment.nvim is not installed')
 			end
 
-			comment.setup({})
+			comment.setup()
 		end,
 	},
 	{
@@ -616,6 +616,7 @@ local plugins = {
 			-- setup
 			require('mason-nvim-dap').setup({
 				ensure_installed = { 'node2' },
+				automatic_installation = false,
 				handlers = {
 					function(config)
 						require('mason-nvim-dap').default_setup(config)
@@ -623,7 +624,7 @@ local plugins = {
 				},
 			})
 
-			require('nvim-dap-virtual-text').setup()
+			require('nvim-dap-virtual-text').setup({})
 			require('dapui').setup()
 
 			-- keymappings
@@ -717,6 +718,7 @@ local plugins = {
 					'eslint_d',
 					'jq',
 				},
+				automatic_installation = false,
 				handlers = {
 					function(source, methods)
 						require('mason-null-ls.automatic_setup')(
@@ -844,6 +846,8 @@ local plugins = {
 					{ name = 'emoji' },
 				}),
 				formatting = {
+					expandable_indicator = true,
+					fields = { 'abbr', 'kind', 'menu' },
 					format = lspkind.cmp_format({
 						with_text = false,
 						menu = {
@@ -929,6 +933,10 @@ local plugins = {
 
 			require('nvim-treesitter.configs').setup({
 				ensure_installed = 'all', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+				sync_install = false,
+				ignore_install = {},
+				modules = {},
+				auto_install = false,
 				highlight = {
 					enable = true,
 				},
