@@ -60,14 +60,6 @@ local plugins = {
 					border = true,
 					dynamic_preview_title = true,
 					borderchars = {
-						-- '─',
-						-- '│',
-						-- '─',
-						-- '│',
-						-- '╭',
-						-- '╮',
-						-- '╯',
-						-- '╰',
 						'-',
 						'|',
 						'-',
@@ -713,6 +705,7 @@ local plugins = {
 			local mason_null_ls = require('mason-null-ls')
 			local null_ls = require('null-ls')
 
+			---@diagnostic disable-next-line: missing-fields
 			mason_null_ls.setup({
 				ensure_installed = {
 					'eslint_d',
