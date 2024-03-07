@@ -43,6 +43,7 @@
 	pf = "push --force-with-lease"
 	remote-head = "!f() { git ls-remote $1 | grep HEAD | awk '{ print $1 }'; }; f"
 	staash = "stash --all"
+	sw = "switch"
 	wd = "diff --word-diff"
 [include]
 	path = "~/.config/local_override/git/.gitconfig"
