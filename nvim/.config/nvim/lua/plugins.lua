@@ -801,11 +801,12 @@ local plugins = {
 						cmp.mapping.scroll_docs(1),
 						{ 'i', 'c' }
 					),
+					['<C-y>'] = cmp.mapping.confirm({ select = true }),
 					['<C-e>'] = cmp.mapping({
 						i = cmp.mapping.abort(),
 						c = cmp.mapping.close(),
 					}),
-					['<C-y>'] = cmp.mapping(function()
+					['<C-l>'] = cmp.mapping(function()
 						if vim.g.ai == 'copilot' then
 							vim.api.nvim_feedkeys(
 								vim.fn['copilot#Accept'](
