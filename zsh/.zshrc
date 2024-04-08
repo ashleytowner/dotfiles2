@@ -130,6 +130,8 @@ then
   alias open=xdg-open
 fi
 
+alias todo=todo.sh
+
 alias -s txt=vim
 alias -s yaml=vim
 alias -s yml=vim
