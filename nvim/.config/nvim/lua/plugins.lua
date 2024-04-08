@@ -604,7 +604,10 @@ local plugins = {
 			{ 'mfussenegger/nvim-dap' },
 			{ 'williamboman/mason.nvim' },
 			{ 'theHamsta/nvim-dap-virtual-text' },
-			{ 'rcarriga/nvim-dap-ui' },
+			{
+				'rcarriga/nvim-dap-ui',
+				dependencies = { 'nvim-neotest/nvim-nio' }
+			},
 		},
 		config = function()
 			-- setup
