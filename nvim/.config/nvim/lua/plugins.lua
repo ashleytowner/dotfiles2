@@ -255,43 +255,43 @@ local plugins = {
 		config = function()
 			vim.keymap.set(
 				'',
-				',w',
+				'w',
 				'<Plug>CamelCaseMotion_w',
 				{ desc = 'CamelCaseMotion w' }
 			)
 			vim.keymap.set(
 				'',
-				',b',
+				'b',
 				'<Plug>CamelCaseMotion_b',
 				{ desc = 'CamelCaseMotion b' }
 			)
 			vim.keymap.set(
 				'',
-				',e',
+				'e',
 				'<Plug>CamelCaseMotion_e',
 				{ desc = 'CamelCaseMotion e' }
 			)
 			vim.keymap.set(
 				'',
-				'g,e',
+				'ge',
 				'<Plug>CamelCaseMotion_ge',
 				{ desc = 'CamelCaseMotion ge' }
 			)
 			vim.keymap.set(
 				{ 'x', 'o' },
-				'i,w',
+				'iw',
 				'<Plug>CamelCaseMotion_iw',
 				{ desc = 'CamelCaseMotion iw' }
 			)
 			vim.keymap.set(
 				{ 'x', 'o' },
-				'i,b',
+				'ib',
 				'<Plug>CamelCaseMotion_ib',
 				{ desc = 'CamelCaseMotion ib' }
 			)
 			vim.keymap.set(
 				{ 'x', 'o' },
-				'i,e',
+				'ie',
 				'<Plug>CamelCaseMotion_ie',
 				{ desc = 'CamelCaseMotion ie' }
 			)
