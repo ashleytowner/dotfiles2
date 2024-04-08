@@ -535,7 +535,8 @@ local plugins = {
 					desc = "Copilot dummy map"
 				}
 			)
-		end
+		end,
+		enabled = false
 	},
 	{
 		'Exafunction/codeium.vim',
