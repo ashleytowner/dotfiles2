@@ -47,3 +47,5 @@
 	wd = "diff --word-diff"
 [include]
 	path = "~/.config/local_override/git/.gitconfig"
+[pull]
+	rebase = true
