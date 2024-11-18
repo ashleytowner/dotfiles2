@@ -189,7 +189,7 @@ masonLsp.setup({
 		'html',
 		'lua_ls',
 		'pyright',
-		'tsserver',
+		'ts_ls',
 		'vimls',
 	},
 })
@@ -205,7 +205,7 @@ masonLsp.setup_handlers({
 			end,
 		})
 	end,
-	['tsserver'] = function(server_name)
+	['ts_ls'] = function(server_name)
 		lspConfig[server_name].setup({
 			on_attach = function(client)
 				-- Use linters & formatters instead
