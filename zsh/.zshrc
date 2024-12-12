@@ -158,6 +158,8 @@ PROMPT_EOL_MARK=''
 PROMPT_POSITION='bottom' # This is managed by the pin prompt plugin
 
 # Make up & down keys search based on what's already entered
+bindkey '^N' history-beginning-search-forward
+bindkey '^P' history-beginning-search-backward
 case $(uname -s) in
 'Darwin')
 ;&
@@ -172,6 +174,17 @@ case $(uname -s) in
 ;;
 esac
 
+zle-keymap-select() {
+	if [[ $KEYMAP == vicmd ]]; then
+		bindkey -M vicmd 'j' history-beginning-search-forward
+		bindkey -M vicmd 'k' history-beginning-search-backward
+	else
+		bindkey -M main 'j' self-insert
+		bindkey -M main 'k' self-insert
+	fi
+}
+
+zle -N zle-keymap-select
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
