@@ -91,22 +91,22 @@ if (vim.g.neovide) then
 end
 
 --- Setup for machine-specific configurations
-vim.api.nvim_exec(
+vim.api.nvim_exec2(
 	[[
 let $LOCALFILE=expand("~/.config/local_override/nvim/init.vim")
 if filereadable($LOCALFILE)
 	source $LOCALFILE
 endif
 ]],
-	false
+	{ output = false }
 )
 
-vim.api.nvim_exec(
+vim.api.nvim_exec2(
 	[[
 let $REPOCONFIG=expand('./.vim/init.vim')
 if filereadable($REPOCONFIG)
 	source $REPOCONFIG
 endif
 ]],
-	false
+	{ output = false }
 )

@@ -113,7 +113,7 @@ function M.create_highlight_group(group, fg, bg)
 end
 
 ---Get the visually selected text in the current buffer
----@return string
+---@return string[]
 function M.get_visual_selection()
 	local select_start = vim.api.nvim_buf_get_mark(0, '<')
 	local select_end = vim.api.nvim_buf_get_mark(0, '>')

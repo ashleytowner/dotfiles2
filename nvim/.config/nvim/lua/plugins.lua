@@ -400,13 +400,13 @@ local plugins = {
 			vim.keymap.set(
 				'n',
 				']h',
-				gs.next_hunk,
+				function() gs.nav_hunk('next') end,
 				{ desc = 'GitSigns next hunk' }
 			)
 			vim.keymap.set(
 				'n',
 				'[h',
-				gs.prev_hunk,
+				function() gs.nav_hunk('prev') end,
 				{ desc = 'GitSigns prev hunk' }
 			)
 		end,
