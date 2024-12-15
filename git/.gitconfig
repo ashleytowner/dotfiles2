@@ -49,3 +49,5 @@
 	path = "~/.config/local_override/git/.gitconfig"
 [pull]
 	rebase = true
+[safe]
+	directory = "*"
