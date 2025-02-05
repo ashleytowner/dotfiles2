@@ -17,8 +17,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-export ANDROID_SDK_ROOT=~/Library/Android/sdk
-export COWPATH=/usr/local/share/cows:$XDG_DATA_HOME/cows
 export EMPTY_COMMAND='' # If an empty command is entered, this command will be run instead
 
 export FZF_COMPLETION_OPTS=""
@@ -26,16 +24,9 @@ export FZF_COMPLETION_TRIGGER='**'
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/*"'
 export FZF_DEFAULT_DIR_COMMAND='find . -type d -not -path "*/.git/*" -not -path "*/.git"'
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
-export RANGER_LOAD_DEFAULT_RC=false
-export TASKDDATA=~/.local/share/taskd
-export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
-export TIMERC=$XDG_CONFIG_HOME/timewarrior/timerc
-
 # Defaults
 export EDITOR="$(which nvim)"
-export TASKDDATA=~/.local/share/taskd
-export RANGER_LOAD_DEFAULT_RC=false
+export PAGER="less"
 #}}}
 
 #{{{ *modules*
@@ -54,14 +45,11 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}'
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:git:*' user-commands fco:'description for foo'
 
+# Set tab size
 tabs -2
 #}}}
 
 #{{{ *functions*
-
-function dev-tmux() {
-  tmux new-session -s $1 \; rename-window 'server' \; new-window \; rename-window 'editor' \; new-window \; rename-window 'tunnel' \; attach
-}
 
 # alias findfunction=$(which fd > /dev/null && echo "fd" || which fdfind > /dev/null && echo "fdfind")
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -79,16 +67,8 @@ _fzf_compgen_dir() {
 #}}}
 
 #{{{ *aliases* 
-function weather() {
-  curl v2.wttr.in/$1
-}
-alias vims="nvim -S $XDG_DATA_HOME/nvim/sessions/\$(ls $XDG_DATA_HOME/nvim/sessions | fzf)"
 alias nv="nvim"
-alias src="source $ZDOTDIR.zshrc"
-alias reload="exec zsh -l"
 alias run="scripts"
-alias lag="ag --pager 'less -R'"
-alias vag="ag --vimgrep"
 
 alias ls="ls -G --color"
 alias la="ls -A"
@@ -99,9 +79,6 @@ alias -g ...="../.."
 alias -g ....="../../.."
 alias -g .....="../../../.."
 alias -g ......="../../../../.."
-
-alias split="split_tab"
-alias vsplit="vsplit_tab"
 
 # Set a yank & put command
 if which xclip > /dev/null
@@ -128,16 +105,6 @@ if which xdg-open > /dev/null
 then
   alias open=xdg-open
 fi
-
-alias todo=todo.sh
-
-alias -s txt=vim
-alias -s yaml=vim
-alias -s yml=vim
-alias -s md=vim
-alias -s js=node
-alias -s ts=ts-node
-alias -s py=python3
 
 alias -g Cerr="2>&1 > /dev/null | yank"
 alias -g Ln="| getLine"
