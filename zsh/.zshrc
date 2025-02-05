@@ -27,7 +27,6 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git/*"'
 export FZF_DEFAULT_DIR_COMMAND='find . -type d -not -path "*/.git/*" -not -path "*/.git"'
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
-export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/sbin:/usr/local/sbin:/usr/local/opt/inetutils/libexec/gnubin:/opt/apache-maven-3.6.3/bin:/usr/bin:/bin:/usr/sbin:/usr/local/lib/node_modules:~/bin:~/Library/Android/sdk/platform-tools:~/.cargo/bin:~/go/bin:~/.local/bin:/usr/local/lib/ruby/gems/3.1.0/bin:~/bin:/snap/bin
 export RANGER_LOAD_DEFAULT_RC=false
 export TASKDDATA=~/.local/share/taskd
 export TASKRC=$XDG_CONFIG_HOME/taskwarrior/taskrc
