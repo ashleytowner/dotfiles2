@@ -46,11 +46,11 @@ fi
 if which nvm > /dev/null; then
 	if (confirm "Do you want to install nvm and node?"); then
 		echo "Installing nvm" \
-		&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash \
+    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
 		&& echo "Installed nvm"
-		echo "Installing node v18" \
-		&& nvm install v18 \
-		&& echo "Installed node v18"
+		echo "Installing node v20" \
+		&& nvm install v20 \
+		&& echo "Installed node v20"
 	else
 		echo "Skipping"
 	fi
