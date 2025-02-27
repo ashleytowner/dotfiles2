@@ -94,7 +94,9 @@ local plugins = {
 						theme = 'dropdown',
 					},
 					buffers = {},
-					live_grep = {},
+					live_grep = {
+						file_ignore_patterns = { 'node_modules', '.git', '.venv' }
+					},
 					lsp_references = {},
 					lsp_definitions = {},
 					quickfix = {
